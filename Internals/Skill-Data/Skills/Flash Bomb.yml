@@ -1,0 +1,321 @@
+Flash Bomb: 
+  name: 'Flash Bomb'
+  type: 'Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '30'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'COAL'
+  icon-durability: 1
+  icon-data: 1
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Blinds nearby targets, and'
+  - '&7the caster gets speed and'
+  - '&7invisibility for a short time.'
+  - '&7Enemies get stunned for a'
+  - '&7moment as well.'
+  - ''
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bStun Duration: {attr:stun.duration} Seconds'
+  - '&bSpeed: {attr:ps.tier} for {attr:ps.seconds} Seconds'
+  - '&bInvisibility: {attr:po6.tier} for {attr:po6.seconds} Seconds'
+  - '&bBlindness Duration: {attr:po.seconds} Seconds'
+  - ''
+  - '&bPiercing Damage (Alby 3): {attr:dmg2.value} Melee Damage &1퇴'
+  - ''
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgFBP'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-e: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Command-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound guns.flashbang ambient @a[r=16] ~ ~ ~ 0.5 1.5'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Potion-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'ps'
+                counts: 'True'
+                potion: 'Speed'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po6'
+                counts: 'True'
+                potion: 'Invisibility'
+                ambient: 'True'
+                tier-base: '5'
+                tier-scale: '0'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'End Rod'
+                arrangement: 'Sphere'
+                radius-base: '7'
+                radius-scale: '0'
+                particles-base: '5'
+                particles-scale: '0'
+                visible-radius: '30'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.3'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Smoke'
+                arrangement: 'Sphere'
+                radius-base: '7'
+                radius-scale: '0'
+                particles-base: '5'
+                particles-scale: '0'
+                data: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Smoke'
+                arrangement: 'Sphere'
+                radius-base: '7'
+                radius-scale: '0'
+                particles-base: '5'
+                particles-scale: '0'
+                data: '2'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Smoke'
+                arrangement: 'Sphere'
+                radius-base: '7'
+                radius-scale: '0'
+                particles-base: '5'
+                particles-scale: '0'
+                data: '4'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Smoke'
+                arrangement: 'Sphere'
+                radius-base: '7'
+                radius-scale: '0'
+                particles-base: '5'
+                particles-scale: '0'
+                data: '6'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Night Vision'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Area-o: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '7'
+            radius-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            caster: 'False'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Potion-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Night Vision'
+                ambient: 'True'
+                tier-base: '99'
+                tier-scale: '0'
+                seconds-base: '1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.1'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po'
+                    counts: 'True'
+                    potion: 'Blindness'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Status-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'stun'
+                counts: 'True'
+                status: 'Stun'
+                duration-base: '1.5'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Skill Level-t: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Alby-Thief'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Damage-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg2'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgFBP'
+                    value-scale: '0'
+                    true: 'False'
+                    classifier: 'water'
+                    indicator: '2D'
+                  children:  {}

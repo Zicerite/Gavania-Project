@@ -1,0 +1,333 @@
+Friend Guard: 
+  name: 'Friend Guard'
+  type: 'Defense'
+  max-level: 100
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '6'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '20'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GOLD_CHESTPLATE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Increases defense to all'
+  - '&7nearby allies, but not the caster.'
+  - '&7The caster gets tech based'
+  - '&7on the number of allies buffed.'
+  - ''
+  - '&bDamage Reduction: {attr:defff.value}%'
+  - '&bDuration: {attr:def.seconds} Seconds'
+  - '&bTech Gained: {attr:techgain.amount} per ally buffed'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'defff'
+                counts: 'True'
+                key: 'defff'
+                value-base: '10.5'
+                value-scale: '0.5'
+                indicator: '2D'
+              children:  {}
+            Value Set-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'techally'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Value Set-e: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'CantFG'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-g: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Delay-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.1'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: 'techally'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'techally'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Particle-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Magic Crit'
+                arrangement: 'Circle'
+                radius-base: '6'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '25'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0'
+                amount: '1'
+                forward: '0'
+                upward: '0'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'CantFG'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Delay-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.2'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'CantFG'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Area-p: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '6'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'False'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-q: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'CantFG'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '0'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Defense Buff-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'def'
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '0.905'
+                    value-scale: '-0.005'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '0.905'
+                    value-scale: '-0.005'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '80'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    indicator: '2D'
+                  children: 
+                    Potion-u: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po'
+                        counts: 'True'
+                        potion: 'Slow'
+                        ambient: 'True'
+                        tier-base: '3'
+                        tier-scale: '0'
+                        seconds-base: '0.3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-v: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Iron Block'
+                        type: '0'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '4'
+                        particles-scale: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                Sound-w: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    version: '1.9+'
+                    newsound: 'Block Anvil Use'
+                    volume-base: '75'
+                    volume-scale: '0'
+                    pitch-base: '1.3'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Self-x: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                  children: 
+                    Value Add-y: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'techgain'
+                        counts: 'True'
+                        key: 'techally'
+                        amount-base: '3'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}

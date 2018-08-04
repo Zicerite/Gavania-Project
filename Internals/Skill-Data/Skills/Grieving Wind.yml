@@ -1,0 +1,380 @@
+Grieving Wind: 
+  name: 'Grieving Wind'
+  type: 'Damage'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '5'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '10.5'
+    mana-scale: '0.5'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_HOE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Throws out a wind of ominous energy.'
+  - '&7Targets in front of the caster are pushed'
+  - '&7and damaged.'
+  - '&7Also deals piercing damage.'
+  - '&7Also extinguishes the Caster and'
+  - '&7allies if either are on fire.'
+  - ''
+  - '&bDamage: {attr:dmg1.value} Skill Damage &r퇳'
+  - '&bPiercing Damage: {attr:dmg2.value} Melee Damage &r퇳'
+  - '&bRange: {attr:range.range} Blocks'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&cHealth: {attr:healthcost.value}% &fof Current HP'
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgGW1'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.9'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgGW2'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-f: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Command-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.collapse3 ambient @a[r=16] ~ ~ ~ 0.3 2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Linear-h: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'range'
+                range-base: '12'
+                range-scale: '0'
+                tolerance-base: '25'
+                tolerance-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg1'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgGW1'
+                    value-scale: '0.3'
+                    true: 'False'
+                    classifier: 'wind'
+                    indicator: '2D'
+                  children:  {}
+                Damage-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg2'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgGW2'
+                    value-scale: '0.1'
+                    true: 'False'
+                    classifier: 'wind'
+                    indicator: '2D'
+                  children:  {}
+                Delay-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.1'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Push-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Fixed'
+                        speed-base: '1.1'
+                        speed-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Linear-m: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                range-base: '12'
+                range-scale: '0'
+                tolerance-base: '25'
+                tolerance-scale: '0'
+                group: 'Ally'
+                wall: 'True'
+                caster: 'True'
+                max-base: '999'
+                max-scale: '0'
+                indicator: '2D'
+              children: 
+                Fire-n: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'On Fire'
+                    indicator: '2D'
+                  children: 
+                    Command-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'ext'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+            Damage-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'healthcost'
+                counts: 'True'
+                type: 'Percent Left'
+                value-base: '9'
+                value-scale: '0'
+                true: 'True'
+                classifier: 'default'
+                indicator: '2D'
+              children:  {}
+        Self-q: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Location-r: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                range-base: '3'
+                range-scale: '0'
+                ground: 'False'
+                indicator: '2D'
+              children: 
+                Particle-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Sphere'
+                    radius-base: '3'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    visible-radius: '25'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Location-t: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                range-base: '6'
+                range-scale: '0'
+                ground: 'False'
+                indicator: '2D'
+              children: 
+                Particle-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Sphere'
+                    radius-base: '3'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    visible-radius: '25'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Location-v: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                range-base: '9'
+                range-scale: '0'
+                ground: 'False'
+                indicator: '2D'
+              children: 
+                Particle-w: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Sphere'
+                    radius-base: '3'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    visible-radius: '25'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Location-x: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                range-base: '12'
+                range-scale: '0'
+                ground: 'False'
+                indicator: '2D'
+              children: 
+                Particle-y: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Sphere'
+                    radius-base: '3'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    visible-radius: '25'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+        Skill Level-z: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Xync-Reaper'
+            min-level: '1'
+            max-level: '1'
+            indicator: '2D'
+          children: 
+            Status-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Invincible'
+                duration-base: '0.5'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}

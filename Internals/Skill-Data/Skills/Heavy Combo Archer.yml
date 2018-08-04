@@ -1,0 +1,370 @@
+Heavy Combo Archer: 
+  name: 'Heavy Combo Archer'
+  type: 'Combo'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  combo: 'R'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'STONE_AXE'
+  icon-durability: 1
+  icon-data: 1
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - ''
+  - '&bR: &fShoots an arrow that deals damage,'
+  - '&fand very small amounts of piercing damage. '
+  - ''
+  - '&3Damage &f= &633&f% &3Strength Attribute'
+  - '&3Piercing Damage &f= &62&f% &3Strength Attribute'
+  - ''
+  - '&9Damage: {attr:dmg1_1.value} Melee Damage &r퇶'
+  - '&9Piercing Damage: {attr:dmg2_2.value} Melee Damage &r퇶'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-e: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Attribute-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'strR1'
+                attribute: 'Strength'
+                indicator: '2D'
+              children:  {}
+            Value Attribute-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'strR2'
+                attribute: 'Strength'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'strR1'
+                multiplier-base: '0.33'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'strR2'
+                multiplier-base: '0.02'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Value Set-j: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'FireRate'
+            value-base: '0.6'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value Set-k: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'AbleToShoot'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-m: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Crouch-n: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                crouch: 'False'
+                indicator: '2D'
+              children: 
+                Value-o: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'AbleToShoot'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '999'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Set-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'AbleToShoot'
+                        value-base: '0'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Delay-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: 'FireRate'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value Set-r: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'AbleToShoot'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Self-s: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                      children: 
+                        Projectile-t: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            projectile: 'Arrow'
+                            flaming: 'False'
+                            cost: ''
+                            group: 'Enemy'
+                            spread: 'Cone'
+                            amount-base: '1'
+                            amount-scale: '0'
+                            velocity-base: '4'
+                            velocity-scale: '0'
+                            angle-base: '30'
+                            angle-scale: '0'
+                            position: '1.6'
+                            forward-base: '0'
+                            forward-scale: '0'
+                            upward-base: '0'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            use-effect: 'False'
+                            indicator: '2D'
+                          children: 
+                            Damage-u: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'dmg1_1'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: 'strR1'
+                                value-scale: '0'
+                                true: 'False'
+                                classifier: 'neutral'
+                                indicator: '2D'
+                              children:  {}
+                            Particle-v: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Sphere'
+                                radius-base: '0.3'
+                                radius-scale: '0'
+                                particles-base: '1'
+                                particles-scale: '0'
+                                visible-radius: '90'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '1'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Damage-w: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'dmg2_2'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: 'strR2'
+                                value-scale: '0'
+                                true: 'False'
+                                classifier: 'neutral'
+                                indicator: '2D'
+                              children:  {}
+                            Area-x: 
+                              type: 'target'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                radius-base: '1'
+                                radius-scale: '0'
+                                group: 'Enemy'
+                                wall: 'True'
+                                caster: 'False'
+                                max-base: '1'
+                                max-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Self-y: 
+                                  type: 'target'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    indicator: '2D'
+                                  children: 
+                                    Value Add-z: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'tech'
+                                        amount-base: '1'
+                                        amount-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Mana-ab: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        type: 'Mana'
+                                        value-base: '3'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                        Value Random-bb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'pitch4'
+                            type: 'Normal'
+                            min-base: '0.9'
+                            min-scale: '0'
+                            max-base: '1.1'
+                            max-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Sound-cb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            version: '1.9+'
+                            newsound: 'Entity Skeleton Shoot'
+                            volume-base: '80'
+                            volume-scale: '0'
+                            pitch-base: 'pitch4'
+                            pitch-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+    Land: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: '0'
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'a'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value Set-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'b'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

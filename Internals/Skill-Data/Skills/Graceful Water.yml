@@ -1,0 +1,105 @@
+Graceful Water: 
+  name: 'Graceful Water'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'WATER_BUCKET'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7WaterDMG is increased by 15%'
+  - '&7and WaterDEF is increased by 33%'
+  - '&7when the Caster is in water.'
+  - '&7Also increases Aquatia by {attr:aq.amount} &7when'
+  - '&7the Caster is in water.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Passive-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '0.01'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Water-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    state: 'In Water'
+                    indicator: '2D'
+                  children: 
+                    Attribute-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'aq'
+                        counts: 'True'
+                        key: 'Aquatia'
+                        amount-base: '10'
+                        amount-scale: '2'
+                        seconds-base: '0.2'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Attribute-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'WaterDMG'
+                        amount-base: '15'
+                        amount-scale: '0'
+                        seconds-base: '0.2'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Attribute-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'WaterDEF'
+                        amount-base: '33'
+                        amount-scale: '0'
+                        seconds-base: '0.2'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}

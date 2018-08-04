@@ -1,0 +1,308 @@
+Frost Shot: 
+  name: 'Frost Shot'
+  type: 'Damage/Support'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '5'
+    cooldown-scale: '0'
+    mana-base: '10.8'
+    mana-scale: '0.8'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'PACKED_ICE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Launches an arrow that deals damage,'
+  - '&7and grants Slowness to enemies near'
+  - '&7where it landed. Chance to stun.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &1퇴'
+  - '&bFrost Radius: {attr:area.radius} Blocks'
+  - '&bSlowness: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bStun: {attr:CC.chance}% for {attr:stun.duration} Seconds'
+  - ''
+  - '&bPiercing Damage (Alby 1): {attr:dmgAlby1.value} Melee Damage &r퇶'
+  - ''
+  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgFS'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.15'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgFSAlby1'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-f: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Projectile-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'pro'
+                counts: 'True'
+                projectile: 'Arrow'
+                flaming: 'False'
+                cost: ''
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: '1'
+                amount-scale: '0'
+                velocity-base: '3'
+                velocity-scale: '0'
+                angle-base: '30'
+                angle-scale: '0'
+                position: '1.5'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '0'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                use-effect: 'False'
+                indicator: '2D'
+              children: 
+                Area-h: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area'
+                    radius-base: '5'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Damage-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 'dmgFS'
+                        value-scale: '0.75'
+                        true: 'False'
+                        classifier: 'water'
+                        indicator: '2D'
+                      children:  {}
+                    Potion-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po'
+                        counts: 'True'
+                        potion: 'Slow'
+                        ambient: 'True'
+                        tier-base: '1.05'
+                        tier-scale: '0.05'
+                        seconds-base: '3.05'
+                        seconds-scale: '0.05'
+                        indicator: '2D'
+                      children:  {}
+                    Skill Level-k: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Alby-Archer'
+                        min-level: '1'
+                        max-level: '1'
+                        indicator: '2D'
+                      children: 
+                        Damage-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmgAlby1'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgFSAlby1'
+                            value-scale: '0'
+                            true: 'True'
+                            classifier: 'neutral'
+                            indicator: '2D'
+                          children:  {}
+                    Chance-m: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'CC'
+                        chance-base: '20'
+                        chance-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Status-n: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'stun'
+                            counts: 'True'
+                            status: 'Stun'
+                            duration-base: '2.5'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Repeat-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '25'
+                            repetitions-scale: '0'
+                            period: '0.1'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Particle-p: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Angry Villager'
+                                arrangement: 'Circle'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '3'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '60'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '1'
+                                amount: '1'
+                                forward: '0'
+                                upward: '1.6'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                Particle-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Packed Ice'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '5'
+                    radius-scale: '0'
+                    particles-base: '40'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Sound-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                version: '1.9+'
+                newsound: 'Entity Arrow Shoot'
+                volume-base: '60'
+                volume-scale: '0'
+                pitch-base: '1'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Command-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.ice1 ambient @a[r=16] ~ ~ ~ 0.5 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Particle-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Block Crack'
+                material: 'Packed Ice'
+                type: '0'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '10'
+                particles-scale: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}

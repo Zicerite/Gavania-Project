@@ -1,0 +1,105 @@
+Guardian Angel: 
+  name: 'Guardian Angel'
+  type: 'Passive'
+  max-level: 1
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'DIAMOND'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Kills from the caster send out a'
+  - '&7burst of healing energy.'
+  - '&7Heals the caster and nearby allies.'
+  - ''
+  - '&bHP Healing: {attr:heal.value}%'
+  - '&bMana Healed: {attr:mana.value}%'
+  - '&bRadius: {attr:area.radius} Blocks'
+  desc:  []
+  components: 
+    Kill: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Area-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '7'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Heal-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '1.5'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Mana-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mana'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '4'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Red Dust'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '1'
+                particles-scale: '0'
+                visible-radius: '30'
+                dx: '-1'
+                dy: '-1'
+                dz: '1'
+                speed: '1'
+                amount: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
