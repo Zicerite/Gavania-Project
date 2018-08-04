@@ -1,0 +1,258 @@
+Hilt Hit: 
+  name: 'Hilt Hit'
+  type: 'Support'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '5'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '10'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'WOOD_SWORD'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Hits a single target in front of'
+  - '&7the caster, dealing very small'
+  - '&7amounts of damage, and stunning'
+  - '&7them for a short time.'
+  - "&7Breaks the target's Absorb and"
+  - '&7Invincibility statuses and causes'
+  - '&7an extended Stun duration.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &r퇶'
+  - '&bRange: {attr:range.range} Blocks'
+  - '&bStun Duration: {attr:stun.duration} Seconds'
+  - '&bExtended Stun Duration: {attr:stun2.duration} Seconds'
+  - ''
+  - '&bPiercing Damage (Alby 2): {attr:dmg2.value} Skill Damage &r퇶'
+  - '&bRegeneration (Yryn 2): {attr:po.tier} for {attr:po.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-q: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'hilthitdmg'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'hilthitdmg_H'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Linear-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'range'
+            range-base: '5'
+            range-scale: '0'
+            tolerance-base: '6'
+            tolerance-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            caster: 'False'
+            max-base: '1'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Delay-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.02'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'hilthitdmg'
+                    value-scale: '0.25'
+                    true: 'False'
+                    classifier: 'neutral'
+                    indicator: '2D'
+                  children:  {}
+                Sound-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    version: '1.9+'
+                    newsound: 'Entity Zombie Attack Door Wood'
+                    volume-base: '80'
+                    volume-scale: '0'
+                    pitch-base: '1'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Status-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stun'
+                    counts: 'True'
+                    status: 'Stun'
+                    duration-base: '1.1'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Self-g: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                  children: 
+                    Skill Level-h: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Yryn-Swordsman'
+                        min-level: '2'
+                        max-level: '2'
+                        indicator: '2D'
+                      children: 
+                        Potion-i: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'po'
+                            counts: 'True'
+                            potion: 'Regeneration'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '6'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Skill Level-j: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Alby-Swordsman'
+                    min-level: '2'
+                    max-level: '2'
+                    indicator: '2D'
+                  children: 
+                    Damage-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg2'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 'hilthitdmg_H'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'neutral'
+                        indicator: '2D'
+                      children:  {}
+            Status-l: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                status: 'Any'
+                indicator: '2D'
+              children: 
+                Sound-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    version: '1.9+'
+                    newsound: 'Item Shield Break'
+                    volume-base: '80'
+                    volume-scale: '0'
+                    pitch-base: '1'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Purge-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: ''
+                    status: 'All'
+                    indicator: '2D'
+                  children:  {}
+                Status-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stun2'
+                    counts: 'True'
+                    status: 'Stun'
+                    duration-base: '2.25'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}

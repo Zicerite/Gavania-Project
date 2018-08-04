@@ -1,0 +1,126 @@
+Killing Energies: 
+  name: 'Killing Energies'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'REDSTONE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Heal HP and Mana when you'
+  - '&7get a kill.'
+  - '&7Base HP healed is 20% your Dice value.'
+  - '&7Base Mana healed is 10% your Spirit value.'
+  - ''
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bMana Healed: {attr:mana.value}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-e: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.2'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Attribute-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'd_Amt'
+                attribute: 'Dice'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'd_Amt'
+                multiplier-base: '0.2'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Attribute-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 's_Amt'
+                attribute: 'Spirit'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 's_Amt'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Kill: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Heal-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'heal'
+            counts: 'True'
+            type: 'Health'
+            value-base: 'd_Amt'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Mana-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'mana'
+            counts: 'True'
+            type: 'Mana'
+            value-base: 's_Amt'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

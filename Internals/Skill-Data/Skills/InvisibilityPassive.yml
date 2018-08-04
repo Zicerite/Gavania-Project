@@ -1,0 +1,1268 @@
+InvisibilityPassive: 
+  name: 'InvisibilityPassive'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'QUARTZ_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Took Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: ''
+        indicator: '2D'
+      children: 
+        Self-tb: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Value Random-ub: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'DodgeMaybe'
+                type: 'Normal'
+                min-base: '1'
+                min-scale: '0'
+                max-base: '100'
+                max-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-vb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                potion: 'Invisibility'
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-wb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '0'
+                    min-rank-scale: '0'
+                    max-rank-base: '0'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-xb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '10'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-yb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-zb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-ac: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '1'
+                    min-rank-scale: '0'
+                    max-rank-base: '1'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-bc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '20'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-cc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-dc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-ec: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '2'
+                    min-rank-scale: '0'
+                    max-rank-base: '2'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-fc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '30'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-gc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-hc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-ic: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '3'
+                    min-rank-scale: '0'
+                    max-rank-base: '3'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-jc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '40'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-kc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-lc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-mc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '4'
+                    min-rank-scale: '0'
+                    max-rank-base: '4'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-nc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '50'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-oc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-pc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-qc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '5'
+                    min-rank-scale: '0'
+                    max-rank-base: '5'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-rc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '60'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-sc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-tc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-uc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '6'
+                    min-rank-scale: '0'
+                    max-rank-base: '6'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-vc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '70'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-wc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-xc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-yc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '7'
+                    min-rank-scale: '0'
+                    max-rank-base: '7'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-zc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '80'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-ad: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-bd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-cd: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '8'
+                    min-rank-scale: '0'
+                    max-rank-base: '8'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-dd: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '90'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-ed: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-fd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-gd: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '9'
+                    min-rank-scale: '0'
+                    max-rank-base: '9'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-hd: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '100'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-id: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-jd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+    Took Physical Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Value Random-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'DodgeMaybe'
+                type: 'Normal'
+                min-base: '1'
+                min-scale: '0'
+                max-base: '100'
+                max-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-d: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                potion: 'Invisibility'
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-e: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '0'
+                    min-rank-scale: '0'
+                    max-rank-base: '0'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-f: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '10'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-h: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-i: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '1'
+                    min-rank-scale: '0'
+                    max-rank-base: '1'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-j: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '20'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-k: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-m: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '2'
+                    min-rank-scale: '0'
+                    max-rank-base: '2'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-n: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '30'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-p: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-q: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '3'
+                    min-rank-scale: '0'
+                    max-rank-base: '3'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-r: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '40'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-s: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-t: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-u: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '4'
+                    min-rank-scale: '0'
+                    max-rank-base: '4'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-v: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '50'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-w: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-x: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-y: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '5'
+                    min-rank-scale: '0'
+                    max-rank-base: '5'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-z: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '60'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-ab: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-bb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-cb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '6'
+                    min-rank-scale: '0'
+                    max-rank-base: '6'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-db: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '70'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-eb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-fb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-gb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '7'
+                    min-rank-scale: '0'
+                    max-rank-base: '7'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-hb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '80'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-ib: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-jb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-kb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '8'
+                    min-rank-scale: '0'
+                    max-rank-base: '8'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-lb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '90'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-mb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-nb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Potion-ob: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Invisibility'
+                    min-rank-base: '9'
+                    min-rank-scale: '0'
+                    max-rank-base: '9'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-pb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'DodgeMaybe'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '100'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Cancel-qb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-rb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Snowball Poof'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}

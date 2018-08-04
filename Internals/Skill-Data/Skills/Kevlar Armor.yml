@@ -1,0 +1,92 @@
+Kevlar Armor: 
+  name: 'Kevlar Armor'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'CHAINMAIL_CHESTPLATE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Damage Resistance is'
+  - '&7increased by 10%.'
+  - '&7Damage taken from mob'
+  - '&7arrows are decreased by 10%'
+  - ''
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Defense Buff-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '0.90'
+                value-scale: '0'
+                seconds-base: '0.5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '0.90'
+                value-scale: '0'
+                seconds-base: '0.5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Immunity-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Projectile'
+                seconds-base: '1'
+                seconds-scale: '0'
+                multiplier-base: '90'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

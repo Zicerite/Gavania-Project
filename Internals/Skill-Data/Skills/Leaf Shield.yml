@@ -1,0 +1,230 @@
+Leaf Shield: 
+  name: 'Leaf Shield'
+  type: 'Defense/Healing'
+  max-level: 100
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '30'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'LEAVES'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7A shield is casted on the Caster'
+  - '&7that reduces damage taken, and'
+  - '&7grants Regeneration and'
+  - '&7Mana Regeneration for a short time.'
+  - ''
+  - '&bRegeneration Tier: {attr:po1.tier}'
+  - '&bDamage Reduction: {attr:defbuff.value}'
+  - '&bEffect Duration: {attr:po1.seconds}'
+  - ''
+  - '&bHP Healed (Yryn 1): {attr:heal2.value}'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Potion-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po1'
+                counts: 'True'
+                potion: 'Regeneration'
+                ambient: 'True'
+                tier-base: '1.04'
+                tier-scale: '0.04'
+                seconds-base: '8'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po2'
+                counts: 'True'
+                potion: 'Saturation'
+                ambient: 'True'
+                tier-base: '1.04'
+                tier-scale: '0.04'
+                seconds-base: '8'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'defbuff'
+                counts: 'True'
+                type: 'Flat'
+                skill: 'False'
+                value-base: '-4.2'
+                value-scale: '-0.2'
+                seconds-base: '8'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '-4.2'
+                value-scale: '-0.2'
+                seconds-base: '8'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '80'
+                repetitions-scale: '0'
+                period: '0.1'
+                delay: '0'
+                indicator: '2D'
+              children: 
+                Particle-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Leaves'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Sound-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                version: '1.9+'
+                newsound: 'Block Grass Break'
+                volume-base: '70'
+                volume-scale: '0'
+                pitch-base: '1'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                version: '1.9+'
+                newsound: 'Block Grass Break'
+                volume-base: '70'
+                volume-scale: '0'
+                pitch-base: '1'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Skill Level-k: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Yryn-Synergist'
+            min-level: '1'
+            max-level: '1'
+            indicator: '2D'
+          children: 
+            Heal-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal2'
+                counts: 'True'
+                type: 'Health'
+                value-base: '7.5'
+                value-scale: '0.5'
+                indicator: '2D'
+              children:  {}
+        Skill Level-m: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Nrik-Synergist'
+            min-level: '1'
+            max-level: '1'
+            indicator: '2D'
+          children: 
+            Damage Buff-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '1.20'
+                value-scale: '0'
+                seconds-base: '8'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Damage Buff-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '1.20'
+                value-scale: '0'
+                seconds-base: '8'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}

@@ -1,0 +1,409 @@
+Hydro Blast: 
+  name: 'Hydro Blast'
+  type: 'Damage/Healing'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '8'
+    cooldown-scale: '0'
+    mana-base: '9.9'
+    mana-scale: '0.9'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'WATER_BUCKET'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Causes a huge splash, dealing damage'
+  - '&7and knockback to all enemies around the'
+  - '&7Caster that also heals the Caster, and'
+  - '&7nearby allies some HP.'
+  - '&7Extinguishes allies if they are on fire.'
+  - '&7Chance to stun enemy targets.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Skill Damage &1퇴'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bStun: {attr:CC.chance}% for {attr:stun.duration} Seconds'
+  - ''
+  - '&bDamage (Alby 2): {attr:dmgAlby2.value} Skill Damage &1퇴'
+  - ''
+  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgHB'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgHBAlby2'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-f: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Particle-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Water Wake'
+                arrangement: 'Hemisphere'
+                radius-base: '6'
+                radius-scale: '0'
+                particles-base: '60'
+                particles-scale: '0'
+                visible-radius: '50'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Command-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.water2 ambient @a[r=22] ~ ~ ~ 0.8 1.1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Skill Level-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Alby-Synergist'
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Particle Projectile-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    group: 'Enemy'
+                    spread: 'Cone'
+                    amount-base: '5'
+                    amount-scale: '0'
+                    velocity-base: '1'
+                    velocity-scale: '0'
+                    angle-base: '360'
+                    angle-scale: '0'
+                    position: '0'
+                    forward-base: '0'
+                    forward-scale: '0'
+                    upward-base: '1.5'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    gravity: '0'
+                    pierce: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Circle'
+                    radius-base: '0.3'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '25'
+                    dx: '-1'
+                    dy: '-1'
+                    dz: '1'
+                    speed: '1'
+                    amount: '0'
+                    frequency: '0.05'
+                    lifespan: '1'
+                    use-effect: 'False'
+                    indicator: '2D'
+                  children: 
+                    Area-k: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        radius-base: '1'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '99'
+                        max-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Damage-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmgAlby2'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgHBAlby2'
+                            value-scale: '0.4'
+                            true: 'False'
+                            classifier: 'water'
+                            indicator: '2D'
+                          children:  {}
+        Area-m: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '6'
+            radius-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            caster: 'False'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Damage-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmg'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 'dmgHB'
+                value-scale: '0.65'
+                true: 'False'
+                classifier: 'water'
+                indicator: '2D'
+              children:  {}
+            Delay-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Repeat-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '4'
+                    repetitions-scale: '0'
+                    period: '0.075'
+                    delay: '0'
+                    indicator: '2D'
+                  children: 
+                    Push-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Fixed'
+                        speed-base: '1'
+                        speed-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Chance-r: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: 'CC'
+                chance-base: '25'
+                chance-scale: '0'
+                indicator: '2D'
+              children: 
+                Status-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stun'
+                    counts: 'True'
+                    status: 'Stun'
+                    duration-base: '2'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '20'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    indicator: '2D'
+                  children: 
+                    Particle-u: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Angry Villager'
+                        arrangement: 'Circle'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '5'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1.6'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+        Area-v: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            radius-base: '6'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Heal-w: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Health'
+                value-base: '5.4'
+                value-scale: '0.4'
+                indicator: '2D'
+              children:  {}
+            Particle-x: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Heart'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '4'
+                particles-scale: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Fire-y: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'On Fire'
+                indicator: '2D'
+              children: 
+                Command-z: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'ext'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+        Skill Level-ab: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Xync-Synergist'
+            min-level: '1'
+            max-level: '1'
+            indicator: '2D'
+          children: 
+            Status-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Invincible'
+                duration-base: '1'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
