@@ -1,0 +1,141 @@
+Auto Money Converter: 
+  name: 'Auto Money Converter'
+  type: 'Bank'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'JACK_O_LANTERN'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} '
+  - ''
+  - '&3Mode: &f(&6{level}&f)'
+  - ''
+  - '&7Toggle it to &61&7 to'
+  - '&7make gold automatically'
+  - '&7upgrade to the next tier.'
+  - '&7Toggle to &60&7 to'
+  - '&7disable this.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.15'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+              children: 
+                Inventory-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    amount-base: '64'
+                    amount-scale: '0'
+                    check-mat: 'True'
+                    material: 'Gold Nugget'
+                    check-data: 'False'
+                    check-lore: 'False'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Item-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        material: 'Gold Nugget'
+                        amount: '-64'
+                        data: '0'
+                        byte: '0'
+                        custom: 'False'
+                        indicator: '2D'
+                      children:  {}
+                    Item-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        material: 'Gold Ingot'
+                        amount: '1'
+                        data: '0'
+                        byte: '0'
+                        custom: 'False'
+                        indicator: '2D'
+                      children:  {}
+                Inventory-g: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    amount-base: '64'
+                    amount-scale: '0'
+                    check-mat: 'True'
+                    material: 'Gold Ingot'
+                    check-data: 'False'
+                    check-lore: 'False'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Item-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        material: 'Gold Ingot'
+                        amount: '-64'
+                        data: '0'
+                        byte: '0'
+                        custom: 'False'
+                        indicator: '2D'
+                      children:  {}
+                    Item-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        material: 'Gold Block'
+                        amount: '1'
+                        data: '0'
+                        byte: '0'
+                        custom: 'False'
+                        indicator: '2D'
+                      children:  {}

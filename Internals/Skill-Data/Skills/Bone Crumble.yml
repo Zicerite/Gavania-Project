@@ -1,0 +1,216 @@
+Bone Crumble: 
+  name: 'Bone Crumble'
+  type: 'Support'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '7'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '10'
+    cooldown-scale: '0'
+    mana-base: '11'
+    mana-scale: '1'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'BONE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Hits all enemies in front of the'
+  - '&7Caster, causing slowness, and a'
+  - '&7damage and defense debuff.'
+  - ''
+  - '&bSlowness: {attr:po1.tier}'
+  - '&bDamage reduced: {attr:dmgdebuff.value}'
+  - '&bDefense reduced: {attr:dmgdebuff.value}'
+  - '&bDuration: {attr:po1.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Command-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'False'
+                command: 'playsound spells.blow10 ambient @a[r=16] ~ ~ ~ 0.15 1.2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+        Linear-d: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'range'
+            range-base: '6'
+            range-scale: '0'
+            tolerance-base: '50'
+            tolerance-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            caster: 'False'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Potion-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po1'
+                counts: 'True'
+                potion: 'Slow'
+                ambient: 'True'
+                tier-base: '3.05'
+                tier-scale: '0.05'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Damage Buff-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmgdebuff'
+                counts: 'True'
+                type: 'Flat'
+                skill: 'False'
+                value-base: '-5.5'
+                value-scale: '-0.5'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Damage Buff-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Flat'
+                skill: 'True'
+                value-base: '-5.5'
+                value-scale: '-0.5'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'defdebuff'
+                counts: 'True'
+                type: 'Flat'
+                skill: 'False'
+                value-base: '5.5'
+                value-scale: '0.5'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Flat'
+                skill: 'True'
+                value-base: '5.5'
+                value-scale: '0.5'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '50'
+                repetitions-scale: '0'
+                period: '0.1'
+                delay: '0'
+                indicator: '2D'
+              children: 
+                Particle-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '1'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0.6'
+                    dy: '0.6'
+                    dz: '0.6'
+                    speed: '0.1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Value Set-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Crumbled'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '5'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Crumbled'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
