@@ -1,0 +1,71 @@
+Nrik-Gunman: 
+  name: 'Nrik-Gunman'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'EMERALD_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Nrik Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cThe Damian Clip'
+  - '&6Skill Addon; &9+Ammo'
+  - '&7Ammo Bucket now puts the main ammo'
+  - '&7clip to 100, at the cost of adding 30 more'
+  - '&7seconds to Ammo Bucket’s cooldown.'
+  - ''
+  - '&dMode 2: &cWindy Kick'
+  - '&6Skill Addon; &9+Knockback'
+  - '&7Adds a 4 block wide wind box to'
+  - '&7Long Jump, and the 3rd hit to Triple Kick.'
+  - ''
+  - '&dMode 3: &cAnti-Magic Weaponry'
+  - '&6Skill Addon; &9+Passive'
+  - '&7Deal {attr:mana.value} &7mana damage when'
+  - '&7you deal skill damage.'
+  desc:  []
+  components: 
+    Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: ''
+        indicator: '2D'
+      children: 
+        Mana-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'mana'
+            counts: 'True'
+            type: 'Mana'
+            value-base: '-1.5'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

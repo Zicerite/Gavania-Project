@@ -1,0 +1,132 @@
+lvlup: 
+  name: 'lvlup'
+  type: 'Dynamic'
+  max-level: 1
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    cost-base: '0'
+    cooldown-scale: '0'
+    cost-scale: '0'
+    level-scale: '0'
+    level-base: '1'
+    mana-base: '0'
+    mana-scale: '0'
+    cooldown-base: '0'
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'JACK_O_LANTERN'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Heal-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            counts: 'True'
+            value-scale: '0'
+            icon-key: ''
+            type: 'Percent'
+            value-base: '100'
+            indicator: '2D'
+          children:  {}
+        Mana-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            counts: 'True'
+            value-scale: '0'
+            icon-key: ''
+            type: 'Percent'
+            value-base: '100'
+            indicator: '2D'
+          children:  {}
+        Particle-d: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            visible-radius: '25'
+            amount: '1'
+            counts: 'True'
+            forward: '0'
+            radius-scale: '0'
+            particles-scale: '0'
+            particles-base: '10'
+            right: '0'
+            radius-base: '1.1'
+            speed: '0.1'
+            arrangement: 'Sphere'
+            dx: '0'
+            dy: '0'
+            dz: '0'
+            icon-key: ''
+            particle: 'End Rod'
+            upward: '1'
+            indicator: '2D'
+          children:  {}
+        Sound-e: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            pitch-scale: '0'
+            counts: 'True'
+            volume-base: '40'
+            volume-scale: '0'
+            icon-key: ''
+            pitch-base: '1'
+            version: '1.9+'
+            newsound: 'Entity Firework Blast'
+            indicator: '2D'
+          children:  {}
+        Delay-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            counts: 'True'
+            delay-base: '0.6'
+            icon-key: ''
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Sound-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                pitch-scale: '0'
+                counts: 'True'
+                volume-base: '50'
+                volume-scale: '0'
+                icon-key: ''
+                pitch-base: '1'
+                version: '1.9+'
+                newsound: 'Entity Firework Twinkle'
+                indicator: '2D'
+              children:  {}
+        Status-h: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            duration-base: '1'
+            counts: 'True'
+            icon-key: ''
+            duration-scale: '0'
+            status: 'Invincible'
+            indicator: '2D'
+          children:  {}

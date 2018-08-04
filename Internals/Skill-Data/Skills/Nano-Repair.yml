@@ -1,0 +1,468 @@
+Nano-Repair: 
+  name: 'Nano-Repair'
+  type: 'Healing'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '35'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'POTION'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Heals HP, and grants Regeneration'
+  - '&7for a short time.'
+  - '&7However, regeneration cancels'
+  - '&7when you are hit with any attack.'
+  - '&7The caster slowly gains tech over'
+  - '&7time while in this regenerative state.'
+  - '&7Small chance for the skill to grant '
+  - '&7Mana-Regeneration.'
+  - ''
+  - '&bHeals: {attr:heal.value}'
+  - '&bRegeneration: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bTech gained: {attr:gained.amount} per second'
+  - '&bMana Regeneration Chance: {attr:CC.chance}%'
+  - '&bMana Regeneration: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Passive-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '0.1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'Nano'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '999'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Particle-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Enchantment Table'
+                        arrangement: 'Sphere'
+                        radius-base: '1.5'
+                        radius-scale: '0'
+                        particles-base: '8'
+                        particles-scale: '0'
+                        visible-radius: '40'
+                        dx: '0'
+                        dy: '0.2'
+                        dz: '0'
+                        speed: '0.1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+            Value Set-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Nano'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Passive-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'time'
+                counts: 'True'
+                seconds-base: '1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-h: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'Nano'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '999'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Add-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'gained'
+                        counts: 'True'
+                        key: 'tech'
+                        amount-base: '1'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+    Took Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '99999999'
+        category: ''
+        indicator: '2D'
+      children: 
+        Self-s: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Value-t: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'Nano'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-u: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Regeneration'
+                    min-rank-base: '0'
+                    min-rank-scale: '0'
+                    max-rank-base: '999'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Purge-v: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Regeneration'
+                        status: ''
+                        indicator: '2D'
+                      children:  {}
+                    Command-w: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound ambient.buzzer2 ambient @p ~ ~ ~ 1 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-x: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Nano'
+                        value-base: '0'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Purge-y: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Saturation'
+                        status: ''
+                        indicator: '2D'
+                      children:  {}
+    Took Physical Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Self-k: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Value-l: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'Nano'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-m: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Regeneration'
+                    min-rank-base: '0'
+                    min-rank-scale: '0'
+                    max-rank-base: '999'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Purge-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Regeneration'
+                        status: ''
+                        indicator: '2D'
+                      children:  {}
+                    Command-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound ambient.buzzer2 ambient @p ~ ~ ~ 1 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Nano'
+                        value-base: '0'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Purge-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Saturation'
+                        status: ''
+                        indicator: '2D'
+                      children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-ab: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Potion-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po'
+                counts: 'True'
+                potion: 'Regeneration'
+                ambient: 'True'
+                tier-base: '3'
+                tier-scale: '0'
+                seconds-base: '10'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Command-cb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound ambient.chime2 ambient @p ~ ~ ~ 0.6 2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Heal-db: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Health'
+                value-base: '5.75'
+                value-scale: '0.75'
+                indicator: '2D'
+              children:  {}
+            Value Set-eb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Nano'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-fb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '10'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-gb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Nano'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Chance-hb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: 'CC'
+                chance-base: '25'
+                chance-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-ib: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po2'
+                    counts: 'True'
+                    potion: 'Saturation'
+                    ambient: 'True'
+                    tier-base: '3'
+                    tier-scale: '0'
+                    seconds-base: '10'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-jb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Water Wake'
+                    arrangement: 'Hemisphere'
+                    radius-base: '2.2'
+                    radius-scale: '0'
+                    particles-base: '30'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+        Skill Level-kb: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Yryn-Automation'
+            min-level: '3'
+            max-level: '3'
+            indicator: '2D'
+          children: 
+            Value Add-lb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tech'
+                amount-base: '10'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}

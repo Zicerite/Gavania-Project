@@ -1,0 +1,120 @@
+Mana Droplet: 
+  name: 'Mana Droplet'
+  type: 'Passive'
+  max-level: 10
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '11'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'POTION'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Grants Mana Regen to nearby'
+  - '&7allies and the caster, when'
+  - '&7the caster deals or takes'
+  - '&7Water Damage.'
+  - ''
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bMana Regen: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  desc:  []
+  components: 
+    Took Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 'water'
+        indicator: '2D'
+      children: 
+        Area-e: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            radius-base: '5'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Potion-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Saturation'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '1.5'
+                seconds-scale: '0.5'
+                indicator: '2D'
+              children:  {}
+    Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 'water'
+        indicator: '2D'
+      children: 
+        Area-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '5'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Potion-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po'
+                counts: 'True'
+                potion: 'Saturation'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '1.5'
+                seconds-scale: '0.5'
+                indicator: '2D'
+              children:  {}

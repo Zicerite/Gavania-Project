@@ -1,0 +1,204 @@
+Nrik-Beast: 
+  name: 'Nrik-Beast'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'EMERALD_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Nrik Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cHowling Speed'
+  - '&6Skill Addon; &9+Speed'
+  - '&7Casting Howl now also grants'
+  - '&7Speed 2 for 5 seconds.'
+  - ''
+  - '&dMode 2: &cSurging Hit'
+  - '&6Skill Addon; &9+Hitstun'
+  - '&7Thunder Bite now causes a 1.3'
+  - '&7second Hitstun.'
+  - ''
+  - '&dMode 3: &cTechnical Pain'
+  - '&6Skill Addon; &9+Passive'
+  - '&7Fixed 10% chance to gain 1 Tech'
+  - '&7when taking damage.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'value'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '1'
+        dmg-max: '999999'
+        category: ''
+        indicator: '2D'
+      children: 
+        Skill Level-j: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Nrik-Beast'
+            min-level: '3'
+            max-level: '3'
+            indicator: '2D'
+          children: 
+            Value Random-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'pain1'
+                type: 'Normal'
+                min-base: '1'
+                min-scale: '0'
+                max-base: '100'
+                max-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-m: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'pain1'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '10'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Add-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'tech'
+                        amount-base: '1'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+    Took Physical Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '1'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Skill Level-d: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Nrik-Beast'
+            min-level: '3'
+            max-level: '3'
+            indicator: '2D'
+          children: 
+            Value Random-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'pain1'
+                type: 'Normal'
+                min-base: '1'
+                min-scale: '0'
+                max-base: '100'
+                max-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-g: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'pain1'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '10'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Add-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'tech'
+                        amount-base: '1'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}

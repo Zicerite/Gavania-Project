@@ -1,0 +1,140 @@
+Nrik-Dragon-Knight: 
+  name: 'Nrik-Dragon-Knight'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'EMERALD_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Nrik Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cEnergetic Rush'
+  - '&6Skill Addon; &9+Speed'
+  - '&7Thunder Rush grants Speed 3 for 6'
+  - '&7seconds when casted.'
+  - ''
+  - '&dMode 2: &cSpirited Haste'
+  - '&6Skill Addon; &9+Haste'
+  - '&7Dragon Spirit grants Haste 3 for 6'
+  - '&7seconds when casted.'
+  - ''
+  - '&dMode 3: &cInner Fires'
+  - '&6Skill Addon; &9+Passive'
+  - '&7Fixed 15% chance to ignite an enemy for'
+  - '&72 seconds when dealing Skill Damage.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'value'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '1'
+        dmg-max: '999999'
+        category: ''
+        indicator: '2D'
+      children: 
+        Remember Targets-d: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'targetNRIK'
+            indicator: '2D'
+          children:  {}
+        Skill Level-e: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Nrik-Dragon-Knight'
+            min-level: '3'
+            max-level: '3'
+            indicator: '2D'
+          children: 
+            Value Random-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Burning'
+                type: 'Normal'
+                min-base: '1'
+                min-scale: '0'
+                max-base: '100'
+                max-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value-g: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'Burning'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '15'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Remember-h: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'targetNRIK'
+                    indicator: '2D'
+                  children: 
+                    Fire-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        seconds-base: '2'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}

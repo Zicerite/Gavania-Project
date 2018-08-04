@@ -1,0 +1,174 @@
+Nrik-Archer: 
+  name: 'Nrik-Archer'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'EMERALD_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Nrik Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cAngry Bandage'
+  - '&6Skill Addon; &9+Buffs'
+  - '&7Adds a 15% Damage buff to Quick Patch.'
+  - ''
+  - '&dMode 2: &cTech Bonus'
+  - '&6Skill Addon; &9+Passive; When at 100 Tech'
+  - '&7Caster gets a 10% Damage and Defense'
+  - '&7buff when at 100 Tech.'
+  - ''
+  - '&dMode 3: &cTactical Reposition'
+  - '&6Skill Addon; &9+Passive; When below 20% HP'
+  - '&7Gain 50 Agility when below 20% HP'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nrik-Archer'
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Value-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'tech'
+                    min-value-base: '100'
+                    min-value-scale: '0'
+                    max-value-base: '999'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Damage Buff-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '1.1'
+                        value-scale: '0'
+                        seconds-base: '0.5'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '1.1'
+                        value-scale: '0'
+                        seconds-base: '0.5'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '0.9'
+                        value-scale: '0'
+                        seconds-base: '0.5'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '0.9'
+                        value-scale: '0'
+                        seconds-base: '0.5'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Skill Level-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nrik-Archer'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Health-j: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Percent'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '20.1'
+                    max-value-scale: '2'
+                    indicator: '2D'
+                  children: 
+                    Attribute-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Agility'
+                        amount-base: '50'
+                        amount-scale: '2'
+                        seconds-base: '0.5'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}

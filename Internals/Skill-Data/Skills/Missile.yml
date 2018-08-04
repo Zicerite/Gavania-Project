@@ -1,0 +1,551 @@
+Missile: 
+  name: 'Missile'
+  type: 'Damage'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '10'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'FIREWORK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Shoots a missile forward at high'
+  - '&7speed. Explodes on ground contact.'
+  - '&7Deals very small piercing damage.'
+  - ''
+  - '&bDamage: {attr:td_m1.value} Skill Damage &4퇵'
+  - '&bPiercing Damage: {attr:dmg2.value} Skill Damage &4퇵'
+  - '&bBlast Radius: {attr:area.radius} Blocks'
+  - ''
+  - '&bDamage (Alby 1): {attr:dmgAlby1.value} Skill Damage &1퇴'
+  - '&bPiercing Damage (Alby 2): {attr:dmgAlby2.value} Skill Damage &e퇸'
+  - ''
+  - '{req:level}Level: {attr:level} &eTech: &640 &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMissile'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.4'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMissilePierce'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMissileAlby1'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.4'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMissileAlby2'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-h: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Value-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'tech'
+                min-value-base: '40'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Item Projectile-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    item: 'Firework'
+                    item-data: '0'
+                    group: 'Enemy'
+                    spread: 'Cone'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    velocity-base: '4'
+                    velocity-scale: '0'
+                    angle-base: '30'
+                    angle-scale: '0'
+                    position: '0'
+                    forward-base: '0.6'
+                    forward-scale: '0'
+                    upward-base: '0.12'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    use-effect: 'False'
+                    indicator: '2D'
+                  children: 
+                    Explosion-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        power-base: '0'
+                        power-scale: '0'
+                        damage: 'False'
+                        fire: 'False'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Huge Explosion'
+                        arrangement: 'Sphere'
+                        radius-base: '2'
+                        radius-scale: '0'
+                        particles-base: '2'
+                        particles-scale: '0'
+                        visible-radius: '100'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Area-m: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'area'
+                        radius-base: '5'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Damage-n: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'td_m1'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgMissile'
+                            value-scale: '0.3'
+                            true: 'False'
+                            classifier: 'fire'
+                            indicator: '2D'
+                          children:  {}
+                        Damage-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg2'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgMissilePierce'
+                            value-scale: '0.05'
+                            true: 'True'
+                            classifier: 'fire'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-p: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Flame'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '20'
+                            particles-scale: '0'
+                            visible-radius: '100'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-q: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Blindness'
+                            ambient: 'True'
+                            tier-base: '1'
+                            tier-scale: '0'
+                            seconds-base: '0.5'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Delay-r: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.02'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Push-s: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Fixed'
+                                speed-base: '0.8'
+                                speed-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Skill Level-t: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            skill: 'Alby-Automation'
+                            min-level: '1'
+                            max-level: '1'
+                            indicator: '2D'
+                          children: 
+                            Delay-u: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: '0.01'
+                                delay-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Damage-v: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: 'dmgAlby1'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: 'dmgMissileAlby1'
+                                    value-scale: '0'
+                                    true: 'False'
+                                    classifier: 'water'
+                                    indicator: '2D'
+                                  children:  {}
+                                Particle-w: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Block Crack'
+                                    material: 'Ice'
+                                    type: '0'
+                                    arrangement: 'Circle'
+                                    radius-base: '1'
+                                    radius-scale: '0'
+                                    particles-base: '20'
+                                    particles-scale: '0'
+                                    direction: 'XZ'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Potion-x: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    potion: 'Slow'
+                                    ambient: 'True'
+                                    tier-base: '3'
+                                    tier-scale: '0'
+                                    seconds-base: '6'
+                                    seconds-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                        Skill Level-y: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            skill: 'Alby-Automation'
+                            min-level: '2'
+                            max-level: '2'
+                            indicator: '2D'
+                          children: 
+                            Delay-z: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: '0.01'
+                                delay-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Damage-ab: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: 'dmgAlby2'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: 'dmgMissileAlby2'
+                                    value-scale: '0'
+                                    true: 'True'
+                                    classifier: 'thunder'
+                                    indicator: '2D'
+                                  children:  {}
+                    Area-bb: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        radius-base: '5'
+                        radius-scale: '0'
+                        group: 'Ally'
+                        wall: 'False'
+                        caster: 'False'
+                        max-base: '99'
+                        max-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Launch-cb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: '0.1'
+                            forward-scale: '0'
+                            upward-base: '1.25'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Skill Level-db: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            skill: 'Nrik-Automation'
+                            min-level: '2'
+                            max-level: '2'
+                            indicator: '2D'
+                          children: 
+                            Potion-eb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                potion: 'Speed'
+                                ambient: 'True'
+                                tier-base: '1'
+                                tier-scale: '0'
+                                seconds-base: '10'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Damage Buff-fb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Multiplier'
+                                skill: 'False'
+                                value-base: '1.12'
+                                value-scale: '0'
+                                seconds-base: '10'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Damage Buff-gb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Multiplier'
+                                skill: 'True'
+                                value-base: '1.12'
+                                value-scale: '0'
+                                seconds-base: '10'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Defense Buff-hb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Multiplier'
+                                skill: 'False'
+                                value-base: '0.88'
+                                value-scale: '0'
+                                seconds-base: '10'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Defense Buff-ib: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Multiplier'
+                                skill: 'True'
+                                value-base: '0.88'
+                                value-scale: '0'
+                                seconds-base: '10'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Repeat-jb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '10'
+                                repetitions-scale: '0'
+                                period: '0.1'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Particle-kb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Crit'
+                                    arrangement: 'Sphere'
+                                    radius-base: '0.5'
+                                    radius-scale: '0'
+                                    particles-base: '1'
+                                    particles-scale: '0'
+                                    visible-radius: '30'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0.1'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                Value Add-lb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '-40'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}

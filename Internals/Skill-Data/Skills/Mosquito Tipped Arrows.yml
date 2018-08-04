@@ -1,0 +1,119 @@
+Mosquito Tipped Arrows: 
+  name: 'Mosquito Tipped Arrows'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'INK_SACK'
+  icon-durability: 1
+  icon-data: 1
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Every time the caster deals damage,'
+  - '&7there is a chance to heal '
+  - '&7HP and Mana.'
+  - ''
+  - '&bChance: {attr:CC.chance}%'
+  - '&bHeal: {attr:heal.value}%'
+  - '&bMana: {attr:mana.value}%'
+  desc:  []
+  components: 
+    Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '99999'
+        category: 
+        - 'default'
+        indicator: '2D'
+      children: 
+        Chance-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: 'CC'
+            chance-base: '10'
+            chance-scale: '0'
+            indicator: '2D'
+          children: 
+            Heal-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '2'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Mana-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mana'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '2'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                version: '1.9+'
+                newsound: 'Entity Magmacube Jump'
+                volume-base: '40'
+                volume-scale: '0'
+                pitch-base: '1.2'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Damage Indicator'
+                arrangement: 'Circle'
+                radius-base: '1.2'
+                radius-scale: '0'
+                particles-base: '14'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '30'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '1'
+                amount: '1'
+                forward: '0'
+                upward: '0.2'
+                right: '0'
+                indicator: '2D'
+              children:  {}

@@ -1,0 +1,222 @@
+Medkit: 
+  name: 'Medkit'
+  type: 'Healing'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '30'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'CHEST'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Heals HP, Mana, and Tech to'
+  - '&7the Caster and nearby allies.'
+  - '&7Chance to grant Regeneration.'
+  - ''
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bMana Healed: {attr:mana.value}%'
+  - '&bTech Gained: {attr:techgained.amount}'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bHP Regen Chance: {attr:CC.chance}%'
+  - '&bHP Regen: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - ''
+  - '&bHP Healed (Yryn 1): {attr:heal2.value}%'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Sound-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                version: '1.9+'
+                newsound: 'Block Cloth Break'
+                volume-base: '90'
+                volume-scale: '0'
+                pitch-base: '1.2'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                version: '1.9+'
+                newsound: 'Block Cloth Break'
+                volume-base: '90'
+                volume-scale: '0'
+                pitch-base: '1.2'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Area-e: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '3'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Heal-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Health'
+                value-base: '10.5'
+                value-scale: '0.5'
+                indicator: '2D'
+              children:  {}
+            Mana-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mana'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '10'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'techgained'
+                counts: 'True'
+                key: 'tech'
+                amount-base: '10'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Happy Villager'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '10'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.2'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Chance-j: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: 'CC'
+                chance-base: '10'
+                chance-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po'
+                    counts: 'True'
+                    potion: 'Regeneration'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '5.1'
+                    seconds-scale: '0.1'
+                    indicator: '2D'
+                  children:  {}
+                Particle-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0.2'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-m: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Yryn-Gunman'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Heal-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'heal2'
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '5'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
