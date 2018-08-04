@@ -1,0 +1,378 @@
+Defensive Celeston Core Unleash: 
+  name: 'Defensive Celeston Core Unleash'
+  type: 'Unleash'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '40'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ' '
+    - '{'
+    - '}'
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_PICKAXE'
+  icon-durability: 47
+  icon-data: 47
+  icon-lore: 
+  - '&dDef Celeston Core Unleash &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&eHit the crouch key to unleash it.'
+  - '&eup your Unleash Bar; &7&0[&3퇽&5{attr:masterful.value}%&3퇽&0]'
+  - ''
+  - '&eYou must have a Celeston Core in your'
+  - '&e36th (Bottom right most inventory slot)'
+  - '&ehotbar item slot to do anything though.'
+  - '&eAuto-Generates at half hp, and'
+  - '&eeven faster when at crisis hp.'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  desc:  []
+  components: 
+    Crouch: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Stop Crouching'
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Value-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'masterful'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '98'
+                max-value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Self-d: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Value-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'masterful'
+                min-value-base: '100'
+                min-value-scale: '0'
+                max-value-base: '9999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-f: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '35'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'False'
+                    check-name: 'True'
+                    name: 'Zeta Shield'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Class Level-g: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        min-level: '40'
+                        max-level: '999'
+                        indicator: '2D'
+                      children: 
+                        Self-h: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            indicator: '2D'
+                          children: 
+                            Area-i: 
+                              type: 'target'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                radius-base: '10'
+                                radius-scale: '0'
+                                group: 'Ally'
+                                wall: 'True'
+                                caster: 'True'
+                                max-base: '999'
+                                max-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Attribute-j: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'Endurance'
+                                    amount-base: '100'
+                                    amount-scale: '0'
+                                    seconds-base: '20'
+                                    seconds-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Attribute-k: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'Willpower'
+                                    amount-base: '100'
+                                    amount-scale: '0'
+                                    seconds-base: '20'
+                                    seconds-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Repeat-l: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    repetitions-base: '100'
+                                    repetitions-scale: '0'
+                                    period: '0.1'
+                                    delay: '0'
+                                    indicator: '2D'
+                                  children: 
+                                    Particle-m: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        particle: 'Block Crack'
+                                        material: 'Gold Block'
+                                        type: '0'
+                                        arrangement: 'Sphere'
+                                        radius-base: '1'
+                                        radius-scale: '0'
+                                        particles-base: '10'
+                                        particles-scale: '0'
+                                        forward: '0'
+                                        upward: '1'
+                                        right: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                            Delay-n: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: '0.01'
+                                delay-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Value Set-o: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'masterful'
+                                    value-base: '0'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Command-p: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    command: 'playsound minecraft:block.anvil.use ambient @a[r=16] ~ ~ ~ 1 2'
+                                    type: 'OP'
+                                    indicator: '2D'
+                                  children:  {}
+                                Command-q: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    command: 'playsound spells.magic3 ambient @a[r=16] ~ ~ ~ 0.8 2'
+                                    type: 'OP'
+                                    indicator: '2D'
+                                  children:  {}
+                                Command-r: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    command: 'playsound spells.magic10 ambient @a[r=16] ~ ~ ~ 0.4 1.5'
+                                    type: 'OP'
+                                    indicator: '2D'
+                                  children:  {}
+                            Particle-s: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Block Crack'
+                                material: 'Gold Block'
+                                type: '0'
+                                arrangement: 'Circle'
+                                radius-base: '10'
+                                radius-scale: '0'
+                                particles-base: '100'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                forward: '0'
+                                upward: '0.2'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Particle-t: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Block Crack'
+                                material: 'Gold Block'
+                                type: '0'
+                                arrangement: 'Circle'
+                                radius-base: '10'
+                                radius-scale: '0'
+                                particles-base: '100'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                forward: '0'
+                                upward: '10'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Particle-u: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'End Rod'
+                                arrangement: 'Circle'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '40'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '50'
+                                dx: '0'
+                                dy: '2.5'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '5'
+                                upward: '5'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Particle-v: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'End Rod'
+                                arrangement: 'Circle'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '40'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '50'
+                                dx: '0'
+                                dy: '2.5'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '-5'
+                                upward: '5'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Particle-w: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'End Rod'
+                                arrangement: 'Circle'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '40'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '50'
+                                dx: '0'
+                                dy: '2.5'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '5'
+                                right: '5'
+                                indicator: '2D'
+                              children:  {}
+                            Particle-x: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'End Rod'
+                                arrangement: 'Circle'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '40'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '50'
+                                dx: '0'
+                                dy: '2.5'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '5'
+                                right: '-5'
+                                indicator: '2D'
+                              children:  {}
