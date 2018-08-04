@@ -1,0 +1,604 @@
+# Attributes.yml
+
+# For full details, visit
+# https://github.com/Eniripsa96/SkillAPI/wiki/Attributes
+
+# List of available stats to modify:
+#   health           - the max health of the player
+#   mana             - the amount of mana the player has
+#   mana-regen       - how much mana the player regenerates over time
+#   physical-damage  - damage dealt without using skills
+#   physical-defense - damage taken from non-skill attacks
+#   skill-damage     - damage dealt with skills
+#   skill-defense    - damage taken from skills
+#   move-speed       - movement speed of the player
+Vitality: 
+  display: 'Vitality'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '240'
+  icon-lore: 
+  - '&6Vitality &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +1 health per'
+  - '&7point invested.'
+  - ''
+  - '&7Increases &4퇵 Fire &7Element'
+  - '&7Damage and Defense by 0.05%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    health: 'a+v'
+    #skill-damage: 'a*1+v'
+    skill-damage-fire: 'a*0.0005+1*v'
+    skill-defense-fire: (0-a*0.0005+1*v)'
+Spirit: 
+  display: 'Spirit'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '241'
+  icon-lore: 
+  - '&6Spirit &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +1 mana and'
+  - '&7Grants +1% mana regeneration'
+  - '&7per point invested.'
+  - ''
+  - '&7Increases &e퇆 Light &7Element'
+  - '&7Damage and Defense by 0.1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    mana: 'a+v'
+    mana-regen: 'a*0.01+1*v'
+    skill-damage-light: 'a*0.001+1*v'
+    skill-defense-light: '(0-a*0.001+1*v)'
+Aquatia: 
+  display: 'Aquatia'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '242'
+  icon-lore: 
+  - '&6Aquatia &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +0.25% increased Healing'
+  - '&7bonus per point invested.'
+  - ''
+  - '&7Increases &1퇴 Water &7Element'
+  - '&7Damage and Defense by 0.25%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic: 
+      Heal-value: 'a*0.0025+1*v:icon-key=heal'
+    target:  {}
+  stats: 
+    skill-damage-water: 'a*0.0025+1*v'
+    skill-defense-water: '(0-a*0.0025+1*v)'
+Strength: 
+  display: 'Strength'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '243'
+  icon-lore: 
+  - '&6Strength &7(&2{amount}&7)'
+  - ''
+  - '&7Increases the damage'
+  - '&7from a class''s left and'
+  - '&7right click attacks.'
+  - '&7How useful this is depends'
+  - '&7on the class.'
+  - ''
+  - '&7Increases &9퇇 Physical &7Element'
+  - '&7Damage and Defense by 0.1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    physical-damage: 'a*0.005+1*v' 
+    skill-damage-physical: 'a*0.001+1*v'
+    skill-defense-physical: '(0-a*0.001+1*v)'
+Intelligence: 
+  display: 'Intelligence'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '244'
+  icon-lore: 
+  - '&6Intelligence &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +0.5% increased skill'
+  - '&7damage per point invested.'
+  - ''
+  - '&7Increases 퇶 Neutral Element'
+  - '&7Damage and Defense by 0.1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic: 
+      Damage Lore-multiplier: 'a*0.005+1*v'
+      Value Lore-multiplier: 'a*0.005+1*v:icon-key=wepdmg'
+    target:  {}
+  stats: 
+    skill-damage-neutral: 'a*0.001+1*v'
+    skill-defense-neutral: '(0-a*0.001+1*v)'
+Endurance: 
+  display: 'Endurance'
+  max: '200'
+  icon: 'iron_pickaxe'
+  icon-data: '245'
+  icon-lore: 
+  - '&6Endurance &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +0.2% increased'
+  - '&7Physical-Defense per'
+  - '&7point invested.'
+  - ''
+  - '&7Increases &2퇷 Earth &7Element'
+  - '&7Damage and Defense by 0.3%'
+  - ''
+  - '&7Increases &2? Piercing &7Element'
+  - '&7Defense by 0.5%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    physical-defense: '(0-a*0.002+1*v)'
+    skill-damage-earth: 'a*0.003+1*v'
+    skill-defense-earth: '(0-a*0.003+1*v)'
+    skill-defense-piercing: '(0-a*0.005+1*v)'
+Willpower: 
+  display: 'Willpower'
+  max: '200'
+  icon: 'iron_pickaxe'
+  icon-data: '246'
+  icon-lore: 
+  - '&6Willpower &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +0.2% increased'
+  - '&7Skill-Defense per'
+  - '&7point invested.'
+  - ''
+  - '&7Increases &6퇸 Thunder &7Element'
+  - '&7Damage and Defense by 0.3%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense: '(0-a*0.002+1*v)'
+    skill-damage-thunder: 'a*0.003+1*v'
+    skill-defense-thunder: '(0-a*0.003+1*v)'
+Agility: 
+  display: 'Agility'
+  max: '200'
+  icon: 'iron_pickaxe'
+  icon-data: '247'
+  icon-lore: 
+  - '&6Agility &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +0.25% increased'
+  - '&7walk speed per'
+  - '&7point invested.'
+  - ''
+  - '&7Increases &f퇳 Wind &7Element'
+  - '&7Damage and Defense by 0.25%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    move-speed: 'a*0.0025+1*v'
+    skill-damage-wind: 'a*0.0025+1*v'
+    skill-defense-wind: '(0-a*0.0025+1*v)'
+Dice: 
+  display: 'Dice'
+  max: '200'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6Dice &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +0.25% increase of the skill percent'
+  - '&7bonus skill chance per point invested.'
+  - '&7(This is for passives/skills with'
+  - '&7a chance element to it.)'
+  - ''
+  - '&7Increases &5퇾 Dark &7Element'
+  - '&7Damage and Defense by 0.2%'
+  - ''
+  global: 
+    condition: 
+      Chance-chance: 'a*0.0025+1*v'
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-dark: 'a*0.002+1*v'
+    skill-defense-dark: '(0-a*0.002+1*v)'
+XpBonus: 
+  display: 'XpBonus'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '249'
+  icon-lore: 
+  - '&6Dice &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +1% increased XP'
+  - '&7per point invested.'
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats:
+    exp: 'a*0.01+1*v'
+FireDMG: 
+  display: 'FireDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6FireDMG &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Fire &7Element'
+  - '&7Damage by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-fire: 'a*0.01+1*v'
+WaterDMG: 
+  display: 'WaterDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6WaterDMG &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Water &7Element'
+  - '&7Damage by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-water: 'a*0.01+1*v'
+LightDMG: 
+  display: 'LightDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6LightDMG &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Light &7Element'
+  - '&7Damage by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-light: 'a*0.01+1*v'
+EarthDMG: 
+  display: 'EarthDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6EarthDMG &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Earth &7Element'
+  - '&7Damage by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-earth: 'a*0.01+1*v'
+ThunderDMG: 
+  display: 'ThunderDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6ThunderDMG &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Thunder &7Element'
+  - '&7Damage by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-thunder: 'a*0.01+1*v'
+WindDMG: 
+  display: 'WindDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6WindDMG &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Wind &7Element'
+  - '&7Damage by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-wind: 'a*0.01+1*v'
+DarkDMG: 
+  display: 'DarkDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6DarkDMG &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Dark &7Element'
+  - '&7Damage by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-dark: 'a*0.01+1*v'
+NeutralDMG: 
+  display: 'NeutralDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '249'
+  icon-lore: 
+  - '&6NeutralDMG &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Neutral &7Element'
+  - '&7Damage by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-neutral: 'a*0.01+1*v'
+PhysicalDMG: 
+  display: 'PhysicalDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '249'
+  icon-lore: 
+  - '&6NeutralDMG &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Physical &7Element'
+  - '&7Damage by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-damage-physical: 'a*0.01+1*v'
+FireDEF: 
+  display: 'FireDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6FireDEF &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Fire &7Element'
+  - '&7Defense by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense-fire: 'a*0.01+1*v'
+WaterDEF: 
+  display: 'WaterDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6WaterDEF &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Water &7Element'
+  - '&7Defense by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense-water: 'a*(-0.01)+1*v'
+LightDEF: 
+  display: 'LightDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6LightDEF &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Light &7Element'
+  - '&7Defense by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense-light: 'a*0.01+1*v'
+EarthDEF: 
+  display: 'EarthDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6EarthDEF &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Earth &7Element'
+  - '&7Defense by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense-earth: 'a*0.01+1*v'
+ThunderDEF: 
+  display: 'ThunderDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6ThunderDEF &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Thunder &7Element'
+  - '&7Defense by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense-thunder: '-1*(a*0.01+1*v)'
+WindDEF: 
+  display: 'WindDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6WindDEF &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Wind &7Element'
+  - '&7Defense by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense-wind: 'a*0.01+1*v'
+DarkDEF: 
+  display: 'DarkDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6DarkDEF &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Dark &7Element'
+  - '&7Defense by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense-dark: 'a*0.01+1*v'
+NeutralDEF: 
+  display: 'NeutralDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6DarkDEF &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Neutral &7Element'
+  - '&7Defense by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense-neutral: 'a*0.01+1*v'
+PhysicalDEF: 
+  display: 'PhysicalDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '248'
+  icon-lore: 
+  - '&6DarkDEF &7(&2{amount}&7)'
+  - ''
+  - '&7Increases &5Physical &7Element'
+  - '&7Defense by 1%'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    skill-defense-physical: 'a*0.01+1*v'
+BaseSpeed: 
+  display: 'BaseSpeed'
+  max: '100'
+  icon: 'iron_pickaxe'
+  icon-data: '0'
+  icon-lore: 
+  - '&6Agility &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +1% increased'
+  - '&7walk speed per'
+  - '&7point invested.'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    move-speed: 'a*0.01+1*v'
+a_Level: 
+  display: 'a_Level'
+  max: '255'
+  icon: 'iron_pickaxe'
+  icon-data: '0'
+  icon-lore: 
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats:  {}
+StaminaBonus: 
+  display: 'StaminaBonus'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '0'
+  icon-lore: 
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats:  {}
+StaminaBonusMinusOne: 
+  display: 'StaminaBonusMinusOne'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '0'
+  icon-lore: 
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats:  {}
