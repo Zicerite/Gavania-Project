@@ -1,5 +1,6 @@
 # Gavania-Project
 The place where I store the todo list, and changes to the server. Issue reports too.
-I will slowly add more and more to this as time goes on.
+I will slowly add more and more to this as time goes on. 
+Usually has the updated skills and classes that the server is currently using.
 
 **Current Version: 0.4.6** (July 2018)
