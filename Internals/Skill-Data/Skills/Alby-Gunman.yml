@@ -1,0 +1,100 @@
+Alby-Gunman: 
+  name: 'Alby-Gunman'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'REDSTONE_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Alby Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cUsing Thy Limbs'
+  - '&6Skill Addon; &9+Piercing Damage'
+  - '&7Adds piercing damage to Triple kick,'
+  - '&7and Wrist Uppercut.'
+  - ''
+  - '&dMode 2: &cGrenades are fun'
+  - '&6Skill Addon; &9+Piercing Damage'
+  - '&7Adds piercing damage to Frag Grenade'
+  - '&7and Incendiary Grenade.'
+  - ''
+  - '&dMode 3: &cRaging War'
+  - '&6Skill Addon; &9+Passive'
+  - '&7Grants an 8% damage buff.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Alby-Gunman'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Damage Buff-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '1.08'
+                    value-scale: '0'
+                    seconds-base: '0.5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '1.08'
+                    value-scale: '0'
+                    seconds-base: '0.5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}

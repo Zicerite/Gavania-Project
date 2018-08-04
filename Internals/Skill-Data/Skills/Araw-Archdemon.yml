@@ -1,0 +1,113 @@
+Araw-Archdemon: 
+  name: 'Araw-Archdemon'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Araw Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cQuicker Combos'
+  - '&6Skill Addon; &9+Cooldown Reduction'
+  - '&7Casting the “LLLLL” combo reduces all'
+  - '&7skill cooldowns by 8%'
+  - ''
+  - '&dMode 2: &cSudden Winds'
+  - '&6Skill Addon; &9+Projectile'
+  - '&7Fixed 20% chance to spawn in 2x'
+  - '&7projectiles when hitting a "R" combo.'
+  - ''
+  - '&dMode 3: &cShock Wave, &dMid-Air only'
+  - '&6Skill Addon; &9+Projectile, &eTech: &63'
+  - '&7Casting any “L” combo launches 1 weak'
+  - '&7projectile in front of the caster that pierces'
+  - '&7through enemies.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'value'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.3'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgShockWave'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.05'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Value-e: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'FakeValue'
+            min-value-base: '9'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Damage-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmgShock'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 'dmgShockWave'
+                value-scale: '0.1'
+                true: 'False'
+                classifier: 'neutral'
+                indicator: '2D'
+              children:  {}

@@ -1,0 +1,79 @@
+Archangel Resistance: 
+  name: 'Archangel Resistance'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GOLD_CHESTPLATE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Take 20% less damage from'
+  - '&7Light and Thunder'
+  - '&7damage type attacks.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.02'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Buff-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'SKILL_DEFENSE'
+                modifier: 'Multiplier'
+                category: 'light'
+                value-base: '0.8'
+                value-scale: '0'
+                seconds-base: '0.9'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Buff-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'SKILL_DEFENSE'
+                modifier: 'Multiplier'
+                category: 'thunder'
+                value-base: '0.8'
+                value-scale: '0'
+                seconds-base: '0.9'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}

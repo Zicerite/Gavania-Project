@@ -1,0 +1,277 @@
+Angel Blessing: 
+  name: 'Angel Blessing'
+  type: 'Support'
+  max-level: 100
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '17'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '70'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'FEATHER'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Grants a Damage, Defense, and Agility'
+  - '&7buff to the caster and nearby allies.'
+  - ''
+  - '&bMelee Damage Buff: {attr:textBuff1.value}%'
+  - '&bSkill Damage Buff: {attr:textBuff1.value}%'
+  - '&bMelee Defense Buff: {attr:textBuff2.value}%'
+  - '&bSkill Defense Buff: {attr:textBuff2.value}%'
+  - '&bDuration: {attr:dmgBuff.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'textBuff1'
+                counts: 'True'
+                key: 'value1'
+                value-base: '11'
+                value-scale: '1'
+                indicator: '2D'
+              children:  {}
+            Value Set-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'textBuff2'
+                counts: 'True'
+                key: 'value2'
+                value-base: '20'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-f: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Command-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.magic11 ambient @a[r=16] ~ ~ ~ 0.4 1.5'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+        Area-h: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '8'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Damage Buff-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmgBuff'
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '1.11'
+                value-scale: '0.01'
+                seconds-base: '10'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Damage Buff-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '1.11'
+                value-scale: '0.01'
+                seconds-base: '10'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '0.80'
+                value-scale: '0'
+                seconds-base: '10'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '0.80'
+                value-scale: '0'
+                seconds-base: '10'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '50'
+                repetitions-scale: '0'
+                period: '0.2'
+                delay: '0'
+                indicator: '2D'
+              children: 
+                Particle-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'End Rod'
+                    arrangement: 'Sphere'
+                    radius-base: '0.1'
+                    radius-scale: '0'
+                    particles-base: '1'
+                    particles-scale: '0'
+                    visible-radius: '25'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0.2'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-o: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Yryn-Archangel'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Potion-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Saturation'
+                    ambient: 'True'
+                    tier-base: '3'
+                    tier-scale: '0'
+                    seconds-base: '4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-q: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nrik-Archangel'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Potion-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '15'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-s: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nrik-Archangel'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Value Add-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '20'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
