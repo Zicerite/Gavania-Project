@@ -1,0 +1,130 @@
+Yryn-Mage: 
+  name: 'Yryn-Mage'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'DIAMOND_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Yryn Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cExtra Healing'
+  - '&6Skill Addon; &9+Healing'
+  - '&7Adds more healing dealt to Cure and Esuna.'
+  - ''
+  - '&dMode 2: &cMedic Shields'
+  - '&6Skill Addon; &9+Healing'
+  - '&7Heals a small amount of HP and Mana to'
+  - '&7the Caster and Allies when Aerospeed is casted.'
+  - ''
+  - '&dMode 3: &cHealth Seeker'
+  - '&6Skill Addon; &9+Passive'
+  - '&7Fixed 5% chance to heal {attr:heal.value}% &7HP when'
+  - '&7dealing skill damage.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-g: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'value'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: ''
+        indicator: '2D'
+      children: 
+        Value Random-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'healchance'
+            type: 'Normal'
+            min-base: '1'
+            min-scale: '0'
+            max-base: '100'
+            max-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value-c: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'healchance'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '5'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Heal-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Heart'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '3'
+                particles-scale: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}

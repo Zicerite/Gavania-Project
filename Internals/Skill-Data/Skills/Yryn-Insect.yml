@@ -1,0 +1,149 @@
+Yryn-Insect: 
+  name: 'Yryn-Insect'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'DIAMOND_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Yryn Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cBlood Sucker'
+  - '&6Skill Addon; &9+Healing'
+  - '&7Gain {attr:heal1.value} &7HP when you deal damage.'
+  - ''
+  - '&dMode 2: &cStamina Drainer'
+  - '&6Skill Addon; &9+Stamina'
+  - '&7Proboscis now drains 33% Stamina.'
+  - ''
+  - '&dMode 3: &cRegenerative Body'
+  - '&6Skill Addon; &9+Regen'
+  - '&7Heal {attr:heal2.value} &7HP every 3 seconds.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '3'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Yryn-Insect'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Heal-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'heal2'
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: '1.25'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Physical Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Skill Level-f: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Yryn-Insect'
+            min-level: '1'
+            max-level: '1'
+            indicator: '2D'
+          children: 
+            Heal-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal1'
+                counts: 'True'
+                type: 'Health'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: ''
+        indicator: '2D'
+      children: 
+        Skill Level-i: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Yryn-Insect'
+            min-level: '1'
+            max-level: '1'
+            indicator: '2D'
+          children: 
+            Heal-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Health'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

@@ -1,0 +1,83 @@
+Yryn-Beast: 
+  name: 'Yryn-Beast'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'DIAMOND_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Yryn Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cHowl Boost'
+  - '&6Skill Addon; &9+Mana and Tech'
+  - '&7Casting Howl also heals Mana and Tech.'
+  - ''
+  - '&dMode 2: &cMana Rush'
+  - '&6Skill Addon; &9+Invincibility'
+  - '&7Heals Mana when Feral Rush hits a target.'
+  - ''
+  - '&dMode 3: &cBlood Thirsty'
+  - '&6Skill Addon; &9+Passive'
+  - '&7Aquatia +30'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.5'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Yryn-Beast'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Attribute-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Aquatia'
+                    amount-base: '30'
+                    amount-scale: '0'
+                    seconds-base: '1'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}

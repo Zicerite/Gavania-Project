@@ -1,0 +1,100 @@
+Xync-Insect: 
+  name: 'Xync-Insect'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GOLD_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Xync Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cBuzz Guard'
+  - '&6Skill Addon; &9+Invincibility'
+  - '&7Adds a 1 Second invincibility to'
+  - '&7Buzz Off and Swarm.'
+  - ''
+  - '&dMode 2: &cRaising Guard'
+  - '&6Skill Addon; &9+Invincibility'
+  - '&7Adds a 1 second invincibility to'
+  - '&7Horn Uppercut and Updraft.'
+  - ''
+  - '&dMode 3: &cExtra Armor'
+  - '&6Skill Addon; &9+Defense Buff'
+  - '&7Damage resistance increased by 5%.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Xync-Insect'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Defense Buff-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '0.95'
+                    value-scale: '0'
+                    seconds-base: '0.5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '0.95'
+                    value-scale: '0'
+                    seconds-base: '0.5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
