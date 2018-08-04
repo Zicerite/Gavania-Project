@@ -1,0 +1,455 @@
+Vita Field: 
+  name: 'Vita Field'
+  type: 'Healing/Defense'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '30'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '20'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'SAPLING'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Casts a field {attr:loc.range} &7Blocks'
+  - '&7away on to the ground'
+  - '&7where the Caster is looking,'
+  - '&7that heals friendly targets over'
+  - '&7time, as well as decreasing'
+  - '&7damage taken.'
+  - '&7Enemies in the field get'
+  - '&7pushed out of it.'
+  - ''
+  - '&bHP Healed: {attr:heal.value} every 0.2 seconds'
+  - '&bDefense Buff: {attr:defbuffVF.value}%'
+  - '&bField Radius: {attr:area.radius} Blocks'
+  - '&bDuration: &610 &fSeconds'
+  - ''
+  - '&bMana Healed (Yryn 2): {attr:mana2.value} every'
+  - '  &f0.2 Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &eTech: &640 &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'defbuffVF'
+            counts: 'True'
+            key: ''
+            value-base: '25'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-d: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Value-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'tech'
+                min-value-base: '40'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Location-f: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'loc'
+                    range-base: '11'
+                    range-scale: '0'
+                    ground: 'True'
+                    indicator: '2D'
+                  children: 
+                    Repeat-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'rep'
+                        counts: 'True'
+                        repetitions-base: '50'
+                        repetitions-scale: '0'
+                        period: '0.2'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Area-h: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'area'
+                            radius-base: '4'
+                            radius-scale: '0'
+                            group: 'Ally'
+                            wall: 'True'
+                            caster: 'True'
+                            max-base: '999'
+                            max-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Particle-i: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Red Dust'
+                                arrangement: 'Sphere'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '2'
+                                particles-scale: '0'
+                                visible-radius: '50'
+                                dx: '-1'
+                                dy: '1'
+                                dz: '0'
+                                speed: '1'
+                                amount: '0'
+                                forward: '0'
+                                upward: '1'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Heal-j: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'heal'
+                                counts: 'True'
+                                type: 'Health'
+                                value-base: '2'
+                                value-scale: '0.1'
+                                indicator: '2D'
+                              children:  {}
+                            Defense Buff-k: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Multiplier'
+                                skill: 'False'
+                                value-base: '0.75'
+                                value-scale: '0'
+                                seconds-base: '0.4'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Defense Buff-l: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Multiplier'
+                                skill: 'True'
+                                value-base: '0.75'
+                                value-scale: '0'
+                                seconds-base: '0.4'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Skill Level-m: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                skill: 'Yryn-Synergist'
+                                min-level: '2'
+                                max-level: '2'
+                                indicator: '2D'
+                              children: 
+                                Mana-n: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: 'mana2'
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '2'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                        Particle-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Happy Villager'
+                            arrangement: 'Circle'
+                            radius-base: '4'
+                            radius-scale: '0'
+                            particles-base: '40'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '50'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0.05'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-p: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Heart'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            forward: '4'
+                            upward: '0.05'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-q: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Heart'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            forward: '-4'
+                            upward: '0.05'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-r: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Heart'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            forward: '0'
+                            upward: '0.05'
+                            right: '4'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-s: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Heart'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            forward: '0'
+                            upward: '0.05'
+                            right: '-4'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-t: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Heart'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            forward: '-2.5'
+                            upward: '0.05'
+                            right: '-2.5'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-u: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Heart'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            forward: '2.5'
+                            upward: '0.05'
+                            right: '2.5'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-v: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Heart'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            forward: '-2.5'
+                            upward: '0.05'
+                            right: '2.5'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-w: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Heart'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            forward: '2.5'
+                            upward: '0.05'
+                            right: '-2.5'
+                            indicator: '2D'
+                          children:  {}
+                        Area-x: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            radius-base: '4'
+                            radius-scale: '0'
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: '999'
+                            max-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Push-y: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Fixed'
+                                speed-base: '1.1'
+                                speed-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Repeat-z: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '2'
+                                repetitions-scale: '0'
+                                period: '0.075'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Launch-ab: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: '-0.5'
+                                    forward-scale: '0'
+                                    upward-base: '-0.5'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                    Explosion-bb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        power-base: '0'
+                        power-scale: '0'
+                        damage: 'False'
+                        fire: 'False'
+                        indicator: '2D'
+                      children:  {}
+                Value Add-cb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'False'
+                    key: 'tech'
+                    amount-base: '-40'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}

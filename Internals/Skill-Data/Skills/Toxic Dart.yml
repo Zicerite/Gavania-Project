@@ -1,0 +1,539 @@
+Toxic Dart: 
+  name: 'Toxic Dart'
+  type: 'Damage/Support'
+  max-level: 100
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '8'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'SPIDER_EYE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&dCasted: &7Shoots a &lsingle &7dart that grants'
+  - '&7Wither to enemies hit. Shorter Cooldown.'
+  - '&7You get 1 tech per enemy hit.'
+  - ''
+  - '&dCasted in Mid-air: &7Same as casted,'
+  - '&7plus you do a mid-air &lspray &7of darts.'
+  - "&7However, tech isn't gained."
+  - ''
+  - '&7Darts drain mana from the targets. Amount'
+  - '&7drained is based on &65&f% &7of the Dice attribute stat.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Skill Damage &1퇴'
+  - '&bMana Drained: {attr:manadrained.value}'
+  - '&bWither: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - ''
+  - '&bHP Healed (Yryn 3): {attr:heal.value}'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-hb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-ib: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgDart'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.25'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Attribute-jb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Dice_Dart'
+                attribute: 'Dice'
+                indicator: '2D'
+              children:  {}
+            Value Attribute-kb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Dice_Dart_Neg'
+                attribute: 'Dice'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-lb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Dice_Dart'
+                multiplier-base: '0.05'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-mb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Dice_Dart_Neg'
+                multiplier-base: '-1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-nb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Dice_Dart_Neg'
+                multiplier-base: '0.05'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Block-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                standing: 'On Block'
+                material: 'Air'
+                indicator: '2D'
+              children: 
+                Repeat-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'rep'
+                    counts: 'True'
+                    repetitions-base: '6'
+                    repetitions-scale: '0'
+                    period: '0.3'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Item Projectile-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        item: 'Spider Eye'
+                        item-data: '0'
+                        group: 'Enemy'
+                        spread: 'Cone'
+                        amount-base: '1'
+                        amount-scale: '0'
+                        velocity-base: '3.2'
+                        velocity-scale: '0'
+                        angle-base: '30'
+                        angle-scale: '0'
+                        position: '0'
+                        forward-base: '0.05'
+                        forward-scale: '0'
+                        upward-base: '-0.10'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        use-effect: 'False'
+                        indicator: '2D'
+                      children: 
+                        Area-f: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            radius-base: '2'
+                            radius-scale: '0'
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: '999'
+                            max-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Damage-g: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'dmg'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: 'dmgDart'
+                                value-scale: '0.2'
+                                true: 'False'
+                                classifier: 'water'
+                                indicator: '2D'
+                              children:  {}
+                            Potion-h: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                potion: 'Wither'
+                                ambient: 'True'
+                                tier-base: '2'
+                                tier-scale: '0'
+                                seconds-base: '4'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Particle-i: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Red Dust'
+                                arrangement: 'Sphere'
+                                radius-base: '0.8'
+                                radius-scale: '0'
+                                particles-base: '5'
+                                particles-scale: '0'
+                                visible-radius: '25'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '1'
+                                amount: '1'
+                                forward: '0'
+                                upward: '1'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Mana-j: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'manadrained'
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: 'Dice_Dart_Neg'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Self-k: 
+                              type: 'target'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                indicator: '2D'
+                              children: 
+                                Mana-l: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: 'Dice_Dart'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Skill Level-m: 
+                                  type: 'condition'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    skill: 'Yryn-Thief'
+                                    min-level: '3'
+                                    max-level: '3'
+                                    indicator: '2D'
+                                  children: 
+                                    Heal-n: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: 'heal'
+                                        counts: 'True'
+                                        type: 'Health'
+                                        value-base: '3'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                    Launch-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: '-0.2'
+                        forward-scale: '0'
+                        upward-base: '0.3'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Sound-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        version: '1.9+'
+                        newsound: 'Entity Skeleton Shoot'
+                        volume-base: '100'
+                        volume-scale: '0'
+                        pitch-base: '0.9'
+                        pitch-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+        Self-q: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Block-r: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                standing: 'Not On Block'
+                material: 'Air'
+                indicator: '2D'
+              children: 
+                Item Projectile-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    item: 'Spider Eye'
+                    item-data: '0'
+                    group: 'Enemy'
+                    spread: 'Cone'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    velocity-base: '3.2'
+                    velocity-scale: '0'
+                    angle-base: '30'
+                    angle-scale: '0'
+                    position: '0'
+                    forward-base: '0.05'
+                    forward-scale: '0'
+                    upward-base: '-0.10'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    use-effect: 'False'
+                    indicator: '2D'
+                  children: 
+                    Area-t: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        radius-base: '2'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Damage-u: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgDart'
+                            value-scale: '0.2'
+                            true: 'False'
+                            classifier: 'water'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-v: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'po'
+                            counts: 'True'
+                            potion: 'Wither'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '4'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-w: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Witch Magic'
+                            arrangement: 'Sphere'
+                            radius-base: '0.8'
+                            radius-scale: '0'
+                            particles-base: '5'
+                            particles-scale: '0'
+                            visible-radius: '25'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Mana-x: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: 'Dice_Dart_Neg'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Self-y: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            indicator: '2D'
+                          children: 
+                            Value Add-z: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'tech'
+                                amount-base: '1'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Mana-ab: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: 'Dice_Dart'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Skill Level-bb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                skill: 'Yryn-Thief'
+                                min-level: '3'
+                                max-level: '3'
+                                indicator: '2D'
+                              children: 
+                                Heal-cb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '3'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                Sound-db: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    version: '1.9+'
+                    newsound: 'Entity Skeleton Shoot'
+                    volume-base: '100'
+                    volume-scale: '0'
+                    pitch-base: '0.9'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Delay-eb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.01'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Cooldown-fb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        skill: 'Toxic Dart'
+                        type: 'Seconds'
+                        value-base: '6'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}

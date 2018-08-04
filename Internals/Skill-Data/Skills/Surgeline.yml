@@ -1,0 +1,273 @@
+Surgeline: 
+  name: 'Surgeline'
+  type: 'Damage'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '6'
+    cooldown-scale: '0'
+    mana-base: '10.4'
+    mana-scale: '1.4'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GLOWSTONE_DUST'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Shoots out a line of electricity,'
+  - '&7dealing damage to enemies hit,'
+  - '&7and if they are in mid-air, they'
+  - '&7get launched downward.'
+  - '&7Pierces through enemies.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Skill Damage &e퇸'
+  - '&bRange: &6Varies'
+  - ''
+  - '&bDefense Buff Duration (Xync 3): '
+  - '  &f{attr:DefBuff.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSurgeLine'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-e: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Particle Projectile-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: '1'
+                amount-scale: '0'
+                velocity-base: '3'
+                velocity-scale: '0'
+                angle-base: '30'
+                angle-scale: '0'
+                position: '1.5'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '1.5'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                gravity: '0'
+                pierce: 'True'
+                particle: 'Block Crack'
+                material: 'Gold Block'
+                type: '0'
+                arrangement: 'Sphere'
+                radius-base: '0.5'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                frequency: '0.01'
+                lifespan: '0.7'
+                use-effect: 'False'
+                indicator: '2D'
+              children: 
+                Damage-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgSurgeLine'
+                    value-scale: '0.3'
+                    true: 'False'
+                    classifier: 'thunder'
+                    indicator: '2D'
+                  children:  {}
+                Particle-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Angry Villager'
+                    arrangement: 'Sphere'
+                    radius-base: '0.2'
+                    radius-scale: '0'
+                    particles-base: '1'
+                    particles-scale: '0'
+                    visible-radius: '60'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '2'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    indicator: '2D'
+                  children: 
+                    Launch-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: '-0.001'
+                        forward-scale: '0'
+                        upward-base: '-2'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Particle Projectile-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: '1'
+                amount-scale: '0'
+                velocity-base: '3'
+                velocity-scale: '0'
+                angle-base: '30'
+                angle-scale: '0'
+                position: '1.5'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '1.5'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                gravity: '0'
+                pierce: 'True'
+                particle: 'End Rod'
+                arrangement: 'Sphere'
+                radius-base: '0.1'
+                radius-scale: '0'
+                particles-base: '2'
+                particles-scale: '0'
+                visible-radius: '80'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0'
+                amount: '1'
+                frequency: '0.01'
+                lifespan: '0.7'
+                use-effect: 'False'
+                indicator: '2D'
+              children:  {}
+            Command-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.thunder1 ambient @a[r=16] ~ ~ ~ 0.7 1.2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Skill Level-m: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Xync-Archangel'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Defense Buff-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'DefBuff'
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '0.75'
+                    value-scale: '0'
+                    seconds-base: '5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '0.75'
+                    value-scale: '0'
+                    seconds-base: '5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}

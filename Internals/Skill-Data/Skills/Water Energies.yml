@@ -1,0 +1,141 @@
+Water Energies: 
+  name: 'Water Energies'
+  type: 'Passive'
+  max-level: 1
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'POTION'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Drain {attr:mana.value}&f% &7Mana and'
+  - '&7Grain {attr:techgained.amount} &7Tech when dealing'
+  - '&7Water Damage.'
+  - ''
+  - '&7Deal 5% more Water Damage when in Water.'
+  - '&7Caster is granted Mana Regen 1 when in Water.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Water-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                state: 'In Water'
+                indicator: '2D'
+              children: 
+                Attribute-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'WaterDMG'
+                    amount-base: '5'
+                    amount-scale: '0'
+                    seconds-base: '0.2'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Saturation'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '0.2'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 'water'
+        indicator: '2D'
+      children: 
+        Mana-g: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'mana'
+            counts: 'True'
+            type: 'Percent'
+            value-base: '-1.25'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Self-h: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Mana-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Percent'
+                value-base: '1.25'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'techgained'
+                counts: 'True'
+                key: 'tech'
+                amount-base: '3'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}

@@ -1,0 +1,124 @@
+Xync-Archangel: 
+  name: 'Xync-Archangel'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GOLD_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Xync Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cInvincible Ally'
+  - '&6Skill Addon; &9+Invincibility'
+  - '&7Adds a 2.5 Second Invincibility to'
+  - '&7Guardian Shield and Circumference'
+  - '&7when they are casted.'
+  - ''
+  - '&dMode 2: &cDying Shield'
+  - '&6Skill Addon; &9+Passive'
+  - '&7Take 50% less damage when below 20% HP.'
+  - ''
+  - '&dMode 3: &cStatic Field'
+  - '&6Skill Addon; &9+Shield'
+  - '&7Take 25% less damage for a short time'
+  - '&7after casting Surgeline.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'value'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-d: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Xync-Archangel'
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Health-e: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Percent'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '20.1'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Defense Buff-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '0.50'
+                        value-scale: '0'
+                        seconds-base: '0.3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '0.50'
+                        value-scale: '0'
+                        seconds-base: '0.3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}

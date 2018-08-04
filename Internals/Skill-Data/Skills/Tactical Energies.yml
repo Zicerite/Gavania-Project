@@ -1,0 +1,124 @@
+Tactical Energies: 
+  name: 'Tactical Energies'
+  type: 'Passive'
+  max-level: 10
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '11'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'PAINTING'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Heals something, depending on'
+  - '&7which resource bar(s) are full.'
+  - ''
+  - '&bWhen at Max HP: {attr:mana.value} Mana every {attr:passive.seconds} seconds'
+  - '&bWhen at Max Mana: {attr:techgained.amount} Tech every {attr:passive.seconds} seconds'
+  - '&bWhen at Max Tech: {attr:heal.value} HP every {attr:passive.seconds} seconds'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - ''
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'passive'
+            counts: 'True'
+            seconds-base: '3'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Health-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '100'
+                min-value-scale: '0'
+                max-value-base: '100'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Mana-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'mana'
+                    counts: 'True'
+                    type: 'Mana'
+                    value-base: '2'
+                    value-scale: '1'
+                    indicator: '2D'
+                  children:  {}
+            Mana-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '100'
+                min-value-scale: '0'
+                max-value-base: '100'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'techgained'
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '2'
+                    amount-scale: '1'
+                    indicator: '2D'
+                  children:  {}
+            Value-g: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'tech'
+                min-value-base: '100'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Heal-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'heal'
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: '1.5'
+                    value-scale: '0.5'
+                    indicator: '2D'
+                  children:  {}
