@@ -1,0 +1,262 @@
+Retreat: 
+  name: 'Retreat'
+  type: 'Support'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '15'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'LEATHER_BOOTS'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Launch backwards into the air,'
+  - '&7and grants speed to the caster'
+  - '&7and nearby allies. Enemies'
+  - '&7caught within the escape radius'
+  - '&7stunned for a short time.'
+  - ''
+  - '&bSpeed: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bStun Duration: {attr:stun.duration} Seconds'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Launch-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                relative: 'Target'
+                forward-base: '-1.1'
+                forward-scale: '0'
+                upward-base: '1'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Magic Crit'
+                arrangement: 'Circle'
+                radius-base: '3'
+                radius-scale: '0'
+                particles-base: '60'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '32'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.01'
+                amount: '1'
+                forward: '0'
+                upward: '0.05'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Command-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.water1 ambient @a[r=16] ~ ~ ~ 3 1.1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Area-f: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'area'
+                radius-base: '3'
+                radius-scale: '0'
+                group: 'Ally'
+                wall: 'True'
+                caster: 'True'
+                max-base: '999'
+                max-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po'
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'True'
+                    tier-base: '1.02'
+                    tier-scale: '0.02'
+                    seconds-base: '15'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Area-h: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                radius-base: '3'
+                radius-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                indicator: '2D'
+              children: 
+                Status-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stun'
+                    counts: 'True'
+                    status: 'Stun'
+                    duration-base: '2'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '20'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Angry Villager'
+                        arrangement: 'Circle'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1.2'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+            Repeat-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '8'
+                repetitions-scale: '0'
+                period: '0.1'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Particle-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Cloud'
+                    arrangement: 'Circle'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '1'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '50'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Status-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Invincible'
+                duration-base: '0.5'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Skill Level-o: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Yryn-Archer'
+            min-level: '3'
+            max-level: '3'
+            indicator: '2D'
+          children: 
+            Mana-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Percent'
+                value-base: '5'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

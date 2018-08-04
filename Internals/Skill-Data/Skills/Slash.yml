@@ -1,0 +1,301 @@
+Slash: 
+  name: 'Slash'
+  type: 'Damage'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '3'
+    cooldown-scale: '0'
+    mana-base: '10.75'
+    mana-scale: '0.75'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'QUARTZ'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Lashes out a claw, dealing damage'
+  - '&7to enemies in front of the Caster.'
+  - '&7Also deals Piercing damage, and'
+  - '&7causes Hitstun.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &9퇇'
+  - '&bPiercing Damage: {attr:dmg2.value} Melee Damage &9퇇'
+  - '&bRange: {attr:range.range} Blocks'
+  - ''
+  - '&bPiercing Damage (Alby 1): {attr:dmg3.value} Melee Damage &r퇶'
+  - ''
+  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown {attr:cooldown} '
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSlash'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '2'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgSlashP'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgSlashAlby1'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.25'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-g: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Sound-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'False'
+                version: '1.9+'
+                newsound: 'Entity Generic Hurt'
+                volume-base: '80'
+                volume-scale: '0'
+                pitch-base: '0.7'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'False'
+                version: '1.9+'
+                newsound: 'Entity Generic Hurt'
+                volume-base: '80'
+                volume-scale: '0'
+                pitch-base: '0.5'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'False'
+                version: '1.9+'
+                newsound: 'Entity Mooshroom Shear'
+                volume-base: '100'
+                volume-scale: '0'
+                pitch-base: '1.2'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'False'
+                version: '1.9+'
+                newsound: 'Entity Player Attack Strong'
+                volume-base: '100'
+                volume-scale: '0'
+                pitch-base: '1'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'False'
+                particle: 'Crit'
+                arrangement: 'Circle'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '1'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '25'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.1'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+        Linear-m: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'range'
+            range-base: '5.5'
+            range-scale: '0'
+            tolerance-base: '40'
+            tolerance-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            caster: 'False'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Damage-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmg'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 'dmgSlash'
+                value-scale: '0.4'
+                true: 'False'
+                classifier: 'physical'
+                indicator: '2D'
+              children:  {}
+            Particle-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Crit'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                visible-radius: '25'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.5'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Status-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Disarm'
+                duration-base: '0.4'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Status-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Silence'
+                duration-base: '0.4'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Damage-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmg2'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 'dmgSlashP'
+                value-scale: '0'
+                true: 'True'
+                classifier: 'physical'
+                indicator: '2D'
+              children:  {}
+            Skill Level-s: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Alby-Beast'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Damage-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg3'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgSlashAlby1'
+                    value-scale: '0'
+                    true: 'True'
+                    classifier: 'neutral'
+                    indicator: '2D'
+                  children:  {}

@@ -1,0 +1,119 @@
+Shadow Forces: 
+  name: 'Shadow Forces'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'BANNER'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Increases damage by 8% at Night.'
+  - '&7Increases defense by 8% at Night.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+              children: 
+                Time-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    time: 'Night'
+                    indicator: '2D'
+                  children: 
+                    Damage Buff-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '1.08'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '1.08'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '0.92'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '0.92'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
