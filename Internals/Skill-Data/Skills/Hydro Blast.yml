@@ -9,7 +9,7 @@ Hydro Blast:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '8'
+    cooldown-base: '6'
     cooldown-scale: '0'
     mana-base: '9.9'
     mana-scale: '0.9'
@@ -42,49 +42,6 @@ Hydro Blast:
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgHB'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgHBAlby2'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.5'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -92,14 +49,14 @@ Hydro Blast:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-f: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
           children: 
-            Particle-g: 
+            Particle-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -122,7 +79,7 @@ Hydro Blast:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Command-h: 
+            Command-d: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -132,7 +89,7 @@ Hydro Blast:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Skill Level-i: 
+            Skill Level-e: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -142,7 +99,7 @@ Hydro Blast:
                 max-level: '2'
                 indicator: '2D'
               children: 
-                Particle Projectile-j: 
+                Particle Projectile-f: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -183,7 +140,7 @@ Hydro Blast:
                     use-effect: 'False'
                     indicator: '2D'
                   children: 
-                    Area-k: 
+                    Area-g: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -197,7 +154,7 @@ Hydro Blast:
                         max-scale: '0'
                         indicator: '2D'
                       children: 
-                        Damage-l: 
+                        Damage-h: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -210,7 +167,7 @@ Hydro Blast:
                             classifier: 'water'
                             indicator: '2D'
                           children:  {}
-        Area-m: 
+        Area-i: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -224,7 +181,7 @@ Hydro Blast:
             max-scale: '0'
             indicator: '2D'
           children: 
-            Damage-n: 
+            Damage-j: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -232,12 +189,12 @@ Hydro Blast:
                 counts: 'True'
                 type: 'Damage'
                 value-base: 'dmgHB'
-                value-scale: '0.65'
+                value-scale: '0.3'
                 true: 'False'
                 classifier: 'water'
                 indicator: '2D'
               children:  {}
-            Delay-o: 
+            Delay-k: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -247,7 +204,7 @@ Hydro Blast:
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Repeat-p: 
+                Repeat-l: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -257,9 +214,10 @@ Hydro Blast:
                     repetitions-scale: '0'
                     period: '0.075'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Push-q: 
+                    Push-m: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -268,9 +226,10 @@ Hydro Blast:
                         type: 'Fixed'
                         speed-base: '1'
                         speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
-            Chance-r: 
+            Chance-n: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -279,7 +238,7 @@ Hydro Blast:
                 chance-scale: '0'
                 indicator: '2D'
               children: 
-                Status-s: 
+                Status-o: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -290,7 +249,7 @@ Hydro Blast:
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Repeat-t: 
+                Repeat-p: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -300,9 +259,10 @@ Hydro Blast:
                     repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Particle-u: 
+                    Particle-q: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -326,7 +286,7 @@ Hydro Blast:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-        Area-v: 
+        Area-r: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -340,7 +300,7 @@ Hydro Blast:
             max-scale: '0'
             indicator: '2D'
           children: 
-            Heal-w: 
+            Heal-s: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -351,7 +311,7 @@ Hydro Blast:
                 value-scale: '0.4'
                 indicator: '2D'
               children:  {}
-            Particle-x: 
+            Particle-t: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -368,7 +328,7 @@ Hydro Blast:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Fire-y: 
+            Fire-u: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -376,7 +336,7 @@ Hydro Blast:
                 type: 'On Fire'
                 indicator: '2D'
               children: 
-                Command-z: 
+                Command-v: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -386,7 +346,7 @@ Hydro Blast:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-        Skill Level-ab: 
+        Skill Level-w: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -396,7 +356,7 @@ Hydro Blast:
             max-level: '1'
             indicator: '2D'
           children: 
-            Status-bb: 
+            Status-x: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -405,5 +365,48 @@ Hydro Blast:
                 status: 'Invincible'
                 duration-base: '1'
                 duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-z: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgHB'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgHBAlby2'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.5'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

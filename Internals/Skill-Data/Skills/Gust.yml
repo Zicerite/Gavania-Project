@@ -2,6 +2,7 @@ Gust:
   name: 'Gust'
   type: 'Damage/Support'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -40,62 +41,6 @@ Gust:
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-x: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-y: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgGust'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '1.05'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-z: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'dmgGustAlby1'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-ab: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgGustAlby2'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '0.3'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -139,9 +84,9 @@ Gust:
                         icon-key: ''
                         counts: 'True'
                         relative: 'Target'
-                        forward-base: '1.1'
+                        forward-base: '1'
                         forward-scale: '0'
-                        upward-base: '1.25'
+                        upward-base: '1.10'
                         upward-scale: '0'
                         right-base: '0'
                         right-scale: '0'
@@ -208,6 +153,7 @@ Gust:
                             type: 'Inverse'
                             speed-base: '0.4'
                             speed-scale: '0'
+                            source: 'none'
                             indicator: '2D'
                           children:  {}
                 Repeat-k: 
@@ -406,3 +352,59 @@ Gust:
                     classifier: 'wind'
                     indicator: '2D'
                   children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-x: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-y: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgGust'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.05'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgGustAlby1'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgGustAlby2'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.3'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

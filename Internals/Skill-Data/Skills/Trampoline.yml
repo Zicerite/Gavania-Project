@@ -1,0 +1,142 @@
+Trampoline: 
+  name: 'Trampoline'
+  type: 'Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '40'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '20'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'ITEM_FRAME'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Places a trampoline where the'
+  - '&7Caster is looking.'
+  - '&7All allies and enemies are'
+  - '&7able to jump on it.'
+  - ''
+  - '&bPlacement Range: {attr:range.range} Blocks'
+  - '&bTrampoline Radius: {attr:area.radius} Blocks'
+  - '&bDuration: &68 &fSeconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Location-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'range'
+                range-base: '6'
+                range-scale: '0'
+                ground: 'False'
+                indicator: '2D'
+              children: 
+                Repeat-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '80'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Cloud'
+                        arrangement: 'Circle'
+                        radius-base: '2'
+                        radius-scale: '0'
+                        particles-base: '12'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '60'
+                        dx: '0'
+                        dy: '1'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        forward: '0'
+                        upward: '0'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Area-f: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'area'
+                        radius-base: '2'
+                        radius-scale: '0'
+                        group: 'Both'
+                        wall: 'True'
+                        caster: 'True'
+                        max-base: '999'
+                        max-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Repeat-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '3'
+                            repetitions-scale: '0'
+                            period: '0.05'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Launch-h: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Target'
+                                forward-base: '0'
+                                forward-scale: '0'
+                                upward-base: '1'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                indicator: '2D'
+                              children:  {}

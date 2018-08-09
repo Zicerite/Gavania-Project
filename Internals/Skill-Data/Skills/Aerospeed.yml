@@ -2,6 +2,7 @@ Aerospeed:
   name: 'Aerospeed'
   type: 'Damage/Support'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -40,36 +41,6 @@ Aerospeed:
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-p: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.02'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-q: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgAES'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.8'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -151,7 +122,7 @@ Aerospeed:
                 ambient: 'True'
                 tier-base: '1'
                 tier-scale: '0'
-                seconds-base: '10'
+                seconds-base: '8'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
@@ -236,5 +207,36 @@ Aerospeed:
                     type: 'Fixed'
                     speed-base: '1'
                     speed-scale: '0'
+                    source: 'none'
                     indicator: '2D'
                   children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-p: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.02'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgAES'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.8'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
