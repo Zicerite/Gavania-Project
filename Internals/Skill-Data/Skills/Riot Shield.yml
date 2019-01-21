@@ -10,7 +10,7 @@ Riot Shield:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '80'
+    cooldown-base: '50'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -38,120 +38,7 @@ Riot Shield:
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Value Set-l: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'RiotShielding'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Passive-m: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Set-n: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'RiotBuff'
-                counts: 'True'
-                key: ''
-                value-base: '80'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-    Took Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'False'
-        dmg-min: '0'
-        dmg-max: '999999'
-        category: ''
-        indicator: '2D'
-      children: 
-        Remember Targets-p: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'target'
-            indicator: '2D'
-          children:  {}
-        Self-q: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Value-r: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'RiotShielding'
-                min-value-base: '1'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Remember-s: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'target'
-                    indicator: '2D'
-                  children: 
-                    Push-t: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Fixed'
-                        speed-base: '1'
-                        speed-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                Sound-u: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Entity Zombie Attack Door Wood'
-                    volume-base: '70'
-                    volume-scale: '0'
-                    pitch-base: '1'
-                    pitch-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-    Took Physical Damage: 
+    Took Physical Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -164,7 +51,7 @@ Riot Shield:
         dmg-max: '999999'
         indicator: '2D'
       children: 
-        Remember Targets-w: 
+        Remember Targets-b: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -173,14 +60,17 @@ Riot Shield:
             key: 'target'
             indicator: '2D'
           children:  {}
-        Self-x: 
+        Self-c: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-y: 
+            Value-d: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -192,15 +82,18 @@ Riot Shield:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Remember-z: 
+                Remember-e: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     key: 'target'
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Push-ab: 
+                    Push-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -209,20 +102,97 @@ Riot Shield:
                         type: 'Fixed'
                         speed-base: '1'
                         speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
-                Sound-bb: 
+                Command-g: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Entity Zombie Attack Door Wood'
-                    volume-base: '70'
-                    volume-scale: '0'
-                    pitch-base: '1'
-                    pitch-scale: '0'
+                    command: 'playsound minecraft:entity.zombie.attack_door_wood ambient @a[r=16] ~ ~ ~ 0.5 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+    Took Skill Damage-h: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ' '
+        - '{'
+        - '}'
+        indicator: '2D'
+      children: 
+        Remember Targets-i: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'target'
+            indicator: '2D'
+          children:  {}
+        Self-j: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value-k: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'RiotShielding'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Remember-l: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'target'
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Push-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Fixed'
+                        speed-base: '1'
+                        speed-scale: '0'
+                        source: 'none'
+                        indicator: '2D'
+                      children:  {}
+                Command-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.zombie.attack_door_wood ambient @a[r=16] ~ ~ ~ 0.5 1'
+                    type: 'OP'
                     indicator: '2D'
                   children:  {}
     Cast: 
@@ -232,14 +202,17 @@ Riot Shield:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-b: 
+        Self-p: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value Set-c: 
+            Value Set-q: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -250,7 +223,7 @@ Riot Shield:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Defense Buff-d: 
+            Defense Buff-r: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -264,7 +237,7 @@ Riot Shield:
                 seconds-scale: '0.05'
                 indicator: '2D'
               children:  {}
-            Defense Buff-e: 
+            Defense Buff-s: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -278,7 +251,7 @@ Riot Shield:
                 seconds-scale: '0.05'
                 indicator: '2D'
               children:  {}
-            Repeat-f: 
+            Repeat-t: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -288,9 +261,10 @@ Riot Shield:
                 repetitions-scale: '0.5'
                 period: '0.1'
                 delay: '0'
+                stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Particle-g: 
+                Particle-u: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -314,21 +288,7 @@ Riot Shield:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Sound-h: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                version: '1.9+'
-                newsound: 'Block Anvil Use'
-                volume-base: '60'
-                volume-scale: '0'
-                pitch-base: '1.5'
-                pitch-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Delay-i: 
+            Delay-v: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -338,7 +298,7 @@ Riot Shield:
                 delay-scale: '0.05'
                 indicator: '2D'
               children: 
-                Value Set-j: 
+                Value Set-w: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -349,3 +309,52 @@ Riot Shield:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
+            Command-x: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:block.anvil.place ambient @a[r=16] ~ ~ ~ 0.4 1.2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-z: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'RiotShielding'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-ab: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'RiotBuff'
+                counts: 'True'
+                key: ''
+                value-base: '80'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

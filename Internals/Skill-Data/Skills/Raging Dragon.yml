@@ -1,0 +1,169 @@
+Raging Dragon: 
+  name: 'Raging Dragon'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'DRAGON_EGG'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7When below &615&f% &7HP,'
+  - '&7Damage dealt increases by &640&f%,'
+  - '&7Haste and Mana Regen &61 &7are granted.'
+  - ''
+  - "&7Speed and Haste aren't granted if there is"
+  - '&7an effect of a higher tier already active.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Health-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '15'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage Buff-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '1.40'
+                    value-scale: '0'
+                    seconds-base: '0.4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '1.40'
+                    value-scale: '0'
+                    seconds-base: '0.4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '1.5'
+                    radius-scale: '0'
+                    particles-base: '1'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-g: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Not Active'
+                    potion: 'Fast Digging'
+                    min-rank-base: '1'
+                    min-rank-scale: '0'
+                    max-rank-base: '999'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Potion-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Fast Digging'
+                        ambient: 'True'
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '0.4'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-i: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Not Active'
+                    potion: 'Saturation'
+                    min-rank-base: '1'
+                    min-rank-scale: '0'
+                    max-rank-base: '999'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Potion-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Saturation'
+                        ambient: 'True'
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '0.4'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}

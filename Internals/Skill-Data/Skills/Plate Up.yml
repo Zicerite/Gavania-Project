@@ -1,0 +1,265 @@
+Plate Up: 
+  name: 'Plate Up'
+  type: 'Defense'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '6'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '25'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_CHESTPLATE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Increases defense to the Caster.'
+  - ''
+  - '&bDamage Reduction: {attr:deff.value}%'
+  - '&bDuration: {attr:def.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Defense Buff-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'def'
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '0.845'
+                value-scale: '-0.005'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '0.845'
+                value-scale: '-0.005'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '50'
+                repetitions-scale: '0'
+                period: '0.1'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Particle-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Iron Block'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '4'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Command-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:block.anvil.use ambient @a[r=16] ~ ~ ~ 0.7 1.2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Skill Level-h: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Swordsman_PlateUp'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Status-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Invincible'
+                    duration-base: '1.5'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-j: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Swordsman_PlateUp'
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Defense Buff-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Flat'
+                    skill: 'False'
+                    value-base: 'level'
+                    value-scale: '0'
+                    seconds-base: '5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Flat'
+                    skill: 'True'
+                    value-base: 'level'
+                    value-scale: '0'
+                    seconds-base: '5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-m: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Swordsman_PlateUp'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Potion-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-p: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.02'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'deff'
+                counts: 'True'
+                key: 'value'
+                value-base: '15.5'
+                value-scale: '0.5'
+                indicator: '2D'
+              children:  {}
+            Value Attribute-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'level'
+                attribute: 'A_Level'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'level'
+                multiplier-base: '0.25'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'level'
+                multiplier-base: '-1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

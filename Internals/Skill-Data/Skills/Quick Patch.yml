@@ -1,0 +1,293 @@
+Quick Patch: 
+  name: 'Quick Patch'
+  type: 'Healing'
+  max-level: 100
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '12'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'PAPER'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Heals HP, Mana, Tech and Stamina'
+  - '&7to the caster and allies who are'
+  - '&7close by.'
+  - ''
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bHP Percent Healed: {attr:zzheal2.value}%'
+  - '&bMana Healed: {attr:mana.value}'
+  - '&bTech Gained: {attr:techgained.amount}'
+  - '&bStamina Healed: {attr:stradd.amount}'
+  - ''
+  - '&bBuff Duration (Xync 3): {attr:buff.seconds} Seconds'
+  - '&bHP Healed (Yryn 1): {attr:heal2.value}%'
+  - '&bBuff Duration (Nrik 1): {attr:buff2.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Particle-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Cloud'
+                arrangement: 'Circle'
+                radius-base: '4'
+                radius-scale: '0'
+                particles-base: '25'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '40'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.01'
+                amount: '1'
+                forward: '0'
+                upward: '0.1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                sound: 'Block Cloth Break'
+                volume-base: '90'
+                volume-scale: '0'
+                pitch-base: '1'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                sound: 'Block Cloth Break'
+                volume-base: '90'
+                volume-scale: '0'
+                pitch-base: '1'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                sound: 'Block Cloth Break'
+                volume-base: '90'
+                volume-scale: '0'
+                pitch-base: '1'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Area-g: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '4'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            random: 'False'
+            indicator: '2D'
+          children: 
+            Heal-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Health'
+                value-base: '31.5'
+                value-scale: '1.5'
+                indicator: '2D'
+              children:  {}
+            Mana-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mana'
+                counts: 'True'
+                type: 'Mana'
+                value-base: '11.5'
+                value-scale: '1.5'
+                indicator: '2D'
+              children:  {}
+            Value Add-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'techgained'
+                counts: 'True'
+                key: 'tech'
+                amount-base: '10'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Skill Level-k: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Xync-Archer'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Defense Buff-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'buff'
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '0.85'
+                    value-scale: '0'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '0.85'
+                    value-scale: '0'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-n: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Yryn-Archer'
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Heal-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'heal2'
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '5'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-p: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nrik-Archer'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Damage Buff-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'buff2'
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '1.15'
+                    value-scale: '0'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '1.15'
+                    value-scale: '0'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Heal-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'zzheal2'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '5'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'stradd'
+                counts: 'True'
+                key: 'stamina'
+                amount-base: '15'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}

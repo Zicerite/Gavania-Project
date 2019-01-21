@@ -1,0 +1,223 @@
+Retaliate: 
+  name: 'Retaliate'
+  type: 'Damage'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '60'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_AXE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Converts missing HP, into damage,'
+  - '&7to a single enemy in front of the Caster.'
+  - '&7Hit enemy gets hitstun, and is launched anyway.'
+  - ''
+  - '&bRange: {attr:range.range} Blocks'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Linear-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'range'
+                range-base: '5.5'
+                range-scale: '0'
+                tolerance-base: '5'
+                tolerance-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '1'
+                max-scale: '0'
+                indicator: '2D'
+              children: 
+                Explosion-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    power-base: '0'
+                    power-scale: '0'
+                    damage: 'False'
+                    fire: 'False'
+                    indicator: '2D'
+                  children:  {}
+                Damage-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'hpmax'
+                    value-scale: '0'
+                    true: 'False'
+                    classifier: 'physical'
+                    indicator: '2D'
+                  children:  {}
+                Status-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Disarm'
+                    duration-base: '0.4'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Status-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Silence'
+                    duration-base: '0.4'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '3'
+                    repetitions-scale: '0'
+                    period: '0.075'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Push-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Fixed'
+                        speed-base: '0.8'
+                        speed-scale: '0'
+                        source: 'none'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Cloud'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '3'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0.25'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Health-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'hpcurrent'
+                type: 'Current'
+                indicator: '2D'
+              children:  {}
+            Value Health-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'hpmax'
+                type: 'Max'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'hpcurrent'
+                multiplier-base: '-1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'hpmax'
+                amount-base: 'hpcurrent'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}

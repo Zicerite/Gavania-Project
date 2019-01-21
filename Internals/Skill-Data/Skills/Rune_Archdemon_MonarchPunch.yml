@@ -1,0 +1,110 @@
+Rune_Archdemon_MonarchPunch: 
+  name: 'Rune_Archdemon_MonarchPunch'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'REDSTONE_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dMonarch Punch Rune'
+  - ''
+  - '&eRune for Monarch Punch.'
+  - '&b*Left* click to rise mode number.'
+  - '&b*Right* click to lower mode number.'
+  - '&aCurrent Mode: &b[&6{level}&b]'
+  - ''
+  - '&dMode 1: &cExplosive Punch'
+  - '&7Causes an explosion on the target, dealing'
+  - '&7{attr:dmg.value} &7Neutral damage to enemies'
+  - '&7within a 3.5 block radius.'
+  - ''
+  - '&dMode 2: &cQuicker Execution'
+  - '&7Reduces the cooldown of all skills by'
+  - '&710% when casting this skill.'
+  - ''
+  - '&dMode 3: &cTechnical Refund'
+  - '&7Refunds 10 Tech after casting the skill.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'value'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.6'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMPRUNE'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'fdfhsdfgsfdg'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgMPRUNE'
+                    value-scale: '0'
+                    true: 'False'
+                    classifier: 'default'
+                    indicator: '2D'
+                  children:  {}

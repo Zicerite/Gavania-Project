@@ -1,0 +1,212 @@
+Rapid Shot: 
+  name: 'Rapid Shot'
+  type: 'Damage'
+  max-level: 100
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '8'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '7'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'BOW'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Shoots {attr:rep.Repetitions}&7x arrows quickly over time in'
+  - '&7rapid succession. Deals damage, and keeps'
+  - '&7the enemy in place, and causes hitstun.'
+  - ''
+  - '&bDamage: {attr:dmg.value} x15 Melee Damage &r䛶'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Repeat-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'rep'
+                counts: 'True'
+                repetitions-base: '15'
+                repetitions-scale: '0'
+                period: '0.1'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Command-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.skeleton.shoot ambient @a[r=16] ~ ~ ~ 0.6 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Projectile-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    projectile: 'Arrow'
+                    flaming: 'False'
+                    cost: ''
+                    group: 'Enemy'
+                    spread: 'Cone'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    velocity-base: '2.5'
+                    velocity-scale: '0'
+                    angle-base: '30'
+                    angle-scale: '0'
+                    position: '0'
+                    forward-base: '0'
+                    forward-scale: '0'
+                    upward-base: '1.5'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    use-effect: 'False'
+                    indicator: '2D'
+                  children: 
+                    Area-f: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        radius-base: '1.5'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Damage-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgRS'
+                            value-scale: '0.1'
+                            true: 'False'
+                            classifier: 'physical'
+                            indicator: '2D'
+                          children:  {}
+                        Repeat-h: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '2'
+                            repetitions-scale: '0'
+                            period: '0.05'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Launch-i: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Caster'
+                                forward-base: '0.001'
+                                forward-scale: '0'
+                                upward-base: '0.0001'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Status-j: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Disarm'
+                            duration-base: '0.2'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Status-k: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Silence'
+                            duration-base: '0.2'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-m: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.08'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgRS'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.125'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

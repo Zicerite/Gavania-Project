@@ -1,0 +1,585 @@
+Redirect Systems: 
+  name: 'Redirect Systems'
+  type: 'Support Toggle'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'REDSTONE_COMPARATOR'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Cast to toggle. '
+  - ''
+  - '&7Doubles your attack power,'
+  - '&7but take triple the damage.'
+  - ''
+  - '&7Automatically turns off if you are'
+  - '&7below &630&f% &7HP, and can only'
+  - '&7be toggled when above &630&f% &7HP.'
+  desc:  []
+  components: 
+    Death-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'ZoomState'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Took Physical Damage-c: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        indicator: '2D'
+      children: 
+        Health-d: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Percent'
+            min-value-base: '0'
+            min-value-scale: '0'
+            max-value-base: '30'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ZoomState'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Command-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound pda.critical_stop ambient @p[r=1] ~ ~ ~ 0.3 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Message-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    message: '&4- Emergency Disabling of Redirected Systems -'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ZoomState'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Took Skill Damage-i: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '99999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Health-j: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Percent'
+            min-value-base: '0'
+            min-value-scale: '0'
+            max-value-base: '30'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-k: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ZoomState'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Command-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound pda.critical_stop ambient @p[r=1] ~ ~ ~ 0.3 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Message-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    message: '&4- Emergency Disabling of Redirected Systems -'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ZoomState'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Health-p: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Percent'
+            min-value-base: '30.001'
+            min-value-scale: '0'
+            max-value-base: '100'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-q: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ZoomState'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '0'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-r: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'Mode_Changed'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '0'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Set-s: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'ZoomState'
+                        value-base: '1'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-t: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Mode_Changed'
+                        value-base: '1'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-u: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound ambient.switch2 ambient @a[r=16] ~ ~ ~ 1 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+            Value-v: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ZoomState'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '1'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-w: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'Mode_Changed'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '0'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Set-x: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'ZoomState'
+                        value-base: '0'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-y: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Mode_Changed'
+                        value-base: '1'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-z: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound ambient.switch1 ambient @a[r=16] ~ ~ ~ 1 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+            Value Set-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Mode_Changed'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Else-bb: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Command-cb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound pda.critical_stop ambient @p[r=1] ~ ~ ~ 0.3 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Message-db: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                message: '&4- Error! Health too critical to use -'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Repeat-fb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: '2'
+            repetitions-scale: '0'
+            period: '0.1'
+            delay: '0'
+            stop-on-fail: 'False'
+            indicator: '2D'
+          children: 
+            Value Set-gb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'ZoomState'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-hb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Mode_Changed'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Passive-ib: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-jb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ZoomState'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Self-kb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Damage Buff-lb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '2'
+                        value-scale: '0'
+                        seconds-base: '0.1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-mb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '2'
+                        value-scale: '0'
+                        seconds-base: '0.1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-nb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Red Dust'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '1'
+                        dy: '1'
+                        dz: '0'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-ob: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '3'
+                        value-scale: '0'
+                        seconds-base: '0.1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-pb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '3'
+                        value-scale: '0'
+                        seconds-base: '0.1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Health-qb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '10'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-rb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'ZoomState'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '999'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Command-sb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound pda.critical_stop ambient @p[r=1] ~ ~ ~ 0.3 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Message-tb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        message: '&4- Emergency Disabling of Redirected Systems -'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-ub: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'ZoomState'
+                        value-base: '0'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+    Cleanup: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-wb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'ZoomState'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

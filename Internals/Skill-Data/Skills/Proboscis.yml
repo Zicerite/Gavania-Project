@@ -1,0 +1,274 @@
+Proboscis: 
+  name: 'Proboscis'
+  type: 'Healing/Damage'
+  max-level: 100
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '20'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'RAW_FISH'
+  icon-durability: 3
+  icon-data: 3
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Hits a single target in'
+  - '&7front of the caster, and'
+  - '&7drains HP and Mana from'
+  - '&7it, then gives the hit target'
+  - '&7poison and mana degen.'
+  - '&7Deals Piercing Damage.'
+  - ''
+  - '&bPiercing Damage: {attr:dmg.value} Melee Damage &r䛶'
+  - '&bRange: {attr:range.range} Blocks'
+  - '&bHp Healed: {attr:heal.value}'
+  - '&bMana Healed: {attr:mana.value}'
+  - '&bPoison: {attr:po1.tier} for {attr:po1.seconds} Seconds'
+  - '&bMana Degen: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Single-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'range'
+            range-base: '6'
+            range-scale: '0'
+            tolerance-base: '12'
+            tolerance-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            indicator: '2D'
+            caster: 'false'
+          children: 
+            Mana-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Mana'
+                value-base: '-11.2'
+                value-scale: '-1.2'
+                indicator: '2D'
+              children:  {}
+            Potion-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po1'
+                counts: 'True'
+                potion: 'Poison'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '8'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po2'
+                counts: 'True'
+                potion: 'Hunger'
+                ambient: 'True'
+                tier-base: '5'
+                tier-scale: '0'
+                seconds-base: '4'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Red Dust'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '10'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '0.2'
+                dy: '0.6'
+                dz: '0.1'
+                speed: '1'
+                amount: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Damage-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Damage'
+                value-base: '1'
+                value-scale: '0'
+                true: 'False'
+                classifier: 'neutral'
+                indicator: '2D'
+              children:  {}
+            Damage-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmg'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 'ProboscisDMG'
+                value-scale: '0'
+                true: 'True'
+                classifier: 'neutral'
+                indicator: '2D'
+              children:  {}
+            Skill Level-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Yryn-Insect'
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Self-j: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Add-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'stamina'
+                        amount-base: '33'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Self-l: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Heal-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'heal'
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: '11'
+                    value-scale: '1'
+                    indicator: '2D'
+                  children:  {}
+                Mana-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'mana'
+                    counts: 'True'
+                    type: 'Mana'
+                    value-base: '11.2'
+                    value-scale: '1.2'
+                    indicator: '2D'
+                  children:  {}
+                Particle-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Heart'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+        Command-p: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            command: 'playsound minecraft:entity.silverfish.hurt ambient @a[r=16] ~ ~ ~ 1 1.2'
+            type: 'OP'
+            indicator: '2D'
+          children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-r: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'ProboscisDMG'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

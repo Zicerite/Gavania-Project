@@ -1,0 +1,111 @@
+Potion of Explode: 
+  name: 'Potion of Explode'
+  type: 'Dynamic'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'JACK_O_LANTERN'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - 'Boom Boom'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Area-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            radius-base: '8'
+            radius-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            caster: 'False'
+            max-base: '999'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Damage-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Damage'
+                value-base: '25'
+                value-scale: '25'
+                true: 'False'
+                classifier: 'default'
+                indicator: '2D'
+              children:  {}
+            Push-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Fixed'
+                speed-base: '1'
+                speed-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Particle-e: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            particle: 'Huge Explosion'
+            arrangement: 'Circle'
+            radius-base: '6'
+            radius-scale: '0'
+            particles-base: '4'
+            particles-scale: '0'
+            direction: 'XZ'
+            visible-radius: '40'
+            dx: '0'
+            dy: '0'
+            dz: '0'
+            speed: '1'
+            amount: '1'
+            forward: '0'
+            upward: '1'
+            right: '0'
+            indicator: '2D'
+          children:  {}
+        Explosion-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            power-base: '0'
+            power-scale: '0'
+            damage: 'False'
+            fire: 'False'
+            indicator: '2D'
+          children:  {}

@@ -1,0 +1,332 @@
+Resurgence: 
+  name: 'Resurgence'
+  type: 'Healing/Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '64'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'TOTEM'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Heals HP, and Mana. Grants HP, Mana'
+  - '&7Regen, and Haste. Heals Stamina, Tech,'
+  - '&7and grants a damage and defense buff'
+  - '&7to the Caster and nearby allies.'
+  - ''
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bHP Healed: {attr:zheal.value}%'
+  - '&bMana Healed: {attr:zmana.value}%'
+  - '&bStamina Healed: {attr:stradd.amount}'
+  - '&bTech Healed: {attr:techadd.amount}'
+  - '&bHP Regen: {attr:po1.tier} for {attr:po1.seconds} Seconds'
+  - '&bMana Regen: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - '&bHaste: {attr:po3.tier} for {attr:po3.seconds} Seconds'
+  - '&bDamage Buff: &612&f% for &66 &fSeconds'
+  - '&bDefense Buff: &612&f% for &66 &fSeconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Particle-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Happy Villager'
+                    arrangement: 'Sphere'
+                    radius-base: '6'
+                    radius-scale: '0'
+                    particles-base: '25'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'End Rod'
+                    arrangement: 'Sphere'
+                    radius-base: '6'
+                    radius-scale: '0'
+                    particles-base: '25'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0.25'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Command-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.healingcomplete ambient @a[r=16] ~ ~ ~ 0.5 1.2'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.saint2 ambient @a[r=16] ~ ~ ~ 0.3 1.2'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+            Area-h: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'area'
+                radius-base: '6'
+                radius-scale: '0'
+                group: 'Ally'
+                wall: 'True'
+                caster: 'True'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
+                indicator: '2D'
+              children: 
+                Heal-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'zheal'
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '25'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Mana-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'zmana'
+                    counts: 'True'
+                    type: 'Mana'
+                    value-base: '25'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po1'
+                    counts: 'True'
+                    potion: 'Regeneration'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po2'
+                    counts: 'True'
+                    potion: 'Saturation'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po3'
+                    counts: 'True'
+                    potion: 'Fast Digging'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stradd'
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '36'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'techadd'
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '15'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '1.12'
+                    value-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '1.12'
+                    value-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '30'
+                    repetitions-scale: '0'
+                    period: '0.2'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-s: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Happy Villager'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '2'
+                        particles-scale: '0'
+                        visible-radius: '40'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                Defense Buff-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '0.88'
+                    value-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '0.88'
+                    value-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}

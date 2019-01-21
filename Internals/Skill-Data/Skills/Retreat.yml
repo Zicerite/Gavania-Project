@@ -30,8 +30,14 @@ Retreat:
   - '&7and nearby allies. Enemies'
   - '&7caught within the escape radius'
   - '&7stunned for a short time.'
+  - '&7Reduces the cooldown of all'
+  - '&7skills to the Caster and nearby allies.'
+  - '&7Heals Stamina to the Caster and'
+  - '&7nearby allies.'
   - ''
   - '&bSpeed: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bStamina Healed: {attr:stradd.amount}'
+  - '&bCooldown reduction: {attr:cooldownzz.value}%'
   - '&bStun Duration: {attr:stun.duration} Seconds'
   - '&bRadius: {attr:area.radius} Blocks'
   - ''
@@ -51,6 +57,9 @@ Retreat:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Launch-c: 
               type: 'mechanic'
@@ -75,9 +84,9 @@ Retreat:
                 counts: 'True'
                 particle: 'Magic Crit'
                 arrangement: 'Circle'
-                radius-base: '3'
+                radius-base: '3.5'
                 radius-scale: '0'
-                particles-base: '60'
+                particles-base: '50'
                 particles-scale: '0'
                 direction: 'XZ'
                 visible-radius: '32'
@@ -106,13 +115,14 @@ Retreat:
               indicator: '3D'
               data: 
                 icon-key: 'area'
-                radius-base: '3'
+                radius-base: '3.5'
                 radius-scale: '0'
                 group: 'Ally'
                 wall: 'True'
                 caster: 'True'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
                 Potion-g: 
@@ -123,27 +133,61 @@ Retreat:
                     counts: 'True'
                     potion: 'Speed'
                     ambient: 'True'
-                    tier-base: '1.02'
-                    tier-scale: '0.02'
+                    tier-base: '2'
+                    tier-scale: '0'
                     seconds-base: '15'
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Area-h: 
+                Delay-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.01'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Cooldown-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'cooldownzz'
+                        counts: 'True'
+                        skill: 'all'
+                        type: 'Percent'
+                        value-base: '15'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Value Add-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stradd'
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '25'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Area-k: 
               type: 'target'
               indicator: '3D'
               data: 
                 icon-key: ''
-                radius-base: '3'
+                radius-base: '3.5'
                 radius-scale: '0'
                 group: 'Enemy'
                 wall: 'True'
                 caster: 'False'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
-                Status-i: 
+                Status-l: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -154,7 +198,7 @@ Retreat:
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Repeat-j: 
+                Repeat-m: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -167,7 +211,7 @@ Retreat:
                     stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Particle-k: 
+                    Particle-n: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -191,7 +235,7 @@ Retreat:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-            Repeat-l: 
+            Repeat-o: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -204,7 +248,7 @@ Retreat:
                 stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Particle-m: 
+                Particle-p: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -228,7 +272,7 @@ Retreat:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Status-n: 
+            Status-q: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -239,7 +283,29 @@ Retreat:
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
-        Skill Level-o: 
+            Delay-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.02'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'Retreat'
+                    type: 'Percent'
+                    value-base: '-15'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Skill Level-t: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -249,7 +315,7 @@ Retreat:
             max-level: '3'
             indicator: '2D'
           children: 
-            Mana-p: 
+            Mana-u: 
               type: 'mechanic'
               indicator: '3D'
               data: 

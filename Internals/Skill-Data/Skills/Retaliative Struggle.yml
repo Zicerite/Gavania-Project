@@ -1,0 +1,149 @@
+Retaliative Struggle: 
+  name: 'Retaliative Struggle'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'CHAINMAIL_HELMET'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Gain &63 &eTech &7every &63 &7seconds when below &620&f% &7HP.'
+  - '&7Gain Mana Regen {attr:po.tier} &7when below &620&f% &7HP'
+  - '&7Deal &633&f% &7more damage when below &620&f% &7HP'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Health-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '20'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage Buff-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '1.33'
+                    value-scale: '0'
+                    seconds-base: '0.4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '1.33'
+                    value-scale: '0'
+                    seconds-base: '0.4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-f: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Not Active'
+                    potion: 'Saturation'
+                    min-rank-base: '0'
+                    min-rank-scale: '0'
+                    max-rank-base: '3'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Potion-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po'
+                        counts: 'True'
+                        potion: 'Saturation'
+                        ambient: 'True'
+                        tier-base: '5'
+                        tier-scale: '0'
+                        seconds-base: '0.2'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+        Passive-h: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '3'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Health-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Health'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '20'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '3'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
