@@ -1,0 +1,414 @@
+Tome_Thunder_Checker: 
+  name: 'Tome_Thunder_Checker'
+  type: 'Tome'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'BOOK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - 'lol like these reads m8?'
+  desc:  []
+  components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        category: 
+        - 'thunder'
+        indicator: '2D'
+      children: 
+        Remember Targets-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'tome_target'
+            indicator: '2D'
+          children:  {}
+        Self-c: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value Set-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tome_api-dealt_8'
+                value-base: 'api-dealt'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tome_api-dealt_12'
+                value-base: 'api-dealt'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tome_api-dealt_16'
+                value-base: 'api-dealt'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tome_api-dealt_8'
+                multiplier-base: '0.08'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tome_api-dealt_12'
+                multiplier-base: '0.12'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tome_api-dealt_16'
+                multiplier-base: '0.16'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Self-j: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Self-k: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Slot-l: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        slot: 
+                        - '40'
+                        check-mat: 'False'
+                        check-data: 'False'
+                        check-lore: 'True'
+                        lore: '+Thunder Damage HP Drainer I'
+                        check-name: 'False'
+                        regex: 'False'
+                        indicator: '2D'
+                      children: 
+                        Heal-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Health'
+                            value-base: 'tome_api-dealt_8'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Slot-n: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        slot: 
+                        - '40'
+                        check-mat: 'False'
+                        check-data: 'False'
+                        check-lore: 'True'
+                        lore: '+Thunder Damage HP Drainer II'
+                        check-name: 'False'
+                        regex: 'False'
+                        indicator: '2D'
+                      children: 
+                        Heal-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Health'
+                            value-base: 'tome_api-dealt_12'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Slot-p: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        slot: 
+                        - '40'
+                        check-mat: 'False'
+                        check-data: 'False'
+                        check-lore: 'True'
+                        lore: '+Thunder Damage HP Drainer III'
+                        check-name: 'False'
+                        regex: 'False'
+                        indicator: '2D'
+                      children: 
+                        Heal-q: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Health'
+                            value-base: 'tome_api-dealt_16'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Self-r: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Slot-s: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        slot: 
+                        - '40'
+                        check-mat: 'False'
+                        check-data: 'False'
+                        check-lore: 'True'
+                        lore: '+Thunder Damage Mana Drainer I'
+                        check-name: 'False'
+                        regex: 'False'
+                        indicator: '2D'
+                      children: 
+                        Mana-t: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: 'tome_api-dealt_8'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Multiply-u: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'tome_api-dealt'
+                            multiplier-base: '-1'
+                            multiplier-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Remember-v: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'tome_target'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Mana-w: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: 'tome_api-dealt_8'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Slot-x: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        slot: 
+                        - '40'
+                        check-mat: 'False'
+                        check-data: 'False'
+                        check-lore: 'True'
+                        lore: '+Thunder Damage Mana Drainer II'
+                        check-name: 'False'
+                        regex: 'False'
+                        indicator: '2D'
+                      children: 
+                        Mana-y: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: 'tome_api-dealt_12'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Multiply-z: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'tome_api-dealt'
+                            multiplier-base: '-1'
+                            multiplier-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Remember-ab: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'tome_target'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Mana-bb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: 'tome_api-dealt_8'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Slot-cb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        slot: 
+                        - '40'
+                        check-mat: 'False'
+                        check-data: 'False'
+                        check-lore: 'True'
+                        lore: '+Thunder Damage Mana Drainer III'
+                        check-name: 'False'
+                        regex: 'False'
+                        indicator: '2D'
+                      children: 
+                        Mana-db: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: 'tome_api-dealt_16'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Multiply-eb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'tome_api-dealt'
+                            multiplier-base: '-1'
+                            multiplier-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Remember-fb: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'tome_target'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Mana-gb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: 'tome_api-dealt_16'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}

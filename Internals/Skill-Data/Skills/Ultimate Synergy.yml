@@ -2,7 +2,6 @@ Ultimate Synergy:
   name: 'Ultimate Synergy'
   type: 'Support'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -10,7 +9,7 @@ Ultimate Synergy:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '99'
+    cooldown-base: '120'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -29,20 +28,20 @@ Ultimate Synergy:
   - '&7Unleashes a burst of energy that'
   - '&7increases damage dealt, decreases'
   - '&7damage taken, grants Speed,'
-  - '&7Regeneration, and Mana Regeneration'
-  - '&7to the Caster and nearby allies for a'
-  - '&7short time. Regenerates additional'
-  - '&7Mana over time as well.'
+  - '&7HP Regen, and Mana Regen to'
+  - '&7the Caster and nearby allies for a'
+  - '&7short time. Also grants Haste.'
   - ''
   - '&bRadius: {attr:area.radius} Blocks'
   - '&bDamage Buff: {attr:dmgbuff3.value}'
   - '&bDefense Buff: {attr:dmgbuff3.value}'
   - '&bSpeed Tier: {attr:po1.tier}'
-  - '&bRegeneration Tier: {attr:po2.tier}'
-  - '&bMana Regeneration Tier: {attr:po3.tier}'
+  - '&bHP Regen Tier: {attr:po2.tier}'
+  - '&bMana Regen Tier: {attr:po3.tier}'
+  - '&bHaste Tier: {attr:po4.tier}'
   - '&bEffect Duration: {attr:po1.seconds} Seconds'
   - ''
-  - '{req:level}Level: {attr:level} &eTech: &6100 &2Mana: &6All &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
     Cast: 
@@ -58,386 +57,338 @@ Ultimate Synergy:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-c: 
-              type: 'condition'
+            Self-c: 
+              type: 'target'
               indicator: '3D'
               data: 
                 icon-key: ''
-                key: 'tech'
-                min-value-base: '100'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
-                Self-d: 
+                Explosion-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    power-base: '0'
+                    power-scale: '0'
+                    damage: 'False'
+                    fire: 'False'
+                    indicator: '2D'
+                  children:  {}
+                Area-e: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
+                    radius-base: '16'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'False'
+                    caster: 'True'
+                    max-base: '99'
+                    max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Value Add-e: 
+                    Potion-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        key: 'tech'
-                        amount-base: '-100'
-                        amount-scale: '0'
+                        potion: 'Night Vision'
+                        ambient: 'True'
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '0.5'
+                        seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Explosion-f: 
+                    Potion-g: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        power-base: '0'
-                        power-scale: '0'
-                        damage: 'False'
-                        fire: 'False'
+                        potion: 'Slow'
+                        ambient: 'True'
+                        tier-base: '99'
+                        tier-scale: '0'
+                        seconds-base: '0.2'
+                        seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Area-g: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        radius-base: '16'
-                        radius-scale: '0'
-                        group: 'Enemy'
-                        wall: 'False'
-                        caster: 'True'
-                        max-base: '99'
-                        max-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Potion-h: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            potion: 'Night Vision'
-                            ambient: 'True'
-                            tier-base: '1'
-                            tier-scale: '0'
-                            seconds-base: '1'
-                            seconds-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Potion-i: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            potion: 'Slow'
-                            ambient: 'True'
-                            tier-base: '99'
-                            tier-scale: '0'
-                            seconds-base: '0.2'
-                            seconds-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Area-j: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        radius-base: '5'
-                        radius-scale: '0'
-                        group: 'Enemy'
-                        wall: 'True'
-                        caster: 'False'
-                        max-base: '999'
-                        max-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Push-k: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            type: 'Inverse'
-                            speed-base: '0.8'
-                            speed-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Sound-l: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        version: '1.9+'
-                        newsound: 'Ambient Cave'
-                        volume-base: '70'
-                        volume-scale: '0'
-                        pitch-base: '2'
-                        pitch-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Sound-m: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        version: '1.9+'
-                        newsound: 'Ambient Cave'
-                        volume-base: '70'
-                        volume-scale: '0'
-                        pitch-base: '2'
-                        pitch-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Command-n: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.magic3 ambient @a[r=32] ~ ~ ~ 0.8 1.5'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Command-o: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.magic5 ambient @a[r=32] ~ ~ ~ 0.6 2'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Command-p: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.magic7 ambient @a[r=32] ~ ~ ~ 0.8 2'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Mana-q: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Percent'
-                        value-base: '-100'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Particle-r: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        particle: 'Witch Magic'
-                        arrangement: 'Sphere'
-                        radius-base: '12'
-                        radius-scale: '0'
-                        particles-base: '100'
-                        particles-scale: '0'
-                        visible-radius: '70'
-                        dx: '0'
-                        dy: '0'
-                        dz: '0'
-                        speed: '0.1'
-                        amount: '1'
-                        forward: '0'
-                        upward: '0'
-                        right: '0'
-                        indicator: '2D'
-                      children:  {}
-                Area-s: 
+                Area-h: 
                   type: 'target'
                   indicator: '3D'
                   data: 
-                    icon-key: 'area'
-                    radius-base: '12'
+                    icon-key: ''
+                    radius-base: '5'
                     radius-scale: '0'
-                    group: 'Ally'
+                    group: 'Enemy'
                     wall: 'True'
-                    caster: 'True'
+                    caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Damage Buff-t: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'dmgbuff3'
-                        counts: 'True'
-                        type: 'Flat'
-                        skill: 'False'
-                        value-base: '11'
-                        value-scale: '1'
-                        seconds-base: '8'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Damage Buff-u: 
+                    Push-i: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        type: 'Flat'
-                        skill: 'True'
-                        value-base: '11'
-                        value-scale: '1'
-                        seconds-base: '8'
-                        seconds-scale: '0'
+                        type: 'Inverse'
+                        speed-base: '0.8'
+                        speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
-                    Defense Buff-v: 
+                Command-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.magic3 ambient @a[r=32] ~ ~ ~ 0.8 1.5'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.magic5 ambient @a[r=32] ~ ~ ~ 0.6 2'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.magic7 ambient @a[r=32] ~ ~ ~ 0.8 2'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Particle-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Witch Magic'
+                    arrangement: 'Sphere'
+                    radius-base: '12'
+                    radius-scale: '0'
+                    particles-base: '100'
+                    particles-scale: '0'
+                    visible-radius: '70'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0.1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Area-n: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'area'
+                radius-base: '12'
+                radius-scale: '0'
+                group: 'Ally'
+                wall: 'True'
+                caster: 'True'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
+                indicator: '2D'
+              children: 
+                Damage Buff-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmgbuff3'
+                    counts: 'True'
+                    type: 'Flat'
+                    skill: 'False'
+                    value-base: '11'
+                    value-scale: '1'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Flat'
+                    skill: 'True'
+                    value-base: '11'
+                    value-scale: '1'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Flat'
+                    skill: 'False'
+                    value-base: '-11'
+                    value-scale: '-1'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Flat'
+                    skill: 'True'
+                    value-base: '-11'
+                    value-scale: '-1'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po1'
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po2'
+                    counts: 'True'
+                    potion: 'Regeneration'
+                    ambient: 'True'
+                    tier-base: '1.525'
+                    tier-scale: '0.025'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po3'
+                    counts: 'True'
+                    potion: 'Saturation'
+                    ambient: 'True'
+                    tier-base: '6'
+                    tier-scale: '0'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po4'
+                    counts: 'True'
+                    potion: 'Fast Digging'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '8'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-w: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '80'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-x: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        type: 'Flat'
-                        skill: 'False'
-                        value-base: '-11'
-                        value-scale: '-1'
-                        seconds-base: '8'
-                        seconds-scale: '0'
+                        particle: 'End Rod'
+                        arrangement: 'Sphere'
+                        radius-base: '0.5'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0.3'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
                         indicator: '2D'
                       children:  {}
-                    Defense Buff-w: 
+                    Particle-y: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        type: 'Flat'
-                        skill: 'True'
-                        value-base: '-11'
-                        value-scale: '-1'
-                        seconds-base: '8'
-                        seconds-scale: '0'
+                        particle: 'Magic Crit'
+                        arrangement: 'Sphere'
+                        radius-base: '0.5'
+                        radius-scale: '0'
+                        particles-base: '2'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0.3'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
                         indicator: '2D'
                       children:  {}
-                    Potion-x: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'po1'
-                        counts: 'True'
-                        potion: 'Speed'
-                        ambient: 'True'
-                        tier-base: '2'
-                        tier-scale: '0'
-                        seconds-base: '8'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Potion-y: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'po2'
-                        counts: 'True'
-                        potion: 'Regeneration'
-                        ambient: 'True'
-                        tier-base: '1.525'
-                        tier-scale: '0.025'
-                        seconds-base: '8'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Potion-z: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'po3'
-                        counts: 'True'
-                        potion: 'Saturation'
-                        ambient: 'True'
-                        tier-base: '6'
-                        tier-scale: '0'
-                        seconds-base: '8'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Repeat-ab: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        repetitions-base: '80'
-                        repetitions-scale: '0'
-                        period: '0.1'
-                        delay: '0'
-                        indicator: '2D'
-                      children: 
-                        Particle-bb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'End Rod'
-                            arrangement: 'Sphere'
-                            radius-base: '0.5'
-                            radius-scale: '0'
-                            particles-base: '3'
-                            particles-scale: '0'
-                            visible-radius: '50'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '0.3'
-                            amount: '1'
-                            forward: '0'
-                            upward: '1'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Particle-cb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Magic Crit'
-                            arrangement: 'Sphere'
-                            radius-base: '0.5'
-                            radius-scale: '0'
-                            particles-base: '3'
-                            particles-scale: '0'
-                            visible-radius: '50'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '0.3'
-                            amount: '1'
-                            forward: '0'
-                            upward: '1'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Mana-db: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            type: 'Mana'
-                            value-base: '2'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}

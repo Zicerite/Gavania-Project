@@ -1,6 +1,6 @@
 Shadow Needles: 
   name: 'Shadow Needles'
-  type: 'Damage'
+  type: 'Damage/Support'
   max-level: 100
   skill-req-lvl: 1
   needs-permission: 'false'
@@ -9,7 +9,7 @@ Shadow Needles:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '10'
+    cooldown-base: '8'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -28,43 +28,16 @@ Shadow Needles:
   - '&7Shoots out 3 invisible needles'
   - '&7directly in front of the Caster.'
   - '&7Deals damage, and causes hitstun.'
+  - '&7Curses enemies hit. Stalls the'
+  - '&7Caster if they cast it in mid-air.'
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &5퇾'
+  - '&bDamage: {attr:dmg.value} x4 Skill Damage &5䛾'
   - '&bRange: {attr:range.range} Blocks'
+  - '&bCurse Duration: {attr:curse.duration} Seconds'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-s: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.03'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-t: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgSN'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.3'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -78,6 +51,9 @@ Shadow Needles:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Repeat-c: 
               type: 'mechanic'
@@ -85,7 +61,7 @@ Shadow Needles:
               data: 
                 icon-key: ''
                 counts: 'True'
-                repetitions-base: '3'
+                repetitions-base: '4'
                 repetitions-scale: '0'
                 period: '0.1'
                 delay: '0'
@@ -167,21 +143,67 @@ Shadow Needles:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                Sound-i: 
+                    Status-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'curse'
+                        counts: 'True'
+                        status: 'Curse'
+                        duration-base: '3'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '15'
+                        repetitions-scale: '0'
+                        period: '0.2'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Particle-k: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Witch Magic'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '3'
+                            particles-scale: '0'
+                            visible-radius: '50'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Sound-l: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Block Sand Break'
-                    volume-base: '100'
+                    sound: 'Block Glass Break'
+                    volume-base: '40'
                     volume-scale: '0'
-                    pitch-base: '1.1'
+                    pitch-base: '1.5'
                     pitch-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-j: 
+                Particle-m: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -205,14 +227,17 @@ Shadow Needles:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Self-k: 
+                Self-n: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Location-l: 
+                    Location-o: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -221,8 +246,11 @@ Shadow Needles:
                         range-scale: '0'
                         ground: 'False'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
-                        Particle-m: 
+                        Particle-p: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -246,7 +274,7 @@ Shadow Needles:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Location-n: 
+                    Location-q: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -255,8 +283,11 @@ Shadow Needles:
                         range-scale: '0'
                         ground: 'False'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
-                        Particle-o: 
+                        Particle-r: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -280,7 +311,7 @@ Shadow Needles:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Location-p: 
+                    Location-s: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -289,8 +320,11 @@ Shadow Needles:
                         range-scale: '0'
                         ground: 'False'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
-                        Particle-q: 
+                        Particle-t: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -314,3 +348,56 @@ Shadow Needles:
                             right: '0'
                             indicator: '2D'
                           children:  {}
+                Ground-u: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Not On Ground'
+                    indicator: '2D'
+                  children: 
+                    Launch-v: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Caster'
+                        forward-base: '-0.1'
+                        forward-scale: '0'
+                        upward-base: '0.1'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-x: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.03'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-y: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSN'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.3'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

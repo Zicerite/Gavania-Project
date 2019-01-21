@@ -32,6 +32,29 @@ VoidController:
   - '&2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
+    Environment Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Void'
+        indicator: '2D'
+      children: 
+        Damage-g: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            type: 'Multiplier'
+            value-base: '100'
+            value-scale: '0'
+            true: 'True'
+            classifier: 'default'
+            indicator: '2D'
+          children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -45,6 +68,9 @@ VoidController:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Passive-c: 
               type: 'mechanic'
@@ -81,26 +107,3 @@ VoidController:
                         classifier: 'default'
                         indicator: '2D'
                       children:  {}
-    Environment Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        type: 'Void'
-        indicator: '2D'
-      children: 
-        Damage-g: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            type: 'Multiplier'
-            value-base: '100'
-            value-scale: '0'
-            true: 'True'
-            classifier: 'default'
-            indicator: '2D'
-          children:  {}

@@ -1,6 +1,6 @@
 Swarm: 
   name: 'Swarm'
-  type: 'Support/Damage'
+  type: 'Damage/Support'
   max-level: 100
   skill-req-lvl: 1
   needs-permission: 'false'
@@ -9,7 +9,7 @@ Swarm:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '40'
+    cooldown-base: '30'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -31,44 +31,14 @@ Swarm:
   - '&7of piercing damage, and'
   - '&7causes poison.'
   - ''
-  - '&bPiercing Damage: {attr:dmg.value} Skill Damage &2퇷'
+  - '&bPiercing Damage: {attr:dmg.value} x50 Skill Damage &2䛷'
   - '&bRadius: {attr:area.radius} Blocks'
   - '&bPoison: {attr:po.tier} for {attr:po.seconds} Seconds'
-  - '&bSwarm Duration: &610 &fSeconds'
+  - '&bSwarm Duration: &65 &fSeconds'
   - ''
   - '{req:level}Level: {attr:level} &eTech: &640 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-o: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-p: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgSwarm'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -105,6 +75,9 @@ Swarm:
               data: 
                 icon-key: ''
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Skill Level-e: 
                   type: 'condition'
@@ -133,7 +106,7 @@ Swarm:
               data: 
                 icon-key: ''
                 counts: 'True'
-                repetitions-base: '100'
+                repetitions-base: '50'
                 repetitions-scale: '0'
                 period: '0.1'
                 delay: '0'
@@ -146,6 +119,9 @@ Swarm:
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
                     Area-i: 
                       type: 'target'
@@ -159,6 +135,7 @@ Swarm:
                         caster: 'False'
                         max-base: '999'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
                         Damage-j: 
@@ -224,3 +201,33 @@ Swarm:
                         right: '0'
                         indicator: '2D'
                       children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-o: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSwarm'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.2'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

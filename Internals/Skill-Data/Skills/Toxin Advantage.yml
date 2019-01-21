@@ -28,40 +28,10 @@ Toxin Advantage:
   - '&7Deal Earth Piercing Damage to'
   - '&7Poisoned enemies.'
   - ''
-  - '&bPiercing Damage: {attr:dmg.value} &2퇷'
+  - '&bPiercing Damage: {attr:dmg.value} &2䛷'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-f: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-g: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgTA'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-    Physical Damage: 
+    Skill Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -69,9 +39,9 @@ Toxin Advantage:
         mana: 'False'
         cooldown: 'False'
         target: 'False'
-        type: 'Both'
-        dmg-min: '0'
+        dmg-min: '99999'
         dmg-max: '999999'
+        category: ' {}'
         indicator: '2D'
       children: 
         Potion-b: 
@@ -91,7 +61,7 @@ Toxin Advantage:
               type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: 'dmg'
+                icon-key: ''
                 counts: 'True'
                 type: 'Damage'
                 value-base: 'dmgTA'
@@ -123,7 +93,7 @@ Toxin Advantage:
                 right: '0'
                 indicator: '2D'
               children:  {}
-    Skill Damage: 
+    Physical Damage-e: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -131,12 +101,12 @@ Toxin Advantage:
         mana: 'False'
         cooldown: 'False'
         target: 'False'
-        dmg-min: '99999'
+        type: 'Both'
+        dmg-min: '0'
         dmg-max: '999999'
-        category: ''
         indicator: '2D'
       children: 
-        Potion-i: 
+        Potion-f: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -149,11 +119,11 @@ Toxin Advantage:
             max-rank-scale: '0'
             indicator: '2D'
           children: 
-            Damage-j: 
+            Damage-g: 
               type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: ''
+                icon-key: 'dmg'
                 counts: 'True'
                 type: 'Damage'
                 value-base: 'dmgTA'
@@ -162,7 +132,7 @@ Toxin Advantage:
                 classifier: 'earth'
                 indicator: '2D'
               children:  {}
-            Particle-k: 
+            Particle-h: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -183,5 +153,35 @@ Toxin Advantage:
                 forward: '0'
                 upward: '1'
                 right: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-j: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgTA'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

@@ -1,0 +1,481 @@
+Thunder Beams: 
+  name: 'Thunder Beams'
+  type: 'Damage/Support'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '16'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GLOWSTONE_DUST'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&bDamage: {attr:dmg1.value}'
+  - '&bDamage: {attr:dmg10.value}'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Took Skill Damage-eb: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        category: 
+        - 'thunder'
+        indicator: '2D'
+      children: 
+        Value Add-fb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'thundercharge'
+            amount-base: '100'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Particle-gb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            particle: 'Block Crack'
+            material: 'Glowstone'
+            type: '0'
+            arrangement: 'Sphere'
+            radius-base: '1'
+            radius-scale: '0'
+            particles-base: '25'
+            particles-scale: '0'
+            forward: '0'
+            upward: '1'
+            right: '0'
+            indicator: '2D'
+          children:  {}
+    Skill Damage-hb: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Value Add-ib: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'thundercharge'
+            amount-base: '8'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'thundercharge'
+            min-value-base: '100'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Command-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.thunder1 ambient @a[r=16] ~ ~ ~ 0.7 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Particle-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Block Crack'
+                material: 'Glowstone'
+                type: '0'
+                arrangement: 'Sphere'
+                radius-base: '5'
+                radius-scale: '0'
+                particles-base: '40'
+                particles-scale: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'thundercharge'
+                amount-base: '-108'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Area-f: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'area1'
+                radius-base: '5'
+                radius-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
+                indicator: '2D'
+              children: 
+                Damage-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg1'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgT1'
+                    value-scale: '0.3'
+                    true: 'False'
+                    classifier: 'thunder'
+                    indicator: '2D'
+                  children:  {}
+                Particle-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Glowstone'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+        Value-i: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'thundercharge'
+            min-value-base: '1000'
+            min-value-scale: '0'
+            max-value-base: '9999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'thundercharge'
+                value-base: '-8'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Command-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.thunder1 ambient @a[r=16] ~ ~ ~ 0.7 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Command-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.thunder1 ambient @a[r=16] ~ ~ ~ 0.7 1.2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Area-m: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'area10'
+                radius-base: '12'
+                radius-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
+                indicator: '2D'
+              children: 
+                Damage-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg10'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgT10'
+                    value-scale: '0.3'
+                    true: 'False'
+                    classifier: 'thunder'
+                    indicator: '2D'
+                  children:  {}
+                Particle-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Glowstone'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '30'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Particle-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Block Crack'
+                material: 'Glowstone'
+                type: '0'
+                arrangement: 'Sphere'
+                radius-base: '12'
+                radius-scale: '0'
+                particles-base: '100'
+                particles-scale: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'End Rod'
+                arrangement: 'Sphere'
+                radius-base: '12'
+                radius-scale: '0'
+                particles-base: '50'
+                particles-scale: '0'
+                visible-radius: '100'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.25'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-s: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value Set-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'thundercharge'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Passive-u: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '0.25'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-v: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'thundercharge'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '999'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Add-w: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'thundercharge'
+                        amount-base: '-1'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Value-x: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'thundercharge'
+                    min-value-base: '1000'
+                    min-value-scale: '0'
+                    max-value-base: '9999'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Set-y: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'thundercharge'
+                        value-base: '1000'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Passive-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '0.05'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Lore-ab: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'dmgT1'
+                    hand: 'Main'
+                    regex: 'Skill Damage - {value}'
+                    multiplier-base: '1.5'
+                    multiplier-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Lore-bb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'dmgT10'
+                    hand: 'Main'
+                    regex: 'Skill Damage - {value}'
+                    multiplier-base: '11'
+                    multiplier-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Delay-cb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-db: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'thundercharge'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}

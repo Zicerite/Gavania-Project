@@ -9,7 +9,7 @@ Spooky Winds:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '30'
+    cooldown-base: '10'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -26,14 +26,116 @@ Spooky Winds:
   - '&2Type: &6{type}'
   - ''
   - '&7Hits all targets around the Caster,'
-  - '&7causing blindness, and stuns them.'
+  - '&7knocking them back, and'
+  - '&7and causes extended Hitstun.'
+  - '&7Launches the Caster upward'
+  - '&7and Forward if in the air.'
+  - '&7Pressing crouch after launching in'
+  - '&7the air, to get an additional boost.'
   - ''
   - '&bRadius: {attr:area.radius} Blocks'
-  - '&bDuration: {attr:stun.duration} Seconds'
+  - '&bHitstun Duration: {attr:stun.duration} Seconds'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
+    Crouch-x: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Start Crouching'
+        indicator: '2D'
+      children: 
+        Value-y: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'spookyleap'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Launch-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                relative: 'Caster'
+                forward-base: '1.2'
+                forward-scale: '0'
+                upward-base: '0.8'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Command-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 0.6 0.8'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Particle-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Ender Signal'
+                arrangement: 'Sphere'
+                radius-base: '2'
+                radius-scale: '0'
+                particles-base: '3'
+                particles-scale: '0'
+                data: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-cb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'spookyleap'
+                amount-base: '-1'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Land-db: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: '0'
+        indicator: '2D'
+      children: 
+        Value Set-eb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'spookyleap'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -47,6 +149,9 @@ Spooky Winds:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Area-c: 
               type: 'target'
@@ -60,6 +165,7 @@ Spooky Winds:
                 caster: 'False'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
                 Command-d: 
@@ -72,68 +178,78 @@ Spooky Winds:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Status-e: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: 'stun'
-                    counts: 'True'
-                    status: 'Stun'
-                    duration-base: '0.525'
-                    duration-scale: '0.025'
-                    indicator: '2D'
-                  children:  {}
-                Repeat-f: 
+                Repeat-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    repetitions-base: '15.25'
-                    repetitions-scale: '0.25'
+                    repetitions-base: '10'
+                    repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Particle-g: 
+                    Particle-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        particle: 'Angry Villager'
+                        particle: 'Cloud'
                         arrangement: 'Circle'
                         radius-base: '1'
                         radius-scale: '0'
-                        particles-base: '3'
+                        particles-base: '2'
                         particles-scale: '0'
                         direction: 'XZ'
                         visible-radius: '40'
                         dx: '0'
                         dy: '0'
                         dz: '0'
-                        speed: '1'
+                        speed: '0.05'
                         amount: '1'
                         forward: '0'
                         upward: '1.6'
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Potion-h: 
+                Status-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stun'
+                    counts: 'True'
+                    status: 'Disarm'
+                    duration-base: '1'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Status-h: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    potion: 'Blindness'
-                    ambient: 'True'
-                    tier-base: '1'
-                    tier-scale: '0'
-                    seconds-base: '0.525'
-                    seconds-scale: '0.025'
+                    status: 'Silence'
+                    duration-base: '1'
+                    duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Command-i: 
+                Push-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Fixed'
+                    speed-base: '1.3'
+                    speed-scale: '0'
+                    source: 'none'
+                    indicator: '2D'
+                  children:  {}
+            Command-j: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -143,7 +259,7 @@ Spooky Winds:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Particle-j: 
+            Particle-k: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -166,24 +282,6 @@ Spooky Winds:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-k: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                particle: 'Smoke'
-                arrangement: 'Sphere'
-                radius-base: '5.05'
-                radius-scale: '0.05'
-                particles-base: '3.2'
-                particles-scale: '0.2'
-                data: '0'
-                forward: '0'
-                upward: '1'
-                right: '0'
-                indicator: '2D'
-              children:  {}
             Particle-l: 
               type: 'mechanic'
               indicator: '3D'
@@ -196,7 +294,7 @@ Spooky Winds:
                 radius-scale: '0.05'
                 particles-base: '3.2'
                 particles-scale: '0.2'
-                data: '2'
+                data: '0'
                 forward: '0'
                 upward: '1'
                 right: '0'
@@ -214,7 +312,7 @@ Spooky Winds:
                 radius-scale: '0.05'
                 particles-base: '3.2'
                 particles-scale: '0.2'
-                data: '4'
+                data: '2'
                 forward: '0'
                 upward: '1'
                 right: '0'
@@ -232,13 +330,31 @@ Spooky Winds:
                 radius-scale: '0.05'
                 particles-base: '3.2'
                 particles-scale: '0.2'
-                data: '6'
+                data: '4'
                 forward: '0'
                 upward: '1'
                 right: '0'
                 indicator: '2D'
               children:  {}
             Particle-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Smoke'
+                arrangement: 'Sphere'
+                radius-base: '5.05'
+                radius-scale: '0.05'
+                particles-base: '3.2'
+                particles-scale: '0.2'
+                data: '6'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-p: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -256,34 +372,78 @@ Spooky Winds:
                 right: '0'
                 indicator: '2D'
               children:  {}
-        Self-p: 
+        Self-q: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Block-q: 
+            Ground-r: 
               type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                standing: 'On Block'
-                material: 'Air'
+                type: 'Not On Ground'
                 indicator: '2D'
               children: 
-                Launch-r: 
+                Launch-s: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
                     relative: 'Target'
-                    forward-base: '0.6'
+                    forward-base: '0.8'
                     forward-scale: '0'
-                    upward-base: '0.6'
+                    upward-base: '1.15'
                     upward-scale: '0'
                     right-base: '0'
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
+            Value Set-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'spookyleap'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Repeat-v: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: '2'
+            repetitions-scale: '0'
+            period: '0.1'
+            delay: '0'
+            stop-on-fail: 'False'
+            indicator: '2D'
+          children: 
+            Value Set-w: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'spookyleap'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

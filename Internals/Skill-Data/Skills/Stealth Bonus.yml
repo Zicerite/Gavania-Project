@@ -27,13 +27,159 @@ Stealth Bonus:
   - ''
   - '&7Deal more damage when'
   - '&7invisible. Double that if you'
-  - '&7are also crouching.'
+  - '&7are also crouching on the ground.'
+  - "&7Gain &61 &eTech &7if you've dealt"
+  - '&7damage when being invisible.'
+  - "&7Gain &61 &eTech &7if you've dealt"
+  - '&7damage to a target from behind.'
   - ''
   - '&bBonus Damage: {attr:dmgbuff.value} '
   - ''
   - '{req:level}Level: {attr:level}'
   desc:  []
   components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Direction-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Target'
+            direction: 'Away'
+            indicator: '2D'
+          children: 
+            Value Add-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tech'
+                amount-base: '1'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Physical Damage-d: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        indicator: '2D'
+      children: 
+        Direction-e: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Target'
+            direction: 'Away'
+            indicator: '2D'
+          children: 
+            Value Add-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tech'
+                amount-base: '1'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Skill Damage-g: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Potion-h: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Active'
+            potion: 'Invisibility'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Add-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tech'
+                amount-base: '1'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Physical Damage-j: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        indicator: '2D'
+      children: 
+        Potion-k: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Active'
+            potion: 'Invisibility'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Add-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tech'
+                amount-base: '1'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -41,17 +187,17 @@ Stealth Bonus:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-b: 
+        Passive-n: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.01'
+            seconds-base: '0.15'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Potion-c: 
+            Potion-o: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -64,7 +210,7 @@ Stealth Bonus:
                 max-rank-scale: '0'
                 indicator: '2D'
               children: 
-                Crouch-d: 
+                Crouch-p: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -72,7 +218,7 @@ Stealth Bonus:
                     crouch: 'False'
                     indicator: '2D'
                   children: 
-                    Damage Buff-e: 
+                    Damage Buff-q: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -80,13 +226,13 @@ Stealth Bonus:
                         counts: 'True'
                         type: 'Flat'
                         skill: 'False'
-                        value-base: '2'
-                        value-scale: '1'
+                        value-base: '8'
+                        value-scale: '4'
                         seconds-base: '0.25'
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Damage Buff-f: 
+                    Damage Buff-r: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -94,9 +240,53 @@ Stealth Bonus:
                         counts: 'True'
                         type: 'Flat'
                         skill: 'True'
-                        value-base: '2'
-                        value-scale: '1'
+                        value-base: '8'
+                        value-scale: '4'
                         seconds-base: '0.25'
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
+                Crouch-s: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    crouch: 'True'
+                    indicator: '2D'
+                  children: 
+                    Ground-t: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'On Ground'
+                        indicator: '2D'
+                      children: 
+                        Damage Buff-u: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Flat'
+                            skill: 'False'
+                            value-base: '16'
+                            value-scale: '8'
+                            seconds-base: '0.25'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage Buff-v: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Flat'
+                            skill: 'True'
+                            value-base: '16'
+                            value-scale: '8'
+                            seconds-base: '0.25'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}

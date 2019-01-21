@@ -26,61 +26,21 @@ Vampire Shot:
   - '&2Type: &6{type}'
   - ''
   - '&7Launches an arrow that deals damage'
-  - '&7and mana damage to enemies that gets'
-  - '&7hit by it. Heals the caster HP and Mana.'
+  - '&7and drains Mana and Stamina to a single'
+  - '&7enemy that gets hit by it. Also Heals the caster'
+  - '&7some HP. Also causes Fatigue to the target.'
   - ''
-  - '&bDamage: {attr:dmg.value} Melee Damage &5퇾'
+  - '&bDamage: {attr:dmg.value} Melee Damage &5䛾'
+  - '&bFatigue Duration: {attr:po.seconds} Seconds'
   - '&bHP Healed: {attr:heal.value}'
   - '&bMana Drained: {attr:mana.value}'
+  - '&bStamina Drained: {attr:stradd.amount}'
   - ''
-  - '&bDamage (Alby 2): {attr:dmgAlby2.value} Melee Damage &r퇶'
+  - '&bDamage (Alby 2): {attr:dmgAlby2.value} Melee Damage &r䛶'
   - ''
-  - '{req:level}Level: {attr:level} &eTech: &620 &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &eTech: &615 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-x: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-y: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgVS'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '1.2'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-z: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'dmgVSAlby2'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -94,7 +54,7 @@ Vampire Shot:
           data: 
             icon-key: ''
             key: 'tech'
-            min-value-base: '20'
+            min-value-base: '15'
             min-value-scale: '0'
             max-value-base: '999'
             max-value-scale: '0'
@@ -106,6 +66,9 @@ Vampire Shot:
               data: 
                 icon-key: ''
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Projectile-d: 
                   type: 'mechanic'
@@ -134,65 +97,66 @@ Vampire Shot:
                     use-effect: 'False'
                     indicator: '2D'
                   children: 
-                    Damage-e: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'dmg'
-                        counts: 'True'
-                        type: 'Damage'
-                        value-base: 'dmgVS'
-                        value-scale: '0.3'
-                        true: 'False'
-                        classifier: 'dark'
-                        indicator: '2D'
-                      children:  {}
-                    Particle-f: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        particle: 'Red Dust'
-                        arrangement: 'Sphere'
-                        radius-base: '1'
-                        radius-scale: '0'
-                        particles-base: '10'
-                        particles-scale: '0'
-                        visible-radius: '40'
-                        dx: '0'
-                        dy: '0'
-                        dz: '0'
-                        speed: '1'
-                        amount: '0'
-                        forward: '0'
-                        upward: '1'
-                        right: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Area-g: 
+                    Area-e: 
                       type: 'target'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        radius-base: '1'
+                        radius-base: '2'
                         radius-scale: '0'
                         group: 'Enemy'
                         wall: 'True'
                         caster: 'False'
                         max-base: '1'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
-                        Mana-h: 
+                        Mana-f: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
                             icon-key: ''
                             counts: 'True'
                             type: 'Mana'
-                            value-base: '-10.5'
-                            value-scale: '-0.5'
+                            value-base: '-12'
+                            value-scale: '-2'
+                            indicator: '2D'
+                          children:  {}
+                        Damage-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgVS'
+                            value-scale: '0.3'
+                            true: 'False'
+                            classifier: 'dark'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-h: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Red Dust'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '1'
+                            amount: '0'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
                             indicator: '2D'
                           children:  {}
                         Self-i: 
@@ -201,6 +165,9 @@ Vampire Shot:
                           data: 
                             icon-key: ''
                             indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
                           children: 
                             Heal-j: 
                               type: 'mechanic'
@@ -220,8 +187,8 @@ Vampire Shot:
                                 icon-key: 'mana'
                                 counts: 'True'
                                 type: 'Mana'
-                                value-base: '10.5'
-                                value-scale: '0.5'
+                                value-base: '12'
+                                value-scale: '2'
                                 indicator: '2D'
                               children:  {}
                             Repeat-l: 
@@ -275,7 +242,43 @@ Vampire Shot:
                                     amount-scale: '0'
                                     indicator: '2D'
                                   children:  {}
-                    Delay-p: 
+                            Value Add-p: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'stradd'
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '20'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Value Add-q: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'stamina'
+                            amount-base: '-20'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-r: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'po'
+                            counts: 'True'
+                            potion: 'Slow Digging'
+                            ambient: 'True'
+                            tier-base: '1'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Delay-s: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -285,7 +288,7 @@ Vampire Shot:
                         delay-scale: '0'
                         indicator: '2D'
                       children: 
-                        Skill Level-q: 
+                        Skill Level-t: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -295,7 +298,7 @@ Vampire Shot:
                             max-level: '2'
                             indicator: '2D'
                           children: 
-                            Damage-r: 
+                            Damage-u: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -308,21 +311,7 @@ Vampire Shot:
                                 classifier: 'neutral'
                                 indicator: '2D'
                               children:  {}
-                Sound-s: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Entity Arrow Shoot'
-                    volume-base: '60'
-                    volume-scale: '0'
-                    pitch-base: '1'
-                    pitch-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Command-t: 
+                Command-v: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -332,7 +321,7 @@ Vampire Shot:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Particle-u: 
+                Particle-w: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -351,14 +340,57 @@ Vampire Shot:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Value Add-v: 
+            Value Add-x: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
                 key: 'tech'
-                amount-base: '-20'
+                amount-base: '-15'
                 amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-z: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgVS'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.4'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgVSAlby2'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

@@ -9,7 +9,7 @@ Ultra Spread Shot:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '40'
+    cooldown-base: '30'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -28,42 +28,12 @@ Ultra Spread Shot:
   - '&7Launches a very large spread'
   - '&7of arrows, dealing damage.'
   - ''
-  - '&bDamage: {attr:dmg.value} x40 Skill Damage &9퇇'
+  - '&bDamage: {attr:dmg.value} x40 Skill Damage &9䛇'
   - '&bRange: &6Long'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-f: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.02'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-g: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgUSPS'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.2'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -77,6 +47,9 @@ Ultra Spread Shot:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Projectile-c: 
               type: 'mechanic'
@@ -118,3 +91,33 @@ Ultra Spread Shot:
                     classifier: 'physical'
                     indicator: '2D'
                   children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.02'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgUSPS'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.22'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

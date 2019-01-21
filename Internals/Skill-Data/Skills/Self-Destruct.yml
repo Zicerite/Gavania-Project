@@ -9,7 +9,7 @@ Self-Destruct:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '99'
+    cooldown-base: '90'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -34,10 +34,10 @@ Self-Destruct:
   - "&7Caster isn't able to heal for a short"
   - '&7time after casting.'
   - ''
-  - '&bDamage: &6[Current HP Here] &fSkill Damage &4퇵'
-  - '&bFire Duration: {attr:fire.seconds} Seconds'
+  - '&bDamage: &6[Current HP Here] &fSkill Damage &4䛵'
+  - '&bRadius: {attr:area.radius} Blocks'
   - '&bSlowness: {attr:po.tier} for {attr:po.seconds} Seconds'
-  - '&bSilence duration: {attr:sil.duration} Seconds'
+  - '&bSilence/Fire duration: {attr:sil.duration} Seconds'
   - '&bHealing Disabled Duration: {attr:healnope.seconds} Seconds'
   - ''
   - '&bHeals (Yryn 1): {attr:heals.value}%'
@@ -58,6 +58,9 @@ Self-Destruct:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Value Health-c: 
               type: 'mechanic'
@@ -66,6 +69,7 @@ Self-Destruct:
                 icon-key: ''
                 counts: 'True'
                 key: 'HPDMG'
+                type: 'Current'
                 indicator: '2D'
               children:  {}
             Explosion-d: 
@@ -92,6 +96,7 @@ Self-Destruct:
                 caster: 'False'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
                 Fire-f: 
@@ -136,6 +141,7 @@ Self-Destruct:
                         type: 'Inverse'
                         speed-base: '1'
                         speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
             Particle-j: 
@@ -227,6 +233,7 @@ Self-Destruct:
                     repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
                     Particle-q: 
@@ -393,6 +400,7 @@ Self-Destruct:
                   data: 
                     icon-key: 'healnope'
                     counts: 'True'
+                    immediate: 'False'
                     type: 'HEALING'
                     modifier: 'Multiplier'
                     value-base: '0'
@@ -411,6 +419,7 @@ Self-Destruct:
                     repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
                     Potion-cb: 

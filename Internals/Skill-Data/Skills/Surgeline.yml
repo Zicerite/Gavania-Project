@@ -9,10 +9,10 @@ Surgeline:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '6'
+    cooldown-base: '10'
     cooldown-scale: '0'
-    mana-base: '10.4'
-    mana-scale: '1.4'
+    mana-base: '0'
+    mana-scale: '0'
     points-spent-req-base: '0'
     points-spent-req-scale: '0'
     incompatible: 
@@ -31,45 +31,15 @@ Surgeline:
   - '&7get launched downward.'
   - '&7Pierces through enemies.'
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &e퇸'
-  - '&bRange: &6Varies'
+  - '&bDamage: {attr:dmg.value} Skill Damage &e䛸'
+  - '&bRange: &6Medium'
   - ''
   - '&bDefense Buff Duration (Xync 3): '
   - '  &f{attr:DefBuff.seconds} Seconds'
   - ''
-  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgSurgeLine'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '1.1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -77,14 +47,17 @@ Surgeline:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-e: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Particle Projectile-f: 
+            Particle Projectile-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -116,11 +89,11 @@ Surgeline:
                 particles-base: '20'
                 particles-scale: '0'
                 frequency: '0.01'
-                lifespan: '0.7'
+                lifespan: '0.8'
                 use-effect: 'False'
                 indicator: '2D'
               children: 
-                Damage-g: 
+                Damage-d: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -133,7 +106,7 @@ Surgeline:
                     classifier: 'thunder'
                     indicator: '2D'
                   children:  {}
-                Particle-h: 
+                Particle-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -156,7 +129,7 @@ Surgeline:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Repeat-i: 
+                Repeat-f: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -166,9 +139,10 @@ Surgeline:
                     repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Launch-j: 
+                    Launch-g: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -183,7 +157,7 @@ Surgeline:
                         right-scale: '0'
                         indicator: '2D'
                       children:  {}
-            Particle Projectile-k: 
+            Particle Projectile-h: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -219,11 +193,11 @@ Surgeline:
                 speed: '0'
                 amount: '1'
                 frequency: '0.01'
-                lifespan: '0.7'
+                lifespan: '0.8'
                 use-effect: 'False'
                 indicator: '2D'
               children:  {}
-            Command-l: 
+            Command-i: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -233,7 +207,7 @@ Surgeline:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Skill Level-m: 
+            Skill Level-j: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -243,7 +217,7 @@ Surgeline:
                 max-level: '3'
                 indicator: '2D'
               children: 
-                Defense Buff-n: 
+                Defense Buff-k: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -257,7 +231,7 @@ Surgeline:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Defense Buff-o: 
+                Defense Buff-l: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -271,3 +245,33 @@ Surgeline:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-n: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.11'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSurgeLine'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

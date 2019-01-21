@@ -26,12 +26,18 @@ Soul Seeker:
   - '&2Type: &6{type}'
   - ''
   - '&7Kills heal HP and Mana.'
+  - '&7Additionally heals a fixed percent'
+  - '&7amount of HP and Mana.'
+  - '&7Kills reduce active cooldowns'
+  - '&7by &68&f%'
   - ''
   - '&bHP Healed: {attr:heal.value}'
-  - '&bMana Healed: {attr:mana.value}%'
+  - '&bHP Healed: {attr:zzheal2.value}%'
+  - '&bMana Healed: {attr:mana.value}'
+  - '&bMana Healed: {attr:mana2.value}%'
   desc:  []
   components: 
-    Kill: 
+    Kill-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -46,6 +52,9 @@ Soul Seeker:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Heal-c: 
               type: 'mechanic'
@@ -58,7 +67,62 @@ Soul Seeker:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Particle-d: 
+            Mana-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mana'
+                counts: 'True'
+                type: 'Mana'
+                value-base: '10'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'all'
+                    type: 'Percent'
+                    value-base: '8'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Heal-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'zzheal2'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Mana-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mana2'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '3'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-i: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -73,27 +137,5 @@ Soul Seeker:
                 forward: '0'
                 upward: '1'
                 right: '0'
-                indicator: '2D'
-              children:  {}
-            Mana-e: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'mana'
-                counts: 'True'
-                type: 'Percent'
-                value-base: '3'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Mana-f: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                type: 'Mana'
-                value-base: '1'
-                value-scale: '0'
                 indicator: '2D'
               children:  {}

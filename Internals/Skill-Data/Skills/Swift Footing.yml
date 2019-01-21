@@ -9,7 +9,7 @@ Swift Footing:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '127'
+    cooldown-base: '80'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -27,8 +27,10 @@ Swift Footing:
   - ''
   - '&7Grants Speed and Haste for'
   - '&7the Caster, and nearby allies.'
+  - '&7Heals Stamina.'
   - ''
   - '&bRadius: {attr:area.radius} Blocks'
+  - '&bStamina Healed: {attr:stradd.amount}'
   - '&bSpeed: {attr:po1.tier} for {attr:po1.seconds} Seconds'
   - '&bHaste: {attr:po2.tier} for {attr:po2.seconds} Seconds'
   - ''
@@ -48,6 +50,9 @@ Swift Footing:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Command-c: 
               type: 'mechanic'
@@ -59,7 +64,31 @@ Swift Footing:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-        Area-d: 
+            Particle-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Happy Villager'
+                arrangement: 'Circle'
+                radius-base: '5'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '40'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0'
+                amount: '1'
+                forward: '0'
+                upward: '0.1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+        Area-e: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -71,9 +100,10 @@ Swift Footing:
             caster: 'True'
             max-base: '999'
             max-scale: '0'
+            random: 'False'
             indicator: '2D'
           children: 
-            Potion-e: 
+            Potion-f: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -87,7 +117,7 @@ Swift Footing:
                 seconds-scale: '0.1'
                 indicator: '2D'
               children:  {}
-            Potion-f: 
+            Potion-g: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -95,13 +125,13 @@ Swift Footing:
                 counts: 'True'
                 potion: 'Fast Digging'
                 ambient: 'True'
-                tier-base: '1'
+                tier-base: '2'
                 tier-scale: '0'
                 seconds-base: '5.1'
                 seconds-scale: '0.1'
                 indicator: '2D'
               children:  {}
-            Particle-g: 
+            Particle-h: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -122,5 +152,16 @@ Swift Footing:
                 forward: '0'
                 upward: '1'
                 right: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'stradd'
+                counts: 'True'
+                key: 'stamina'
+                amount-base: '50'
+                amount-scale: '0'
                 indicator: '2D'
               children:  {}

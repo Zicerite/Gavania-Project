@@ -10,7 +10,7 @@ Shell Retreat:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '40'
+    cooldown-base: '30'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -43,351 +43,7 @@ Shell Retreat:
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Self-r: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Passive-s: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                seconds-base: '0.01'
-                seconds-scale: '0'
-                indicator: '2D'
-              children: 
-                Value-t: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'ShellFalling'
-                    min-value-base: '1'
-                    min-value-scale: '0'
-                    max-value-base: '1'
-                    max-value-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Launch-u: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        relative: 'Target'
-                        forward-base: '0.000001'
-                        forward-scale: '0'
-                        upward-base: '-2'
-                        upward-scale: '0'
-                        right-base: '0'
-                        right-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Block-v: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        standing: 'On Block'
-                        material: 'Air'
-                        indicator: '2D'
-                      children: 
-                        Area-w: 
-                          type: 'target'
-                          indicator: '3D'
-                          data: 
-                            icon-key: 'area'
-                            radius-base: '2.5'
-                            radius-scale: '0'
-                            group: 'Enemy'
-                            wall: 'True'
-                            caster: 'False'
-                            max-base: '999'
-                            max-scale: '0'
-                            indicator: '2D'
-                          children: 
-                            Repeat-x: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                repetitions-base: '2'
-                                repetitions-scale: '0'
-                                period: '0.1'
-                                delay: '0'
-                                indicator: '2D'
-                              children: 
-                                Launch-y: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    relative: 'Target'
-                                    forward-base: '-0.2'
-                                    forward-scale: '0'
-                                    upward-base: '-2.2'
-                                    upward-scale: '0'
-                                    right-base: '0'
-                                    right-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                                Particle-z: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    particle: 'Cloud'
-                                    arrangement: 'Sphere'
-                                    radius-base: '1'
-                                    radius-scale: '0'
-                                    particles-base: '3'
-                                    particles-scale: '0'
-                                    visible-radius: '40'
-                                    dx: '0'
-                                    dy: '0'
-                                    dz: '0'
-                                    speed: '0'
-                                    amount: '1'
-                                    forward: '0'
-                                    upward: '1'
-                                    right: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                    Particle-ab: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        particle: 'Block Crack'
-                        material: 'Purpur Block'
-                        type: '0'
-                        arrangement: 'Sphere'
-                        radius-base: '1'
-                        radius-scale: '0'
-                        particles-base: '3'
-                        particles-scale: '0'
-                        forward: '0'
-                        upward: '1'
-                        right: '0'
-                        indicator: '2D'
-                      children:  {}
-        Value Set-bb: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'ShellFalling'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Value Set-cb: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'ShellHiding'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-    Cast: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Self-b: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Launch-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                relative: 'Target'
-                forward-base: '0'
-                forward-scale: '0'
-                upward-base: '1'
-                upward-scale: '0'
-                right-base: '0'
-                right-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Delay-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                delay-base: '0.3'
-                delay-scale: '0'
-                indicator: '2D'
-              children: 
-                Value Set-e: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'ShellFalling'
-                    value-base: '1'
-                    value-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Value Set-f: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'ShellHiding'
-                    value-base: '1'
-                    value-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Sound-g: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Block Metal Break'
-                    volume-base: '100'
-                    volume-scale: '0'
-                    pitch-base: '1.2'
-                    pitch-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Potion-h: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    potion: 'Blindness'
-                    ambient: 'True'
-                    tier-base: '99'
-                    tier-scale: '0'
-                    seconds-base: '4.5'
-                    seconds-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Status-i: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    status: 'Invincible'
-                    duration-base: '4'
-                    duration-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Skill Level-j: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    skill: 'Nrik-Insect'
-                    min-level: '3'
-                    max-level: '3'
-                    indicator: '2D'
-                  children: 
-                    Potion-k: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        potion: 'Regeneration'
-                        ambient: 'True'
-                        tier-base: '2'
-                        tier-scale: '0'
-                        seconds-base: '4'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Potion-l: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        potion: 'Saturation'
-                        ambient: 'True'
-                        tier-base: '2'
-                        tier-scale: '0'
-                        seconds-base: '4'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-            Command-m: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                command: 'playsound spells.wind1 ambient @a[r=16] ~ ~ ~ 0.5 1.8'
-                type: 'OP'
-                indicator: '2D'
-              children:  {}
-            Delay-n: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                delay-base: '4'
-                delay-scale: '0'
-                indicator: '2D'
-              children: 
-                Value Set-o: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'ShellHiding'
-                    value-base: '0'
-                    value-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Cleanse-p: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    potion: 'Blindness'
-                    status: ''
-                    indicator: '2D'
-                  children:  {}
-    Land: 
+    Land-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -397,7 +53,7 @@ Shell Retreat:
         min-distance: '0'
         indicator: '2D'
       children: 
-        Value-eb: 
+        Value-b: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -409,7 +65,7 @@ Shell Retreat:
             max-value-scale: '0'
             indicator: '2D'
           children: 
-            Delay-fb: 
+            Delay-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -419,7 +75,7 @@ Shell Retreat:
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Value Set-gb: 
+                Value Set-d: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -430,7 +86,7 @@ Shell Retreat:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-hb: 
+                Particle-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -454,21 +110,7 @@ Shell Retreat:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Sound-ib: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Block Anvil Place'
-                    volume-base: '50'
-                    volume-scale: '0'
-                    pitch-base: '2'
-                    pitch-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Status-jb: 
+                Status-f: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -479,3 +121,361 @@ Shell Retreat:
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
+                Command-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:block.anvil.land ambient @a[r=16] ~ ~ ~ 0.3 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-i: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Launch-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                relative: 'Target'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '1'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.3'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ShellFalling'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ShellHiding'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Blindness'
+                    ambient: 'True'
+                    tier-base: '99'
+                    tier-scale: '0'
+                    seconds-base: '4.5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Status-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Invincible'
+                    duration-base: '4'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Skill Level-p: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Nrik-Insect'
+                    min-level: '3'
+                    max-level: '3'
+                    indicator: '2D'
+                  children: 
+                    Potion-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Regeneration'
+                        ambient: 'True'
+                        tier-base: '2'
+                        tier-scale: '0'
+                        seconds-base: '4'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Potion-r: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Saturation'
+                        ambient: 'True'
+                        tier-base: '2'
+                        tier-scale: '0'
+                        seconds-base: '4'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Command-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:block.chest.close ambient @a[r=16] ~ ~ ~ 0.6 1.1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+            Command-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.wind1 ambient @a[r=16] ~ ~ ~ 0.5 1.8'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Delay-u: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '4'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ShellHiding'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Cleanse-w: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Blindness'
+                    status: ''
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-y: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Passive-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '0.01'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-ab: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'ShellFalling'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '1'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Launch-bb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: '0.000001'
+                        forward-scale: '0'
+                        upward-base: '-2'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Block-cb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        standing: 'On Block'
+                        material: 'Air'
+                        indicator: '2D'
+                      children: 
+                        Area-db: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'area'
+                            radius-base: '2.5'
+                            radius-scale: '0'
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: '999'
+                            max-scale: '0'
+                            random: 'False'
+                            indicator: '2D'
+                          children: 
+                            Repeat-eb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '2'
+                                repetitions-scale: '0'
+                                period: '0.1'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Launch-fb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: '-0.2'
+                                    forward-scale: '0'
+                                    upward-base: '-2.2'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Particle-gb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Cloud'
+                                    arrangement: 'Sphere'
+                                    radius-base: '1'
+                                    radius-scale: '0'
+                                    particles-base: '3'
+                                    particles-scale: '0'
+                                    visible-radius: '40'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                    Particle-hb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Purpur Block'
+                        type: '0'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '3'
+                        particles-scale: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+        Value Set-ib: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'ShellFalling'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value Set-jb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'ShellHiding'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

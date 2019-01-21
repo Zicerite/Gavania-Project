@@ -9,7 +9,7 @@ Shadow Guard:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '80'
+    cooldown-base: '40'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -37,34 +37,6 @@ Shadow Guard:
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Set-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wholebuff'
-                counts: 'True'
-                key: ''
-                value-base: '10.5'
-                value-scale: '0.5'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -72,14 +44,17 @@ Shadow Guard:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-e: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Potion-f: 
+            Potion-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -87,13 +62,13 @@ Shadow Guard:
                 counts: 'True'
                 potion: 'Invisibility'
                 ambient: 'True'
-                tier-base: '3'
+                tier-base: '4'
                 tier-scale: '0'
-                seconds-base: '6'
+                seconds-base: '5'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Damage Buff-g: 
+            Damage Buff-d: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -103,11 +78,11 @@ Shadow Guard:
                 skill: 'False'
                 value-base: '1.105'
                 value-scale: '0.005'
-                seconds-base: '6'
+                seconds-base: '5'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Damage Buff-h: 
+            Damage Buff-e: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -117,11 +92,11 @@ Shadow Guard:
                 skill: 'True'
                 value-base: '1.105'
                 value-scale: '0.005'
-                seconds-base: '6'
+                seconds-base: '5'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Defense Buff-i: 
+            Defense Buff-f: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -131,11 +106,11 @@ Shadow Guard:
                 skill: 'False'
                 value-base: '0.7'
                 value-scale: '0'
-                seconds-base: '6'
+                seconds-base: '5'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Defense Buff-j: 
+            Defense Buff-g: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -145,11 +120,11 @@ Shadow Guard:
                 skill: 'True'
                 value-base: '0.7'
                 value-scale: '0'
-                seconds-base: '6'
+                seconds-base: '5'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-        Command-k: 
+        Command-h: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -159,17 +134,17 @@ Shadow Guard:
             type: 'OP'
             indicator: '2D'
           children:  {}
-        Delay-l: 
+        Delay-i: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            delay-base: '6'
+            delay-base: '5'
             delay-scale: '0'
             indicator: '2D'
           children: 
-            Particle-m: 
+            Particle-j: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -187,7 +162,7 @@ Shadow Guard:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-n: 
+            Particle-k: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -205,7 +180,7 @@ Shadow Guard:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-o: 
+            Particle-l: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -223,7 +198,7 @@ Shadow Guard:
                 right: '0'
                 indicator: '2D'
               children:  {}
-        Skill Level-p: 
+        Skill Level-m: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -233,7 +208,7 @@ Shadow Guard:
             max-level: '1'
             indicator: '2D'
           children: 
-            Status-q: 
+            Status-n: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -242,5 +217,33 @@ Shadow Guard:
                 status: 'Invincible'
                 duration-base: '1'
                 duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-p: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wholebuff'
+                counts: 'True'
+                key: ''
+                value-base: '10.5'
+                value-scale: '0.5'
                 indicator: '2D'
               children:  {}

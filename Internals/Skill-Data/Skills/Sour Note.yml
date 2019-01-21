@@ -1,0 +1,267 @@
+Sour Note: 
+  name: 'Sour Note'
+  type: 'Damage/Support'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '7'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_PICKAXE'
+  icon-durability: 48
+  icon-data: 48
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Plays a sour note, damaging nearby'
+  - '&7enemies. May stun enemies.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &9䛇'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bStun: {attr:CC.chance}% for {attr:stun.duration} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Particle-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Note'
+                arrangement: 'Sphere'
+                radius-base: '6'
+                radius-scale: '0'
+                particles-base: '40'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '0.9166666666666667'
+                dy: '0'
+                dz: '0'
+                speed: '1'
+                amount: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Area-d: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'area'
+                radius-base: '6'
+                radius-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
+                indicator: '2D'
+              children: 
+                Damage-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgSN'
+                    value-scale: '0.3'
+                    true: 'False'
+                    classifier: 'physical'
+                    indicator: '2D'
+                  children:  {}
+                Chance-f: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'CC'
+                    chance-base: '20'
+                    chance-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Status-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'stun'
+                        counts: 'True'
+                        status: 'Stun'
+                        duration-base: '2'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '20'
+                        repetitions-scale: '0'
+                        period: '0.1'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Particle-i: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Angry Villager'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '2'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1.6'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+            Self-j: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Sound-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    sound: 'Block Note Harp'
+                    volume-base: '30'
+                    volume-scale: '0'
+                    pitch-base: '1.4'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Sound-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    sound: 'Block Note Harp'
+                    volume-base: '30'
+                    volume-scale: '0'
+                    pitch-base: '1'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Sound-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    sound: 'Block Note Harp'
+                    volume-base: '30'
+                    volume-scale: '0'
+                    pitch-base: '0.7'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Sound-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    sound: 'Block Note Harp'
+                    volume-base: '30'
+                    volume-scale: '0'
+                    pitch-base: '0.5'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Sound-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    sound: 'Block Note Harp'
+                    volume-base: '30'
+                    volume-scale: '0'
+                    pitch-base: '2'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-q: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.03'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSN'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1.75'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

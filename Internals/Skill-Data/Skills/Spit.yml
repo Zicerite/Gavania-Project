@@ -9,10 +9,10 @@ Spit:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '8'
+    cooldown-base: '6'
     cooldown-scale: '0'
-    mana-base: '10.9'
-    mana-scale: '0.9'
+    mana-base: '11'
+    mana-scale: '1'
     points-spent-req-base: '0'
     points-spent-req-scale: '0'
     incompatible: 
@@ -30,60 +30,17 @@ Spit:
   - '&7forward, granting Slowness and'
   - '&7Poison to your targets.'
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &r퇶'
+  - '&bDamage: {attr:dmg.value} Skill Damage &r䛶'
   - '&bRange: &6Varies'
   - '&bSpit Spread Radius: {attr:area.radius} Blocks'
-  - '&bSlow: {attr:po1.tier} for {attr:po1.seconds} Seconds'
+  - '&bSlowness: {attr:po1.tier} for {attr:po1.seconds} Seconds'
   - '&bPoison: {attr:po2.tier} for {attr:po2.seconds} Seconds'
   - ''
-  - '&bPiercing Damage (Alby 3): {attr:dmg2.value} Skill Damage &r퇶'
+  - '&bPiercing Damage (Alby 3): {attr:dmg2.value} Skill Damage &r䛶'
   - ''
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgSpit'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.8'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'dmgSpitAlby3'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.25'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -91,14 +48,17 @@ Spit:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-f: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Particle Projectile-g: 
+            Particle Projectile-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -108,7 +68,7 @@ Spit:
                 spread: 'Cone'
                 amount-base: '1'
                 amount-scale: '0'
-                velocity-base: '1.25'
+                velocity-base: '1.4'
                 velocity-scale: '0'
                 angle-base: '30'
                 angle-scale: '0'
@@ -138,7 +98,7 @@ Spit:
                 use-effect: 'False'
                 indicator: '2D'
               children: 
-                Delay-h: 
+                Delay-d: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -148,7 +108,7 @@ Spit:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Area-i: 
+                    Area-e: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -160,9 +120,10 @@ Spit:
                         caster: 'False'
                         max-base: '999'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
-                        Damage-j: 
+                        Damage-f: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -170,12 +131,12 @@ Spit:
                             counts: 'True'
                             type: 'Damage'
                             value-base: 'dmgSpit'
-                            value-scale: '0.25'
+                            value-scale: '0.3'
                             true: 'False'
                             classifier: 'neutral'
                             indicator: '2D'
                           children:  {}
-                        Potion-k: 
+                        Potion-g: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -189,7 +150,7 @@ Spit:
                             seconds-scale: '0.05'
                             indicator: '2D'
                           children:  {}
-                        Particle-l: 
+                        Particle-h: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -213,7 +174,7 @@ Spit:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Potion-m: 
+                        Potion-i: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -221,13 +182,13 @@ Spit:
                             counts: 'True'
                             potion: 'Poison'
                             ambient: 'True'
-                            tier-base: '1.05'
-                            tier-scale: '0.05'
+                            tier-base: '3'
+                            tier-scale: '0'
                             seconds-base: '5.05'
                             seconds-scale: '0.05'
                             indicator: '2D'
                           children:  {}
-                        Skill Level-n: 
+                        Skill Level-j: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -237,7 +198,7 @@ Spit:
                             max-level: '3'
                             indicator: '2D'
                           children: 
-                            Damage-o: 
+                            Damage-k: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -250,7 +211,7 @@ Spit:
                                 classifier: 'neutral'
                                 indicator: '2D'
                               children:  {}
-                    Particle-p: 
+                    Particle-l: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -274,7 +235,7 @@ Spit:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-            Command-q: 
+            Command-m: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -282,5 +243,48 @@ Spit:
                 counts: 'True'
                 command: 'playsound minecraft:entity.llama.spit ambient @a[r=16] ~ ~ ~ 0.6 1'
                 type: 'OP'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-o: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSpit'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgSpitAlby3'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.25'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

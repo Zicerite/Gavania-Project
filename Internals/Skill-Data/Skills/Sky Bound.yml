@@ -25,10 +25,168 @@ Sky Bound:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Deal 10% more damage'
-  - '&7while in mid-air.'
+  - '&7Deal &68&f% &7more damage while in mid-air.'
+  - '&7Take &68&f% &7less damage while in mid-air.'
+  - ''
+  - '&7Heal {attr:stadd.amount} &aStamina &7and {attr:techadd.amount} &eTech &7when taking'
+  - '&7damage in mid-air.'
+  - ''
+  - '&7Heal {attr:stradd_dealt.amount} &aStamina &7when'
+  - '&7dealing damage in mid-air.'
   desc:  []
   components: 
+    Took Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Ground-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not On Ground'
+            indicator: '2D'
+          children: 
+            Value Add-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'stadd'
+                counts: 'True'
+                key: 'stamina'
+                amount-base: '3'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'techadd'
+                counts: 'True'
+                key: 'tech'
+                amount-base: '1'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Took Physical Damage-e: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Ground-f: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not On Ground'
+            indicator: '2D'
+          children: 
+            Value Add-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'stamina'
+                amount-base: '3'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tech'
+                amount-base: '1'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Skill Damage-p: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Ground-q: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not On Ground'
+            indicator: '2D'
+          children: 
+            Value Add-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'stradd_dealt'
+                counts: 'True'
+                key: 'stamina'
+                amount-base: '2'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Physical Damage-s: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Ground-t: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not On Ground'
+            indicator: '2D'
+          children: 
+            Value Add-u: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'stamina'
+                amount-base: '2'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -36,26 +194,25 @@ Sky Bound:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-b: 
+        Passive-j: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.01'
+            seconds-base: '0.05'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Block-c: 
+            Ground-k: 
               type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                standing: 'On Block'
-                material: 'Air'
+                type: 'Not On Ground'
                 indicator: '2D'
               children: 
-                Damage Buff-d: 
+                Damage Buff-l: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -63,13 +220,13 @@ Sky Bound:
                     counts: 'True'
                     type: 'Multiplier'
                     skill: 'False'
-                    value-base: '1.10'
+                    value-base: '1.08'
                     value-scale: '0'
                     seconds-base: '0.3'
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Damage Buff-e: 
+                Damage Buff-m: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -77,7 +234,35 @@ Sky Bound:
                     counts: 'True'
                     type: 'Multiplier'
                     skill: 'True'
-                    value-base: '1.10'
+                    value-base: '1.08'
+                    value-scale: '0'
+                    seconds-base: '0.3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '0.92'
+                    value-scale: '0'
+                    seconds-base: '0.3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '0.92'
                     value-scale: '0'
                     seconds-base: '0.3'
                     seconds-scale: '0'

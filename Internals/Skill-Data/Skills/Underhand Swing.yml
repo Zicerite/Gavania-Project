@@ -9,7 +9,7 @@ Underhand Swing:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '7'
+    cooldown-base: '6'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -29,42 +29,12 @@ Underhand Swing:
   - '&7launching them upward, and causing'
   - '&7extended hitstun.'
   - ''
-  - '&bDamage: {attr:dmg.value} Melee Damage &9퇇'
+  - '&bDamage: {attr:dmg.value} Melee Damage &9䛇'
   - '&bRange: {attr:range.range} Blocks'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-m: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-n: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgUS'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -78,6 +48,9 @@ Underhand Swing:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Command-c: 
               type: 'mechanic'
@@ -113,7 +86,7 @@ Underhand Swing:
                 counts: 'True'
                 type: 'Damage'
                 value-base: 'dmgUS'
-                value-scale: '0.2'
+                value-scale: '0.3'
                 true: 'False'
                 classifier: 'physical'
                 indicator: '2D'
@@ -125,7 +98,7 @@ Underhand Swing:
                 icon-key: ''
                 counts: 'True'
                 status: 'Disarm'
-                duration-base: '1'
+                duration-base: '0.8'
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
@@ -136,7 +109,7 @@ Underhand Swing:
                 icon-key: ''
                 counts: 'True'
                 status: 'Silence'
-                duration-base: '1'
+                duration-base: '0.8'
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
@@ -160,6 +133,7 @@ Underhand Swing:
                     repetitions-scale: '0'
                     period: '0.05'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
                     Launch-j: 
@@ -200,3 +174,33 @@ Underhand Swing:
                         right: '0'
                         indicator: '2D'
                       children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-m: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgUS'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

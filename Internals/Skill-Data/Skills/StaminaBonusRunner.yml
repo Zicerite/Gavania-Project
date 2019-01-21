@@ -136,16 +136,17 @@ StaminaBonusRunner:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value-k: 
+            Potion-k: 
               type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                key: 'stamina'
-                min-value-base: '0'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
+                type: 'Not Active'
+                potion: 'Slow'
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
                 indicator: '2D'
               children: 
                 Value-l: 
@@ -154,88 +155,44 @@ StaminaBonusRunner:
                   data: 
                     icon-key: ''
                     key: 'stamina'
-                    min-value-base: '-999999'
+                    min-value-base: '0'
                     min-value-scale: '0'
-                    max-value-base: 'maxstaminaminusOne'
+                    max-value-base: '999'
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Block-m: 
+                    Value-m: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        standing: 'Not On Block'
-                        material: 'Air'
+                        key: 'stamina'
+                        min-value-base: '-999999'
+                        min-value-scale: '0'
+                        max-value-base: 'maxstaminaminusOne'
+                        max-value-scale: '0'
                         indicator: '2D'
                       children: 
-                        Value Add-n: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'stamina'
-                            amount-base: '3'
-                            amount-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Value-o: 
+                        Ground-n: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
                             icon-key: ''
-                            key: 'stamina'
-                            min-value-base: '98'
-                            min-value-scale: '0'
-                            max-value-base: '999'
-                            max-value-scale: '0'
+                            type: 'On Ground'
                             indicator: '2D'
                           children: 
-                            Value Set-p: 
+                            Value Add-o: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
                                 icon-key: ''
                                 counts: 'True'
                                 key: 'stamina'
-                                value-base: '100'
-                                value-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                    Block-q: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        standing: 'On Block'
-                        material: 'Air'
-                        indicator: '2D'
-                      children: 
-                        Value-r: 
-                          type: 'condition'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            key: 'Flying'
-                            min-value-base: '0'
-                            min-value-scale: '0'
-                            max-value-base: '0'
-                            max-value-scale: '0'
-                            indicator: '2D'
-                          children: 
-                            Value Add-s: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                key: 'stamina'
-                                amount-base: '1'
+                                amount-base: '3'
                                 amount-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Value-t: 
+                            Value-p: 
                               type: 'condition'
                               indicator: '3D'
                               data: 
@@ -247,7 +204,7 @@ StaminaBonusRunner:
                                 max-value-scale: '0'
                                 indicator: '2D'
                               children: 
-                                Value Set-u: 
+                                Value Set-q: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -258,67 +215,119 @@ StaminaBonusRunner:
                                     value-scale: '0'
                                     indicator: '2D'
                                   children:  {}
-            Value-v: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'stamina'
-                min-value-base: '-999'
-                min-value-scale: '0'
-                max-value-base: '-1'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
+                        Ground-r: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'Not On Ground'
+                            indicator: '2D'
+                          children: 
+                            Value-s: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                key: 'Flying'
+                                min-value-base: '0'
+                                min-value-scale: '0'
+                                max-value-base: '0'
+                                max-value-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Value Add-t: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'stamina'
+                                    amount-base: '1'
+                                    amount-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Value-u: 
+                                  type: 'condition'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    key: 'stamina'
+                                    min-value-base: '98'
+                                    min-value-scale: '0'
+                                    max-value-base: '999'
+                                    max-value-scale: '0'
+                                    indicator: '2D'
+                                  children: 
+                                    Value Set-v: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'stamina'
+                                        value-base: '100'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
                 Value-w: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     key: 'stamina'
-                    min-value-base: '-999999'
+                    min-value-base: '-999'
                     min-value-scale: '0'
-                    max-value-base: 'maxstaminaminusOne'
+                    max-value-base: '-1'
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Block-x: 
+                    Value-x: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        standing: 'Not On Block'
-                        material: 'Air'
+                        key: 'stamina'
+                        min-value-base: '-999999'
+                        min-value-scale: '0'
+                        max-value-base: 'maxstaminaminusOne'
+                        max-value-scale: '0'
                         indicator: '2D'
                       children: 
-                        Value Add-y: 
-                          type: 'mechanic'
+                        Ground-y: 
+                          type: 'condition'
                           indicator: '3D'
                           data: 
                             icon-key: ''
-                            counts: 'True'
-                            key: 'stamina'
-                            amount-base: '2'
-                            amount-scale: '0'
+                            type: 'On Ground'
                             indicator: '2D'
-                          children:  {}
-                    Block-z: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        standing: 'On Block'
-                        material: 'Air'
-                        indicator: '2D'
-                      children: 
-                        Value Add-ab: 
-                          type: 'mechanic'
+                          children: 
+                            Value Add-z: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '2'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Ground-ab: 
+                          type: 'condition'
                           indicator: '3D'
                           data: 
                             icon-key: ''
-                            counts: 'True'
-                            key: 'stamina'
-                            amount-base: '1'
-                            amount-scale: '0'
+                            type: 'Not On Ground'
                             indicator: '2D'
-                          children:  {}
+                          children: 
+                            Value Add-bb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '1'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}

@@ -25,8 +25,12 @@ Shadow Forces:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Increases damage by 8% at Night.'
-  - '&7Increases defense by 8% at Night.'
+  - '&7Increases damage by &68&f% &7at Night.'
+  - '&7Increases defense by &68&f% &7at Night.'
+  - ''
+  - '&7Grants HP Regen {attr:po2.tier} &7for {attr:po2.seconds} &7seconds'
+  - '&7every {attr:timer.seconds} &7seconds at Night, but only'
+  - "&7if HP Regen isn't currently active."
   desc:  []
   components: 
     Initialize: 
@@ -52,6 +56,9 @@ Shadow Forces:
               data: 
                 icon-key: ''
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Time-d: 
                   type: 'condition'
@@ -117,3 +124,58 @@ Shadow Forces:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
+        Passive-i: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'timer'
+            counts: 'True'
+            seconds-base: '10'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-j: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Time-k: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    time: 'Night'
+                    indicator: '2D'
+                  children: 
+                    Potion-l: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Not Active'
+                        potion: 'Regeneration'
+                        min-rank-base: '0'
+                        min-rank-scale: '0'
+                        max-rank-base: '999'
+                        max-rank-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Potion-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'po2'
+                            counts: 'True'
+                            potion: 'Regeneration'
+                            ambient: 'True'
+                            tier-base: '1'
+                            tier-scale: '0'
+                            seconds-base: '2.5'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}

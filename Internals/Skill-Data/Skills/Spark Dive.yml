@@ -2,6 +2,7 @@ Spark Dive:
   name: 'Spark Dive'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -9,10 +10,10 @@ Spark Dive:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '8'
+    cooldown-base: '7'
     cooldown-scale: '0'
-    mana-base: '22.2'
-    mana-scale: '1.2'
+    mana-base: '31'
+    mana-scale: '1'
     points-spent-req-base: '0'
     points-spent-req-scale: '0'
     incompatible: 
@@ -29,231 +30,18 @@ Spark Dive:
   - '&7dealing damage to all enemies'
   - '&7hit from the attack. Stuns'
   - '&7targets as well.'
+  - '&7Spikes enemies when diving.'
   - ''
-  - '&bDamage: {attr:dmg02.value} Skill Damage &e퇸'
+  - '&bDamage: {attr:dmg02.value} Skill Damage &e䛸'
   - '&bRadius: {attr:area.radius} Blocks'
   - '&bStun Duration: {attr:stun.duration} Seconds'
   - ''
-  - '&bPiercing Damage (Alby 1): {attr:dmg2.value} Skill Damage &e퇸'
+  - '&bPiercing Damage (Alby 1): {attr:dmg2.value} Skill Damage &e䛸'
   - ''
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Value Set-m: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'didjump03'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Passive-n: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.1'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value-o: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'didjump03'
-                min-value-base: '1'
-                min-value-scale: '0'
-                max-value-base: '1'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Particle-p: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    particle: 'Red Dust'
-                    arrangement: 'Sphere'
-                    radius-base: '1'
-                    radius-scale: '0'
-                    particles-base: '6'
-                    particles-scale: '0'
-                    visible-radius: '50'
-                    dx: '1'
-                    dy: '1'
-                    dz: '0'
-                    speed: '1'
-                    amount: '0'
-                    forward: '0'
-                    upward: '1'
-                    right: '0'
-                    indicator: '2D'
-                  children:  {}
-            Value Lore-q: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgSD'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-r: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'dmgSDAlby1'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-    Cast: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Self-b: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Launch-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                relative: 'Target'
-                forward-base: '1'
-                forward-scale: '0'
-                upward-base: '1'
-                upward-scale: '0'
-                right-base: '0'
-                right-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Set-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'didjump03'
-                value-base: '1'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Sound-e: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Enderdragon Flap'
-                volume-base: '70'
-                volume-scale: '0'
-                pitch-base: '1.2'
-                pitch-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Delay-f: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                delay-base: '0.5'
-                delay-scale: '0'
-                indicator: '2D'
-              children: 
-                Sound-g: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Entity Enderdragon Flap'
-                    volume-base: '70'
-                    volume-scale: '0'
-                    pitch-base: '1.2'
-                    pitch-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Launch-h: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    relative: 'Target'
-                    forward-base: '0.75'
-                    forward-scale: '0'
-                    upward-base: '-1.5'
-                    upward-scale: '0'
-                    right-base: '0'
-                    right-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-        Value Set-i: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'cDash'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Skill Level-j: 
-          type: 'condition'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            skill: 'Xync-Dragon-Knight'
-            min-level: '1'
-            max-level: '1'
-            indicator: '2D'
-          children: 
-            Status-k: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                status: 'Invincible'
-                duration-base: '1'
-                duration-scale: '0'
-                indicator: '2D'
-              children:  {}
-    Land: 
+    Land-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -263,7 +51,7 @@ Spark Dive:
         min-distance: '0'
         indicator: '2D'
       children: 
-        Value-t: 
+        Value-b: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -275,7 +63,7 @@ Spark Dive:
             max-value-scale: '0'
             indicator: '2D'
           children: 
-            Value Set-u: 
+            Value Set-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -286,7 +74,7 @@ Spark Dive:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Delay-v: 
+            Delay-d: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -296,7 +84,7 @@ Spark Dive:
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Repeat-w: 
+                Repeat-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -306,9 +94,10 @@ Spark Dive:
                     repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Particle-x: 
+                    Particle-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -316,9 +105,9 @@ Spark Dive:
                         counts: 'True'
                         particle: 'Red Dust'
                         arrangement: 'Circle'
-                        radius-base: '4'
+                        radius-base: '5'
                         radius-scale: '0'
-                        particles-base: '35'
+                        particles-base: '40'
                         particles-scale: '0'
                         direction: 'XZ'
                         visible-radius: '50'
@@ -332,21 +121,22 @@ Spark Dive:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Area-y: 
+                Area-g: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: 'area'
-                    radius-base: '4'
+                    radius-base: '5'
                     radius-scale: '0'
                     group: 'Enemy'
                     wall: 'True'
                     caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Damage-z: 
+                    Damage-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -359,7 +149,7 @@ Spark Dive:
                         classifier: 'thunder'
                         indicator: '2D'
                       children:  {}
-                    Status-ab: 
+                    Status-i: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -370,7 +160,7 @@ Spark Dive:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Repeat-bb: 
+                    Repeat-j: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -380,9 +170,10 @@ Spark Dive:
                         repetitions-scale: '0'
                         period: '0.1'
                         delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Particle-cb: 
+                        Particle-k: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -406,7 +197,7 @@ Spark Dive:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Skill Level-db: 
+                    Skill Level-l: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -416,7 +207,7 @@ Spark Dive:
                         max-level: '1'
                         indicator: '2D'
                       children: 
-                        Damage-eb: 
+                        Damage-m: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -429,7 +220,7 @@ Spark Dive:
                             classifier: 'thunder'
                             indicator: '2D'
                           children:  {}
-            Command-fb: 
+            Command-n: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -439,7 +230,7 @@ Spark Dive:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Command-gb: 
+            Command-o: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -447,5 +238,279 @@ Spark Dive:
                 counts: 'True'
                 command: 'playsound spells.thunder2 ambient @a[r=22] ~ ~ ~ 0.5 1'
                 type: 'OP'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-q: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Launch-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                relative: 'Target'
+                forward-base: '1'
+                forward-scale: '0'
+                upward-base: '1'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'didjump03'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Command-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Delay-u: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.25'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Launch-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '0.75'
+                    forward-scale: '0'
+                    upward-base: '-1.5'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Command-w: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+        Value Set-x: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'cDash'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Skill Level-y: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Xync-Dragon-Knight'
+            min-level: '1'
+            max-level: '1'
+            indicator: '2D'
+          children: 
+            Status-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Invincible'
+                duration-base: '1'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-bb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'didjump03'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-cb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-db: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'didjump03'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '1'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Particle-eb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '6'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '1'
+                    dy: '1'
+                    dz: '0'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Area-fb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '3'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Repeat-gb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '3'
+                        repetitions-scale: '0'
+                        period: '0.075'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Launch-hb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: '1'
+                            forward-scale: '0'
+                            upward-base: '-1'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Status-ib: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Disarm'
+                            duration-base: '0.2'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Status-jb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Silence'
+                            duration-base: '0.2'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Value Lore-kb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSD'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-lb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgSDAlby1'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

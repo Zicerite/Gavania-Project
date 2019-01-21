@@ -1,15 +1,15 @@
 Vita Field: 
   name: 'Vita Field'
   type: 'Healing/Defense'
-  max-level: 1
+  max-level: 100
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
     level-base: '30'
-    level-scale: '0'
+    level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '20'
+    cooldown-base: '15'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -30,17 +30,15 @@ Vita Field:
   - '&7where the Caster is looking,'
   - '&7that heals friendly targets over'
   - '&7time, as well as decreasing'
-  - '&7damage taken.'
-  - '&7Enemies in the field get'
-  - '&7pushed out of it.'
+  - '&7damage taken. Enemies in the'
+  - '&7field get pushed out of it.'
+  - '&7Extinguishes friendly units.'
   - ''
-  - '&bHP Healed: {attr:heal.value} every 0.2 seconds'
+  - '&bHP Healed: {attr:heal.value} every 0.2s'
+  - '&bMana Healed: {attr:mana2.value} every 0.2s'
   - '&bDefense Buff: {attr:defbuffVF.value}%'
   - '&bField Radius: {attr:area.radius} Blocks'
-  - '&bDuration: &610 &fSeconds'
-  - ''
-  - '&bMana Healed (Yryn 2): {attr:mana2.value} every'
-  - '  &f0.2 Seconds'
+  - '&bDuration: &615 &fSeconds'
   - ''
   - '{req:level}Level: {attr:level} &eTech: &640 &2Cooldown: {attr:cooldown}'
   desc:  []
@@ -58,6 +56,9 @@ Vita Field:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Value-c: 
               type: 'condition'
@@ -80,6 +81,9 @@ Vita Field:
                     range-scale: '0'
                     ground: 'True'
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
                     Repeat-e: 
                       type: 'mechanic'
@@ -87,7 +91,7 @@ Vita Field:
                       data: 
                         icon-key: 'rep'
                         counts: 'True'
-                        repetitions-base: '50'
+                        repetitions-base: '75'
                         repetitions-scale: '0'
                         period: '0.2'
                         delay: '0'
@@ -106,6 +110,7 @@ Vita Field:
                             caster: 'True'
                             max-base: '999'
                             max-scale: '0'
+                            random: 'False'
                             indicator: '2D'
                           children: 
                             Particle-g: 
@@ -138,8 +143,8 @@ Vita Field:
                                 icon-key: 'heal'
                                 counts: 'True'
                                 type: 'Health'
-                                value-base: '2'
-                                value-scale: '0.1'
+                                value-base: '5.5'
+                                value-scale: '0.5'
                                 indicator: '2D'
                               children:  {}
                             Defense Buff-i: 
@@ -170,28 +175,36 @@ Vita Field:
                                 seconds-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Skill Level-k: 
+                            Mana-k: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'mana2'
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: '5.5'
+                                value-scale: '0.5'
+                                indicator: '2D'
+                              children:  {}
+                            Fire-l: 
                               type: 'condition'
                               indicator: '3D'
                               data: 
                                 icon-key: ''
-                                skill: 'Yryn-Synergist'
-                                min-level: '2'
-                                max-level: '2'
+                                type: 'On Fire'
                                 indicator: '2D'
                               children: 
-                                Mana-l: 
+                                Command-m: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
-                                    icon-key: 'mana2'
+                                    icon-key: ''
                                     counts: 'True'
-                                    type: 'Mana'
-                                    value-base: '2'
-                                    value-scale: '0'
+                                    command: 'ext'
+                                    type: 'OP'
                                     indicator: '2D'
                                   children:  {}
-                        Particle-m: 
+                        Particle-n: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -215,7 +228,7 @@ Vita Field:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Particle-n: 
+                        Particle-o: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -233,7 +246,7 @@ Vita Field:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Particle-o: 
+                        Particle-p: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -251,7 +264,7 @@ Vita Field:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Particle-p: 
+                        Particle-q: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -269,7 +282,7 @@ Vita Field:
                             right: '4'
                             indicator: '2D'
                           children:  {}
-                        Particle-q: 
+                        Particle-r: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -287,7 +300,7 @@ Vita Field:
                             right: '-4'
                             indicator: '2D'
                           children:  {}
-                        Particle-r: 
+                        Particle-s: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -305,24 +318,6 @@ Vita Field:
                             right: '-2.5'
                             indicator: '2D'
                           children:  {}
-                        Particle-s: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Heart'
-                            arrangement: 'Circle'
-                            radius-base: '0'
-                            radius-scale: '0'
-                            particles-base: '1'
-                            particles-scale: '0'
-                            direction: 'XZ'
-                            forward: '2.5'
-                            upward: '0.05'
-                            right: '2.5'
-                            indicator: '2D'
-                          children:  {}
                         Particle-t: 
                           type: 'mechanic'
                           indicator: '3D'
@@ -336,7 +331,7 @@ Vita Field:
                             particles-base: '1'
                             particles-scale: '0'
                             direction: 'XZ'
-                            forward: '-2.5'
+                            forward: '2.5'
                             upward: '0.05'
                             right: '2.5'
                             indicator: '2D'
@@ -354,37 +349,44 @@ Vita Field:
                             particles-base: '1'
                             particles-scale: '0'
                             direction: 'XZ'
+                            forward: '-2.5'
+                            upward: '0.05'
+                            right: '2.5'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-v: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Heart'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
                             forward: '2.5'
                             upward: '0.05'
                             right: '-2.5'
                             indicator: '2D'
                           children:  {}
-                        Area-v: 
+                        Area-w: 
                           type: 'target'
                           indicator: '3D'
                           data: 
                             icon-key: ''
-                            radius-base: '4'
+                            radius-base: '4.1'
                             radius-scale: '0'
                             group: 'Enemy'
                             wall: 'True'
                             caster: 'False'
                             max-base: '999'
                             max-scale: '0'
+                            random: 'False'
                             indicator: '2D'
                           children: 
-                            Push-w: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                type: 'Fixed'
-                                speed-base: '1.1'
-                                speed-scale: '0'
-                                source: 'none'
-                                indicator: '2D'
-                              children:  {}
                             Repeat-x: 
                               type: 'mechanic'
                               indicator: '3D'

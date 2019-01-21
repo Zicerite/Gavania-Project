@@ -1,0 +1,468 @@
+Thundering Bass: 
+  name: 'Thundering Bass'
+  type: 'Damage/Support'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '20'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GLOWSTONE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Sends out repeated waves of force,'
+  - '&7damaging, to nearby enemies.'
+  - '&7Causes Hitstun, and cancels knockback.'
+  - '&7Has a final hit that causes knockback and'
+  - '&7extended hitstun. Grants speed and haste'
+  - '&7after the last hit, to the Caster and nearby allies.'
+  - ''
+  - '&bDamage: {attr:dmg.value} x5 Skill Damage &e䛸'
+  - '&bLast Hit Damage: {attr:dmg2.value} Skill Damage &e䛸'
+  - '&bSpeed: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - '&bHaste: {attr:po1.tier} for {attr:po1.seconds} Seconds'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Repeat-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '5'
+                repetitions-scale: '0'
+                period: '0.2'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Self-d: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Command-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound note.timpani player @a[r=25] ~ ~ ~ 1 1.05'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Command-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound note.timpani player @a[r=25] ~ ~ ~ 1 1.06'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Command-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound note.timpani player @a[r=25] ~ ~ ~ 1 1.5'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Command-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound note.timpani player @a[r=25] ~ ~ ~ 1 1.04'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                Particle-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Note'
+                    arrangement: 'Sphere'
+                    radius-base: '6'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0.2916666666666667'
+                    dy: '0'
+                    dz: '0'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Area-j: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area'
+                    radius-base: '6'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 'dmgTB'
+                        value-scale: '0.3'
+                        true: 'False'
+                        classifier: 'thunder'
+                        indicator: '2D'
+                      children:  {}
+                    Status-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Disarm'
+                        duration-base: '0.4'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Status-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Silence'
+                        duration-base: '0.4'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '3'
+                        repetitions-scale: '0'
+                        period: '0.05'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Launch-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: '-0.01'
+                            forward-scale: '0'
+                            upward-base: '-0.01'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Delay-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '1.2'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Self-q: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Command-r: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound note.timpani player @a[r=25] ~ ~ ~ 1 1.05'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Command-s: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound note.timpani player @a[r=25] ~ ~ ~ 1 1.06'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Command-t: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound note.timpani player @a[r=25] ~ ~ ~ 1 1.07'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Command-u: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound note.timpani player @a[r=25] ~ ~ ~ 1 1.3'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                Particle-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Note'
+                    arrangement: 'Sphere'
+                    radius-base: '7'
+                    radius-scale: '0'
+                    particles-base: '25'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0.2916666666666667'
+                    dy: '0'
+                    dz: '0'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Area-w: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '7'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-x: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg2'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 'dmgTBF'
+                        value-scale: '0.3'
+                        true: 'False'
+                        classifier: 'thunder'
+                        indicator: '2D'
+                      children:  {}
+                    Status-y: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Disarm'
+                        duration-base: '0.75'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Status-z: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Silence'
+                        duration-base: '0.75'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-ab: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '3'
+                        repetitions-scale: '0'
+                        period: '0.05'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Push-bb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Fixed'
+                            speed-base: '0.7'
+                            speed-scale: '0'
+                            source: 'none'
+                            indicator: '2D'
+                          children:  {}
+                Area-cb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '7'
+                    radius-scale: '0'
+                    group: 'Ally'
+                    wall: 'True'
+                    caster: 'True'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Potion-db: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po1'
+                        counts: 'True'
+                        potion: 'Fast Digging'
+                        ambient: 'True'
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '10'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Potion-eb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po2'
+                        counts: 'True'
+                        potion: 'Speed'
+                        ambient: 'True'
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '10'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-gb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.03'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-hb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgTB'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.25'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-ib: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgTBF'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

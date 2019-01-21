@@ -1,6 +1,6 @@
 Shadow Orb: 
   name: 'Shadow Orb'
-  type: 'Damage'
+  type: 'Damage/Healing'
   max-level: 100
   skill-req-lvl: 1
   needs-permission: 'false'
@@ -11,8 +11,8 @@ Shadow Orb:
     cost-scale: '0'
     cooldown-base: '0'
     cooldown-scale: '0'
-    mana-base: '25.9'
-    mana-scale: '0.9'
+    mana-base: '15'
+    mana-scale: '1'
     points-spent-req-base: '0'
     points-spent-req-scale: '0'
     incompatible: 
@@ -27,47 +27,20 @@ Shadow Orb:
   - ''
   - '&7Launches out a large sphere made'
   - '&7of darkness. Deals lots of damage,'
-  - '&7and knockback.'
+  - '&7and knockback. Causes a weak'
+  - '&7Healing Debuff. Heals the Caster'
+  - '&7a fixed amount of HP when an'
+  - '&7enemy is hit by a shadow orb.'
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &5퇾'
-  - '&bRange: &6Very Far'
+  - '&bDamage: {attr:dmg.value} Skill Damage &5䛾'
+  - '&bRange: &6Medium-Long'
   - '&bBlast Radius: {attr:area.radius} Blocks'
-  - ''
-  - '&bHP Healed (Yryn 1): {attr:heal.value}%'
+  - '&bHealing Debuff: &6-25&f% for &62 &fSeconds'
+  - '&bHP Healed: {attr:zzheal.value}%'
   - ''
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-x: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-y: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgShadowOrb'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '1.5'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -81,6 +54,9 @@ Shadow Orb:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Command-c: 
               type: 'mechanic'
@@ -98,7 +74,7 @@ Shadow Orb:
               data: 
                 icon-key: ''
                 counts: 'True'
-                repetitions-base: '4'
+                repetitions-base: '3'
                 repetitions-scale: '0'
                 period: '0.1'
                 delay: '0'
@@ -115,7 +91,7 @@ Shadow Orb:
                     arrangement: 'Sphere'
                     radius-base: '1'
                     radius-scale: '0'
-                    particles-base: '3'
+                    particles-base: '2'
                     particles-scale: '0'
                     visible-radius: '30'
                     dx: '0'
@@ -134,6 +110,9 @@ Shadow Orb:
               data: 
                 icon-key: ''
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Particle Projectile-g: 
                   type: 'mechanic'
@@ -145,7 +124,7 @@ Shadow Orb:
                     spread: 'Cone'
                     amount-base: '1'
                     amount-scale: '0'
-                    velocity-base: '4'
+                    velocity-base: '2.5'
                     velocity-scale: '0'
                     angle-base: '30'
                     angle-scale: '0'
@@ -162,7 +141,7 @@ Shadow Orb:
                     arrangement: 'Sphere'
                     radius-base: '1'
                     radius-scale: '0'
-                    particles-base: '30'
+                    particles-base: '15'
                     particles-scale: '0'
                     visible-radius: '70'
                     dx: '0.2'
@@ -171,7 +150,7 @@ Shadow Orb:
                     speed: '1'
                     amount: '0'
                     frequency: '0.03'
-                    lifespan: '5'
+                    lifespan: '1'
                     use-effect: 'False'
                     indicator: '2D'
                   children: 
@@ -187,6 +166,7 @@ Shadow Orb:
                         caster: 'False'
                         max-base: '999'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
                         Damage-i: 
@@ -199,7 +179,7 @@ Shadow Orb:
                             value-base: 'dmgShadowOrb'
                             value-scale: '0.3'
                             true: 'False'
-                            classifier: 'darkness'
+                            classifier: 'dark'
                             indicator: '2D'
                           children:  {}
                         Repeat-j: 
@@ -241,8 +221,9 @@ Shadow Orb:
                                 icon-key: ''
                                 counts: 'True'
                                 type: 'Fixed'
-                                speed-base: '1'
+                                speed-base: '0.5'
                                 speed-scale: '0'
+                                source: 'none'
                                 indicator: '2D'
                               children:  {}
                         Status-m: 
@@ -261,54 +242,12 @@ Shadow Orb:
                           indicator: '3D'
                           data: 
                             icon-key: ''
-                            skill: 'Yryn-Deity'
-                            min-level: '1'
-                            max-level: '1'
-                            indicator: '2D'
-                          children: 
-                            Self-o: 
-                              type: 'target'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                indicator: '2D'
-                              children: 
-                                Heal-p: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: 'heal'
-                                    counts: 'True'
-                                    type: 'Percent'
-                                    value-base: '1.5'
-                                    value-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                        Skill Level-q: 
-                          type: 'condition'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
                             skill: 'Nrik-Deity'
                             min-level: '3'
                             max-level: '3'
                             indicator: '2D'
                           children: 
-                            Potion-r: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                potion: 'Blindness'
-                                ambient: 'True'
-                                tier-base: '3'
-                                tier-scale: '0'
-                                seconds-base: '5'
-                                seconds-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Potion-s: 
+                            Potion-o: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -322,7 +261,79 @@ Shadow Orb:
                                 seconds-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                Particle Projectile-t: 
+                        Buff-p: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            immediate: 'False'
+                            type: 'HEALING'
+                            modifier: 'Multiplier'
+                            value-base: '0.75'
+                            value-scale: '0'
+                            seconds-base: '2'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Repeat-q: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '10'
+                            repetitions-scale: '0'
+                            period: '0.2'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Particle-r: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Witch Magic'
+                                arrangement: 'Sphere'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '1'
+                                particles-scale: '0'
+                                visible-radius: '50'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0.05'
+                                amount: '1'
+                                forward: '0'
+                                upward: '1'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Self-s: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Heal-t: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'zzheal'
+                                counts: 'True'
+                                type: 'Percent'
+                                value-base: '0.8'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                Particle Projectile-u: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -332,7 +343,7 @@ Shadow Orb:
                     spread: 'Cone'
                     amount-base: '1'
                     amount-scale: '0'
-                    velocity-base: '4'
+                    velocity-base: '2.5'
                     velocity-scale: '0'
                     angle-base: '30'
                     angle-scale: '0'
@@ -349,7 +360,7 @@ Shadow Orb:
                     arrangement: 'Sphere'
                     radius-base: '1'
                     radius-scale: '0'
-                    particles-base: '4'
+                    particles-base: '3'
                     particles-scale: '0'
                     visible-radius: '70'
                     dx: '1'
@@ -358,11 +369,11 @@ Shadow Orb:
                     speed: '0'
                     amount: '0'
                     frequency: '0.03'
-                    lifespan: '5'
+                    lifespan: '1'
                     use-effect: 'False'
                     indicator: '2D'
                   children:  {}
-                Repeat-u: 
+                Repeat-v: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -375,18 +386,56 @@ Shadow Orb:
                     stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Launch-v: 
-                      type: 'mechanic'
+                    Ground-w: 
+                      type: 'condition'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        counts: 'True'
-                        relative: 'Caster'
-                        forward-base: '-0.9'
-                        forward-scale: '0'
-                        upward-base: '0.2'
-                        upward-scale: '0'
-                        right-base: '0'
-                        right-scale: '0'
+                        type: 'Not On Ground'
                         indicator: '2D'
-                      children:  {}
+                      children: 
+                        Launch-x: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: '-0.6'
+                            forward-scale: '0'
+                            upward-base: '0.15'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-z: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgShadowOrb'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.3'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

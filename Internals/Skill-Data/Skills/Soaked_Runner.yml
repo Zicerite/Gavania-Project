@@ -1,0 +1,118 @@
+Soaked_Runner: 
+  name: 'Soaked_Runner'
+  type: 'Dynamic'
+  max-level: 1
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'FISHING_ROD'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '1245141312'
+  desc:  []
+  components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'water'
+        indicator: '2D'
+      children: 
+        Flag-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'soaked'
+            seconds-base: '3'
+            seconds-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Repeat-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: '15'
+            repetitions-scale: '0'
+            period: '0.2'
+            delay: '0'
+            stop-on-fail: 'True'
+            indicator: '2D'
+          children: 
+            Flag-d: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Set'
+                key: 'soaked'
+                indicator: '2D'
+              children: 
+                Particle-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Water Drop'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '3'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Buff-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    immediate: 'False'
+                    type: 'SKILL_DEFENSE'
+                    modifier: 'Multiplier'
+                    category: 'thunder'
+                    value-base: '1.25'
+                    value-scale: '0'
+                    seconds-base: '0.22'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}

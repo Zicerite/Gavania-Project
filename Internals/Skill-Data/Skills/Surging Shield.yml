@@ -2,6 +2,7 @@ Surging Shield:
   name: 'Surging Shield'
   type: 'Defense/Support'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -9,7 +10,7 @@ Surging Shield:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '60'
+    cooldown-base: '40'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -27,17 +28,19 @@ Surging Shield:
   - ''
   - '&7Blasts out a protective surge of electricity'
   - '&7around the caster, and nearby allies hit'
-  - '&7with it get a shield that reduces damage taken.'
-  - '&7Speed and Haste is also granted.'
-  - '&7Hurts the caster abit.'
+  - '&7with it get a shield that reduces damage'
+  - '&7taken. Speed and Haste is also granted.'
+  - '&7Hurts the caster a bit.'
   - ''
   - '&bDamage Reduction: &630&f%'
-  - '&bBlast Radius: {attr:area.radius} Blocks'
   - '&bDuration: {attr:defbuff.seconds} Seconds'
   - '&bSpeed: {attr:po.tier} for {attr:po.seconds} Seconds'
   - '&bHaste: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - '&bBlast Radius: {attr:area.radius} Blocks'
   - ''
-  - '{req:level}Level: {attr:level} &cHealth: &620% &fof Max HP &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level}'
+  - '&cHealth: &620% &fof Current HP'
+  - '&2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
     Cast: 
@@ -47,226 +50,218 @@ Surging Shield:
         icon-key: ''
         indicator: '2D'
       children: 
-        Health-b: 
-          type: 'condition'
+        Self-b: 
+          type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
-            type: 'Percent'
-            min-value-base: '20.1'
-            min-value-scale: '0'
-            max-value-base: '100'
-            max-value-scale: '0'
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Damage-c: 
+            Area-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'area'
+                radius-base: '10'
+                radius-scale: '0'
+                group: 'Ally'
+                wall: 'True'
+                caster: 'True'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
+                indicator: '2D'
+              children: 
+                Defense Buff-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'defbuff'
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '0.8'
+                    value-scale: '0'
+                    seconds-base: '5.1'
+                    seconds-scale: '0.1'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '0.8'
+                    value-scale: '0'
+                    seconds-base: '5.1'
+                    seconds-scale: '0.1'
+                    indicator: '2D'
+                  children:  {}
+                Potion-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po'
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '5.1'
+                    seconds-scale: '0.1'
+                    indicator: '2D'
+                  children:  {}
+                Potion-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po2'
+                    counts: 'True'
+                    potion: 'Fast Digging'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '5.1'
+                    seconds-scale: '0.1'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '51'
+                    repetitions-scale: '1'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Gold Block'
+                        type: '0'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '4'
+                        particles-scale: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                Skill Level-j: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Xync-Automation'
+                    min-level: '1'
+                    max-level: '1'
+                    indicator: '2D'
+                  children: 
+                    Status-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Invincible'
+                        duration-base: '2'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Skill Level-l: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Nrik-Automation'
+                    min-level: '1'
+                    max-level: '1'
+                    indicator: '2D'
+                  children: 
+                    Damage Buff-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmgbuff'
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '1.2'
+                        value-scale: '0'
+                        seconds-base: '5.1'
+                        seconds-scale: '0.1'
+                        indicator: '2D'
+                      children:  {}
+            Particle-n: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                type: 'Multiplier'
-                value-base: '20'
-                value-scale: '0'
-                true: 'True'
-                classifier: 'default'
+                particle: 'Angry Villager'
+                arrangement: 'Circle'
+                radius-base: '10'
+                radius-scale: '0'
+                particles-base: '35'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '70'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '1'
+                amount: '1'
+                forward: '0'
+                upward: '0.15'
+                right: '0'
                 indicator: '2D'
               children:  {}
-            Self-d: 
-              type: 'target'
+            Command-o: 
+              type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.thunder3 ambient @a[r=22] ~ ~ ~ 0.6 1'
+                type: 'OP'
                 indicator: '2D'
-              children: 
-                Area-e: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: 'area'
-                    radius-base: '10'
-                    radius-scale: '0'
-                    group: 'Ally'
-                    wall: 'True'
-                    caster: 'True'
-                    max-base: '999'
-                    max-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Defense Buff-f: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'defbuff'
-                        counts: 'True'
-                        type: 'Multiplier'
-                        skill: 'False'
-                        value-base: '0.3'
-                        value-scale: '0'
-                        seconds-base: '5.1'
-                        seconds-scale: '0.1'
-                        indicator: '2D'
-                      children:  {}
-                    Defense Buff-g: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Multiplier'
-                        skill: 'True'
-                        value-base: '0.3'
-                        value-scale: '0'
-                        seconds-base: '5.1'
-                        seconds-scale: '0.1'
-                        indicator: '2D'
-                      children:  {}
-                    Potion-h: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'po'
-                        counts: 'True'
-                        potion: 'Speed'
-                        ambient: 'True'
-                        tier-base: '2'
-                        tier-scale: '0'
-                        seconds-base: '5.1'
-                        seconds-scale: '0.1'
-                        indicator: '2D'
-                      children:  {}
-                    Potion-i: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'po2'
-                        counts: 'True'
-                        potion: 'Fast Digging'
-                        ambient: 'True'
-                        tier-base: '3'
-                        tier-scale: '0'
-                        seconds-base: '5.1'
-                        seconds-scale: '0.1'
-                        indicator: '2D'
-                      children:  {}
-                    Repeat-j: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        repetitions-base: '51'
-                        repetitions-scale: '1'
-                        period: '0.1'
-                        delay: '0'
-                        stop-on-fail: 'False'
-                        indicator: '2D'
-                      children: 
-                        Particle-k: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Block Crack'
-                            material: 'Gold Block'
-                            type: '0'
-                            arrangement: 'Sphere'
-                            radius-base: '1'
-                            radius-scale: '0'
-                            particles-base: '10'
-                            particles-scale: '0'
-                            forward: '0'
-                            upward: '1'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Skill Level-l: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        skill: 'Xync-Automation'
-                        min-level: '1'
-                        max-level: '1'
-                        indicator: '2D'
-                      children: 
-                        Status-m: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            status: 'Invincible'
-                            duration-base: '2'
-                            duration-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Skill Level-n: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        skill: 'Nrik-Automation'
-                        min-level: '1'
-                        max-level: '1'
-                        indicator: '2D'
-                      children: 
-                        Damage Buff-o: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: 'dmgbuff'
-                            counts: 'True'
-                            type: 'Multiplier'
-                            skill: 'False'
-                            value-base: '1.2'
-                            value-scale: '0'
-                            seconds-base: '5.1'
-                            seconds-scale: '0.1'
-                            indicator: '2D'
-                          children:  {}
-                Particle-p: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    particle: 'Angry Villager'
-                    arrangement: 'Circle'
-                    radius-base: '10'
-                    radius-scale: '0'
-                    particles-base: '70'
-                    particles-scale: '0'
-                    direction: 'XZ'
-                    visible-radius: '70'
-                    dx: '0'
-                    dy: '0'
-                    dz: '0'
-                    speed: '1'
-                    amount: '1'
-                    forward: '0'
-                    upward: '0.1'
-                    right: '0'
-                    indicator: '2D'
-                  children:  {}
-                Command-q: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    command: 'playsound spells.thunder3 ambient @a[r=22] ~ ~ ~ 0.6 1'
-                    type: 'OP'
-                    indicator: '2D'
-                  children:  {}
-                Command-r: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    command: 'playsound spells.thunder1 ambient @a[r=22] ~ ~ ~ 0.7 1.5'
-                    type: 'OP'
-                    indicator: '2D'
-                  children:  {}
+              children:  {}
+            Command-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.thunder1 ambient @a[r=22] ~ ~ ~ 0.7 1.5'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+        Damage-q: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            type: 'Percent Left'
+            value-base: '20'
+            value-scale: '0'
+            true: 'True'
+            classifier: 'default'
+            indicator: '2D'
+          children:  {}

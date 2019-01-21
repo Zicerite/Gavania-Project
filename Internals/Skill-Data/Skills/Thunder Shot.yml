@@ -2,6 +2,7 @@ Thunder Shot:
   name: 'Thunder Shot'
   type: 'Damage/Support'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -9,7 +10,7 @@ Thunder Shot:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '10'
+    cooldown-base: '12'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -26,45 +27,15 @@ Thunder Shot:
   - '&2Type: &6{type}'
   - ''
   - '&7Shoots 3 thunder arrows in front of'
-  - '&7the Caster. Has a chance to stun'
-  - '&7hit enemies.'
+  - '&7the Caster. Stuns hit enemies.'
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &e퇸'
-  - '&bStun: {attr:CC.chance}% for {attr:stun.duration} Seconds'
+  - '&bDamage: {attr:dmg.value} x3 Skill Damage &e䛸'
+  - '&bStun Radius: {attr:area.radius} Blocks'
+  - '&bStun Duration: {attr:stun.duration} Seconds'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgTHS'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.8'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -72,14 +43,17 @@ Thunder Shot:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-e: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Command-f: 
+            Command-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -89,7 +63,7 @@ Thunder Shot:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Particle-g: 
+            Particle-d: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -108,7 +82,7 @@ Thunder Shot:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Projectile-h: 
+            Projectile-e: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -135,21 +109,22 @@ Thunder Shot:
                 use-effect: 'False'
                 indicator: '2D'
               children: 
-                Area-i: 
+                Area-f: 
                   type: 'target'
                   indicator: '3D'
                   data: 
-                    icon-key: ''
-                    radius-base: '2'
+                    icon-key: 'area'
+                    radius-base: '2.5'
                     radius-scale: '0'
                     group: 'Enemy'
                     wall: 'True'
                     caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Damage-j: 
+                    Damage-g: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -157,12 +132,12 @@ Thunder Shot:
                         counts: 'True'
                         type: 'Damage'
                         value-base: 'dmgTHS'
-                        value-scale: '0.2'
+                        value-scale: '0.3'
                         true: 'False'
                         classifier: 'thunder'
                         indicator: '2D'
                       children:  {}
-                    Particle-k: 
+                    Particle-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -181,16 +156,31 @@ Thunder Shot:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                    Chance-l: 
-                      type: 'condition'
+                    Status-i: 
+                      type: 'mechanic'
                       indicator: '3D'
                       data: 
-                        icon-key: 'CC'
-                        chance-base: '25'
-                        chance-scale: '0'
+                        icon-key: 'stun'
+                        counts: 'True'
+                        status: 'Stun'
+                        duration-base: '2'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '20'
+                        repetitions-scale: '0'
+                        period: '0.1'
+                        delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Particle-m: 
+                        Particle-k: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -214,14 +204,53 @@ Thunder Shot:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Status-n: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: 'stun'
-                            counts: 'True'
-                            status: 'Stun'
-                            duration-base: '2.5'
-                            duration-scale: '0'
-                            indicator: '2D'
-                          children:  {}
+                Particle-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Gold Block'
+                    type: '0'
+                    arrangement: 'Circle'
+                    radius-base: '2.5'
+                    radius-scale: '0'
+                    particles-base: '25'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-n: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgTHS'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.75'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

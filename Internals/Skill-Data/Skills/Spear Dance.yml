@@ -2,6 +2,7 @@ Spear Dance:
   name: 'Spear Dance'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -9,7 +10,7 @@ Spear Dance:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '10'
+    cooldown-base: '8'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -32,42 +33,12 @@ Spear Dance:
   - '&7When dual wielding, effects'
   - '&7happen twice as much.'
   - ''
-  - '&bDamage: {attr:dmg.value} x3 Melee Damage &9퇇'
+  - '&bDamage: {attr:dmg.value} x3 Melee Damage &9䛇'
   - '&bRange: {attr:range1.range}-{attr:range3.radius} blocks'
   - ''
-  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-mc: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-nc: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmg01'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '0.6'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -81,6 +52,9 @@ Spear Dance:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Delay-c: 
               type: 'mechanic'
@@ -175,7 +149,7 @@ Spear Dance:
               data: 
                 icon-key: ''
                 counts: 'True'
-                delay-base: '0.7'
+                delay-base: '0.4'
                 delay-scale: '0'
                 indicator: '2D'
               children: 
@@ -326,6 +300,7 @@ Spear Dance:
                             type: 'Fixed'
                             speed-base: '1.2'
                             speed-scale: '0'
+                            source: 'none'
                             indicator: '2D'
                           children:  {}
             Delay-s: 
@@ -334,7 +309,7 @@ Spear Dance:
               data: 
                 icon-key: ''
                 counts: 'True'
-                delay-base: '1.4'
+                delay-base: '0.8'
                 delay-scale: '0'
                 indicator: '2D'
               children: 
@@ -434,6 +409,7 @@ Spear Dance:
                     caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
                     Damage-z: 
@@ -491,6 +467,7 @@ Spear Dance:
                             type: 'Fixed'
                             speed-base: '1.5'
                             speed-scale: '0'
+                            source: 'none'
                             indicator: '2D'
                           children:  {}
                     Repeat-db: 
@@ -550,7 +527,7 @@ Spear Dance:
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    delay-base: '0.35'
+                    delay-base: '0.2'
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
@@ -637,7 +614,7 @@ Spear Dance:
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    delay-base: '1.05'
+                    delay-base: '0.6'
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
@@ -788,6 +765,7 @@ Spear Dance:
                                 type: 'Fixed'
                                 speed-base: '1.2'
                                 speed-scale: '0'
+                                source: 'none'
                                 indicator: '2D'
                               children:  {}
                 Delay-wb: 
@@ -796,7 +774,7 @@ Spear Dance:
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    delay-base: '1.75'
+                    delay-base: '1'
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
@@ -896,6 +874,7 @@ Spear Dance:
                         caster: 'False'
                         max-base: '999'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
                         Damage-dc: 
@@ -953,6 +932,7 @@ Spear Dance:
                                 type: 'Fixed'
                                 speed-base: '1.5'
                                 speed-scale: '0'
+                                source: 'none'
                                 indicator: '2D'
                               children:  {}
                         Repeat-hc: 
@@ -1010,5 +990,35 @@ Spear Dance:
                 status: 'Invincible'
                 duration-base: '2'
                 duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-mc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-nc: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmg01'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.6'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
