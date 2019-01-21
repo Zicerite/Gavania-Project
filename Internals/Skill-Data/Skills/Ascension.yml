@@ -27,19 +27,20 @@ Ascension:
   - ''
   - '&7Launches the caster into the air.'
   - '&7The caster is Invincible for a brief time.'
-  - '&7Able to use up to 2 times before the'
-  - '&7skill hits a cooldown.'
   - ''
   - '&bInvincibility: {attr:inv.duration} Seconds'
   - ''
-  - '{req:level}Level: {attr:level} &aStamina: &630 &2Cooldown: &68'
+  - '{req:level}Level: {attr:level} &aStamina: &630'
   desc:  []
   components: 
-    Initialize: 
+    Land-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
         icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: '0'
         indicator: '2D'
       children: 
         Value Set-b: 
@@ -60,14 +61,17 @@ Ascension:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-f: 
+        Self-d: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-g: 
+            Value-e: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -79,7 +83,7 @@ Ascension:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Value-h: 
+                Value-f: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -87,11 +91,11 @@ Ascension:
                     key: 'AscensionJ'
                     min-value-base: '0'
                     min-value-scale: '0'
-                    max-value-base: '1'
+                    max-value-base: '9999'
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Value Add-i: 
+                    Value Add-g: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -102,7 +106,7 @@ Ascension:
                         amount-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Launch-j: 
+                    Launch-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -117,21 +121,20 @@ Ascension:
                         right-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Sound-k: 
+                    Sound-i: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        version: '1.9+'
-                        newsound: 'Entity Enderdragon Flap'
+                        sound: 'Ambience Cave'
                         volume-base: '80'
                         volume-scale: '0'
                         pitch-base: '1'
                         pitch-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Status-l: 
+                    Status-j: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -142,7 +145,7 @@ Ascension:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Repeat-m: 
+                    Repeat-k: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -152,9 +155,10 @@ Ascension:
                         repetitions-scale: '0'
                         period: '0.1'
                         delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Particle-n: 
+                        Particle-l: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -177,7 +181,7 @@ Ascension:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Value Add-o: 
+                    Value Add-m: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -188,7 +192,7 @@ Ascension:
                         amount-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Skill Level-p: 
+                    Skill Level-n: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -198,7 +202,7 @@ Ascension:
                         max-level: '2'
                         indicator: '2D'
                       children: 
-                        Value Add-q: 
+                        Value Add-o: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -209,51 +213,14 @@ Ascension:
                             amount-scale: '0'
                             indicator: '2D'
                           children:  {}
-                Value-r: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'AscensionJ'
-                    min-value-base: '2'
-                    min-value-scale: '0'
-                    max-value-base: '999'
-                    max-value-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Delay-s: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.01'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Cooldown-t: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            skill: 'Ascension'
-                            type: 'Seconds'
-                            value-base: '-8'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-    Land: 
+    Initialize: 
       type: 'trigger'
       indicator: '3D'
       data: 
         icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        min-distance: '0'
         indicator: '2D'
       children: 
-        Value Set-d: 
+        Value Set-q: 
           type: 'mechanic'
           indicator: '3D'
           data: 

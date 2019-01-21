@@ -35,52 +35,11 @@ Bone Armor:
   - '&bDefense Buff: {attr:defbuff.value}%'
   - '&bDuration: {attr:defdefbuff.seconds} Seconds'
   - '&bRadius: {attr:area.radius} Blocks'
-  - '&bPiercing Damage: {attr:dmg.value} Melee Damage &r퇶'
+  - '&bPiercing Damage: {attr:dmg.value} Melee Damage &r䛶'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgBAP'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '2'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Set-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'defbuff'
-                counts: 'True'
-                key: ''
-                value-base: '33'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -88,14 +47,17 @@ Bone Armor:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-f: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Defense Buff-g: 
+            Defense Buff-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -109,7 +71,7 @@ Bone Armor:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Defense Buff-h: 
+            Defense Buff-d: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -123,7 +85,7 @@ Bone Armor:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Command-i: 
+            Command-e: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -133,7 +95,7 @@ Bone Armor:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Command-j: 
+            Command-f: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -143,7 +105,7 @@ Bone Armor:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Command-k: 
+            Command-g: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -153,7 +115,7 @@ Bone Armor:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Repeat-l: 
+            Repeat-h: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -166,7 +128,7 @@ Bone Armor:
                 stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Particle-m: 
+                Particle-i: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -185,7 +147,7 @@ Bone Armor:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Potion-n: 
+                Potion-j: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -198,7 +160,7 @@ Bone Armor:
                     max-rank-scale: '0'
                     indicator: '2D'
                   children: 
-                    Cleanse-o: 
+                    Cleanse-k: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -208,7 +170,7 @@ Bone Armor:
                         status: ''
                         indicator: '2D'
                       children:  {}
-                Potion-p: 
+                Potion-l: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -221,7 +183,7 @@ Bone Armor:
                     max-rank-scale: '0'
                     indicator: '2D'
                   children: 
-                    Cleanse-q: 
+                    Cleanse-m: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -231,7 +193,7 @@ Bone Armor:
                         status: ''
                         indicator: '2D'
                       children:  {}
-            Immunity-r: 
+            Immunity-n: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -244,7 +206,7 @@ Bone Armor:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Immunity-s: 
+            Immunity-o: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -257,7 +219,7 @@ Bone Armor:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-        Area-t: 
+        Area-p: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -269,9 +231,10 @@ Bone Armor:
             caster: 'False'
             max-base: '999'
             max-scale: '0'
+            random: 'False'
             indicator: '2D'
           children: 
-            Value-u: 
+            Value-q: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -283,7 +246,7 @@ Bone Armor:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Damage-v: 
+                Damage-r: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -296,7 +259,7 @@ Bone Armor:
                     classifier: 'default'
                     indicator: '2D'
                   children:  {}
-                Damage-w: 
+                Damage-s: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -309,7 +272,7 @@ Bone Armor:
                     classifier: 'neutral'
                     indicator: '2D'
                   children:  {}
-                Particle-x: 
+                Particle-t: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -328,3 +291,44 @@ Bone Armor:
                     right: '0'
                     indicator: '2D'
                   children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-v: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-w: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgBAP'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '2'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-x: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'defbuff'
+                counts: 'True'
+                key: ''
+                value-base: '33'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

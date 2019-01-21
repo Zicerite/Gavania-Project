@@ -2,6 +2,7 @@ Aquatic Grace:
   name: 'Aquatic Grace'
   type: 'Support'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -50,6 +51,9 @@ Aquatic Grace:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Area-c: 
               type: 'target'
@@ -63,6 +67,7 @@ Aquatic Grace:
                 caster: 'True'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
                 Attribute-d: 
@@ -76,6 +81,7 @@ Aquatic Grace:
                     amount-scale: '0'
                     seconds-base: '6'
                     seconds-scale: '0'
+                    stackable: 'False'
                     indicator: '2D'
                   children:  {}
                 Repeat-e: 
@@ -142,7 +148,126 @@ Aquatic Grace:
                     seconds-scale: '0.05'
                     indicator: '2D'
                   children:  {}
-            Particle-i: 
+                Skill Level-i: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Rune_Mage_AquaticGrace'
+                    min-level: '1'
+                    max-level: '1'
+                    indicator: '2D'
+                  children: 
+                    Attribute-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'WaterDMG'
+                        amount-base: '25'
+                        amount-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        stackable: 'False'
+                        indicator: '2D'
+                      children:  {}
+                Skill Level-k: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Rune_Mage_AquaticGrace'
+                    min-level: '2'
+                    max-level: '2'
+                    indicator: '2D'
+                  children: 
+                    Status-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Invincible'
+                        duration-base: '1.5'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '7'
+                        repetitions-scale: '0'
+                        period: '0.2'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Particle-n: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Enchantment Table'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '5'
+                            particles-scale: '0'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Skill Level-o: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Rune_Mage_AquaticGrace'
+                    min-level: '3'
+                    max-level: '3'
+                    indicator: '2D'
+                  children: 
+                    Defense Buff-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '0.8'
+                        value-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '0.8'
+                        value-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Particle-r: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -161,29 +286,27 @@ Aquatic Grace:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Sound-j: 
+            Sound-s: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Generic Splash'
+                sound: 'Entity Generic Splash'
                 volume-base: '70'
                 volume-scale: '0'
                 pitch-base: '1'
                 pitch-scale: '0'
                 indicator: '2D'
               children:  {}
-            Sound-k: 
+            Sound-t: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Generic Swim'
-                volume-base: '100'
+                sound: 'Entity Generic Swim'
+                volume-base: '70'
                 volume-scale: '0'
                 pitch-base: '1'
                 pitch-scale: '0'

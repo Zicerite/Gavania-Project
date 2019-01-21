@@ -1,0 +1,179 @@
+Barbaric Kill: 
+  name: 'Barbaric Kill'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'ROTTEN_FLESH'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Heals a fixed amount of HP, Wrath,'
+  - '&7Tech, and Stamina each kill. Effects'
+  - '&7are doubled, if you got the'
+  - '&7kill in Berserker mode.'
+  - ''
+  - '&bHP Healed: {attr:heal.value}%'
+  - '&bWrath Healed: {attr:wrathgained.amount}'
+  - '&bTech Gained: {attr:techgained.amount}'
+  - '&bStamina Healed: {attr:stradd.amount}'
+  desc:  []
+  components: 
+    Kill-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Heal-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '3'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wrathgained'
+                counts: 'True'
+                key: 'wrath'
+                amount-base: '3'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'techgained'
+                counts: 'True'
+                key: 'tech'
+                amount-base: '5'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'stradd'
+                counts: 'True'
+                key: 'stamina'
+                amount-base: '10'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Heal-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Health'
+                value-base: '2'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value-h: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ZoomState'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Heal-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '3'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'wrath'
+                    amount-base: '3'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '5'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '10'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Heal-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: '2'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}

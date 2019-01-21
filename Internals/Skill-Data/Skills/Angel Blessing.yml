@@ -2,7 +2,6 @@ Angel Blessing:
   name: 'Angel Blessing'
   type: 'Support'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -26,8 +25,8 @@ Angel Blessing:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Grants a Damage, Defense, and Agility'
-  - '&7buff to the caster and nearby allies.'
+  - '&7Grants a Damage, and Defense'
+  - '&7buff to the Caster and nearby allies.'
   - ''
   - '&bMelee Damage Buff: {attr:textBuff1.value}%'
   - '&bSkill Damage Buff: {attr:textBuff1.value}%'
@@ -38,45 +37,6 @@ Angel Blessing:
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.1'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Set-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'textBuff1'
-                counts: 'True'
-                key: 'value1'
-                value-base: '11'
-                value-scale: '1'
-                indicator: '2D'
-              children:  {}
-            Value Set-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'textBuff2'
-                counts: 'True'
-                key: 'value2'
-                value-base: '20'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -84,14 +44,17 @@ Angel Blessing:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-f: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Command-g: 
+            Command-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -101,7 +64,7 @@ Angel Blessing:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-        Area-h: 
+        Area-d: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -113,9 +76,10 @@ Angel Blessing:
             caster: 'True'
             max-base: '999'
             max-scale: '0'
+            random: 'False'
             indicator: '2D'
           children: 
-            Damage Buff-i: 
+            Damage Buff-e: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -129,7 +93,7 @@ Angel Blessing:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Damage Buff-j: 
+            Damage Buff-f: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -143,7 +107,7 @@ Angel Blessing:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Defense Buff-k: 
+            Defense Buff-g: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -157,7 +121,7 @@ Angel Blessing:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Defense Buff-l: 
+            Defense Buff-h: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -171,7 +135,7 @@ Angel Blessing:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Repeat-m: 
+            Repeat-i: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -181,9 +145,10 @@ Angel Blessing:
                 repetitions-scale: '0'
                 period: '0.2'
                 delay: '0'
+                stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Particle-n: 
+                Particle-j: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -206,7 +171,7 @@ Angel Blessing:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Skill Level-o: 
+            Skill Level-k: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -216,7 +181,7 @@ Angel Blessing:
                 max-level: '1'
                 indicator: '2D'
               children: 
-                Potion-p: 
+                Potion-l: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -230,7 +195,7 @@ Angel Blessing:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Skill Level-q: 
+            Skill Level-m: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -240,7 +205,7 @@ Angel Blessing:
                 max-level: '1'
                 indicator: '2D'
               children: 
-                Potion-r: 
+                Potion-n: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -254,7 +219,7 @@ Angel Blessing:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Skill Level-s: 
+            Skill Level-o: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -264,7 +229,7 @@ Angel Blessing:
                 max-level: '3'
                 indicator: '2D'
               children: 
-                Value Add-t: 
+                Value Add-p: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -275,3 +240,42 @@ Angel Blessing:
                     amount-scale: '0'
                     indicator: '2D'
                   children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-r: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.11'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'textBuff1'
+                counts: 'True'
+                key: 'value1'
+                value-base: '11'
+                value-scale: '1'
+                indicator: '2D'
+              children:  {}
+            Value Set-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'textBuff2'
+                counts: 'True'
+                key: 'value2'
+                value-base: '20'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

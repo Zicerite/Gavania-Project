@@ -2,6 +2,7 @@ Bomb Shot:
   name: 'Bomb Shot'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -11,8 +12,8 @@ Bomb Shot:
     cost-scale: '0'
     cooldown-base: '5'
     cooldown-scale: '0'
-    mana-base: '10.8'
-    mana-scale: '0.8'
+    mana-base: '11'
+    mana-scale: '1'
     points-spent-req-base: '0'
     points-spent-req-scale: '0'
     incompatible: 
@@ -29,72 +30,16 @@ Bomb Shot:
   - '&7Ignites hit targets. Deals damage, and'
   - '&7causes knockback.'
   - ''
-  - '&bDamage: {attr:dmg.value} Melee Damage &4퇵'
+  - '&bDamage: {attr:dmg.value} Melee Damage &4䛵'
   - '&bExplosion Radius: {attr:area.radius} Blocks'
   - '&bFire Duration: {attr:fire.seconds} Seconds'
   - ''
-  - '&bPiercing Damage (Alby 1): {attr:dmgAlby1.value} Melee Damage &r퇶'
-  - '&bPiercing Damage (Rune 3): {attr:dmg3.value} Melee Damage &1퇴'
+  - '&bPiercing Damage (Alby 1): {attr:dmgAlby1.value} Melee Damage &r䛶'
+  - '&bPiercing Damage (Rune 3): {attr:dmg3.value} Melee Damage &1䛴'
   - ''
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgBS'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '1.5'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'dmgBSAlby1'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-e: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgBSRune3'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -102,14 +47,17 @@ Bomb Shot:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-g: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Projectile-h: 
+            Projectile-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -136,21 +84,22 @@ Bomb Shot:
                 use-effect: 'False'
                 indicator: '2D'
               children: 
-                Area-i: 
+                Area-d: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: 'area'
-                    radius-base: '5.5'
+                    radius-base: '4.5'
                     radius-scale: '0'
                     group: 'Enemy'
                     wall: 'True'
                     caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Damage-j: 
+                    Damage-e: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -158,12 +107,12 @@ Bomb Shot:
                         counts: 'True'
                         type: 'Damage'
                         value-base: 'dmgBS'
-                        value-scale: '0.33'
+                        value-scale: '0.3'
                         true: 'False'
                         classifier: 'fire'
                         indicator: '2D'
                       children:  {}
-                    Repeat-k: 
+                    Repeat-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -176,7 +125,7 @@ Bomb Shot:
                         stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Push-l: 
+                        Push-g: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -185,9 +134,10 @@ Bomb Shot:
                             type: 'Inverse'
                             speed-base: '0.2'
                             speed-scale: '0'
+                            source: 'none'
                             indicator: '2D'
                           children:  {}
-                    Fire-m: 
+                    Fire-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -197,7 +147,7 @@ Bomb Shot:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Skill Level-n: 
+                    Skill Level-i: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -207,7 +157,7 @@ Bomb Shot:
                         max-level: '1'
                         indicator: '2D'
                       children: 
-                        Damage-o: 
+                        Damage-j: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -220,7 +170,7 @@ Bomb Shot:
                             classifier: 'neutral'
                             indicator: '2D'
                           children:  {}
-                    Skill Level-p: 
+                    Skill Level-k: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -230,7 +180,7 @@ Bomb Shot:
                         max-level: '3'
                         indicator: '2D'
                       children: 
-                        Damage-q: 
+                        Damage-l: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -243,7 +193,7 @@ Bomb Shot:
                             classifier: 'piercing'
                             indicator: '2D'
                           children:  {}
-                        Particle-r: 
+                        Particle-m: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -262,7 +212,7 @@ Bomb Shot:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                Explosion-s: 
+                Explosion-n: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -274,7 +224,7 @@ Bomb Shot:
                     fire: 'False'
                     indicator: '2D'
                   children:  {}
-                Particle-t: 
+                Particle-o: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -282,7 +232,7 @@ Bomb Shot:
                     counts: 'True'
                     particle: 'Huge Explosion'
                     arrangement: 'Circle'
-                    radius-base: '3'
+                    radius-base: '2'
                     radius-scale: '0'
                     particles-base: '3'
                     particles-scale: '0'
@@ -298,35 +248,20 @@ Bomb Shot:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Sound-u: 
+            Sound-p: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Arrow Shoot'
+                sound: 'Block Fire Ambient'
                 volume-base: '60'
                 volume-scale: '0'
                 pitch-base: '1'
                 pitch-scale: '0'
                 indicator: '2D'
               children:  {}
-            Sound-v: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Blaze Shoot'
-                volume-base: '70'
-                volume-scale: '0'
-                pitch-base: '1'
-                pitch-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Particle-w: 
+            Particle-q: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -336,7 +271,7 @@ Bomb Shot:
                 arrangement: 'Sphere'
                 radius-base: '1.2'
                 radius-scale: '0'
-                particles-base: '5'
+                particles-base: '4'
                 particles-scale: '0'
                 visible-radius: '40'
                 dx: '0'
@@ -349,14 +284,17 @@ Bomb Shot:
                 right: '0'
                 indicator: '2D'
               children:  {}
-        Self-x: 
+        Self-r: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Skill Level-y: 
+            Skill Level-s: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -366,7 +304,7 @@ Bomb Shot:
                 max-level: '1'
                 indicator: '2D'
               children: 
-                Delay-z: 
+                Delay-t: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -376,7 +314,7 @@ Bomb Shot:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Mana-ab: 
+                    Mana-u: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -387,7 +325,7 @@ Bomb Shot:
                         value-scale: '0.4'
                         indicator: '2D'
                       children:  {}
-            Skill Level-bb: 
+            Skill Level-v: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -397,7 +335,7 @@ Bomb Shot:
                 max-level: '2'
                 indicator: '2D'
               children: 
-                Delay-cb: 
+                Delay-w: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -407,7 +345,7 @@ Bomb Shot:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Cooldown-db: 
+                    Cooldown-x: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -419,3 +357,59 @@ Bomb Shot:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-z: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgBS'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.2'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgBSAlby1'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-cb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgBSRune3'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

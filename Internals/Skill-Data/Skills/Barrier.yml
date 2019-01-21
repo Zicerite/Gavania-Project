@@ -2,7 +2,6 @@ Barrier:
   name: 'Barrier'
   type: 'Defense'
   max-level: 1
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -31,30 +30,124 @@ Barrier:
   - '&7The Caster can’t attack while the'
   - '&7shield is up. Enemies that hit the shield'
   - '&7gets knocked away.'
-  - '&7The barrier only lasts for 1 second.'
+  - '&7The barrier only lasts for &61.25 &7seconds.'
+  - '&7Pushes away enemies after the barrier ends.'
+  - ''
+  - '&bWindbox Radius: {attr:area5.radius} Blocks'
   - ''
   - '&2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
+    Took Physical Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
         icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '9999999'
         indicator: '2D'
       children: 
-        Value Set-z: 
+        Remember Targets-b: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            key: 'IsBarrier'
-            value-base: '0'
-            value-scale: '0'
+            key: 'target'
             indicator: '2D'
           children:  {}
-    Took Skill Damage: 
+        Self-c: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value-d: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'IsBarrier'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Remember-e: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'target'
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Push-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Fixed'
+                        speed-base: '1'
+                        speed-scale: '0'
+                        source: 'none'
+                        indicator: '2D'
+                      children:  {}
+            Skill Level-g: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Mage_Barrier'
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Heal-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '0.3'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Mage_Barrier'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Mana-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Took Skill Damage-k: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -68,7 +161,7 @@ Barrier:
         - ''
         indicator: '2D'
       children: 
-        Remember Targets-hb: 
+        Remember Targets-l: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -77,14 +170,17 @@ Barrier:
             key: 'target'
             indicator: '2D'
           children:  {}
-        Self-ib: 
+        Self-m: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-jb: 
+            Value-n: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -96,15 +192,18 @@ Barrier:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Remember-kb: 
+                Remember-o: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     key: 'target'
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Push-lb: 
+                    Push-p: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -113,68 +212,51 @@ Barrier:
                         type: 'Fixed'
                         speed-base: '1'
                         speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
-    Took Physical Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'False'
-        type: 'Both'
-        dmg-min: '0'
-        dmg-max: '9999999'
-        indicator: '2D'
-      children: 
-        Remember Targets-bb: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'target'
-            indicator: '2D'
-          children:  {}
-        Self-cb: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Value-db: 
+            Skill Level-q: 
               type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                key: 'IsBarrier'
-                min-value-base: '1'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
+                skill: 'Rune_Mage_Barrier'
+                min-level: '2'
+                max-level: '2'
                 indicator: '2D'
               children: 
-                Remember-eb: 
-                  type: 'target'
+                Heal-r: 
+                  type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
-                    key: 'target'
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '0.3'
+                    value-scale: '0'
                     indicator: '2D'
-                  children: 
-                    Push-fb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Fixed'
-                        speed-base: '1'
-                        speed-scale: '0'
-                        indicator: '2D'
-                      children:  {}
+                  children:  {}
+            Skill Level-s: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Mage_Barrier'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Mana-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -182,14 +264,17 @@ Barrier:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-b: 
+        Self-v: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Command-c: 
+            Command-w: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -199,20 +284,20 @@ Barrier:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Repeat-d: 
+            Repeat-x: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                repetitions-base: '20'
+                repetitions-base: '25'
                 repetitions-scale: '0'
                 period: '0.05'
                 delay: '0'
                 stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Launch-e: 
+                Launch-y: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -227,53 +312,53 @@ Barrier:
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Status-f: 
+            Status-z: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
                 status: 'Disarm'
-                duration-base: '1'
+                duration-base: '1.25'
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
-            Status-g: 
+            Status-ab: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
                 status: 'Silence'
-                duration-base: '1'
+                duration-base: '1.25'
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
-            Status-h: 
+            Status-bb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
                 status: 'Invincible'
-                duration-base: '1'
+                duration-base: '1.25'
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
-        Repeat-i: 
+        Repeat-cb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            repetitions-base: '10'
+            repetitions-base: '12'
             repetitions-scale: '0'
             period: '0.1'
             delay: '0'
             stop-on-fail: 'False'
             indicator: '2D'
           children: 
-            Particle-j: 
+            Particle-db: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -296,7 +381,7 @@ Barrier:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-k: 
+            Particle-eb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -319,7 +404,7 @@ Barrier:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-l: 
+            Particle-fb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -342,7 +427,7 @@ Barrier:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-m: 
+            Particle-gb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -365,7 +450,7 @@ Barrier:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-n: 
+            Particle-hb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -388,7 +473,7 @@ Barrier:
                 right: '1'
                 indicator: '2D'
               children:  {}
-            Particle-o: 
+            Particle-ib: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -411,7 +496,7 @@ Barrier:
                 right: '-1'
                 indicator: '2D'
               children:  {}
-        Value Set-p: 
+        Value Set-jb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -422,17 +507,17 @@ Barrier:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Delay-q: 
+        Delay-kb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            delay-base: '1'
+            delay-base: '1.25'
             delay-scale: '0'
             indicator: '2D'
           children: 
-            Value Set-r: 
+            Value Set-lb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -443,83 +528,105 @@ Barrier:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-        Delay-s: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            delay-base: '1'
-            delay-scale: '0'
-            indicator: '2D'
-          children: 
-            Skill Level-t: 
-              type: 'condition'
+            Area-mb: 
+              type: 'target'
               indicator: '3D'
               data: 
-                icon-key: ''
-                skill: 'Xync-Mage'
-                min-level: '3'
-                max-level: '3'
+                icon-key: 'area5'
+                radius-base: '3'
+                radius-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
-                Defense Buff-u: 
+                Repeat-nb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    type: 'Multiplier'
-                    skill: 'False'
-                    value-base: '0.8'
-                    value-scale: '0'
-                    seconds-base: '2'
-                    seconds-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Defense Buff-v: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    type: 'Multiplier'
-                    skill: 'True'
-                    value-base: '0.8'
-                    value-scale: '0'
-                    seconds-base: '2'
-                    seconds-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Repeat-w: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    repetitions-base: '10'
+                    repetitions-base: '2'
                     repetitions-scale: '0'
-                    period: '0.2'
+                    period: '0.1'
                     delay: '0'
                     stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Particle-x: 
+                    Push-ob: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        particle: 'Block Crack'
-                        material: 'Diamond Block'
-                        type: '0'
-                        arrangement: 'Sphere'
-                        radius-base: '1'
-                        radius-scale: '0'
-                        particles-base: '2'
-                        particles-scale: '0'
-                        forward: '0'
-                        upward: '0'
-                        right: '0'
+                        type: 'Fixed'
+                        speed-base: '0.8'
+                        speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
+        Delay-pb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            delay-base: '0.01'
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-qb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Mage_Barrier'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Cooldown-rb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'Terra Shield'
+                    type: 'Percent'
+                    value-base: '50'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Cooldown-sb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'Frost Shield'
+                    type: 'Percent'
+                    value-base: '50'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-ub: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'IsBarrier'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

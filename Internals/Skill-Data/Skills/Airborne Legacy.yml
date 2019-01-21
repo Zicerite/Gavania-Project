@@ -25,10 +25,193 @@ Airborne Legacy:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Take 12% less damage'
+  - '&7Take &612&f% &7less damage'
   - '&7while in mid-air.'
+  - '&7Dealing damage while in mid-air'
+  - '&7heals &63 &aStamina&7.'
+  - '&7Taking damage while in mid-air'
+  - '&7heals &66 &aStamina&7.'
+  - ''
   desc:  []
   components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '99999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Ground-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not On Ground'
+            indicator: '2D'
+          children: 
+            Value-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'stamina'
+                min-value-base: '-999'
+                min-value-scale: '0'
+                max-value-base: '99'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '3'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Physical Damage-e: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        indicator: '2D'
+      children: 
+        Ground-f: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not On Ground'
+            indicator: '2D'
+          children: 
+            Value-g: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'stamina'
+                min-value-base: '-999'
+                min-value-scale: '0'
+                max-value-base: '99'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '3'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Took Physical Damage-i: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        indicator: '2D'
+      children: 
+        Ground-j: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not On Ground'
+            indicator: '2D'
+          children: 
+            Value-k: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'stamina'
+                min-value-base: '-999'
+                min-value-scale: '0'
+                max-value-base: '98'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '6'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Took Skill Damage-m: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Ground-n: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not On Ground'
+            indicator: '2D'
+          children: 
+            Value-o: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'stamina'
+                min-value-base: '-999'
+                min-value-scale: '0'
+                max-value-base: '98'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '6'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -36,7 +219,7 @@ Airborne Legacy:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-b: 
+        Passive-r: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -46,16 +229,15 @@ Airborne Legacy:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Block-c: 
+            Ground-s: 
               type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                standing: 'On Block'
-                material: 'Air'
+                type: 'Not On Ground'
                 indicator: '2D'
               children: 
-                Defense Buff-d: 
+                Defense Buff-t: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -69,7 +251,7 @@ Airborne Legacy:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Defense Buff-e: 
+                Defense Buff-u: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
