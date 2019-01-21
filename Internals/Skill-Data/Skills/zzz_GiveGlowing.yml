@@ -1,7 +1,7 @@
-Yryn-Synergist: 
-  name: 'Yryn-Synergist'
-  type: 'Rune'
-  max-level: 3
+zzz_GiveGlowing: 
+  name: 'zzz_GiveGlowing'
+  type: 'Dynamic'
+  max-level: 1
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -18,45 +18,38 @@ Yryn-Synergist:
     incompatible: 
     - ''
   msg: '&6{player} &2has cast &6{skill}'
-  icon: 'DIAMOND_BLOCK'
+  icon: 'JACK_O_LANTERN'
   icon-durability: 0
   icon-data: 0
   icon-lore: 
-  - '&d{name}'
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
   - ''
-  - '&eSetting for your Yryn Rune Option.'
-  - '&eLeft click to increase, Right Click to Decrease.'
-  - '&aCurrent Mode: &b[{level}]'
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
   - ''
-  - '&dMode 1: &cSpa Leaves'
-  - '&6Skill Addon; &9+Healing'
-  - '&7Leaf Shield now also heals HP instantly.'
-  - ''
-  - '&dMode 2: &cMana Rejuvenate'
-  - '&6Skill Addon; &9+Mana Draining'
-  - '&7Removed, now part of skill.'
-  - ''
-  - '&dMode 3: &cGood Vibes'
-  - '&6Skill Addon; &9+Pierce and Drain'
-  - '&7Encouragement now also heals'
-  - '&7some HP and Tech.'
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
+    Cast: 
       type: 'trigger'
       indicator: '3D'
       data: 
         icon-key: ''
         indicator: '2D'
       children: 
-        Value Set-b: 
+        Potion-b: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            key: 'value'
-            value-base: '1'
-            value-scale: '0'
+            potion: 'Glowing'
+            ambient: 'True'
+            tier-base: '1'
+            tier-scale: '0'
+            seconds-base: '0.9'
+            seconds-scale: '0'
             indicator: '2D'
           children:  {}

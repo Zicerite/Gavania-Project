@@ -9,7 +9,7 @@ Wrath of the Blood Moon:
     level-scale: '0'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '99'
+    cooldown-base: '100'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -32,12 +32,14 @@ Wrath of the Blood Moon:
   - '&7a short period. Also'
   - '&7negates all cooldowns on'
   - '&7skill casted. Grants Speed.'
+  - '&7Curses nearby enemies.'
   - ''
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bCurse Duration: {attr:curse.duration} Seconds'
   - '&bSpeed: {attr:po.tier}'
-  - '&bDuration: &620 &fSeconds'
+  - '&bDuration: &610 &fSeconds'
   - ''
   - '{req:level}Level: {attr:level}'
-  - '&eTech: &6100'
   - '&cHealth: {attr:healthcost.value}% &fof Current HP'
   - '&2Cooldown: {attr:cooldown}'
   desc:  []
@@ -55,332 +57,350 @@ Wrath of the Blood Moon:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-c: 
-              type: 'condition'
+            Self-c: 
+              type: 'target'
               indicator: '3D'
               data: 
                 icon-key: ''
-                key: 'tech'
-                min-value-base: '100'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
-                Self-d: 
-                  type: 'target'
+                Damage-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'healthcost'
+                    counts: 'True'
+                    type: 'Percent Left'
+                    value-base: '60'
+                    value-scale: '0'
+                    true: 'True'
+                    classifier: 'default'
+                    indicator: '2D'
+                  children:  {}
+                Status-e: 
+                  type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
+                    counts: 'True'
+                    status: 'Invincible'
+                    duration-base: '1'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Area-f: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area'
+                    radius-base: '8'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Damage-e: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'healthcost'
-                        counts: 'True'
-                        type: 'Percent Left'
-                        value-base: '75'
-                        value-scale: '0'
-                        true: 'True'
-                        classifier: 'default'
-                        indicator: '2D'
-                      children:  {}
-                    Buff-f: 
+                    Push-g: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        type: 'SKILL_DAMAGE'
-                        modifier: 'Multiplier'
-                        category: ''
-                        value-base: '2'
-                        value-scale: '0'
-                        seconds-base: '20'
-                        seconds-scale: '0'
+                        type: 'Inverse'
+                        speed-base: '0.6'
+                        speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
-                    Defense Buff-g: 
+                    Status-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
-                        icon-key: ''
+                        icon-key: 'curse'
                         counts: 'True'
-                        type: 'Multiplier'
-                        skill: 'True'
-                        value-base: '0.5'
-                        value-scale: '0'
-                        seconds-base: '20'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Defense Buff-h: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Multiplier'
-                        skill: 'False'
-                        value-base: '0.5'
-                        value-scale: '0'
-                        seconds-base: '20'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Status-i: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        status: 'Invincible'
-                        duration-base: '1'
+                        status: 'Curse'
+                        duration-base: '5'
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Area-j: 
-                      type: 'target'
+                    Repeat-i: 
+                      type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        radius-base: '8'
-                        radius-scale: '0'
-                        group: 'Enemy'
-                        wall: 'True'
-                        caster: 'False'
-                        max-base: '999'
-                        max-scale: '0'
+                        counts: 'True'
+                        repetitions-base: '25'
+                        repetitions-scale: '0'
+                        period: '0.2'
+                        delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Push-k: 
+                        Particle-j: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
                             icon-key: ''
                             counts: 'True'
-                            type: 'Inverse'
-                            speed-base: '0.6'
-                            speed-scale: '0'
+                            particle: 'Witch Magic'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '3'
+                            particles-scale: '0'
+                            visible-radius: '60'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
                             indicator: '2D'
                           children:  {}
-                    Particle-l: 
+                Particle-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Circle'
+                    radius-base: '8'
+                    radius-scale: '0'
+                    particles-base: '100'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '25'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '0.15'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '100'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-m: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
                         particle: 'Red Dust'
-                        arrangement: 'Circle'
-                        radius-base: '8'
+                        arrangement: 'Sphere'
+                        radius-base: '1.25'
                         radius-scale: '0'
-                        particles-base: '100'
+                        particles-base: '10'
                         particles-scale: '0'
-                        direction: 'XZ'
-                        visible-radius: '25'
+                        visible-radius: '30'
                         dx: '0'
                         dy: '0'
                         dz: '0'
                         speed: '1'
                         amount: '0'
                         forward: '0'
-                        upward: '0.15'
+                        upward: '1'
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                    Repeat-m: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        repetitions-base: '200'
-                        repetitions-scale: '0'
-                        period: '0.1'
-                        delay: '0'
-                        indicator: '2D'
-                      children: 
-                        Particle-n: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Red Dust'
-                            arrangement: 'Sphere'
-                            radius-base: '1.25'
-                            radius-scale: '0'
-                            particles-base: '10'
-                            particles-scale: '0'
-                            visible-radius: '30'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '1'
-                            amount: '0'
-                            forward: '0'
-                            upward: '1'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Command-o: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.magic1 ambient @a[r=16] ~ ~ ~ 1 1.5'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Command-p: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.magic2 ambient @a[r=16] ~ ~ ~ 1 1.5'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Command-q: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.magic3 ambient @a[r=16] ~ ~ ~ 1 0.5'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Command-r: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.magic4 ambient @a[r=16] ~ ~ ~ 1 0.6'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Value Add-s: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'tech'
-                        amount-base: '-100'
-                        amount-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Delay-t: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.01'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Cooldown-u: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            skill: 'all'
-                            type: 'Percent'
-                            value-base: '100'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Delay-v: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.02'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Cooldown-w: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            skill: 'Wrath of the Blood Moon'
-                            type: 'Seconds'
-                            value-base: '120'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Potion-x: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'po'
-                        counts: 'True'
-                        potion: 'Speed'
-                        ambient: 'True'
-                        tier-base: '1'
-                        tier-scale: '0'
-                        seconds-base: '20'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Damage Buff-y: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Multiplier'
-                        skill: 'False'
-                        value-base: '2'
-                        value-scale: '0'
-                        seconds-base: '20'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Damage Buff-z: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Multiplier'
-                        skill: 'True'
-                        value-base: '2'
-                        value-scale: '0'
-                        seconds-base: '20'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                Skill Level-ab: 
-                  type: 'condition'
+                Command-n: 
+                  type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
-                    skill: 'Xync-Beast'
-                    min-level: '3'
-                    max-level: '3'
+                    counts: 'True'
+                    command: 'playsound spells.magic1 ambient @a[r=16] ~ ~ ~ 1 1.5'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.magic2 ambient @a[r=16] ~ ~ ~ 1 1.5'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.magic3 ambient @a[r=16] ~ ~ ~ 1 0.5'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.magic4 ambient @a[r=16] ~ ~ ~ 1 0.6'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Delay-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.01'
+                    delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Status-bb: 
+                    Cooldown-s: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        status: 'Invincible'
-                        duration-base: '2'
-                        duration-scale: '0'
+                        skill: 'all'
+                        type: 'Percent'
+                        value-base: '100'
+                        value-scale: '0'
                         indicator: '2D'
                       children:  {}
+                Potion-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po'
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '10'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '2'
+                    value-scale: '0'
+                    seconds-base: '20'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '2'
+                    value-scale: '0'
+                    seconds-base: '20'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-w: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '0.5'
+                    value-scale: '0'
+                    seconds-base: '20'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-x: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '0.5'
+                    value-scale: '0'
+                    seconds-base: '20'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-y: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Xync-Beast'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Status-z: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Invincible'
+                    duration-base: '2'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Delay-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.03'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-bb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'Wrath of the Blood Moon'
+                    type: 'Seconds'
+                    value-base: '-120'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}

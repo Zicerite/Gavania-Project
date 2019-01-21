@@ -2,7 +2,6 @@ Whirlwind Sweep:
   name: 'Whirlwind Sweep'
   type: 'Damage'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -30,58 +29,17 @@ Whirlwind Sweep:
   - '&7caster into the air, dealing small damage,'
   - '&7and causing Hitstun.'
   - '&7Cancels the cooldown of Rapid Shot.'
+  - '&7Slightly lifts the caster upward and'
+  - '&7forward when used in mid-air.'
   - ''
-  - '&bDamage: {attr:dmg.value} Melee Damage &r퇳'
+  - '&bDamage: {attr:dmg.value} Melee Damage &f䛳'
   - '&bRange: {attr:area.radius} Blocks'
   - ''
-  - '&bDamage (Alby 2): {attr:dmgAlby2.value} Melee Damage &r퇶'
+  - '&bDamage (Alby 2): {attr:dmgAlby2.value} Melee Damage &r䛶'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgwep'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '1.15'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'dmgWSAlby2'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -89,49 +47,125 @@ Whirlwind Sweep:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-f: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Crouch-g: 
-              type: 'condition'
+            Area-c: 
+              type: 'target'
               indicator: '3D'
               data: 
-                icon-key: ''
-                crouch: 'False'
+                icon-key: 'area'
+                radius-base: '5.5'
+                radius-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
-                Area-h: 
-                  type: 'target'
+                Damage-d: 
+                  type: 'mechanic'
                   indicator: '3D'
                   data: 
-                    icon-key: 'area'
-                    radius-base: '5.5'
-                    radius-scale: '0'
-                    group: 'Enemy'
-                    wall: 'True'
-                    caster: 'False'
-                    max-base: '999'
-                    max-scale: '0'
+                    icon-key: 'dmg'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 'dmgWRS'
+                    value-scale: '0.3'
+                    true: 'False'
+                    classifier: 'wind'
+                    indicator: '2D'
+                  children:  {}
+                Delay-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.01'
+                    delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Damage-i: 
+                    Self-f: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Cooldown-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            skill: 'Rapid Shot'
+                            type: 'Percent'
+                            value-base: '100'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Damage-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
-                        icon-key: 'dmg'
+                        icon-key: 'dmgAlby2'
                         counts: 'True'
                         type: 'Damage'
-                        value-base: 'dmgwep'
-                        value-scale: '0.3'
+                        value-base: 'dmgWSAlby2'
+                        value-scale: '0'
                         true: 'False'
-                        classifier: 'wind'
+                        classifier: 'neutral'
                         indicator: '2D'
                       children:  {}
-                    Launch-j: 
+                Status-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Disarm'
+                    duration-base: '1'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Status-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Silence'
+                    duration-base: '1'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '3'
+                    repetitions-scale: '0'
+                    period: '0.075'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Launch-l: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -140,124 +174,13 @@ Whirlwind Sweep:
                         relative: 'Target'
                         forward-base: '0'
                         forward-scale: '0'
-                        upward-base: '0.5'
+                        upward-base: '0.8'
                         upward-scale: '0'
                         right-base: '0'
                         right-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Push-k: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Fixed'
-                        speed-base: '1'
-                        speed-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Delay-l: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.05'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Launch-m: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            relative: 'Target'
-                            forward-base: '-0.1'
-                            forward-scale: '0'
-                            upward-base: '1.2'
-                            upward-scale: '0'
-                            right-base: '0'
-                            right-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Push-n: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            type: 'Fixed'
-                            speed-base: '0.3'
-                            speed-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Delay-o: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.01'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Self-p: 
-                          type: 'target'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            indicator: '2D'
-                          children: 
-                            Cooldown-q: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                skill: 'Rapid Shot'
-                                type: 'Percent'
-                                value-base: '100'
-                                value-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                        Damage-r: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: 'dmgAlby2'
-                            counts: 'True'
-                            type: 'Damage'
-                            value-base: 'dmgWSAlby2'
-                            value-scale: '0'
-                            true: 'False'
-                            classifier: 'neutral'
-                            indicator: '2D'
-                          children:  {}
-                    Status-s: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        status: 'Disarm'
-                        duration-base: '1'
-                        duration-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Status-t: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        status: 'Silence'
-                        duration-base: '1'
-                        duration-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-            Command-u: 
+            Command-m: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -267,7 +190,7 @@ Whirlwind Sweep:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Particle-v: 
+            Particle-n: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -289,5 +212,84 @@ Whirlwind Sweep:
                 forward: '0'
                 upward: '0.02'
                 right: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '4'
+                repetitions-scale: '0'
+                period: '0.07'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Ground-p: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Not On Ground'
+                    indicator: '2D'
+                  children: 
+                    Launch-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Caster'
+                        forward-base: '0.45'
+                        forward-scale: '0'
+                        upward-base: '0.3'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-s: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgWRS'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.8'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-u: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgWSAlby2'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

@@ -2,7 +2,6 @@ Water Energies:
   name: 'Water Energies'
   type: 'Passive'
   max-level: 1
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -30,10 +29,71 @@ Water Energies:
   - '&7Grain {attr:techgained.amount} &7Tech when dealing'
   - '&7Water Damage.'
   - ''
-  - '&7Deal 5% more Water Damage when in Water.'
-  - '&7Caster is granted Mana Regen 1 when in Water.'
+  - '&7Deal &610&f% &7more Water Damage when in Water.'
+  - '&7Caster is granted Mana Regen &61 &7when in Water.'
   desc:  []
   components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'w'
+        - 'a'
+        - 't'
+        - 'e'
+        - 'r'
+        indicator: '2D'
+      children: 
+        Mana-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'mana'
+            counts: 'True'
+            type: 'Percent'
+            value-base: '-1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Self-c: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Mana-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Percent'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'techgained'
+                counts: 'True'
+                key: 'tech'
+                amount-base: '3'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -41,17 +101,17 @@ Water Energies:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-b: 
+        Passive-g: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.01'
+            seconds-base: '0.02'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Water-c: 
+            Water-h: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -59,20 +119,21 @@ Water Energies:
                 state: 'In Water'
                 indicator: '2D'
               children: 
-                Attribute-d: 
+                Attribute-i: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
                     key: 'WaterDMG'
-                    amount-base: '5'
+                    amount-base: '10'
                     amount-scale: '0'
                     seconds-base: '0.2'
                     seconds-scale: '0'
+                    stackable: 'False'
                     indicator: '2D'
                   children:  {}
-                Potion-e: 
+                Potion-j: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -86,56 +147,3 @@ Water Energies:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-    Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'False'
-        dmg-min: '0'
-        dmg-max: '999999'
-        category: 'water'
-        indicator: '2D'
-      children: 
-        Mana-g: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: 'mana'
-            counts: 'True'
-            type: 'Percent'
-            value-base: '-1.25'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Self-h: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Mana-i: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                type: 'Percent'
-                value-base: '1.25'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Add-j: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'techgained'
-                counts: 'True'
-                key: 'tech'
-                amount-base: '3'
-                amount-scale: '0'
-                indicator: '2D'
-              children:  {}

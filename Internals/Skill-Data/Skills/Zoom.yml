@@ -18,7 +18,7 @@ Zoom:
     incompatible: 
     - ''
   msg: '&6{player} &2has cast &6{skill}'
-  icon: 'JACK_O_LANTERN'
+  icon: 'PUMPKIN'
   icon-durability: 0
   icon-data: 0
   icon-lore: 
@@ -27,142 +27,13 @@ Zoom:
   - ''
   - '&7The Caster zooms in, and'
   - '&7gets slowness.'
-  - '&7Damage increased by 10%'
+  - ''
+  - '&7Damage increased by &620&f%'
   - '&7while zoomed in.'
+  - ''
   - '&7Cast again to zoom back out.'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Value Set-l: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'ZoomState'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Value Set-m: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'Mode_Changed'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Passive-n: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value-o: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'ZoomState'
-                min-value-base: '1'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Potion-p: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    potion: 'Slow'
-                    ambient: 'True'
-                    tier-base: '6'
-                    tier-scale: '0'
-                    seconds-base: '0.1'
-                    seconds-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Damage Buff-q: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    type: 'Multiplier'
-                    skill: 'False'
-                    value-base: '1.1'
-                    value-scale: '0'
-                    seconds-base: '0.1'
-                    seconds-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Damage Buff-r: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    type: 'Multiplier'
-                    skill: 'True'
-                    value-base: '1.1'
-                    value-scale: '0'
-                    seconds-base: '0.1'
-                    seconds-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Skill Level-s: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    skill: 'Xync-Gunman'
-                    min-level: '3'
-                    max-level: '3'
-                    indicator: '2D'
-                  children: 
-                    Defense Buff-t: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Multiplier'
-                        skill: 'False'
-                        value-base: '0.9'
-                        value-scale: '0'
-                        seconds-base: '0.3'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Defense Buff-u: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Multiplier'
-                        skill: 'True'
-                        value-base: '0.9'
-                        value-scale: '0'
-                        seconds-base: '0.3'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -273,3 +144,134 @@ Zoom:
             value-scale: '0'
             indicator: '2D'
           children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'ZoomState'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value Set-m: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'Mode_Changed'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-n: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-o: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ZoomState'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Slow'
+                    ambient: 'True'
+                    tier-base: '6'
+                    tier-scale: '0'
+                    seconds-base: '0.1'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '1.2'
+                    value-scale: '0'
+                    seconds-base: '0.1'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '1.2'
+                    value-scale: '0'
+                    seconds-base: '0.1'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Skill Level-s: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Xync-Gunman'
+                    min-level: '3'
+                    max-level: '3'
+                    indicator: '2D'
+                  children: 
+                    Defense Buff-t: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '0.9'
+                        value-scale: '0'
+                        seconds-base: '0.3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-u: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '0.9'
+                        value-scale: '0'
+                        seconds-base: '0.3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
