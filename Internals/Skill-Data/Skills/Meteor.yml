@@ -2,6 +2,7 @@ Meteor:
   name: 'Meteor'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -9,7 +10,7 @@ Meteor:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '20'
+    cooldown-base: '15'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -31,64 +32,14 @@ Meteor:
   - '&7a surface, not the air, to cast.'
   - '&7Deals damage and ignites enemies.'
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &4퇵'
+  - '&bDamage: {attr:dmg.value} Skill Damage &4䛵'
   - '&bCasting Range: {attr:range.range} Blocks'
   - '&bExplosion Radius: {attr:area.radius} Blocks'
+  - '&bFire Duration: {attr:fire.seconds} Seconds'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-hb: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '1'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Set-ib: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'partAm'
-                value-base: '4'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-        Passive-jb: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.03'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-kb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgMeteor'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '2'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -102,6 +53,9 @@ Meteor:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Location-c: 
               type: 'target'
@@ -112,6 +66,9 @@ Meteor:
                 range-scale: '0'
                 ground: 'True'
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Offset-d: 
                   type: 'target'
@@ -125,6 +82,9 @@ Meteor:
                     right-base: '0'
                     right-scale: '0'
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
                     Particle-e: 
                       type: 'mechanic'
@@ -212,11 +172,14 @@ Meteor:
                         icon-key: ''
                         forward-base: '0'
                         forward-scale: '0'
-                        upward-base: '-0.2'
+                        upward-base: '-0.15'
                         upward-scale: '0'
                         right-base: '0'
                         right-scale: '0'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
                         Explosion-j: 
                           type: 'mechanic'
@@ -242,6 +205,7 @@ Meteor:
                             caster: 'False'
                             max-base: '999'
                             max-scale: '0'
+                            random: 'False'
                             indicator: '2D'
                           children: 
                             Damage-l: 
@@ -290,7 +254,151 @@ Meteor:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                Delay-o: 
+                        Skill Level-o: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            skill: 'Rune_Mage_Meteor'
+                            min-level: '1'
+                            max-level: '1'
+                            indicator: '2D'
+                          children: 
+                            Repeat-p: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '25'
+                                repetitions-scale: '0'
+                                period: '0.2'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Particle-q: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Flame'
+                                    arrangement: 'Circle'
+                                    radius-base: '4'
+                                    radius-scale: '0'
+                                    particles-base: '20'
+                                    particles-scale: '0'
+                                    direction: 'XZ'
+                                    visible-radius: '60'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0.1'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '0'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Area-r: 
+                                  type: 'target'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    radius-base: '4'
+                                    radius-scale: '0'
+                                    group: 'Enemy'
+                                    wall: 'True'
+                                    caster: 'False'
+                                    max-base: '999'
+                                    max-scale: '0'
+                                    random: 'False'
+                                    indicator: '2D'
+                                  children: 
+                                    Ground-s: 
+                                      type: 'condition'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        type: 'On Ground'
+                                        indicator: '2D'
+                                      children: 
+                                        Fire-t: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            seconds-base: '1.5'
+                                            seconds-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                        Skill Level-u: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            skill: 'Rune_Mage_Meteor'
+                            min-level: '3'
+                            max-level: '3'
+                            indicator: '2D'
+                          children: 
+                            Item Projectile-v: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                item: 'Stone'
+                                item-data: '0'
+                                group: 'Enemy'
+                                spread: 'Horizontal Cone'
+                                amount-base: '16'
+                                amount-scale: '0'
+                                velocity-base: '3'
+                                velocity-scale: '0'
+                                angle-base: '360'
+                                angle-scale: '0'
+                                position: '0'
+                                forward-base: '0'
+                                forward-scale: '0'
+                                upward-base: '0.1'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                use-effect: 'False'
+                                indicator: '2D'
+                              children: 
+                                Area-w: 
+                                  type: 'target'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    radius-base: '1.5'
+                                    radius-scale: '0'
+                                    group: 'Enemy'
+                                    wall: 'True'
+                                    caster: 'False'
+                                    max-base: '999'
+                                    max-scale: '0'
+                                    random: 'False'
+                                    indicator: '2D'
+                                  children: 
+                                    Damage-x: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        type: 'Damage'
+                                        value-base: 'dmgMeteor'
+                                        value-scale: '0.3'
+                                        true: 'False'
+                                        classifier: 'earth'
+                                        indicator: '2D'
+                                      children:  {}
+                Delay-y: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -300,7 +408,7 @@ Meteor:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Offset-p: 
+                    Offset-z: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -312,8 +420,11 @@ Meteor:
                         right-base: '0'
                         right-scale: '0'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
-                        Particle-q: 
+                        Particle-ab: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -336,7 +447,7 @@ Meteor:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                Delay-r: 
+                Delay-bb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -346,7 +457,7 @@ Meteor:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Offset-s: 
+                    Offset-cb: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -358,8 +469,11 @@ Meteor:
                         right-base: '0'
                         right-scale: '0'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
-                        Particle-t: 
+                        Particle-db: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -382,7 +496,7 @@ Meteor:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                Delay-u: 
+                Delay-eb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -392,7 +506,7 @@ Meteor:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Offset-v: 
+                    Offset-fb: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -404,8 +518,11 @@ Meteor:
                         right-base: '0'
                         right-scale: '0'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
-                        Particle-w: 
+                        Particle-gb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -428,7 +545,7 @@ Meteor:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                Delay-x: 
+                Delay-hb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -438,7 +555,7 @@ Meteor:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Offset-y: 
+                    Offset-ib: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -450,8 +567,11 @@ Meteor:
                         right-base: '0'
                         right-scale: '0'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
-                        Particle-z: 
+                        Particle-jb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -474,7 +594,7 @@ Meteor:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                Delay-ab: 
+                Delay-kb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -484,7 +604,7 @@ Meteor:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Offset-bb: 
+                    Offset-lb: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -496,8 +616,11 @@ Meteor:
                         right-base: '0'
                         right-scale: '0'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
-                        Particle-cb: 
+                        Particle-mb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -520,7 +643,7 @@ Meteor:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                Delay-db: 
+                Delay-nb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -530,7 +653,7 @@ Meteor:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Offset-eb: 
+                    Offset-ob: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -542,8 +665,11 @@ Meteor:
                         right-base: '0'
                         right-scale: '0'
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
-                        Particle-fb: 
+                        Particle-pb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -566,3 +692,86 @@ Meteor:
                             right: '0'
                             indicator: '2D'
                           children:  {}
+        Skill Level-qb: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Rune_Mage_Meteor'
+            min-level: '2'
+            max-level: '2'
+            indicator: '2D'
+          children: 
+            Delay-rb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-sb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'Meteor'
+                    type: 'Percent'
+                    value-base: '50'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-ub: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-vb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'partAm'
+                value-base: '4'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Passive-wb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-xb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMeteor'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '2.175'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

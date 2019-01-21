@@ -1,0 +1,66 @@
+Open Opportunity : 
+  name: 'Open Opportunity '
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'ITEM_FRAME'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Chance to gain Haste'
+  - '&7when you get a kill.'
+  - ''
+  - '&bChance: {attr:CC.chance}%'
+  - '&bHaste: {attr:po.tier} for {attr:po.seconds} Seconds'
+  desc:  []
+  components: 
+    Kill: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Chance-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: 'CC'
+            chance-base: '15'
+            chance-scale: '0'
+            indicator: '2D'
+          children: 
+            Potion-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po'
+                counts: 'True'
+                potion: 'Fast Digging'
+                ambient: 'True'
+                tier-base: '2'
+                tier-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}

@@ -2,6 +2,7 @@ Medkit:
   name: 'Medkit'
   type: 'Healing'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -33,7 +34,6 @@ Medkit:
   - '&bMana Healed: {attr:mana.value}%'
   - '&bTech Gained: {attr:techgained.amount}'
   - '&bRadius: {attr:area.radius} Blocks'
-  - '&bHP Regen Chance: {attr:CC.chance}%'
   - '&bHP Regen: {attr:po.tier} for {attr:po.seconds} Seconds'
   - ''
   - '&bHP Healed (Yryn 1): {attr:heal2.value}%'
@@ -54,33 +54,28 @@ Medkit:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Sound-c: 
+            Command-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Block Cloth Break'
-                volume-base: '90'
-                volume-scale: '0'
-                pitch-base: '1.2'
-                pitch-scale: '0'
+                command: 'playsound minecraft:block.cloth.break ambient @a[r=16] ~ ~ ~ 1 1'
+                type: 'OP'
                 indicator: '2D'
               children:  {}
-            Sound-d: 
+            Command-d: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Block Cloth Break'
-                volume-base: '90'
-                volume-scale: '0'
-                pitch-base: '1.2'
-                pitch-scale: '0'
+                command: 'playsound minecraft:block.cloth.break ambient @a[r=16] ~ ~ ~ 1 1.1'
+                type: 'OP'
                 indicator: '2D'
               children:  {}
         Area-e: 
@@ -88,13 +83,14 @@ Medkit:
           indicator: '3D'
           data: 
             icon-key: 'area'
-            radius-base: '3'
+            radius-base: '4'
             radius-scale: '0'
             group: 'Ally'
             wall: 'True'
             caster: 'True'
             max-base: '999'
             max-scale: '0'
+            random: 'False'
             indicator: '2D'
           children: 
             Heal-f: 
@@ -104,8 +100,8 @@ Medkit:
                 icon-key: 'heal'
                 counts: 'True'
                 type: 'Health'
-                value-base: '10.5'
-                value-scale: '0.5'
+                value-base: '15.5'
+                value-scale: '2.5'
                 indicator: '2D'
               children:  {}
             Mana-g: 
@@ -115,7 +111,7 @@ Medkit:
                 icon-key: 'mana'
                 counts: 'True'
                 type: 'Percent'
-                value-base: '10'
+                value-base: '15'
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
@@ -126,7 +122,7 @@ Medkit:
                 icon-key: 'techgained'
                 counts: 'True'
                 key: 'tech'
-                amount-base: '10'
+                amount-base: '15'
                 amount-scale: '0'
                 indicator: '2D'
               children:  {}
@@ -153,53 +149,44 @@ Medkit:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Chance-j: 
-              type: 'condition'
+            Potion-j: 
+              type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: 'CC'
-                chance-base: '10'
-                chance-scale: '0'
+                icon-key: 'po'
+                counts: 'True'
+                potion: 'Regeneration'
+                ambient: 'True'
+                tier-base: '2'
+                tier-scale: '0'
+                seconds-base: '10'
+                seconds-scale: '0'
                 indicator: '2D'
-              children: 
-                Potion-k: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: 'po'
-                    counts: 'True'
-                    potion: 'Regeneration'
-                    ambient: 'True'
-                    tier-base: '2'
-                    tier-scale: '0'
-                    seconds-base: '5.1'
-                    seconds-scale: '0.1'
-                    indicator: '2D'
-                  children:  {}
-                Particle-l: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    particle: 'Magic Crit'
-                    arrangement: 'Sphere'
-                    radius-base: '1'
-                    radius-scale: '0'
-                    particles-base: '20'
-                    particles-scale: '0'
-                    visible-radius: '40'
-                    dx: '0'
-                    dy: '0'
-                    dz: '0'
-                    speed: '0.2'
-                    amount: '1'
-                    forward: '0'
-                    upward: '1'
-                    right: '0'
-                    indicator: '2D'
-                  children:  {}
-            Skill Level-m: 
+              children:  {}
+            Particle-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Magic Crit'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.2'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Skill Level-l: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -209,7 +196,7 @@ Medkit:
                 max-level: '1'
                 indicator: '2D'
               children: 
-                Heal-n: 
+                Heal-m: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 

@@ -2,6 +2,7 @@ Monarch Punch:
   name: 'Monarch Punch'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -32,78 +33,15 @@ Monarch Punch:
   - '&7damage resets after not hitting anything'
   - '&7after 10 seconds'
   - ''
-  - '&bDamage: {attr:dmg.value} Melee Damage &5퇾'
+  - '&bDamage: {attr:dmg.value} Melee Damage &5䛾'
   - '&bRange: &6Varies'
   - '&bBonus Damage: &f+&61 &fDamage per L attack'
   - ''
-  - '&bPiercing Damage (Alby 3): {attr:dmg4.value} Melee Damage &5퇾'
+  - '&bPiercing Damage (Alby 3): {attr:dmg4.value} Melee Damage &5䛾'
   - ''
   - '{req:level}Level: {attr:level} &eTech: &630 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgMP'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '2.35'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgSuckerPunch'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '0.4'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Combat-e: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                combat: 'False'
-                seconds: '10'
-                indicator: '2D'
-              children: 
-                Value Set-f: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'LComboDMG'
-                    value-base: '0'
-                    value-scale: '0'
-                    indicator: '2D'
-                  children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -111,14 +49,17 @@ Monarch Punch:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-h: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-i: 
+            Value-c: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -130,7 +71,7 @@ Monarch Punch:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Value Add-j: 
+                Value Add-d: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -141,7 +82,7 @@ Monarch Punch:
                     amount-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Delay-k: 
+                Delay-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -151,7 +92,7 @@ Monarch Punch:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Particle-l: 
+                    Particle-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -174,7 +115,7 @@ Monarch Punch:
                         right: '2.7'
                         indicator: '2D'
                       children:  {}
-                    Delay-m: 
+                    Delay-g: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -184,7 +125,7 @@ Monarch Punch:
                         delay-scale: '0'
                         indicator: '2D'
                       children: 
-                        Particle-n: 
+                        Particle-h: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -207,7 +148,7 @@ Monarch Punch:
                             right: '2.4'
                             indicator: '2D'
                           children:  {}
-                        Delay-o: 
+                        Delay-i: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -217,7 +158,7 @@ Monarch Punch:
                             delay-scale: '0'
                             indicator: '2D'
                           children: 
-                            Particle-p: 
+                            Particle-j: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -240,7 +181,7 @@ Monarch Punch:
                                 right: '2.1'
                                 indicator: '2D'
                               children:  {}
-                            Delay-q: 
+                            Delay-k: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -250,7 +191,7 @@ Monarch Punch:
                                 delay-scale: '0'
                                 indicator: '2D'
                               children: 
-                                Particle-r: 
+                                Particle-l: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -273,7 +214,7 @@ Monarch Punch:
                                     right: '1.8'
                                     indicator: '2D'
                                   children:  {}
-                                Delay-s: 
+                                Delay-m: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -283,7 +224,7 @@ Monarch Punch:
                                     delay-scale: '0'
                                     indicator: '2D'
                                   children: 
-                                    Particle-t: 
+                                    Particle-n: 
                                       type: 'mechanic'
                                       indicator: '3D'
                                       data: 
@@ -306,7 +247,7 @@ Monarch Punch:
                                         right: '1.5'
                                         indicator: '2D'
                                       children:  {}
-                                    Delay-u: 
+                                    Delay-o: 
                                       type: 'mechanic'
                                       indicator: '3D'
                                       data: 
@@ -316,7 +257,7 @@ Monarch Punch:
                                         delay-scale: '0'
                                         indicator: '2D'
                                       children: 
-                                        Particle-v: 
+                                        Particle-p: 
                                           type: 'mechanic'
                                           indicator: '3D'
                                           data: 
@@ -339,7 +280,7 @@ Monarch Punch:
                                             right: '1.2'
                                             indicator: '2D'
                                           children:  {}
-                                        Delay-w: 
+                                        Delay-q: 
                                           type: 'mechanic'
                                           indicator: '3D'
                                           data: 
@@ -349,7 +290,7 @@ Monarch Punch:
                                             delay-scale: '0'
                                             indicator: '2D'
                                           children: 
-                                            Location-x: 
+                                            Location-r: 
                                               type: 'target'
                                               indicator: '3D'
                                               data: 
@@ -358,8 +299,34 @@ Monarch Punch:
                                                 range-scale: '0'
                                                 ground: 'False'
                                                 indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
                                               children: 
-                                                Area-y: 
+                                                Particle-s: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    particle: 'Red Dust'
+                                                    arrangement: 'Sphere'
+                                                    radius-base: '1'
+                                                    radius-scale: '0'
+                                                    particles-base: '60'
+                                                    particles-scale: '0'
+                                                    visible-radius: '25'
+                                                    dx: '0'
+                                                    dy: '0'
+                                                    dz: '0'
+                                                    speed: '0'
+                                                    amount: '1'
+                                                    forward: '2.6'
+                                                    upward: '1'
+                                                    right: '1.2'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                                Area-t: 
                                                   type: 'target'
                                                   indicator: '3D'
                                                   data: 
@@ -371,9 +338,10 @@ Monarch Punch:
                                                     caster: 'False'
                                                     max-base: '999'
                                                     max-scale: '0'
+                                                    random: 'False'
                                                     indicator: '2D'
                                                   children: 
-                                                    Damage-z: 
+                                                    Damage-u: 
                                                       type: 'mechanic'
                                                       indicator: '3D'
                                                       data: 
@@ -381,12 +349,12 @@ Monarch Punch:
                                                         counts: 'True'
                                                         type: 'Damage'
                                                         value-base: 'dmgMP'
-                                                        value-scale: '0.45'
+                                                        value-scale: '0.3'
                                                         true: 'False'
                                                         classifier: 'dark'
                                                         indicator: '2D'
                                                       children:  {}
-                                                    Particle-ab: 
+                                                    Particle-v: 
                                                       type: 'mechanic'
                                                       indicator: '3D'
                                                       data: 
@@ -409,7 +377,7 @@ Monarch Punch:
                                                         right: '0'
                                                         indicator: '2D'
                                                       children:  {}
-                                                    Delay-bb: 
+                                                    Delay-w: 
                                                       type: 'mechanic'
                                                       indicator: '3D'
                                                       data: 
@@ -419,7 +387,7 @@ Monarch Punch:
                                                         delay-scale: '0'
                                                         indicator: '2D'
                                                       children: 
-                                                        Damage-cb: 
+                                                        Damage-x: 
                                                           type: 'mechanic'
                                                           indicator: '3D'
                                                           data: 
@@ -432,7 +400,7 @@ Monarch Punch:
                                                             classifier: 'neutral'
                                                             indicator: '2D'
                                                           children:  {}
-                                                        Particle-db: 
+                                                        Particle-y: 
                                                           type: 'mechanic'
                                                           indicator: '3D'
                                                           data: 
@@ -456,7 +424,7 @@ Monarch Punch:
                                                             right: '0'
                                                             indicator: '2D'
                                                           children:  {}
-                                                        Value Set-eb: 
+                                                        Value Set-z: 
                                                           type: 'mechanic'
                                                           indicator: '3D'
                                                           data: 
@@ -467,7 +435,7 @@ Monarch Punch:
                                                             value-scale: '0'
                                                             indicator: '2D'
                                                           children:  {}
-                                                        Push-fb: 
+                                                        Push-ab: 
                                                           type: 'mechanic'
                                                           indicator: '3D'
                                                           data: 
@@ -476,9 +444,10 @@ Monarch Punch:
                                                             type: 'Inverse'
                                                             speed-base: '0.6'
                                                             speed-scale: '0'
+                                                            source: 'none'
                                                             indicator: '2D'
                                                           children:  {}
-                                                    Direction-gb: 
+                                                    Direction-bb: 
                                                       type: 'condition'
                                                       indicator: '3D'
                                                       data: 
@@ -487,7 +456,7 @@ Monarch Punch:
                                                         direction: 'Away'
                                                         indicator: '2D'
                                                       children: 
-                                                        Skill Level-hb: 
+                                                        Skill Level-cb: 
                                                           type: 'condition'
                                                           indicator: '3D'
                                                           data: 
@@ -497,7 +466,7 @@ Monarch Punch:
                                                             max-level: '3'
                                                             indicator: '2D'
                                                           children: 
-                                                            Damage-ib: 
+                                                            Damage-db: 
                                                               type: 'mechanic'
                                                               indicator: '3D'
                                                               data: 
@@ -510,7 +479,7 @@ Monarch Punch:
                                                                 classifier: 'dark'
                                                                 indicator: '2D'
                                                               children:  {}
-                                                            Particle-jb: 
+                                                            Particle-eb: 
                                                               type: 'mechanic'
                                                               indicator: '3D'
                                                               data: 
@@ -533,7 +502,7 @@ Monarch Punch:
                                                                 right: '0'
                                                                 indicator: '2D'
                                                               children:  {}
-                                                    Status-kb: 
+                                                    Status-fb: 
                                                       type: 'mechanic'
                                                       indicator: '3D'
                                                       data: 
@@ -544,7 +513,7 @@ Monarch Punch:
                                                         duration-scale: '0'
                                                         indicator: '2D'
                                                       children:  {}
-                                                    Status-lb: 
+                                                    Status-gb: 
                                                       type: 'mechanic'
                                                       indicator: '3D'
                                                       data: 
@@ -555,14 +524,67 @@ Monarch Punch:
                                                         duration-scale: '0'
                                                         indicator: '2D'
                                                       children:  {}
-                Self-mb: 
+                                                Skill Level-hb: 
+                                                  type: 'condition'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    skill: 'Rune_Archdemon_MonarchPunch'
+                                                    min-level: '1'
+                                                    max-level: '1'
+                                                    indicator: '2D'
+                                                  children: 
+                                                    Area-ib: 
+                                                      type: 'target'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        radius-base: '3.5'
+                                                        radius-scale: '0'
+                                                        group: 'Enemy'
+                                                        wall: 'True'
+                                                        caster: 'False'
+                                                        max-base: '999'
+                                                        max-scale: '0'
+                                                        random: 'False'
+                                                        indicator: '2D'
+                                                      children: 
+                                                        Explosion-jb: 
+                                                          type: 'mechanic'
+                                                          indicator: '3D'
+                                                          data: 
+                                                            icon-key: ''
+                                                            counts: 'True'
+                                                            power-base: '0'
+                                                            power-scale: '0'
+                                                            damage: 'False'
+                                                            fire: 'False'
+                                                            indicator: '2D'
+                                                          children:  {}
+                                                        Damage-kb: 
+                                                          type: 'mechanic'
+                                                          indicator: '3D'
+                                                          data: 
+                                                            icon-key: ''
+                                                            counts: 'True'
+                                                            type: 'Damage'
+                                                            value-base: 'dmgMPEXP'
+                                                            value-scale: '0'
+                                                            true: 'False'
+                                                            classifier: 'neutral'
+                                                            indicator: '2D'
+                                                          children:  {}
+                Self-lb: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Repeat-nb: 
+                    Repeat-mb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -572,9 +594,10 @@ Monarch Punch:
                         repetitions-scale: '0'
                         period: '0.1'
                         delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Particle-ob: 
+                        Particle-nb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -597,17 +620,142 @@ Monarch Punch:
                             right: '3'
                             indicator: '2D'
                           children:  {}
-                    Sound-pb: 
+                    Delay-ob: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        version: '1.9+'
-                        newsound: 'Entity Blaze Shoot'
-                        volume-base: '100'
-                        volume-scale: '0'
-                        pitch-base: '0.85'
-                        pitch-scale: '0'
+                        delay-base: '0.01'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Skill Level-pb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            skill: 'Rune_Archdemon_MonarchPunch'
+                            min-level: '2'
+                            max-level: '2'
+                            indicator: '2D'
+                          children: 
+                            Cooldown-qb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                skill: 'all'
+                                type: 'Percent'
+                                value-base: '10'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Skill Level-rb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            skill: 'Rune_Archdemon_MonarchPunch'
+                            min-level: '3'
+                            max-level: '3'
+                            indicator: '2D'
+                          children: 
+                            Value Add-sb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'tech'
+                                amount-base: '10'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Command-tb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:entity.blaze.shoot ambient @a[r=16] ~ ~ ~ 0.8 0.85'
+                        type: 'OP'
                         indicator: '2D'
                       children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-vb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-wb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMP'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '2.15'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-xb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSuckerPunch'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.4'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-yb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMPEXP'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Combat-zb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                combat: 'False'
+                seconds: '10'
+                indicator: '2D'
+              children: 
+                Value Set-ac: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'LComboDMG'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}

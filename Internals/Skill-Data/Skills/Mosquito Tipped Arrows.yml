@@ -2,6 +2,7 @@ Mosquito Tipped Arrows:
   name: 'Mosquito Tipped Arrows'
   type: 'Passive'
   max-level: 1
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -27,14 +28,15 @@ Mosquito Tipped Arrows:
   - ''
   - '&7Every time the caster deals damage,'
   - '&7there is a chance to heal '
-  - '&7HP and Mana.'
+  - '&7HP, Mana, and Stamina.'
   - ''
   - '&bChance: {attr:CC.chance}%'
-  - '&bHeal: {attr:heal.value}%'
-  - '&bMana: {attr:mana.value}%'
+  - '&bHeal Healed: {attr:heal.value}%'
+  - '&bMana Healed: {attr:mana.value}%'
+  - '&bStamina: {attr:stradd.amount}'
   desc:  []
   components: 
-    Skill Damage: 
+    Skill Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -43,9 +45,9 @@ Mosquito Tipped Arrows:
         cooldown: 'False'
         target: 'True'
         dmg-min: '0'
-        dmg-max: '99999'
+        dmg-max: '9999999'
         category: 
-        - 'default'
+        - ''
         indicator: '2D'
       children: 
         Chance-b: 
@@ -85,8 +87,7 @@ Mosquito Tipped Arrows:
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Magmacube Jump'
+                sound: 'Ambience Cave'
                 volume-base: '40'
                 volume-scale: '0'
                 pitch-base: '1.2'
@@ -115,5 +116,16 @@ Mosquito Tipped Arrows:
                 forward: '0'
                 upward: '0.2'
                 right: '0'
+                indicator: '2D'
+              children:  {}
+            Value Add-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'stradd'
+                counts: 'True'
+                key: 'stamina'
+                amount-base: '10'
+                amount-scale: '0'
                 indicator: '2D'
               children:  {}

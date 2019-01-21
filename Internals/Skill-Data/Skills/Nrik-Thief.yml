@@ -1,0 +1,141 @@
+Nrik-Thief: 
+  name: 'Nrik-Thief'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'EMERALD_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Nrik Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cHasteful Dashing'
+  - '&6Skill Addon; &9+Haste'
+  - '&7Grants Haste 2 for 3 Seconds after'
+  - '&7casting Slash Dash.'
+  - ''
+  - '&dMode 2: &cUrgent Getaway'
+  - '&6Skill Addon; &9+Passive'
+  - '&770 Agility is granted while below'
+  - '&715% HP'
+  - ''
+  - '&dMode 3: &cRest Assured'
+  - '&6Skill Addon; &9+Passive'
+  - '&7Heal 2 Mana per second when above'
+  - '&775% HP'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nrik-Thief'
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Health-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Percent'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '15'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Attribute-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Agility'
+                        amount-base: '70'
+                        amount-scale: '2'
+                        seconds-base: '0.4'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+        Passive-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-g: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nrik-Thief'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Health-h: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Percent'
+                    min-value-base: '75'
+                    min-value-scale: '0'
+                    max-value-base: '100'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '2'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}

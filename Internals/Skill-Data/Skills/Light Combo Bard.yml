@@ -20,20 +20,201 @@ Light Combo Bard:
     incompatible: 
     - ''
   msg: '&6{player} &2has cast &6{skill}'
-  icon: 'JACK_O_LANTERN'
+  icon: 'BEACON'
   icon-durability: 0
   icon-data: 0
   icon-lore: 
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '{req:level}Level: {attr:level}'
-  - '{req:cost}Cost: {attr:cost}'
+  - '&bL: &f: Plays a note. Damages all nearby enemies.'
   - ''
-  - '&2Mana: {attr:mana}'
-  - '&2Cooldown: {attr:cooldown}'
+  - '&3Damage &f= &68&f% &3Strength Attribute'
+  - '&3Piercing Damage &f= &61&f% &3Strength Attribute'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &9䛇'
+  - '&bPiercing Damage: {attr:dmg2.value} Melee Damage &9䛇'
+  - '&bRadius: {attr:area.radius} Blocks'
   desc:  []
   components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Potion-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Slow Digging'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Item-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    check-mat: 'True'
+                    material: 'Diamond Pickaxe'
+                    check-data: 'False'
+                    check-lore: 'False'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Value-e: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'a'
+                        min-value-base: '1'
+                        min-value-scale: '0'
+                        max-value-base: '999'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Particle-f: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Note'
+                            arrangement: 'Sphere'
+                            radius-base: '6'
+                            radius-scale: '0'
+                            particles-base: '20'
+                            particles-scale: '0'
+                            visible-radius: '40'
+                            dx: '0.4166666666666667'
+                            dy: '0'
+                            dz: '0'
+                            speed: '1'
+                            amount: '0'
+                            forward: '0'
+                            upward: '0'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Random-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'pitchL'
+                            type: 'Normal'
+                            min-base: '0.8'
+                            min-scale: '0'
+                            max-base: '1.2'
+                            max-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Sound-h: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            sound: 'Block Note Harp'
+                            volume-base: '100'
+                            volume-scale: '0'
+                            pitch-base: 'pitchL'
+                            pitch-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Set-i: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'a'
+                            value-base: '0'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Area-j: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'area'
+                            radius-base: '6'
+                            radius-scale: '0'
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: '99'
+                            max-scale: '0'
+                            random: 'False'
+                            indicator: '2D'
+                          children: 
+                            Damage-k: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'dmg'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: 'strL'
+                                value-scale: '0'
+                                true: 'False'
+                                classifier: 'physical'
+                                indicator: '2D'
+                              children:  {}
+                            Damage-l: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'dmg2'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: 'strLP'
+                                value-scale: '0'
+                                true: 'False'
+                                classifier: 'physical'
+                                indicator: '2D'
+                              children:  {}
+                        Delay-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.8'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Set-n: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'a'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -41,7 +222,7 @@ Light Combo Bard:
         icon-key: ''
         indicator: '2D'
       children: 
-        Repeat-n: 
+        Repeat-p: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -54,7 +235,7 @@ Light Combo Bard:
             stop-on-fail: 'False'
             indicator: '2D'
           children: 
-            Value Set-o: 
+            Value Set-q: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -65,7 +246,7 @@ Light Combo Bard:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-        Passive-p: 
+        Passive-r: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -75,7 +256,7 @@ Light Combo Bard:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Attribute-q: 
+            Value Attribute-s: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -85,7 +266,7 @@ Light Combo Bard:
                 attribute: 'Strength'
                 indicator: '2D'
               children:  {}
-            Value Multiply-r: 
+            Value Multiply-t: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -96,7 +277,7 @@ Light Combo Bard:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Attribute-s: 
+            Value Attribute-u: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -106,7 +287,7 @@ Light Combo Bard:
                 attribute: 'Strength'
                 indicator: '2D'
               children:  {}
-            Value Multiply-t: 
+            Value Multiply-v: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -117,152 +298,3 @@ Light Combo Bard:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-    Cast: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Self-b: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Value-c: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'a'
-                min-value-base: '1'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Particle-d: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    particle: 'Note'
-                    arrangement: 'Sphere'
-                    radius-base: '6'
-                    radius-scale: '0'
-                    particles-base: '20'
-                    particles-scale: '0'
-                    visible-radius: '40'
-                    dx: '0.4166666666666667'
-                    dy: '0'
-                    dz: '0'
-                    speed: '1'
-                    amount: '0'
-                    forward: '0'
-                    upward: '0'
-                    right: '0'
-                    indicator: '2D'
-                  children:  {}
-                Value Random-e: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'pitchL'
-                    type: 'Normal'
-                    min-base: '0.8'
-                    min-scale: '0'
-                    max-base: '1.2'
-                    max-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Sound-f: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Block Note Harp'
-                    volume-base: '100'
-                    volume-scale: '0'
-                    pitch-base: 'pitchL'
-                    pitch-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Value Set-g: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'a'
-                    value-base: '0'
-                    value-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Area-h: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    radius-base: '6'
-                    radius-scale: '0'
-                    group: 'Enemy'
-                    wall: 'True'
-                    caster: 'False'
-                    max-base: '99'
-                    max-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Damage-i: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'dmg'
-                        counts: 'True'
-                        type: 'Damage'
-                        value-base: 'strL'
-                        value-scale: '0'
-                        true: 'False'
-                        classifier: 'physical'
-                        indicator: '2D'
-                      children:  {}
-                    Damage-j: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'dmg2'
-                        counts: 'True'
-                        type: 'Damage'
-                        value-base: 'strL'
-                        value-scale: '0'
-                        true: 'False'
-                        classifier: 'physical'
-                        indicator: '2D'
-                      children:  {}
-                Delay-k: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    delay-base: '1'
-                    delay-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Value Set-l: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'a'
-                        value-base: '1'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}

@@ -2,6 +2,7 @@ Mana Droplet:
   name: 'Mana Droplet'
   type: 'Passive'
   max-level: 10
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -36,7 +37,7 @@ Mana Droplet:
   - '{req:level}Level: {attr:level}'
   desc:  []
   components: 
-    Took Skill Damage: 
+    Skill Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -46,48 +47,8 @@ Mana Droplet:
         target: 'True'
         dmg-min: '0'
         dmg-max: '999999'
-        category: 'water'
-        indicator: '2D'
-      children: 
-        Area-e: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            radius-base: '5'
-            radius-scale: '0'
-            group: 'Ally'
-            wall: 'True'
-            caster: 'True'
-            max-base: '999'
-            max-scale: '0'
-            indicator: '2D'
-          children: 
-            Potion-f: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                potion: 'Saturation'
-                ambient: 'True'
-                tier-base: '1'
-                tier-scale: '0'
-                seconds-base: '1.5'
-                seconds-scale: '0.5'
-                indicator: '2D'
-              children:  {}
-    Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'True'
-        dmg-min: '0'
-        dmg-max: '999999'
-        category: 'water'
+        category: 
+        - 'water'
         indicator: '2D'
       children: 
         Area-b: 
@@ -102,6 +63,7 @@ Mana Droplet:
             caster: 'True'
             max-base: '999'
             max-scale: '0'
+            random: 'False'
             indicator: '2D'
           children: 
             Potion-c: 
@@ -112,9 +74,166 @@ Mana Droplet:
                 counts: 'True'
                 potion: 'Saturation'
                 ambient: 'True'
-                tier-base: '1'
-                tier-scale: '0'
+                tier-base: '1.1'
+                tier-scale: '0.1'
                 seconds-base: '1.5'
                 seconds-scale: '0.5'
                 indicator: '2D'
               children:  {}
+        Skill Level-d: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Rune_Mage_ManaDroplet'
+            min-level: '2'
+            max-level: '2'
+            indicator: '2D'
+          children: 
+            Potion-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Regeneration'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Took Skill Damage-f: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'water'
+        indicator: '2D'
+      children: 
+        Area-g: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            radius-base: '5'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            random: 'False'
+            indicator: '2D'
+          children: 
+            Potion-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Saturation'
+                ambient: 'True'
+                tier-base: '1.1'
+                tier-scale: '0.1'
+                seconds-base: '1.5'
+                seconds-scale: '0.5'
+                indicator: '2D'
+              children:  {}
+        Skill Level-i: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Rune_Mage_ManaDroplet'
+            min-level: '2'
+            max-level: '2'
+            indicator: '2D'
+          children: 
+            Potion-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Regeneration'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-m: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Mage_ManaDroplet'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Attribute-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'WaterDEF'
+                    amount-base: '15'
+                    amount-scale: '0'
+                    seconds-base: '1'
+                    seconds-scale: '0'
+                    stackable: 'False'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-o: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Mage_ManaDroplet'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Buff-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    immediate: 'False'
+                    type: 'HEALING'
+                    modifier: 'Multiplier'
+                    value-base: '1.05'
+                    value-scale: '0'
+                    seconds-base: '1'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}

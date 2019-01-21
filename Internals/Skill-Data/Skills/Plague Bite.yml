@@ -1,0 +1,303 @@
+Plague Bite: 
+  name: 'Plague Bite'
+  type: 'Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '50'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '50'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'ACACIA_DOOR'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Hits a single target in front'
+  - '&7of the caster. Causes poison, and'
+  - '&7may also cause any of the following:'
+  - '&7wither, slowness, mana degen, and stun. '
+  - ''
+  - '&bRange: {attr:range.range} Blocks'
+  - '&bEffect Chance: {attr:CC.chance}%'
+  - '&bEffect: &fTier: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bStun Duration: {attr:stun.duration} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Sound-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'False'
+                sound: 'Ambience Cave'
+                volume-base: '80'
+                volume-scale: '0'
+                pitch-base: '0.8'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Single-d: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'range'
+            range-base: '5.5'
+            range-scale: '0'
+            tolerance-base: '10'
+            tolerance-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            indicator: '2D'
+            caster: 'false'
+          children: 
+            Potion-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po'
+                counts: 'True'
+                potion: 'Poison'
+                ambient: 'True'
+                tier-base: '2'
+                tier-scale: '0'
+                seconds-base: '7'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Chance-f: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: 'CC'
+                chance-base: '25'
+                chance-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Wither'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '7'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '10'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0.1'
+                    dy: '0.1'
+                    dz: '0.1'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Chance-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                chance-base: '25'
+                chance-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Hunger'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '7'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '10'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0.4'
+                    dy: '1.4'
+                    dz: '0'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Chance-l: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                chance-base: '25'
+                chance-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Slow'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '7'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '10'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0.6'
+                    dy: '0.6'
+                    dz: '0.6'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Chance-o: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                chance-base: '25'
+                chance-scale: '0'
+                indicator: '2D'
+              children: 
+                Status-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stun'
+                    counts: 'True'
+                    status: 'Stun'
+                    duration-base: '3'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Angry Villager'
+                    arrangement: 'Circle'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '3'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1.6'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Particle-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Red Dust'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '10'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '-1'
+                dy: '0.5'
+                dz: '0'
+                speed: '1'
+                amount: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}

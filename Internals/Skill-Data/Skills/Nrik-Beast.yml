@@ -30,8 +30,7 @@ Nrik-Beast:
   - ''
   - '&dMode 1: &cHowling Speed'
   - '&6Skill Addon; &9+Speed'
-  - '&7Casting Howl now also grants'
-  - '&7Speed 2 for 5 seconds.'
+  - '&7Removed, now part of Skill.'
   - ''
   - '&dMode 2: &cSurging Hit'
   - '&6Skill Addon; &9+Hitstun'
@@ -44,95 +43,7 @@ Nrik-Beast:
   - '&7when taking damage.'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Value Set-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'value'
-            value-base: '1'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-    Took Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'True'
-        dmg-min: '1'
-        dmg-max: '999999'
-        category: ''
-        indicator: '2D'
-      children: 
-        Skill Level-j: 
-          type: 'condition'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            skill: 'Nrik-Beast'
-            min-level: '3'
-            max-level: '3'
-            indicator: '2D'
-          children: 
-            Value Random-k: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'pain1'
-                type: 'Normal'
-                min-base: '1'
-                min-scale: '0'
-                max-base: '100'
-                max-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Delay-l: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                delay-base: '0.01'
-                delay-scale: '0'
-                indicator: '2D'
-              children: 
-                Value-m: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'pain1'
-                    min-value-base: '1'
-                    min-value-scale: '0'
-                    max-value-base: '10'
-                    max-value-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Value Add-n: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'tech'
-                        amount-base: '1'
-                        amount-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-    Took Physical Damage: 
+    Took Physical Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -145,7 +56,7 @@ Nrik-Beast:
         dmg-max: '999999'
         indicator: '2D'
       children: 
-        Skill Level-d: 
+        Skill Level-b: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -155,7 +66,7 @@ Nrik-Beast:
             max-level: '3'
             indicator: '2D'
           children: 
-            Value Random-e: 
+            Value Random-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -169,7 +80,7 @@ Nrik-Beast:
                 max-scale: '0'
                 indicator: '2D'
               children:  {}
-            Delay-f: 
+            Delay-d: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -179,7 +90,7 @@ Nrik-Beast:
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Value-g: 
+                Value-e: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -191,7 +102,7 @@ Nrik-Beast:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Value Add-h: 
+                    Value Add-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -202,3 +113,91 @@ Nrik-Beast:
                         amount-scale: '0'
                         indicator: '2D'
                       children:  {}
+    Took Skill Damage-g: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '1'
+        dmg-max: '999999'
+        category: ' {}'
+        indicator: '2D'
+      children: 
+        Skill Level-h: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Nrik-Beast'
+            min-level: '3'
+            max-level: '3'
+            indicator: '2D'
+          children: 
+            Value Random-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'pain1'
+                type: 'Normal'
+                min-base: '1'
+                min-scale: '0'
+                max-base: '100'
+                max-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-k: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'pain1'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '10'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Add-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'tech'
+                        amount-base: '1'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-n: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'value'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

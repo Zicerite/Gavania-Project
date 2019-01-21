@@ -1,0 +1,440 @@
+Pearl Orb: 
+  name: 'Pearl Orb'
+  type: 'Healing'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'POTION'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Launches a projectile that heals'
+  - '&7HP, Mana, and Stamina to friendly'
+  - '&7units that are hit by it, or hit near it.'
+  - '&7Causes knockback to enemies hit by it.'
+  - '&7Mana Healed is based on &6100&f% &7of'
+  - "&7the Caster's Aquatia stat total."
+  - ''
+  - '&bBurst Radius: {attr:area.radius} Blocks'
+  - '&bRange: &6Long'
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bHP Percent Healed: {attr:zzheal2.value}%'
+  - '&bMana Healed: {attr:mana.value}'
+  - '&bStamina Healed: {attr:stradd.amount}'
+  - ''
+  - '{req:level}Level: {attr:level} &eTech: &615 &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'tech'
+            min-value-base: '15'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Add-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tech'
+                amount-base: '-15'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Self-d: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Particle Projectile-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    group: 'Enemy'
+                    spread: 'Cone'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    velocity-base: '3'
+                    velocity-scale: '0'
+                    angle-base: '30'
+                    angle-scale: '0'
+                    position: '1.5'
+                    forward-base: '0.5'
+                    forward-scale: '0'
+                    upward-base: '1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    gravity: '0'
+                    pierce: 'False'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '8'
+                    particles-scale: '0'
+                    visible-radius: '80'
+                    dx: '0.9'
+                    dy: '0.9'
+                    dz: '0.9'
+                    speed: '1'
+                    amount: '0'
+                    frequency: '0.05'
+                    lifespan: '8'
+                    use-effect: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'End Rod'
+                        arrangement: 'Sphere'
+                        radius-base: '3'
+                        radius-scale: '0'
+                        particles-base: '8'
+                        particles-scale: '0'
+                        visible-radius: '65'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        forward: '0'
+                        upward: '0'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Area-g: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'area'
+                        radius-base: '3'
+                        radius-scale: '0'
+                        group: 'Ally'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Heal-h: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'heal'
+                            counts: 'True'
+                            type: 'Health'
+                            value-base: '20'
+                            value-scale: '5'
+                            indicator: '2D'
+                          children:  {}
+                        Mana-i: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'mana'
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: 'aq_aq_num'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-j: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Magic Crit'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            visible-radius: '60'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Add-k: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'stradd'
+                            counts: 'True'
+                            key: 'stamina'
+                            amount-base: '12'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Heal-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'zzheal2'
+                            counts: 'True'
+                            type: 'Percent'
+                            value-base: '1.5'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Area-m: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        radius-base: '3'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Repeat-n: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '4'
+                            repetitions-scale: '0'
+                            period: '0.075'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Push-o: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Fixed'
+                                speed-base: '1.1'
+                                speed-scale: '0'
+                                source: 'none'
+                                indicator: '2D'
+                              children:  {}
+                            Particle-p: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Magic Crit'
+                                arrangement: 'Sphere'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '10'
+                                particles-scale: '0'
+                                visible-radius: '60'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '1'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                Command-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.water3 ambient @a[r=16] ~ ~ ~ 0.3 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Particle-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Water Drop'
+                    arrangement: 'Sphere'
+                    radius-base: '1.2'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Self-s: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Heal-t: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Health'
+                        value-base: '20'
+                        value-scale: '1'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-u: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: 'aq_aq_num'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-v: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Magic Crit'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '10'
+                        particles-scale: '0'
+                        visible-radius: '60'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Add-w: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'stamina'
+                        amount-base: '12'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Heal-x: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '1.5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-z: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.25'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Attribute-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'aq_aq_num'
+                attribute: 'Aquatia'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'aq_aq_num'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

@@ -1,0 +1,169 @@
+Offensive Cooldown: 
+  name: 'Offensive Cooldown'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'WATCH'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7{attr:CC.chance}% &7chance to decrease'
+  - '&7the cooldown of all skills by {attr:cool.value}'
+  - '&7second when dealing damage.'
+  desc:  []
+  components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Chance-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            chance-base: '2.5'
+            chance-scale: '0'
+            indicator: '2D'
+          children: 
+            Delay-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'all'
+                    type: 'Seconds'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Particle-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Angry Villager'
+                arrangement: 'Circle'
+                radius-base: '0'
+                radius-scale: '0'
+                particles-base: '1'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '20'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '1'
+                amount: '1'
+                forward: '0'
+                upward: '1.6'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+    Physical Damage-f: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Chance-g: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: 'CC'
+            chance-base: '2.5'
+            chance-scale: '0'
+            indicator: '2D'
+          children: 
+            Delay-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'cool'
+                    counts: 'True'
+                    skill: 'all'
+                    type: 'Seconds'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Particle-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Angry Villager'
+                arrangement: 'Circle'
+                radius-base: '0'
+                radius-scale: '0'
+                particles-base: '1'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '20'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '1'
+                amount: '1'
+                forward: '0'
+                upward: '1.6'
+                right: '0'
+                indicator: '2D'
+              children:  {}

@@ -2,6 +2,7 @@ Light Combo Dragon-Knight:
   name: 'Light Combo Dragon-Knight'
   type: 'Combo'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   combo: 'L'
@@ -29,15 +30,628 @@ Light Combo Dragon-Knight:
   - '&bL: &fDeals damage to all enemies'
   - '&fdirectly in front of the Caster. Has a'
   - '&fhuge reach, and also deals Piercing Damage.'
-  - ''
-  - '&3Damage &f= &625&f% &3Strength Attribute'
-  - '&3Piercing Damage &f= &64&f% &3Strength Attribute'
+  - '&fHas a tipper hitbox that deals double'
+  - '&fthe damage.'
   - ''
   - '&bRange: {attr:range.range} Blocks'
-  - '&bDamage: {attr:dmg.value} Melee Damage &9퇇'
-  - '&bPiercing Damage: {attr:dmg2.value} Melee Damage &9퇇'
+  - '&bDamage: {attr:dmg.value} Melee Damage &9䛇'
+  - '&bPiercing Damage: {attr:dmg2.value} Melee Damage &9䛇'
   desc:  []
   components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Potion-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Slow Digging'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Value-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'AbleToStab'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '999'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Self-e: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Value Set-f: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'AbleToStab'
+                            value-base: '0'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Delay-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.4'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Set-h: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'AbleToStab'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Block-i: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            standing: 'On Block'
+                            material: 'Air'
+                            indicator: '2D'
+                          children: 
+                            Launch-j: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Target'
+                                forward-base: '0.3'
+                                forward-scale: '0'
+                                upward-base: '0.1'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Value Random-k: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'pitch'
+                            type: 'Normal'
+                            min-base: '0.7'
+                            min-scale: '0'
+                            max-base: '0.9'
+                            max-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Command-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            command: 'playsound spells.wind7 ambient @a[r=16] ~ ~ ~ 0.4 {pitch}'
+                            type: 'OP'
+                            indicator: '2D'
+                          children:  {}
+                    Linear-m: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'range'
+                        range-base: '7'
+                        range-scale: '0'
+                        tolerance-base: '5'
+                        tolerance-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Damage-n: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgCLDK_N_0'
+                            value-scale: '0'
+                            true: 'False'
+                            classifier: 'physical'
+                            indicator: '2D'
+                          children:  {}
+                        Damage-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg2'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgCLDK_P_0'
+                            value-scale: '0'
+                            true: 'True'
+                            classifier: 'physical'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-p: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Crit'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Self-q: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Mana-r: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Value Add-s: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'tech'
+                                amount-base: '1'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Status-t: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Invincible'
+                            duration-base: '0.07'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Self-u: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Location-v: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            range-base: '1'
+                            range-scale: '0'
+                            ground: 'False'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Particle-w: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Circle'
+                                radius-base: '0'
+                                radius-scale: '0'
+                                particles-base: '2'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '40'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '0'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Location-x: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            range-base: '2'
+                            range-scale: '0'
+                            ground: 'False'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Particle-y: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Circle'
+                                radius-base: '0'
+                                radius-scale: '0'
+                                particles-base: '2'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '40'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '0'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Location-z: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            range-base: '3'
+                            range-scale: '0'
+                            ground: 'False'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Particle-ab: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Circle'
+                                radius-base: '0'
+                                radius-scale: '0'
+                                particles-base: '2'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '40'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '0'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Location-bb: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            range-base: '4'
+                            range-scale: '0'
+                            ground: 'False'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Particle-cb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Circle'
+                                radius-base: '0'
+                                radius-scale: '0'
+                                particles-base: '2'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '40'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '0'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Location-db: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            range-base: '5'
+                            range-scale: '0'
+                            ground: 'False'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Particle-eb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Circle'
+                                radius-base: '0'
+                                radius-scale: '0'
+                                particles-base: '2'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '40'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '0'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Location-fb: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            range-base: '6'
+                            range-scale: '0'
+                            ground: 'False'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Particle-gb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Circle'
+                                radius-base: '0'
+                                radius-scale: '0'
+                                particles-base: '2'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '40'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '0'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Location-hb: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            range-base: '7'
+                            range-scale: '0'
+                            ground: 'False'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Particle-ib: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Circle'
+                                radius-base: '0'
+                                radius-scale: '0'
+                                particles-base: '2'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '40'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '0'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Location-jb: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        range-base: '8'
+                        range-scale: '0'
+                        ground: 'False'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Particle-kb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Magic Crit'
+                            arrangement: 'Circle'
+                            radius-base: '0'
+                            radius-scale: '0'
+                            particles-base: '2'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '45'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Area-lb: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            radius-base: '0.5'
+                            radius-scale: '0'
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: '999'
+                            max-scale: '0'
+                            random: 'False'
+                            indicator: '2D'
+                          children: 
+                            Status-mb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                status: 'Invincible'
+                                indicator: '2D'
+                              children:  {}
+                            Else-nb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                indicator: '2D'
+                              children: 
+                                Damage-ob: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: 'strLT'
+                                    value-scale: '0'
+                                    true: 'False'
+                                    classifier: 'physical'
+                                    indicator: '2D'
+                                  children:  {}
+                                Particle-pb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Crit'
+                                    arrangement: 'Circle'
+                                    radius-base: '1'
+                                    radius-scale: '0'
+                                    particles-base: '15'
+                                    particles-scale: '0'
+                                    direction: 'XZ'
+                                    visible-radius: '40'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0.1'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -45,7 +659,7 @@ Light Combo Dragon-Knight:
         icon-key: ''
         indicator: '2D'
       children: 
-        Value Set-b: 
+        Value Set-rb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -56,17 +670,17 @@ Light Combo Dragon-Knight:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Passive-c: 
+        Passive-sb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.01'
+            seconds-base: '0.1'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Attribute-d: 
+            Value Attribute-tb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -76,7 +690,7 @@ Light Combo Dragon-Knight:
                 attribute: 'Strength'
                 indicator: '2D'
               children:  {}
-            Value Attribute-e: 
+            Value Attribute-ub: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -86,7 +700,7 @@ Light Combo Dragon-Knight:
                 attribute: 'Strength'
                 indicator: '2D'
               children:  {}
-            Value Multiply-f: 
+            Value Multiply-vb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -97,7 +711,7 @@ Light Combo Dragon-Knight:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Multiply-g: 
+            Value Multiply-wb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -108,7 +722,54 @@ Light Combo Dragon-Knight:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-        Value Set-h: 
+            Value Attribute-xb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'strLT'
+                attribute: 'Strength'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-yb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'strLT'
+                multiplier-base: '0.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-zb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'meleedmg'
+                counts: 'True'
+                key: 'dmgCLDK_N_0'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.2'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-ac: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'meleedmg'
+                counts: 'True'
+                key: 'dmgCLDK_P_0'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.025'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Value Set-bc: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -119,7 +780,7 @@ Light Combo Dragon-Knight:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Value Set-i: 
+        Value Set-cc: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -130,455 +791,3 @@ Light Combo Dragon-Knight:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-    Cast: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Self-k: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Value-l: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'AbleToStab'
-                min-value-base: '1'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Self-m: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    indicator: '2D'
-                  children: 
-                    Value Set-n: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'AbleToStab'
-                        value-base: '0'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Delay-o: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.4'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Value Set-p: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'AbleToStab'
-                            value-base: '1'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Block-q: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        standing: 'On Block'
-                        material: 'Air'
-                        indicator: '2D'
-                      children: 
-                        Launch-r: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            relative: 'Target'
-                            forward-base: '0.3'
-                            forward-scale: '0'
-                            upward-base: '0.1'
-                            upward-scale: '0'
-                            right-base: '0'
-                            right-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Value Random-s: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'pitch'
-                        type: 'Normal'
-                        min-base: '0.7'
-                        min-scale: '0'
-                        max-base: '0.9'
-                        max-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Command-t: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.wind7 ambient @a[r=16] ~ ~ ~ 0.4 {pitch}'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                Linear-u: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: 'range'
-                    range-base: '7'
-                    range-scale: '0'
-                    tolerance-base: '5'
-                    tolerance-scale: '0'
-                    group: 'Enemy'
-                    wall: 'True'
-                    caster: 'False'
-                    max-base: '999'
-                    max-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Damage-v: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'dmg'
-                        counts: 'True'
-                        type: 'Damage'
-                        value-base: 'strL'
-                        value-scale: '0'
-                        true: 'False'
-                        classifier: 'physical'
-                        indicator: '2D'
-                      children:  {}
-                    Damage-w: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'dmg2'
-                        counts: 'True'
-                        type: 'Damage'
-                        value-base: 'strLP'
-                        value-scale: '0'
-                        true: 'True'
-                        classifier: 'physical'
-                        indicator: '2D'
-                      children:  {}
-                    Particle-x: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        particle: 'Crit'
-                        arrangement: 'Sphere'
-                        radius-base: '1'
-                        radius-scale: '0'
-                        particles-base: '10'
-                        particles-scale: '0'
-                        visible-radius: '40'
-                        dx: '0'
-                        dy: '0'
-                        dz: '0'
-                        speed: '0.1'
-                        amount: '1'
-                        forward: '0'
-                        upward: '1'
-                        right: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Self-y: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        indicator: '2D'
-                      children: 
-                        Mana-z: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            type: 'Mana'
-                            value-base: '1'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Value Add-ab: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'tech'
-                            amount-base: '1'
-                            amount-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                Self-bb: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    indicator: '2D'
-                  children: 
-                    Location-cb: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        range-base: '1'
-                        range-scale: '0'
-                        ground: 'False'
-                        indicator: '2D'
-                      children: 
-                        Particle-db: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Circle'
-                            radius-base: '0'
-                            radius-scale: '0'
-                            particles-base: '2'
-                            particles-scale: '0'
-                            direction: 'XZ'
-                            visible-radius: '40'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '0'
-                            amount: '1'
-                            forward: '0'
-                            upward: '0'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Location-eb: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        range-base: '2'
-                        range-scale: '0'
-                        ground: 'False'
-                        indicator: '2D'
-                      children: 
-                        Particle-fb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Circle'
-                            radius-base: '0'
-                            radius-scale: '0'
-                            particles-base: '2'
-                            particles-scale: '0'
-                            direction: 'XZ'
-                            visible-radius: '40'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '0'
-                            amount: '1'
-                            forward: '0'
-                            upward: '0'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Location-gb: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        range-base: '3'
-                        range-scale: '0'
-                        ground: 'False'
-                        indicator: '2D'
-                      children: 
-                        Particle-hb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Circle'
-                            radius-base: '0'
-                            radius-scale: '0'
-                            particles-base: '2'
-                            particles-scale: '0'
-                            direction: 'XZ'
-                            visible-radius: '40'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '0'
-                            amount: '1'
-                            forward: '0'
-                            upward: '0'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Location-ib: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        range-base: '4'
-                        range-scale: '0'
-                        ground: 'False'
-                        indicator: '2D'
-                      children: 
-                        Particle-jb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Circle'
-                            radius-base: '0'
-                            radius-scale: '0'
-                            particles-base: '2'
-                            particles-scale: '0'
-                            direction: 'XZ'
-                            visible-radius: '40'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '0'
-                            amount: '1'
-                            forward: '0'
-                            upward: '0'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Location-kb: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        range-base: '5'
-                        range-scale: '0'
-                        ground: 'False'
-                        indicator: '2D'
-                      children: 
-                        Particle-lb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Circle'
-                            radius-base: '0'
-                            radius-scale: '0'
-                            particles-base: '2'
-                            particles-scale: '0'
-                            direction: 'XZ'
-                            visible-radius: '40'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '0'
-                            amount: '1'
-                            forward: '0'
-                            upward: '0'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Location-mb: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        range-base: '6'
-                        range-scale: '0'
-                        ground: 'False'
-                        indicator: '2D'
-                      children: 
-                        Particle-nb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Circle'
-                            radius-base: '0'
-                            radius-scale: '0'
-                            particles-base: '2'
-                            particles-scale: '0'
-                            direction: 'XZ'
-                            visible-radius: '40'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '0'
-                            amount: '1'
-                            forward: '0'
-                            upward: '0'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Location-ob: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        range-base: '7'
-                        range-scale: '0'
-                        ground: 'False'
-                        indicator: '2D'
-                      children: 
-                        Particle-pb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Circle'
-                            radius-base: '0'
-                            radius-scale: '0'
-                            particles-base: '2'
-                            particles-scale: '0'
-                            direction: 'XZ'
-                            visible-radius: '40'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '0'
-                            amount: '1'
-                            forward: '0'
-                            upward: '0'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}

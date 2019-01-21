@@ -2,6 +2,7 @@ Natural Living:
   name: 'Natural Living'
   type: 'Passive'
   max-level: 1
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -39,6 +40,180 @@ Natural Living:
   - '&fXpBonus: {attr:XpBonus_Value1.value}% &fBaseSpeed: {attr:BaseSpeed_Value1.value}%'
   desc:  []
   components: 
+    Took Physical Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '99999999'
+        indicator: '2D'
+      children: 
+        Value Add-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'tech'
+            amount-base: '2'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Death-c: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Command-d: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            command: 'playsound spells.collapse4 ambient @a[r=16] ~ ~ ~ 0.5 1'
+            type: 'OP'
+            indicator: '2D'
+          children:  {}
+        Particle-e: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            particle: 'Cloud'
+            arrangement: 'Sphere'
+            radius-base: '2'
+            radius-scale: '0'
+            particles-base: '12'
+            particles-scale: '0'
+            visible-radius: '40'
+            dx: '0'
+            dy: '0'
+            dz: '0'
+            speed: '0.1'
+            amount: '1'
+            forward: '0'
+            upward: '1'
+            right: '0'
+            indicator: '2D'
+          children:  {}
+        Particle-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            particle: 'Enchantment Table'
+            arrangement: 'Sphere'
+            radius-base: '1'
+            radius-scale: '0'
+            particles-base: '15'
+            particles-scale: '0'
+            visible-radius: '40'
+            dx: '0'
+            dy: '0'
+            dz: '0'
+            speed: '0.1'
+            amount: '1'
+            forward: '0'
+            upward: '1'
+            right: '0'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-g: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '99999999'
+        category: 
+        - ' '
+        - '{'
+        - '}'
+        indicator: '2D'
+      children: 
+        Value Add-h: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'tech'
+            amount-base: '1'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Crouch-i: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Stop Crouching'
+        indicator: '2D'
+      children: 
+        Block-j: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            standing: 'On Block'
+            material: 'Fence'
+            indicator: '2D'
+          children: 
+            Launch-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                relative: 'Target'
+                forward-base: '0.55'
+                forward-scale: '0'
+                upward-base: '0.55'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Physical Damage-l: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '99999999'
+        indicator: '2D'
+      children: 
+        Value Add-m: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'tech'
+            amount-base: '2'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -46,24 +221,27 @@ Natural Living:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-e: 
+        Passive-o: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.01'
+            seconds-base: '0.03'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Self-f: 
+            Self-p: 
               type: 'target'
               indicator: '3D'
               data: 
                 icon-key: ''
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
-                Crouch-g: 
+                Crouch-q: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -71,31 +249,31 @@ Natural Living:
                     crouch: 'True'
                     indicator: '2D'
                   children: 
-                    Block-h: 
+                    Block-r: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        standing: 'On Block'
+                        standing: 'In Block'
                         material: 'Ladder'
                         indicator: '2D'
                       children: 
-                        Launch-i: 
+                        Launch-s: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
                             icon-key: ''
                             counts: 'True'
                             relative: 'Target'
-                            forward-base: '0.01'
+                            forward-base: '0.001'
                             forward-scale: '0'
-                            upward-base: '0.5'
+                            upward-base: '0.58'
                             upward-scale: '0'
                             right-base: '0'
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Particle-j: 
+                        Particle-t: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -114,16 +292,16 @@ Natural Living:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Block-k: 
+                    Block-u: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        standing: 'On Block'
+                        standing: 'In Block'
                         material: 'Fence'
                         indicator: '2D'
                       children: 
-                        Launch-l: 
+                        Launch-v: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -132,13 +310,13 @@ Natural Living:
                             relative: 'Target'
                             forward-base: '0'
                             forward-scale: '0'
-                            upward-base: '0.01'
+                            upward-base: '0.001'
                             upward-scale: '0'
                             right-base: '0'
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-                    Water-m: 
+                    Water-w: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -146,29 +324,40 @@ Natural Living:
                         state: 'In Water'
                         indicator: '2D'
                       children: 
-                        Self-n: 
-                          type: 'target'
+                        Ground-x: 
+                          type: 'condition'
                           indicator: '3D'
                           data: 
                             icon-key: ''
+                            type: 'Not On Ground'
                             indicator: '2D'
                           children: 
-                            Launch-o: 
-                              type: 'mechanic'
+                            Self-y: 
+                              type: 'target'
                               indicator: '3D'
                               data: 
                                 icon-key: ''
-                                counts: 'True'
-                                relative: 'Target'
-                                forward-base: '0.01'
-                                forward-scale: '0'
-                                upward-base: '-0.4'
-                                upward-scale: '0'
-                                right-base: '0'
-                                right-scale: '0'
                                 indicator: '2D'
-                              children:  {}
-                Value-p: 
+                                group: 'enemy'
+                                wall: 'false'
+                                caster: 'false'
+                              children: 
+                                Launch-z: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: '0.001'
+                                    forward-scale: '0'
+                                    upward-base: '-0.4'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                Value-ab: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -180,7 +369,7 @@ Natural Living:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Value Set-q: 
+                    Value Set-bb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -191,7 +380,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                Value-r: 
+                Value-cb: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -203,7 +392,7 @@ Natural Living:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Value Set-s: 
+                    Value Set-db: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -214,7 +403,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-        Particle-t: 
+        Particle-eb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -238,7 +427,7 @@ Natural Living:
             right: '0'
             indicator: '2D'
           children:  {}
-        Passive-u: 
+        Passive-fb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -248,7 +437,7 @@ Natural Living:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Combat-v: 
+            Combat-gb: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -257,7 +446,7 @@ Natural Living:
                 seconds: '10'
                 indicator: '2D'
               children: 
-                Heal-w: 
+                Heal-hb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -268,14 +457,17 @@ Natural Living:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-        Self-x: 
+        Self-ib: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value Set-y: 
+            Value Set-jb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -286,7 +478,7 @@ Natural Living:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Set-z: 
+            Value Set-kb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -297,7 +489,7 @@ Natural Living:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-        Passive-ab: 
+        Passive-lb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -307,14 +499,17 @@ Natural Living:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Self-bb: 
+            Self-mb: 
               type: 'target'
               indicator: '3D'
               data: 
                 icon-key: ''
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
-                Value Add-cb: 
+                Value Add-nb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -325,7 +520,7 @@ Natural Living:
                     amount-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Immunity-db: 
+            Immunity-ob: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -338,17 +533,17 @@ Natural Living:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-        Passive-eb: 
+        Passive-pb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.1'
+            seconds-base: '0.3'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Potion-fb: 
+            Potion-qb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -362,7 +557,7 @@ Natural Living:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-        Value Set-gb: 
+        Value Set-rb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -373,31 +568,37 @@ Natural Living:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Passive-hb: 
+        Passive-sb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.3'
+            seconds-base: '1.1010101'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Self-ib: 
+            Self-tb: 
               type: 'target'
               indicator: '3D'
               data: 
                 icon-key: ''
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
-                Self-jb: 
+                Self-ub: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Value Attribute-kb: 
+                    Value Attribute-vb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -407,7 +608,7 @@ Natural Living:
                         attribute: 'Vitality'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-lb: 
+                    Value Attribute-wb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -417,7 +618,7 @@ Natural Living:
                         attribute: 'Spirit'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-mb: 
+                    Value Attribute-xb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -427,7 +628,7 @@ Natural Living:
                         attribute: 'Aquatia'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-nb: 
+                    Value Attribute-yb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -437,7 +638,7 @@ Natural Living:
                         attribute: 'Strength'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-ob: 
+                    Value Attribute-zb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -447,7 +648,7 @@ Natural Living:
                         attribute: 'Intelligence'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-pb: 
+                    Value Attribute-ac: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -457,7 +658,7 @@ Natural Living:
                         attribute: 'Endurance'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-qb: 
+                    Value Attribute-bc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -467,7 +668,7 @@ Natural Living:
                         attribute: 'Willpower'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-rb: 
+                    Value Attribute-cc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -477,7 +678,7 @@ Natural Living:
                         attribute: 'Agility'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-sb: 
+                    Value Attribute-dc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -487,14 +688,17 @@ Natural Living:
                         attribute: 'Dice'
                         indicator: '2D'
                       children:  {}
-                Self-tb: 
+                Self-ec: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Value Attribute-ub: 
+                    Value Attribute-fc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -504,7 +708,7 @@ Natural Living:
                         attribute: 'FireDMG'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-vb: 
+                    Value Attribute-gc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -514,7 +718,7 @@ Natural Living:
                         attribute: 'WaterDMG'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-wb: 
+                    Value Attribute-hc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -524,7 +728,7 @@ Natural Living:
                         attribute: 'LightDMG'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-xb: 
+                    Value Attribute-ic: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -534,7 +738,7 @@ Natural Living:
                         attribute: 'PhysicalDMG'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-yb: 
+                    Value Attribute-jc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -544,7 +748,7 @@ Natural Living:
                         attribute: 'NeutralDMG'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-zb: 
+                    Value Attribute-kc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -554,7 +758,7 @@ Natural Living:
                         attribute: 'EarthDMG'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-ac: 
+                    Value Attribute-lc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -564,7 +768,7 @@ Natural Living:
                         attribute: 'ThunderDMG'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-bc: 
+                    Value Attribute-mc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -574,7 +778,7 @@ Natural Living:
                         attribute: 'WindDMG'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-cc: 
+                    Value Attribute-nc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -584,14 +788,17 @@ Natural Living:
                         attribute: 'DarkDMG'
                         indicator: '2D'
                       children:  {}
-                Self-dc: 
+                Self-oc: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Value Attribute-ec: 
+                    Value Attribute-pc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -601,7 +808,7 @@ Natural Living:
                         attribute: 'FireDEF'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-fc: 
+                    Value Attribute-qc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -611,7 +818,7 @@ Natural Living:
                         attribute: 'WaterDEF'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-gc: 
+                    Value Attribute-rc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -621,7 +828,7 @@ Natural Living:
                         attribute: 'LightDEF'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-hc: 
+                    Value Attribute-sc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -631,7 +838,7 @@ Natural Living:
                         attribute: 'PhysicalDEF'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-ic: 
+                    Value Attribute-tc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -641,7 +848,7 @@ Natural Living:
                         attribute: 'NeutralDEF'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-jc: 
+                    Value Attribute-uc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -651,7 +858,7 @@ Natural Living:
                         attribute: 'EarthDEF'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-kc: 
+                    Value Attribute-vc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -661,7 +868,7 @@ Natural Living:
                         attribute: 'ThunderDEF'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-lc: 
+                    Value Attribute-wc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -671,7 +878,7 @@ Natural Living:
                         attribute: 'WindDEF'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-mc: 
+                    Value Attribute-xc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -681,14 +888,17 @@ Natural Living:
                         attribute: 'DarkDEF'
                         indicator: '2D'
                       children:  {}
-                Self-nc: 
+                Self-yc: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Value Attribute-oc: 
+                    Value Attribute-zc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -698,7 +908,7 @@ Natural Living:
                         attribute: 'XpBonus'
                         indicator: '2D'
                       children:  {}
-                    Value Attribute-pc: 
+                    Value Attribute-ad: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -708,21 +918,27 @@ Natural Living:
                         attribute: 'BaseSpeed'
                         indicator: '2D'
                       children:  {}
-            Self-qc: 
+            Self-bd: 
               type: 'target'
               indicator: '3D'
               data: 
                 icon-key: ''
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
-                Self-rc: 
+                Self-cd: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Value Set-sc: 
+                    Value Set-dd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -733,7 +949,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-tc: 
+                    Value Set-ed: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -744,7 +960,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-uc: 
+                    Value Set-fd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -755,7 +971,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-vc: 
+                    Value Set-gd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -766,7 +982,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-wc: 
+                    Value Set-hd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -777,7 +993,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-xc: 
+                    Value Set-id: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -788,7 +1004,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-yc: 
+                    Value Set-jd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -799,7 +1015,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-zc: 
+                    Value Set-kd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -810,7 +1026,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-ad: 
+                    Value Set-ld: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -821,14 +1037,17 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                Self-bd: 
+                Self-md: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Value Set-cd: 
+                    Value Set-nd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -839,7 +1058,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-dd: 
+                    Value Set-od: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -850,7 +1069,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-ed: 
+                    Value Set-pd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -861,7 +1080,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-fd: 
+                    Value Set-qd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -872,7 +1091,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-gd: 
+                    Value Set-rd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -883,7 +1102,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-hd: 
+                    Value Set-sd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -894,7 +1113,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-id: 
+                    Value Set-td: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -905,7 +1124,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-jd: 
+                    Value Set-ud: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -916,7 +1135,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-kd: 
+                    Value Set-vd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -927,14 +1146,17 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                Self-ld: 
+                Self-wd: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Value Set-md: 
+                    Value Set-xd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -945,7 +1167,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-nd: 
+                    Value Set-yd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -956,7 +1178,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-od: 
+                    Value Set-zd: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -967,7 +1189,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-pd: 
+                    Value Set-ae: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -978,7 +1200,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-qd: 
+                    Value Set-be: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -989,7 +1211,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-rd: 
+                    Value Set-ce: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -1000,7 +1222,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-sd: 
+                    Value Set-de: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -1011,7 +1233,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-td: 
+                    Value Set-ee: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -1022,7 +1244,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-ud: 
+                    Value Set-fe: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -1033,14 +1255,17 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                Self-vd: 
+                Self-ge: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Value Set-wd: 
+                    Value Set-he: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -1051,7 +1276,7 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-xd: 
+                    Value Set-ie: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -1062,112 +1287,6 @@ Natural Living:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-    Physical Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'True'
-        type: 'Both'
-        dmg-min: '0'
-        dmg-max: '99999999'
-        indicator: '2D'
-      children: 
-        Value Add-de: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'tech'
-            amount-base: '2'
-            amount-scale: '0'
-            indicator: '2D'
-          children:  {}
-    Took Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'True'
-        dmg-min: '0'
-        dmg-max: '99999999'
-        category: ''
-        indicator: '2D'
-      children: 
-        Value Add-fe: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'tech'
-            amount-base: '1'
-            amount-scale: '0'
-            indicator: '2D'
-          children:  {}
-    Took Physical Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'True'
-        type: 'Both'
-        dmg-min: '0'
-        dmg-max: '99999999'
-        indicator: '2D'
-      children: 
-        Value Add-je: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'tech'
-            amount-base: '2'
-            amount-scale: '0'
-            indicator: '2D'
-          children:  {}
-    Crouch: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        type: 'Stop Crouching'
-        indicator: '2D'
-      children: 
-        Block-b: 
-          type: 'condition'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            standing: 'On Block'
-            material: 'Fence'
-            indicator: '2D'
-          children: 
-            Launch-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                relative: 'Target'
-                forward-base: '0.55'
-                forward-scale: '0'
-                upward-base: '0.55'
-                upward-scale: '0'
-                right-base: '0'
-                right-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cleanup: 
       type: 'trigger'
       indicator: '3D'
@@ -1175,7 +1294,7 @@ Natural Living:
         icon-key: ''
         indicator: '2D'
       children: 
-        Command-he: 
+        Command-ke: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -1183,70 +1302,5 @@ Natural Living:
             counts: 'True'
             command: 'playsound spells.collapse3 ambient @a[r=16] ~ ~ ~ 0.5 1'
             type: 'OP'
-            indicator: '2D'
-          children:  {}
-    Death: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        indicator: '2D'
-      children: 
-        Command-zd: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            command: 'playsound spells.collapse4 ambient @a[r=16] ~ ~ ~ 0.75 1'
-            type: 'OP'
-            indicator: '2D'
-          children:  {}
-        Particle-ae: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            particle: 'Cloud'
-            arrangement: 'Sphere'
-            radius-base: '2'
-            radius-scale: '0'
-            particles-base: '12'
-            particles-scale: '0'
-            visible-radius: '40'
-            dx: '0'
-            dy: '0'
-            dz: '0'
-            speed: '0.1'
-            amount: '1'
-            forward: '0'
-            upward: '1'
-            right: '0'
-            indicator: '2D'
-          children:  {}
-        Particle-be: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            particle: 'Enchantment Table'
-            arrangement: 'Sphere'
-            radius-base: '1'
-            radius-scale: '0'
-            particles-base: '15'
-            particles-scale: '0'
-            visible-radius: '40'
-            dx: '0'
-            dy: '0'
-            dz: '0'
-            speed: '0.1'
-            amount: '1'
-            forward: '0'
-            upward: '1'
-            right: '0'
             indicator: '2D'
           children:  {}

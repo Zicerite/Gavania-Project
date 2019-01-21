@@ -1,0 +1,207 @@
+Knife Stab: 
+  name: 'Knife Stab'
+  type: 'Active'
+  max-level: 5
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '5'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'ENDER_PEARL'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&2{name} {level}'
+  - '&7Mana Cost: &b5'
+  - '&7Level: {req:level}{attr:level}'
+  - ''
+  - '&7Strike forward hitting enemies'
+  - '&7in front &7dealing between'
+  - '&c{attr:dmgStabMinX.value} and {attr:dmgStabMaxX.value} &7physical damage'
+  - ''
+  - '&7Upgrade Cost: &c1'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Item-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            check-mat: 'False'
+            check-data: 'False'
+            check-lore: 'True'
+            lore: 'Class Required: Thief'
+            check-name: 'False'
+            regex: 'False'
+            indicator: '2D'
+          children:  {}
+        Single-c: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            range-base: '7'
+            range-scale: '0'
+            tolerance-base: '30'
+            tolerance-scale: '0'
+            group: 'Enemy'
+            wall: 'False'
+            indicator: '2D'
+            caster: 'false'
+          children: 
+            Damage-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmg'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 'dmgStab'
+                value-scale: '0'
+                true: 'False'
+                classifier: 'default'
+                indicator: '2D'
+              children:  {}
+            Particle-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Crit'
+                arrangement: 'Circle'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '10'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '25'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-g: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmgmin'
+                counts: 'True'
+                key: 'dmgStabMin'
+                hand: 'Main'
+                regex: 'Minimum Damage: {value}'
+                multiplier-base: '2'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmgmax'
+                counts: 'True'
+                key: 'dmgStabMax'
+                hand: 'Main'
+                regex: 'Maximum Damage: {value}'
+                multiplier-base: '2'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Random-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmg'
+                counts: 'True'
+                key: 'dmgStab'
+                type: 'Normal'
+                min-base: 'dmgStabMin'
+                min-scale: '0'
+                max-base: 'dmgStabMax'
+                max-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mindmg'
+                counts: 'True'
+                key: 'dmgStabMinX'
+                value-base: 'dmgStabMin'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'maxdmg'
+                counts: 'True'
+                key: 'dmgStabMaxX'
+                value-base: 'dmgStabMax'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmgStabMinX'
+                counts: 'True'
+                key: 'dmgStabMinX'
+                value-base: 'dmgStabMinX'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmgStabMaxX'
+                counts: 'True'
+                key: 'dmgStabMaxX'
+                value-base: 'dmgStabMaxX'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

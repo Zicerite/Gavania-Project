@@ -28,11 +28,12 @@ Leaf Shield:
   - ''
   - '&7A shield is casted on the Caster'
   - '&7that reduces damage taken, and'
-  - '&7grants Regeneration and'
-  - '&7Mana Regeneration for a short time.'
+  - '&7grants HP and Mana Regen and'
+  - '&7for a short time.'
   - ''
-  - '&bRegeneration Tier: {attr:po1.tier}'
-  - '&bDamage Reduction: {attr:defbuff.value}'
+  - '&bDamage Reduction: {attr:xdefthevalue.value}'
+  - '&bHP Regen Tier: {attr:po1.tier}'
+  - '&bMana Regen Tier: {attr:po2.tier}'
   - '&bEffect Duration: {attr:po1.seconds}'
   - ''
   - '&bHP Healed (Yryn 1): {attr:heal2.value}'
@@ -53,6 +54,9 @@ Leaf Shield:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Potion-c: 
               type: 'mechanic'
@@ -62,8 +66,8 @@ Leaf Shield:
                 counts: 'True'
                 potion: 'Regeneration'
                 ambient: 'True'
-                tier-base: '1.04'
-                tier-scale: '0.04'
+                tier-base: '1.03'
+                tier-scale: '0.03'
                 seconds-base: '8'
                 seconds-scale: '0'
                 indicator: '2D'
@@ -76,8 +80,8 @@ Leaf Shield:
                 counts: 'True'
                 potion: 'Saturation'
                 ambient: 'True'
-                tier-base: '1.04'
-                tier-scale: '0.04'
+                tier-base: '1.03'
+                tier-scale: '0.03'
                 seconds-base: '8'
                 seconds-scale: '0'
                 indicator: '2D'
@@ -90,8 +94,8 @@ Leaf Shield:
                 counts: 'True'
                 type: 'Flat'
                 skill: 'False'
-                value-base: '-4.2'
-                value-scale: '-0.2'
+                value-base: '-3.3'
+                value-scale: '-0.3'
                 seconds-base: '8'
                 seconds-scale: '0'
                 indicator: '2D'
@@ -104,8 +108,8 @@ Leaf Shield:
                 counts: 'True'
                 type: 'Multiplier'
                 skill: 'False'
-                value-base: '-4.2'
-                value-scale: '-0.2'
+                value-base: '-3.3'
+                value-scale: '-0.3'
                 seconds-base: '8'
                 seconds-scale: '0'
                 indicator: '2D'
@@ -120,6 +124,7 @@ Leaf Shield:
                 repetitions-scale: '0'
                 period: '0.1'
                 delay: '0'
+                stop-on-fail: 'False'
                 indicator: '2D'
               children: 
                 Particle-h: 
@@ -141,35 +146,7 @@ Leaf Shield:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Sound-i: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                version: '1.9+'
-                newsound: 'Block Grass Break'
-                volume-base: '70'
-                volume-scale: '0'
-                pitch-base: '1'
-                pitch-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Sound-j: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                version: '1.9+'
-                newsound: 'Block Grass Break'
-                volume-base: '70'
-                volume-scale: '0'
-                pitch-base: '1'
-                pitch-scale: '0'
-                indicator: '2D'
-              children:  {}
-        Skill Level-k: 
+        Skill Level-i: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -179,7 +156,7 @@ Leaf Shield:
             max-level: '1'
             indicator: '2D'
           children: 
-            Heal-l: 
+            Heal-j: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -190,7 +167,7 @@ Leaf Shield:
                 value-scale: '0.5'
                 indicator: '2D'
               children:  {}
-        Skill Level-m: 
+        Skill Level-k: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -200,7 +177,7 @@ Leaf Shield:
             max-level: '1'
             indicator: '2D'
           children: 
-            Damage Buff-n: 
+            Damage Buff-l: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -208,13 +185,13 @@ Leaf Shield:
                 counts: 'True'
                 type: 'Multiplier'
                 skill: 'False'
-                value-base: '1.20'
+                value-base: '1.2'
                 value-scale: '0'
                 seconds-base: '8'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Damage Buff-o: 
+            Damage Buff-m: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -222,9 +199,57 @@ Leaf Shield:
                 counts: 'True'
                 type: 'Multiplier'
                 skill: 'True'
-                value-base: '1.20'
+                value-base: '1.2'
                 value-scale: '0'
                 seconds-base: '8'
                 seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Command-n: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            command: 'playsound minecraft:block.grass.break ambient @a[r=16] ~ ~ ~ 0.8 1'
+            type: 'OP'
+            indicator: '2D'
+          children:  {}
+        Command-o: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            command: 'playsound minecraft:block.grass.break ambient @a[r=16] ~ ~ ~ 0.85 1'
+            type: 'OP'
+            indicator: '2D'
+          children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-q: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '2'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'xdefthevalue'
+                counts: 'True'
+                key: 'defthevalue'
+                value-base: '3.3'
+                value-scale: '0.3'
                 indicator: '2D'
               children:  {}

@@ -2,6 +2,7 @@ Melting Ignition:
   name: 'Melting Ignition'
   type: 'Support'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -39,34 +40,6 @@ Melting Ignition:
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-q: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.5'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Set-r: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'MI_nerfvalue'
-                counts: 'True'
-                key: 'value'
-                value-base: '5.05'
-                value-scale: '0.05'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -80,6 +53,9 @@ Melting Ignition:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Area-c: 
               type: 'target'
@@ -93,6 +69,7 @@ Melting Ignition:
                 caster: 'True'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
                 Attribute-d: 
@@ -106,6 +83,7 @@ Melting Ignition:
                     amount-scale: '0'
                     seconds-base: '6'
                     seconds-scale: '0'
+                    stackable: 'False'
                     indicator: '2D'
                   children:  {}
                 Repeat-e: 
@@ -144,7 +122,126 @@ Melting Ignition:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-            Area-g: 
+                Skill Level-g: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Rune_Mage_MeltingIgnition'
+                    min-level: '1'
+                    max-level: '1'
+                    indicator: '2D'
+                  children: 
+                    Attribute-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'FireDMG'
+                        amount-base: '25'
+                        amount-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        stackable: 'False'
+                        indicator: '2D'
+                      children:  {}
+                Skill Level-i: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Rune_Mage_MeltingIgnition'
+                    min-level: '2'
+                    max-level: '2'
+                    indicator: '2D'
+                  children: 
+                    Status-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Stun'
+                        duration-base: '1.5'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '7'
+                        repetitions-scale: '0'
+                        period: '0.2'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Particle-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Enchantment Table'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '3'
+                            particles-scale: '0'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Skill Level-m: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Rune_Mage_MeltingIgnition'
+                    min-level: '3'
+                    max-level: '3'
+                    indicator: '2D'
+                  children: 
+                    Damage Buff-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '1.2'
+                        value-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '1.2'
+                        value-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Area-p: 
               type: 'target'
               indicator: '3D'
               data: 
@@ -156,9 +253,10 @@ Melting Ignition:
                 caster: 'False'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
-                Fire-h: 
+                Fire-q: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -168,7 +266,7 @@ Melting Ignition:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Defense Buff-i: 
+                Defense Buff-r: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -182,7 +280,7 @@ Melting Ignition:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Defense Buff-j: 
+                Defense Buff-s: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -196,7 +294,7 @@ Melting Ignition:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Repeat-k: 
+                Repeat-t: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -209,7 +307,7 @@ Melting Ignition:
                     stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Particle-l: 
+                    Particle-u: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -228,7 +326,7 @@ Melting Ignition:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-            Particle-m: 
+            Particle-v: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -251,31 +349,57 @@ Melting Ignition:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Sound-n: 
+            Sound-w: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Blaze Ambient'
+                sound: 'Entity Blaze Ambient'
                 volume-base: '70'
                 volume-scale: '0'
                 pitch-base: '1.2'
                 pitch-scale: '0'
                 indicator: '2D'
               children:  {}
-            Sound-o: 
+            Sound-x: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Blaze Shoot'
+                sound: 'Entity Blaze Burn'
                 volume-base: '80'
                 volume-scale: '0'
                 pitch-base: '1.2'
                 pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-z: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.5'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'MI_nerfvalue'
+                counts: 'True'
+                key: 'value'
+                value-base: '5.05'
+                value-scale: '0.05'
                 indicator: '2D'
               children:  {}

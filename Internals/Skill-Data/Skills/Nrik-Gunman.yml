@@ -45,7 +45,7 @@ Nrik-Gunman:
   - '&7you deal skill damage.'
   desc:  []
   components: 
-    Skill Damage: 
+    Skill Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -55,17 +55,48 @@ Nrik-Gunman:
         target: 'False'
         dmg-min: '0'
         dmg-max: '999999'
-        category: ''
+        category: 
+        - ''
         indicator: '2D'
       children: 
-        Mana-b: 
+        Remember Targets-b: 
           type: 'mechanic'
           indicator: '3D'
           data: 
-            icon-key: 'mana'
+            icon-key: ''
             counts: 'True'
-            type: 'Mana'
-            value-base: '-1.5'
-            value-scale: '0'
+            key: 'targety'
             indicator: '2D'
           children:  {}
+        Skill Level-c: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Nrik-Gunman'
+            min-level: '3'
+            max-level: '3'
+            indicator: '2D'
+          children: 
+            Remember-d: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'targety'
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Mana-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'mana'
+                    counts: 'True'
+                    type: 'Mana'
+                    value-base: '-1.5'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}

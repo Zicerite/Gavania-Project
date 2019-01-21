@@ -29,85 +29,16 @@ Missile:
   - '&7speed. Explodes on ground contact.'
   - '&7Deals very small piercing damage.'
   - ''
-  - '&bDamage: {attr:td_m1.value} Skill Damage &4퇵'
-  - '&bPiercing Damage: {attr:dmg2.value} Skill Damage &4퇵'
+  - '&bDamage: {attr:td_m1.value} Skill Damage &4䛵'
+  - '&bPiercing Damage: {attr:dmg2.value} Skill Damage &4䛵'
   - '&bBlast Radius: {attr:area.radius} Blocks'
   - ''
-  - '&bDamage (Alby 1): {attr:dmgAlby1.value} Skill Damage &1퇴'
-  - '&bPiercing Damage (Alby 2): {attr:dmgAlby2.value} Skill Damage &e퇸'
+  - '&bDamage (Alby 1): {attr:dmgAlby1.value} Skill Damage &1䛴'
+  - '&bPiercing Damage (Alby 2): {attr:dmgAlby2.value} Skill Damage &e䛸'
   - ''
-  - '{req:level}Level: {attr:level} &eTech: &640 &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &eTech: &625 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgMissile'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '1.4'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgMissilePierce'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-e: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgMissileAlby1'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.4'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-f: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgMissileAlby2'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -115,26 +46,40 @@ Missile:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-h: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-i: 
+            Value-c: 
               type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
                 key: 'tech'
-                min-value-base: '40'
+                min-value-base: '25'
                 min-value-scale: '0'
                 max-value-base: '999'
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Item Projectile-j: 
+                Value Add-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '-25'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Item Projectile-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -160,7 +105,7 @@ Missile:
                     use-effect: 'False'
                     indicator: '2D'
                   children: 
-                    Explosion-k: 
+                    Explosion-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -172,7 +117,7 @@ Missile:
                         fire: 'False'
                         indicator: '2D'
                       children:  {}
-                    Particle-l: 
+                    Particle-g: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -195,7 +140,7 @@ Missile:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                    Area-m: 
+                    Area-h: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -207,9 +152,10 @@ Missile:
                         caster: 'False'
                         max-base: '999'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
-                        Damage-n: 
+                        Damage-i: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -222,7 +168,7 @@ Missile:
                             classifier: 'fire'
                             indicator: '2D'
                           children:  {}
-                        Damage-o: 
+                        Damage-j: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -230,12 +176,12 @@ Missile:
                             counts: 'True'
                             type: 'Damage'
                             value-base: 'dmgMissilePierce'
-                            value-scale: '0.05'
+                            value-scale: '0'
                             true: 'True'
                             classifier: 'fire'
                             indicator: '2D'
                           children:  {}
-                        Particle-p: 
+                        Particle-k: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -258,7 +204,7 @@ Missile:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Potion-q: 
+                        Potion-l: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -272,7 +218,7 @@ Missile:
                             seconds-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Delay-r: 
+                        Delay-m: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -282,7 +228,7 @@ Missile:
                             delay-scale: '0'
                             indicator: '2D'
                           children: 
-                            Push-s: 
+                            Push-n: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -291,9 +237,10 @@ Missile:
                                 type: 'Fixed'
                                 speed-base: '0.8'
                                 speed-scale: '0'
+                                source: 'none'
                                 indicator: '2D'
                               children:  {}
-                        Skill Level-t: 
+                        Skill Level-o: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -303,7 +250,7 @@ Missile:
                             max-level: '1'
                             indicator: '2D'
                           children: 
-                            Delay-u: 
+                            Delay-p: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -313,7 +260,7 @@ Missile:
                                 delay-scale: '0'
                                 indicator: '2D'
                               children: 
-                                Damage-v: 
+                                Damage-q: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -326,7 +273,7 @@ Missile:
                                     classifier: 'water'
                                     indicator: '2D'
                                   children:  {}
-                                Particle-w: 
+                                Particle-r: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -346,7 +293,7 @@ Missile:
                                     right: '0'
                                     indicator: '2D'
                                   children:  {}
-                                Potion-x: 
+                                Potion-s: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -360,7 +307,7 @@ Missile:
                                     seconds-scale: '0'
                                     indicator: '2D'
                                   children:  {}
-                        Skill Level-y: 
+                        Skill Level-t: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -370,7 +317,7 @@ Missile:
                             max-level: '2'
                             indicator: '2D'
                           children: 
-                            Delay-z: 
+                            Delay-u: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -380,7 +327,7 @@ Missile:
                                 delay-scale: '0'
                                 indicator: '2D'
                               children: 
-                                Damage-ab: 
+                                Damage-v: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -393,7 +340,7 @@ Missile:
                                     classifier: 'thunder'
                                     indicator: '2D'
                                   children:  {}
-                    Area-bb: 
+                    Area-w: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -405,9 +352,10 @@ Missile:
                         caster: 'False'
                         max-base: '99'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
-                        Launch-cb: 
+                        Launch-x: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -422,7 +370,7 @@ Missile:
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Skill Level-db: 
+                        Skill Level-y: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -432,7 +380,7 @@ Missile:
                             max-level: '2'
                             indicator: '2D'
                           children: 
-                            Potion-eb: 
+                            Potion-z: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -446,7 +394,7 @@ Missile:
                                 seconds-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Damage Buff-fb: 
+                            Damage Buff-ab: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -460,7 +408,7 @@ Missile:
                                 seconds-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Damage Buff-gb: 
+                            Damage Buff-bb: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -474,7 +422,7 @@ Missile:
                                 seconds-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Defense Buff-hb: 
+                            Defense Buff-cb: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -488,7 +436,7 @@ Missile:
                                 seconds-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Defense Buff-ib: 
+                            Defense Buff-db: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -502,7 +450,7 @@ Missile:
                                 seconds-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Repeat-jb: 
+                            Repeat-eb: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -515,7 +463,7 @@ Missile:
                                 stop-on-fail: 'False'
                                 indicator: '2D'
                               children: 
-                                Particle-kb: 
+                                Particle-fb: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -538,14 +486,82 @@ Missile:
                                     right: '0'
                                     indicator: '2D'
                                   children:  {}
-                Value Add-lb: 
+                Command-gb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    key: 'tech'
-                    amount-base: '-40'
-                    amount-scale: '0'
+                    command: 'playsound minecraft:entity.blaze.shoot ambient @a[r=16] ~ ~ ~ 0.4 1.3'
+                    type: 'OP'
                     indicator: '2D'
                   children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-ib: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-jb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMissile'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.9'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-kb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMissilePierce'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.15'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-lb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMissileAlby1'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.4'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-mb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgMissileAlby2'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

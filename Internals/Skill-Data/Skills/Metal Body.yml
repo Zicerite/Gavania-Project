@@ -1,12 +1,12 @@
 Metal Body: 
   name: 'Metal Body'
   type: 'Passive'
-  max-level: 1
+  max-level: 100
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
     level-base: '1'
-    level-scale: '0'
+    level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
     cooldown-base: '0'
@@ -26,7 +26,10 @@ Metal Body:
   - '&2Type: &6{type}'
   - ''
   - '&7All damage taken'
-  - '&7is reduced by {attr:def.value}'
+  - '&7is reduced by {attr:realdef.value} &7and by {attr:realdef2.value}%'
+  - '&7Increases FireDEF and EarthDEF by {attr:firedef.amount}%'
+  - ''
+  - '{req:level}Level: {attr:level}'
   desc:  []
   components: 
     Initialize: 
@@ -42,7 +45,7 @@ Metal Body:
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.1'
+            seconds-base: '0.75'
             seconds-scale: '0'
             indicator: '2D'
           children: 
@@ -54,8 +57,8 @@ Metal Body:
                 counts: 'True'
                 type: 'Flat'
                 skill: 'False'
-                value-base: '-2.5'
-                value-scale: '0'
+                value-base: '-0.5'
+                value-scale: '-0.5'
                 seconds-base: '1'
                 seconds-scale: '0'
                 indicator: '2D'
@@ -68,8 +71,86 @@ Metal Body:
                 counts: 'True'
                 type: 'Flat'
                 skill: 'True'
-                value-base: '-2.5'
-                value-scale: '0'
+                value-base: '-0.5'
+                value-scale: '-0.5'
+                seconds-base: '1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Attribute-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'firedef'
+                counts: 'True'
+                key: 'FireDEF'
+                amount-base: '15'
+                amount-scale: '0'
+                seconds-base: '1'
+                seconds-scale: '0'
+                stackable: 'False'
+                indicator: '2D'
+              children:  {}
+            Attribute-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'EarthDEF'
+                amount-base: '15'
+                amount-scale: '0'
+                seconds-base: '1'
+                seconds-scale: '0'
+                stackable: 'False'
+                indicator: '2D'
+              children:  {}
+            Value Set-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'realdef'
+                counts: 'True'
+                key: 'defense_automation'
+                value-base: '0.5'
+                value-scale: '0.5'
+                indicator: '2D'
+              children:  {}
+            Value Set-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'realdef2'
+                counts: 'True'
+                key: 'defense_automation_x'
+                value-base: '5.05'
+                value-scale: '0.05'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '0.945'
+                value-scale: '-0.005'
+                seconds-base: '1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '0.945'
+                value-scale: '-0.005'
                 seconds-base: '1'
                 seconds-scale: '0'
                 indicator: '2D'

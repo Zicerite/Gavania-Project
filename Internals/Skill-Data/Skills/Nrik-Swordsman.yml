@@ -1,0 +1,186 @@
+Nrik-Swordsman: 
+  name: 'Nrik-Swordsman'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'EMERALD_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&eSetting for your Nrik Rune Option.'
+  - '&eLeft click to increase, Right Click to Decrease.'
+  - '&aCurrent Mode: &b[{level}]'
+  - ''
+  - '&dMode 1: &cDying Fury'
+  - '&6Skill Addon; &9+Passive'
+  - '&7When below 25% max HP, you get a +40 Agility'
+  - '&7passive, as well as deal 15% more damage'
+  - ''
+  - '&dMode 2: &cSeveral Strike'
+  - '&6Skill Addon; &9+Effect'
+  - '&7Causes Sword Fury to hit 6 times rather than 3.'
+  - ''
+  - '&dMode 3: &cTechnical Armor'
+  - '&6Skill Addon; &9+Passive'
+  - '&7Passively get 15% more damage resistance'
+  - '&7when you have 100 Tech'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nrik-Swordsman'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Health-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Percent'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '25'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Attribute-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Agility'
+                        amount-base: '40'
+                        amount-scale: '0'
+                        seconds-base: '0.3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '1.15'
+                        value-scale: '0'
+                        seconds-base: '0.3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '1.15'
+                        value-scale: '0'
+                        seconds-base: '0.3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Skill Level-h: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nrik-Swordsman'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Value-i: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'tech'
+                    min-value-base: '100'
+                    min-value-scale: '0'
+                    max-value-base: '999'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Defense Buff-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '0.85'
+                        value-scale: '0'
+                        seconds-base: '0.4'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '0.85'
+                        value-scale: '0'
+                        seconds-base: '0.4'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+        Value Set-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'ManaStrifeRan'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

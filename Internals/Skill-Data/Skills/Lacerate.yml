@@ -1,0 +1,261 @@
+Lacerate: 
+  name: 'Lacerate'
+  type: 'Damage/Support'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '10'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'SHEARS'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Damages a single enemy in front'
+  - '&7of the Caster. Causes'
+  - '&7Demonic Bleeding. Has a chance'
+  - '&7to cause Curse.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &5䛾'
+  - '&bRange: {attr:range.range} Blocks'
+  - '&bDemonic Bleeding Duration: &62 &fSeconds'
+  - '&bCurse chance: {attr:CC.chance}% for {attr:curse.duration} Seconds'
+  - '&4Wrath &bGained: &68'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Linear-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'range'
+            range-base: '6'
+            range-scale: '0'
+            tolerance-base: '25'
+            tolerance-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            caster: 'False'
+            max-base: '1'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Damage-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmg'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 'dmgLAC'
+                value-scale: '0.3'
+                true: 'False'
+                classifier: 'dark'
+                indicator: '2D'
+              children:  {}
+            Particle-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Red Dust'
+                arrangement: 'Circle'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '25'
+                dx: '0'
+                dy: '0.2'
+                dz: '0'
+                speed: '0'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Chance-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: 'CC'
+                chance-base: '10'
+                chance-scale: '0'
+                indicator: '2D'
+              children: 
+                Status-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'curse'
+                    counts: 'True'
+                    status: 'Curse'
+                    duration-base: '3'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '15'
+                    repetitions-scale: '0'
+                    period: '0.2'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Witch Magic'
+                        arrangement: 'Circle'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '2'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+            Value Set-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'd_bleeding'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.05'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'd_bleeding'
+                    amount-base: '20'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Self-l: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Command-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.zombie.hurt ambient @a[r=16] ~ ~ ~ 0.4 0.65'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.sheep.shear ambient @a[r=16] ~ ~ ~ 1 0.85'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'wrath'
+                    amount-base: '8'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-q: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgLAC'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

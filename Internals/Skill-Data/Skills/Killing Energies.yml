@@ -25,15 +25,45 @@ Killing Energies:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Heal HP and Mana when you'
-  - '&7get a kill.'
-  - '&7Base HP healed is 20% your Dice value.'
-  - '&7Base Mana healed is 10% your Spirit value.'
+  - '&7Heals HP and Mana when you get a kill.'
+  - '&7Base HP healed is &640&f% &7your Dice value.'
+  - '&7Base Mana healed is &6100&f% &7your Aquatia value.'
   - ''
   - '&bHP Healed: {attr:heal.value}'
   - '&bMana Healed: {attr:mana.value}'
   desc:  []
   components: 
+    Kill-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Heal-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'heal'
+            counts: 'True'
+            type: 'Health'
+            value-base: 'd_Amt'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Mana-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'mana'
+            counts: 'True'
+            type: 'Mana'
+            value-base: 'a_Amt'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -68,7 +98,7 @@ Killing Energies:
                 icon-key: ''
                 counts: 'True'
                 key: 'd_Amt'
-                multiplier-base: '0.2'
+                multiplier-base: '0.4'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
@@ -78,8 +108,8 @@ Killing Energies:
               data: 
                 icon-key: ''
                 counts: 'True'
-                key: 's_Amt'
-                attribute: 'Spirit'
+                key: 'a_Amt'
+                attribute: 'Aquatia'
                 indicator: '2D'
               children:  {}
             Value Multiply-i: 
@@ -88,39 +118,8 @@ Killing Energies:
               data: 
                 icon-key: ''
                 counts: 'True'
-                key: 's_Amt'
-                multiplier-base: '0.1'
+                key: 'a_Amt'
+                multiplier-base: '1'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-    Kill: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        indicator: '2D'
-      children: 
-        Heal-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: 'heal'
-            counts: 'True'
-            type: 'Health'
-            value-base: 'd_Amt'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Mana-c: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: 'mana'
-            counts: 'True'
-            type: 'Mana'
-            value-base: 's_Amt'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}

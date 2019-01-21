@@ -34,10 +34,566 @@ Light Combo Gunman:
   - ''
   - '&3Damage &f= &620&f% &3Strength Attribute'
   - ''
-  - '&bDamage: {attr:dmg.value} Melee Damage &9퇇'
+  - '&bDamage: {attr:dmg.value} Melee Damage &9䛇'
   - '&bRange: {attr:range.range} Blocks'
   desc:  []
   components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Potion-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Slow Digging'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'a'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Self-d: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Linear-e: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'range'
+                        range-base: '4.5'
+                        range-scale: '0'
+                        tolerance-base: '30'
+                        tolerance-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Damage-f: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'strL'
+                            value-scale: '0'
+                            true: 'False'
+                            classifier: 'physical'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Crit'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '5'
+                            particles-scale: '0'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Self-h: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Value Add-i: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'tech'
+                                amount-base: '1'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Command-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.3 2'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'a'
+                        value-base: '0'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Location-l: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        range-base: '2.5'
+                        range-scale: '0'
+                        ground: 'False'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Particle-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Sweep Attack'
+                            arrangement: 'Circle'
+                            radius-base: '0.5'
+                            radius-scale: '0'
+                            particles-base: '3'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '-0.5'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Delay-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.75'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Set-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'a'
+                        value-base: '1'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Crouch-p: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                crouch: 'True'
+                indicator: '2D'
+              children: 
+                Skill Level-q: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Araw-Gunman'
+                    min-level: '0'
+                    max-level: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-r: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'b'
+                        min-value-base: '0'
+                        min-value-scale: '0'
+                        max-value-base: '11'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Delay-s: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.01'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Cooldown-t: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                skill: 'Light Combo Gunman'
+                                type: 'Seconds'
+                                value-base: '-1.199'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Cooldown-u: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                skill: 'Heavy Combo Gunman'
+                                type: 'Seconds'
+                                value-base: '-1.499'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Value Set-v: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'b'
+                            value-base: '-1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Command-w: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
+                            type: 'OP'
+                            indicator: '2D'
+                          children:  {}
+                        Delay-x: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.5'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Command-y: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
+                                type: 'OP'
+                                indicator: '2D'
+                              children:  {}
+                        Delay-z: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '1.2'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Set-ab: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'b'
+                                value-base: '12'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                Skill Level-bb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Araw-Gunman'
+                    min-level: '1'
+                    max-level: '1'
+                    indicator: '2D'
+                  children: 
+                    Value-cb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'b'
+                        min-value-base: '0'
+                        min-value-scale: '0'
+                        max-value-base: '5'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Delay-db: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.01'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Cooldown-eb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                skill: 'Light Combo Gunman'
+                                type: 'Seconds'
+                                value-base: '-1.199'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Cooldown-fb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                skill: 'Heavy Combo Gunman'
+                                type: 'Seconds'
+                                value-base: '-3.999'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Value Set-gb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'b'
+                            value-base: '-1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Command-hb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
+                            type: 'OP'
+                            indicator: '2D'
+                          children:  {}
+                        Delay-ib: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '3.2'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Command-jb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
+                                type: 'OP'
+                                indicator: '2D'
+                              children:  {}
+                        Delay-kb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '4'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Set-lb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'b'
+                                value-base: '6'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                Skill Level-mb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Araw-Gunman'
+                    min-level: '2'
+                    max-level: '2'
+                    indicator: '2D'
+                  children: 
+                    Value-nb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'b'
+                        min-value-base: '0'
+                        min-value-scale: '0'
+                        max-value-base: '17'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Delay-ob: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.01'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Cooldown-pb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                skill: 'Light Combo Gunman'
+                                type: 'Seconds'
+                                value-base: '-1.199'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Cooldown-qb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                skill: 'Heavy Combo Gunman'
+                                type: 'Seconds'
+                                value-base: '-2.499'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Value Set-rb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'b'
+                            value-base: '-1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Command-sb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
+                            type: 'OP'
+                            indicator: '2D'
+                          children:  {}
+                        Delay-tb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '1.8'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Command-ub: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
+                                type: 'OP'
+                                indicator: '2D'
+                              children:  {}
+                        Delay-vb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '2.5'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Set-wb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'b'
+                                value-base: '18'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -45,7 +601,7 @@ Light Combo Gunman:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-b: 
+        Passive-yb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -55,7 +611,7 @@ Light Combo Gunman:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Attribute-c: 
+            Value Attribute-zb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -65,7 +621,7 @@ Light Combo Gunman:
                 attribute: 'Strength'
                 indicator: '2D'
               children:  {}
-            Value Multiply-d: 
+            Value Multiply-ac: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -76,7 +632,7 @@ Light Combo Gunman:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-        Repeat-e: 
+        Repeat-bc: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -89,7 +645,7 @@ Light Combo Gunman:
             stop-on-fail: 'False'
             indicator: '2D'
           children: 
-            Value Set-f: 
+            Value Set-cc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -100,7 +656,7 @@ Light Combo Gunman:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Set-g: 
+            Value Set-dc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -111,537 +667,3 @@ Light Combo Gunman:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-    Cast: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Value-i: 
-          type: 'condition'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            key: 'a'
-            min-value-base: '1'
-            min-value-scale: '0'
-            max-value-base: '999'
-            max-value-scale: '0'
-            indicator: '2D'
-          children: 
-            Self-j: 
-              type: 'target'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                indicator: '2D'
-              children: 
-                Linear-k: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: 'range'
-                    range-base: '4.5'
-                    range-scale: '0'
-                    tolerance-base: '30'
-                    tolerance-scale: '0'
-                    group: 'Enemy'
-                    wall: 'True'
-                    caster: 'False'
-                    max-base: '999'
-                    max-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Damage-l: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'dmg'
-                        counts: 'True'
-                        type: 'Damage'
-                        value-base: 'strL'
-                        value-scale: '0'
-                        true: 'False'
-                        classifier: 'physical'
-                        indicator: '2D'
-                      children:  {}
-                    Particle-m: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        particle: 'Crit'
-                        arrangement: 'Sphere'
-                        radius-base: '1'
-                        radius-scale: '0'
-                        particles-base: '5'
-                        particles-scale: '0'
-                        visible-radius: '40'
-                        dx: '0'
-                        dy: '0'
-                        dz: '0'
-                        speed: '0.1'
-                        amount: '1'
-                        forward: '0'
-                        upward: '1'
-                        right: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Self-n: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        indicator: '2D'
-                      children: 
-                        Value Add-o: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'tech'
-                            amount-base: '1'
-                            amount-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                Command-p: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.3 2'
-                    type: 'OP'
-                    indicator: '2D'
-                  children:  {}
-                Value Set-q: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'a'
-                    value-base: '0'
-                    value-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Location-r: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    range-base: '2.5'
-                    range-scale: '0'
-                    ground: 'False'
-                    indicator: '2D'
-                  children: 
-                    Particle-s: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        particle: 'Sweep Attack'
-                        arrangement: 'Circle'
-                        radius-base: '0.5'
-                        radius-scale: '0'
-                        particles-base: '3'
-                        particles-scale: '0'
-                        direction: 'XZ'
-                        visible-radius: '40'
-                        dx: '0'
-                        dy: '0'
-                        dz: '0'
-                        speed: '1'
-                        amount: '1'
-                        forward: '0'
-                        upward: '-0.5'
-                        right: '0'
-                        indicator: '2D'
-                      children:  {}
-            Delay-t: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                delay-base: '1.5'
-                delay-scale: '0'
-                indicator: '2D'
-              children: 
-                Value Set-u: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'a'
-                    value-base: '1'
-                    value-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-        Crouch-v: 
-          type: 'condition'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            crouch: 'True'
-            indicator: '2D'
-          children: 
-            Skill Level-w: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                skill: 'Araw-Gunman'
-                min-level: '0'
-                max-level: '0'
-                indicator: '2D'
-              children: 
-                Value-x: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'b'
-                    min-value-base: '0'
-                    min-value-scale: '0'
-                    max-value-base: '11'
-                    max-value-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Delay-y: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.01'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Cooldown-z: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            skill: 'Light Combo Gunman'
-                            type: 'Seconds'
-                            value-base: '-1.199'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Cooldown-ab: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            skill: 'Heavy Combo Gunman'
-                            type: 'Seconds'
-                            value-base: '-1.499'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Value Set-bb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'b'
-                        value-base: '-1'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Command-cb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Delay-db: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.5'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Command-eb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
-                            type: 'OP'
-                            indicator: '2D'
-                          children:  {}
-                    Delay-fb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '1.2'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Value Set-gb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'b'
-                            value-base: '12'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-            Skill Level-hb: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                skill: 'Araw-Gunman'
-                min-level: '1'
-                max-level: '1'
-                indicator: '2D'
-              children: 
-                Value-ib: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'b'
-                    min-value-base: '0'
-                    min-value-scale: '0'
-                    max-value-base: '5'
-                    max-value-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Delay-jb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.01'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Cooldown-kb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            skill: 'Light Combo Gunman'
-                            type: 'Seconds'
-                            value-base: '-1.199'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Cooldown-lb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            skill: 'Heavy Combo Gunman'
-                            type: 'Seconds'
-                            value-base: '-3.999'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Value Set-mb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'b'
-                        value-base: '-1'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Command-nb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Delay-ob: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '3.2'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Command-pb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
-                            type: 'OP'
-                            indicator: '2D'
-                          children:  {}
-                    Delay-qb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '4'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Value Set-rb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'b'
-                            value-base: '6'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-            Skill Level-sb: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                skill: 'Araw-Gunman'
-                min-level: '2'
-                max-level: '2'
-                indicator: '2D'
-              children: 
-                Value-tb: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'b'
-                    min-value-base: '0'
-                    min-value-scale: '0'
-                    max-value-base: '17'
-                    max-value-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Delay-ub: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '0.01'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Cooldown-vb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            skill: 'Light Combo Gunman'
-                            type: 'Seconds'
-                            value-base: '-1.199'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Cooldown-wb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            skill: 'Heavy Combo Gunman'
-                            type: 'Seconds'
-                            value-base: '-2.499'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Value Set-xb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'b'
-                        value-base: '-1'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Command-yb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Delay-zb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '1.8'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Command-ac: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
-                            type: 'OP'
-                            indicator: '2D'
-                          children:  {}
-                    Delay-bc: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: '2.5'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Value Set-cc: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'b'
-                            value-base: '18'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
