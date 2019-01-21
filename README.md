@@ -7,3 +7,4 @@ Also home to a huge database of skills made in SkillApi. ~99% of them were made 
 You can take what you want! :D
 
 **Current Version: 0.4.8** (December 2018)
+**Last time skill files were updated: January 20th, 2019**
