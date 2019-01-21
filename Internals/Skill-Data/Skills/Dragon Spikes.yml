@@ -2,6 +2,7 @@ Dragon Spikes:
   name: 'Dragon Spikes'
   type: 'Passive'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -25,48 +26,20 @@ Dragon Spikes:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7When hit with a normal melee'
-  - '&7attack, there is a very small chance'
-  - '&7to deal a very small amount of'
-  - '&7damage back at the target.'
+  - '&7When taking damage, there is a'
+  - '&7chance that the target enemy'
+  - '&7takes some damage, and drains'
+  - '&7stamina and mana.'
   - ''
-  - '&bDamage: {attr:dmg.value} Melee Damage &2퇷'
+  - '&bDamage: {attr:dmg.value} Melee Damage &2䛷'
+  - '&bMana Drained: {attr:mana.value}%'
+  - '&bStamina Drained: {attr:stadd.amount}'
   - '&bChance: {attr:CC.chance}%'
   - ''
   - '{req:level}Level: {attr:level}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgthorn'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '0.1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-    Took Physical Damage: 
+    Took Physical Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -79,23 +52,26 @@ Dragon Spikes:
         dmg-max: '9999999'
         indicator: '2D'
       children: 
-        Remember Targets-e: 
+        Remember Targets-b: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            key: 'target'
+            key: 'targetST'
             indicator: '2D'
           children:  {}
-        Self-f: 
+        Self-c: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Chance-g: 
+            Chance-d: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -104,15 +80,18 @@ Dragon Spikes:
                 chance-scale: '0'
                 indicator: '2D'
               children: 
-                Remember-h: 
+                Remember-e: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
-                    key: 'target'
+                    key: 'targetST'
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Damage-i: 
+                    Damage-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -120,8 +99,212 @@ Dragon Spikes:
                         counts: 'True'
                         type: 'Damage'
                         value-base: 'dmgthorn'
-                        value-scale: '0.2'
+                        value-scale: '0.3'
                         true: 'False'
                         classifier: 'earth'
                         indicator: '2D'
                       children:  {}
+                    Mana-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Add-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'stamina'
+                        amount-base: '-15'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Self-i: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Mana-j: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'mana'
+                            counts: 'True'
+                            type: 'Percent'
+                            value-base: '5'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Add-k: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'stadd'
+                            counts: 'True'
+                            key: 'stamina'
+                            amount-base: '15'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+    Took Skill Damage-l: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Remember Targets-m: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'targetST'
+            indicator: '2D'
+          children:  {}
+        Self-n: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Chance-o: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: 'CC'
+                chance-base: '5'
+                chance-scale: '0'
+                indicator: '2D'
+              children: 
+                Remember-p: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'targetST'
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Damage-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 'dmgthorn'
+                        value-scale: '0.3'
+                        true: 'False'
+                        classifier: 'earth'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-r: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Add-s: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'stamina'
+                        amount-base: '-15'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Self-t: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Mana-u: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Percent'
+                            value-base: '5'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Add-v: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'stamina'
+                            amount-base: '15'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-x: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.2'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-y: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgthorn'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.15'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

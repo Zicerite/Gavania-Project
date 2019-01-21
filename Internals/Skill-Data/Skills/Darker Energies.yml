@@ -26,13 +26,73 @@ Darker Energies:
   - '&2Type: &6{type}'
   - ''
   - '&7Drain {attr:mana.value}&f% &7Mana and'
-  - '&7heal {attr:heal.value}&f% &7HP when dealing'
+  - '&7heal {attr:zzheal.value}&f% &7HP when dealing'
   - '&7Dark Damage.'
   - ''
-  - '&7Deal 10% more Dark Damage when Invisible.'
-  - '&7Gain a 25 Dice bonus at Night.'
+  - '&7Deal &610&f% &7more Dark Damage when Invisible.'
+  - '&7Gain a &625 &7Dice bonus at Night.'
   desc:  []
   components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'd'
+        - 'a'
+        - 'r'
+        - 'k'
+        indicator: '2D'
+      children: 
+        Mana-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'mana'
+            counts: 'True'
+            type: 'Percent'
+            value-base: '-1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Self-c: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Mana-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Percent'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Heal-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'zzheal'
+                counts: 'True'
+                type: 'Percent'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -74,6 +134,7 @@ Darker Energies:
                     amount-scale: '0'
                     seconds-base: '0.3'
                     seconds-scale: '0'
+                    stackable: 'False'
                     indicator: '2D'
                   children:  {}
             Time-j: 
@@ -95,58 +156,6 @@ Darker Energies:
                     amount-scale: '0'
                     seconds-base: '1'
                     seconds-scale: '0'
+                    stackable: 'False'
                     indicator: '2D'
                   children:  {}
-    Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'False'
-        dmg-min: '0'
-        dmg-max: '999999'
-        category: 'dark'
-        indicator: '2D'
-      children: 
-        Mana-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: 'mana'
-            counts: 'True'
-            type: 'Percent'
-            value-base: '-1'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Self-c: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Mana-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                type: 'Percent'
-                value-base: '1'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Heal-e: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'heal'
-                counts: 'True'
-                type: 'Percent'
-                value-base: '2'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}

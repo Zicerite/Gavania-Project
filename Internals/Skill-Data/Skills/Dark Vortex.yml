@@ -28,16 +28,14 @@ Dark Vortex:
   - '&7Drags nearby enemies inward,'
   - '&7and above the caster, then unleashing'
   - '&7an explosion that causes Wither,'
-  - '&7Blindness, defense reduction,'
-  - '&7and causing Huge Knockback'
-  - '&7for a short time.'
+  - '&7defense reduction, and causing'
+  - '&7Huge Knockback for a short time.'
   - ''
   - '&bVortex Radius: {attr:area.radius}-{attr:area3.radius} Blocks'
   - '&bWither: {attr:po2.tier} for {attr:po2.seconds} Seconds'
-  - '&bBlindness: {attr:po.tier} for {attr:po.seconds} Seconds'
   - '&bDefense Reduction: &6-{attr:defdebuff.value}'
   - ''
-  - '{req:level}Level: {attr:level} &eTech: &675 &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &eTech: &660 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
     Cast: 
@@ -53,6 +51,9 @@ Dark Vortex:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Value-c: 
               type: 'condition'
@@ -60,7 +61,7 @@ Dark Vortex:
               data: 
                 icon-key: ''
                 key: 'tech'
-                min-value-base: '75'
+                min-value-base: '60'
                 min-value-scale: '0'
                 max-value-base: '999'
                 max-value-scale: '0'
@@ -73,7 +74,7 @@ Dark Vortex:
                     icon-key: ''
                     counts: 'True'
                     key: 'tech'
-                    amount-base: '-75'
+                    amount-base: '-60'
                     amount-scale: '0'
                     indicator: '2D'
                   children:  {}
@@ -87,6 +88,7 @@ Dark Vortex:
                     repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
                     Particle-f: 
@@ -173,6 +175,7 @@ Dark Vortex:
                         caster: 'False'
                         max-base: '999'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
                         Push-k: 
@@ -184,6 +187,7 @@ Dark Vortex:
                             type: 'Fixed'
                             speed-base: '-0.5'
                             speed-scale: '0'
+                            source: 'none'
                             indicator: '2D'
                           children:  {}
                     Area-l: 
@@ -198,6 +202,7 @@ Dark Vortex:
                         caster: 'False'
                         max-base: '999'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
                         Push-m: 
@@ -209,6 +214,7 @@ Dark Vortex:
                             type: 'Fixed'
                             speed-base: '-0.8'
                             speed-scale: '0'
+                            source: 'none'
                             indicator: '2D'
                           children:  {}
                 Delay-n: 
@@ -233,6 +239,7 @@ Dark Vortex:
                         caster: 'False'
                         max-base: '999'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
                         Repeat-p: 
@@ -245,6 +252,7 @@ Dark Vortex:
                             repetitions-scale: '0'
                             period: '0.1'
                             delay: '0'
+                            stop-on-fail: 'False'
                             indicator: '2D'
                           children: 
                             Push-q: 
@@ -256,23 +264,10 @@ Dark Vortex:
                                 type: 'Inverse'
                                 speed-base: '0.5'
                                 speed-scale: '0'
+                                source: 'none'
                                 indicator: '2D'
                               children:  {}
                         Potion-r: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: 'po'
-                            counts: 'True'
-                            potion: 'Blindness'
-                            ambient: 'True'
-                            tier-base: '1'
-                            tier-scale: '0'
-                            seconds-base: '3'
-                            seconds-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Potion-s: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -286,7 +281,7 @@ Dark Vortex:
                             seconds-scale: '0.05'
                             indicator: '2D'
                           children:  {}
-                        Defense Buff-t: 
+                        Defense Buff-s: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -300,7 +295,7 @@ Dark Vortex:
                             seconds-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Defense Buff-u: 
+                        Defense Buff-t: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -314,7 +309,7 @@ Dark Vortex:
                             seconds-scale: '0'
                             indicator: '2D'
                           children:  {}
-                    Explosion-v: 
+                    Explosion-u: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -326,7 +321,7 @@ Dark Vortex:
                         fire: 'False'
                         indicator: '2D'
                       children:  {}
-                Command-w: 
+                Command-v: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -336,7 +331,7 @@ Dark Vortex:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Command-x: 
+                Command-w: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -346,7 +341,7 @@ Dark Vortex:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Skill Level-y: 
+                Skill Level-x: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -356,7 +351,7 @@ Dark Vortex:
                     max-level: '2'
                     indicator: '2D'
                   children: 
-                    Status-z: 
+                    Status-y: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -367,7 +362,7 @@ Dark Vortex:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Repeat-ab: 
+                    Repeat-z: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -377,9 +372,10 @@ Dark Vortex:
                         repetitions-scale: '0'
                         period: '0.1'
                         delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Potion-bb: 
+                        Potion-ab: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -393,7 +389,7 @@ Dark Vortex:
                             seconds-scale: '0'
                             indicator: '2D'
                           children:  {}
-                    Status-cb: 
+                    Status-bb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -404,7 +400,7 @@ Dark Vortex:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Status-db: 
+                    Status-cb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 

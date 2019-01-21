@@ -27,65 +27,15 @@ Evade Attack:
   - ''
   - '&7Chance to dodge incoming damage.'
   - '&7Stacks with global dodge chance.'
+  - '&7Caster is granted Invisibility &61 &7for &63 &7seconds'
+  - '&7if the dodge was triggered by this passive,'
+  - "&7but only if an invisibility effect isn't already"
+  - '&7active.'
   - ''
   - '&bChance: {attr:CC.chance}%'
   desc:  []
   components: 
-    Took Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'True'
-        dmg-min: '0'
-        dmg-max: '999999'
-        category: ''
-        indicator: '2D'
-      children: 
-        Chance-f: 
-          type: 'condition'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            chance-base: '0.5'
-            chance-scale: '0'
-            indicator: '2D'
-          children: 
-            Cancel-g: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                indicator: '2D'
-              children:  {}
-            Particle-h: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                particle: 'Snowball Poof'
-                arrangement: 'Circle'
-                radius-base: '1'
-                radius-scale: '0'
-                particles-base: '10'
-                particles-scale: '0'
-                direction: 'XZ'
-                visible-radius: '25'
-                dx: '0'
-                dy: '0'
-                dz: '0'
-                speed: '1'
-                amount: '1'
-                forward: '0'
-                upward: '0.1'
-                right: '0'
-                indicator: '2D'
-              children:  {}
-    Took Physical Damage: 
+    Took Physical Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -139,3 +89,162 @@ Evade Attack:
                 right: '0'
                 indicator: '2D'
               children:  {}
+            Particle-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Cloud'
+                arrangement: 'Circle'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '3'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '25'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.3'
+                amount: '1'
+                forward: '0'
+                upward: '0.1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-f: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not Active'
+                potion: 'Invisibility'
+                min-rank-base: '1'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Invisibility'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Took Skill Damage-h: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ' '
+        - '{'
+        - '}'
+        indicator: '2D'
+      children: 
+        Chance-i: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            chance-base: '0.5'
+            chance-scale: '0'
+            indicator: '2D'
+          children: 
+            Cancel-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                indicator: '2D'
+              children:  {}
+            Particle-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Snowball Poof'
+                arrangement: 'Circle'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '10'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '25'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '1'
+                amount: '1'
+                forward: '0'
+                upward: '0.1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Cloud'
+                arrangement: 'Circle'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '3'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '25'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.3'
+                amount: '1'
+                forward: '0'
+                upward: '0.1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-m: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not Active'
+                potion: 'Invisibility'
+                min-rank-base: '1'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Invisibility'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}

@@ -2,6 +2,7 @@ Catching Prey:
   name: 'Catching Prey'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -31,10 +32,10 @@ Catching Prey:
   - '&7the enemy. The thrown enemy can deal damage'
   - '&7to enemies in the way.'
   - ''
-  - '&bDamage: {attr:dmg.value} Melee Damage &2퇷'
+  - '&bDamage: {attr:dmg.value} x10 Melee Damage &2䛷'
   - '&bGrab Range: {attr:range.range} Blocks'
   - ''
-  - '{req:level}Level: {attr:level} &2Cooldown: &64'
+  - '{req:level}Level: {attr:level} &2Cooldown: &610'
   desc:  []
   components: 
     Cast: 
@@ -50,6 +51,9 @@ Catching Prey:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Value-c: 
               type: 'condition'
@@ -70,6 +74,9 @@ Catching Prey:
                     icon-key: ''
                     key: 'grabbed'
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
                     Repeat-e: 
                       type: 'mechanic'
@@ -127,9 +134,9 @@ Catching Prey:
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        repetitions-base: '10'
+                        repetitions-base: '8'
                         repetitions-scale: '0'
-                        period: '0.05'
+                        period: '0.075'
                         delay: '0'
                         stop-on-fail: 'False'
                         indicator: '2D'
@@ -170,6 +177,7 @@ Catching Prey:
                             caster: 'False'
                             max-base: '999'
                             max-scale: '0'
+                            random: 'False'
                             indicator: '2D'
                           children: 
                             Damage-l: 
@@ -254,6 +262,9 @@ Catching Prey:
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
                     Delay-t: 
                       type: 'mechanic'
@@ -273,7 +284,7 @@ Catching Prey:
                             counts: 'True'
                             skill: 'Catching Pray'
                             type: 'Seconds'
-                            value-base: '-4'
+                            value-base: '-10'
                             value-scale: '0'
                             indicator: '2D'
                           children:  {}
@@ -330,6 +341,9 @@ Catching Prey:
                       data: 
                         icon-key: ''
                         indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
                       children: 
                         Status-ab: 
                           type: 'mechanic'
@@ -445,7 +459,29 @@ Catching Prey:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Value-lb: 
+                Delay-lb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.01'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Cooldown-mb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        skill: 'Catching Pray'
+                        type: 'Seconds'
+                        value-base: '-10'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Value-nb: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -457,15 +493,18 @@ Catching Prey:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Remember-mb: 
+                Remember-ob: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     key: 'grabbed'
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Status-nb: 
+                    Status-pb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -476,7 +515,7 @@ Catching Prey:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Status-ob: 
+                    Status-qb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -487,7 +526,7 @@ Catching Prey:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Launch-pb: 
+                    Launch-rb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -502,7 +541,7 @@ Catching Prey:
                         right-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Repeat-qb: 
+                    Repeat-sb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -515,7 +554,7 @@ Catching Prey:
                         stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Push-rb: 
+                        Push-tb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -527,14 +566,17 @@ Catching Prey:
                             source: 'none'
                             indicator: '2D'
                           children:  {}
-                Self-sb: 
+                Self-ub: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Value Add-tb: 
+                    Value Add-vb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -545,17 +587,17 @@ Catching Prey:
                         amount-scale: '0'
                         indicator: '2D'
                       children:  {}
-        Passive-ub: 
+        Passive-wb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.03'
+            seconds-base: '0.1'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-vb: 
+            Value Lore-xb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -564,7 +606,7 @@ Catching Prey:
                 key: 'dmgCP'
                 hand: 'Main'
                 regex: 'Melee Damage - {value}'
-                multiplier-base: '0.3'
+                multiplier-base: '0.2'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

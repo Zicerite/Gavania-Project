@@ -1,7 +1,8 @@
 Feinting Leap: 
   name: 'Feinting Leap'
-  type: 'Support'
+  type: 'Support/Damage'
   max-level: 1
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -25,58 +26,16 @@ Feinting Leap:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Leaps forward and upward up to 3 times.'
+  - '&7Leaps forward and upward.'
   - '&7You are invincible briefly after casting it.'
   - '&7Use counter resets on landing.'
-  - '&7Cooldown only happens after the 3nd'
-  - '&7time in a row casting it.'
+  - '&7Spikes enemies close to the Caster.'
   - ''
-  - '&bDamage (Alby 3): {attr:dmgAlby3.value} Melee Damage &9퇇'
+  - '&bDamage: {attr:dmg.value} Melee Damage &9䛇'
   - ''
-  - '{req:level}Level: {attr:level} &2Cooldown: &612'
+  - '{req:level}Level: {attr:level} &aStamina: &635 &2Cooldown: &60'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Value Set-x: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'FL'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Passive-y: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-z: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'dmgFLAlby3'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '3'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -84,65 +43,42 @@ Feinting Leap:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-d: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-e: 
+            Value-c: 
               type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                key: 'FL'
+                key: 'stamina'
                 min-value-base: '0'
                 min-value-scale: '0'
-                max-value-base: '2'
+                max-value-base: '999'
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Repeat-f: 
+                Repeat-d: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    repetitions-base: '4'
-                    repetitions-scale: '0'
-                    period: '0.075'
-                    delay: '0'
-                    indicator: '2D'
-                  children: 
-                    Launch-g: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        relative: 'Caster'
-                        forward-base: '0.65'
-                        forward-scale: '0'
-                        upward-base: '0.4'
-                        upward-scale: '0'
-                        right-base: '0'
-                        right-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                Repeat-h: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    repetitions-base: '10'
+                    repetitions-base: '6'
                     repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Particle-i: 
+                    Particle-e: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -165,43 +101,57 @@ Feinting Leap:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Sound-j: 
+                Repeat-f: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Entity Enderdragon Flap'
-                    volume-base: '70'
-                    volume-scale: '0'
-                    pitch-base: '1.2'
-                    pitch-scale: '0'
+                    repetitions-base: '4'
+                    repetitions-scale: '0'
+                    period: '0.075'
+                    delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
-                  children:  {}
-                Value Add-k: 
+                  children: 
+                    Launch-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Caster'
+                        forward-base: '0.65'
+                        forward-scale: '0'
+                        upward-base: '0.4'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Value Add-h: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    key: 'FL'
-                    amount-base: '1'
+                    key: 'stamina'
+                    amount-base: '-35'
                     amount-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Status-l: 
+                Status-i: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
                     status: 'Invincible'
-                    duration-base: '0.4'
+                    duration-base: '0.3'
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-m: 
+                Particle-j: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -225,132 +175,109 @@ Feinting Leap:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Skill Level-n: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    skill: 'Alby-Archer'
-                    min-level: '3'
-                    max-level: '3'
-                    indicator: '2D'
-                  children: 
-                    Area-o: 
-                      type: 'target'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'area2'
-                        radius-base: '3'
-                        radius-scale: '0'
-                        group: 'Enemy'
-                        wall: 'True'
-                        caster: 'False'
-                        max-base: '999'
-                        max-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Damage-p: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: 'dmgAlby3'
-                            counts: 'True'
-                            type: 'Damage'
-                            value-base: 'dmgFLAlby3'
-                            value-scale: '0'
-                            true: 'False'
-                            classifier: 'physical'
-                            indicator: '2D'
-                          children:  {}
-                        Delay-q: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            delay-base: '0.01'
-                            delay-scale: '0'
-                            indicator: '2D'
-                          children: 
-                            Repeat-r: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                repetitions-base: '5'
-                                repetitions-scale: '0'
-                                period: '0.075'
-                                delay: '0'
-                                indicator: '2D'
-                              children: 
-                                Launch-s: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    relative: 'Target'
-                                    forward-base: '-1'
-                                    forward-scale: '0'
-                                    upward-base: '-2'
-                                    upward-scale: '0'
-                                    right-base: '0'
-                                    right-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-            Value-t: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'FL'
-                min-value-base: '3'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Delay-u: 
+                Command-k: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    delay-base: '0.01'
-                    delay-scale: '0'
+                    command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 0.45 1.2'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Area-l: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area2'
+                    radius-base: '3'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Cooldown-v: 
+                    Damage-m: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
-                        icon-key: 'cooldowns'
+                        icon-key: 'dmg'
                         counts: 'True'
-                        skill: 'Feinting Leap'
-                        type: 'Seconds'
-                        value-base: '-12'
+                        type: 'Damage'
+                        value-base: 'dmgFL'
                         value-scale: '0'
+                        true: 'False'
+                        classifier: 'physical'
                         indicator: '2D'
                       children:  {}
-    Land: 
+                    Delay-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: '0.01'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Repeat-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '5'
+                            repetitions-scale: '0'
+                            period: '0.075'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Launch-p: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Target'
+                                forward-base: '-1'
+                                forward-scale: '0'
+                                upward-base: '-2'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+    Initialize: 
       type: 'trigger'
       indicator: '3D'
       data: 
         icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        min-distance: '0'
         indicator: '2D'
       children: 
-        Value Set-b: 
+        Passive-r: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            key: 'FL'
-            value-base: '0'
-            value-scale: '0'
+            seconds-base: '0.1'
+            seconds-scale: '0'
             indicator: '2D'
-          children:  {}
+          children: 
+            Value Lore-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgFL'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

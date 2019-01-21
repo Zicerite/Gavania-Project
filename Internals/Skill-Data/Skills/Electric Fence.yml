@@ -1,13 +1,12 @@
 Electric Fence: 
   name: 'Electric Fence'
   type: 'Damage'
-  max-level: 1
-  skill-req: 'None'
+  max-level: 100
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
     level-base: '40'
-    level-scale: '0'
+    level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
     cooldown-base: '40'
@@ -29,53 +28,14 @@ Electric Fence:
   - '&7Puts up a huge electric'
   - '&7fence in front of the caster.'
   - '&7Enemies hit by it take damage.'
-  - '&7Damage is equal to 25% of the'
-  - '&7Willpower attribute value.'
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &e퇸'
-  - ' &fPer hit'
+  - '&bDamage: {attr:dmg.value} x40 Skill Damage &e䛸'
+  - '&bRange: &627 &fBlocks'
+  - '&bDuration: &65.25 &fSeconds'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-db: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Attribute-eb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'wip_Value'
-                attribute: 'Willpower'
-                indicator: '2D'
-              children:  {}
-            Value Multiply-fb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'wip_Value'
-                multiplier-base: '0.25'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -92,6 +52,9 @@ Electric Fence:
             range-scale: '0'
             ground: 'False'
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Offset-c: 
               type: 'target'
@@ -105,6 +68,9 @@ Electric Fence:
                 right-base: '0'
                 right-scale: '0'
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Repeat-d: 
                   type: 'mechanic'
@@ -112,10 +78,11 @@ Electric Fence:
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    repetitions-base: '40'
+                    repetitions-base: '35'
                     repetitions-scale: '0'
-                    period: '0.1'
+                    period: '0.15'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
                     Particle-e: 
@@ -128,7 +95,7 @@ Electric Fence:
                         arrangement: 'Sphere'
                         radius-base: '0'
                         radius-scale: '0'
-                        particles-base: '2'
+                        particles-base: '1'
                         particles-scale: '0'
                         visible-radius: '100'
                         dx: '0.1'
@@ -151,7 +118,7 @@ Electric Fence:
                         spread: 'Horizontal Cone'
                         amount-base: '1'
                         amount-scale: '0'
-                        velocity-base: '0.5'
+                        velocity-base: '0.6'
                         velocity-scale: '0'
                         angle-base: '30'
                         angle-scale: '0'
@@ -177,7 +144,7 @@ Electric Fence:
                         speed: '1'
                         amount: '0'
                         frequency: '0.05'
-                        lifespan: '4'
+                        lifespan: '3'
                         use-effect: 'False'
                         indicator: '2D'
                       children: 
@@ -193,6 +160,7 @@ Electric Fence:
                             caster: 'False'
                             max-base: '99'
                             max-scale: '0'
+                            random: 'False'
                             indicator: '2D'
                           children: 
                             Damage-h: 
@@ -202,8 +170,8 @@ Electric Fence:
                                 icon-key: 'dmg'
                                 counts: 'True'
                                 type: 'Damage'
-                                value-base: 'wip_Value'
-                                value-scale: '0'
+                                value-base: 'dmgEF'
+                                value-scale: '0.3'
                                 true: 'False'
                                 classifier: 'thunder'
                                 indicator: '2D'
@@ -244,6 +212,9 @@ Electric Fence:
                 right-base: '0'
                 right-scale: '0'
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Repeat-k: 
                   type: 'mechanic'
@@ -251,10 +222,11 @@ Electric Fence:
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    repetitions-base: '40'
+                    repetitions-base: '35'
                     repetitions-scale: '0'
-                    period: '0.1'
+                    period: '0.15'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
                     Particle-l: 
@@ -267,7 +239,7 @@ Electric Fence:
                         arrangement: 'Sphere'
                         radius-base: '0'
                         radius-scale: '0'
-                        particles-base: '2'
+                        particles-base: '1'
                         particles-scale: '0'
                         visible-radius: '100'
                         dx: '0.1'
@@ -290,7 +262,7 @@ Electric Fence:
                         spread: 'Horizontal Cone'
                         amount-base: '1'
                         amount-scale: '0'
-                        velocity-base: '0.5'
+                        velocity-base: '0.6'
                         velocity-scale: '0'
                         angle-base: '30'
                         angle-scale: '0'
@@ -316,7 +288,7 @@ Electric Fence:
                         speed: '1'
                         amount: '0'
                         frequency: '0.05'
-                        lifespan: '4'
+                        lifespan: '3'
                         use-effect: 'False'
                         indicator: '2D'
                       children: 
@@ -332,6 +304,7 @@ Electric Fence:
                             caster: 'False'
                             max-base: '99'
                             max-scale: '0'
+                            random: 'False'
                             indicator: '2D'
                           children: 
                             Damage-o: 
@@ -341,8 +314,8 @@ Electric Fence:
                                 icon-key: ''
                                 counts: 'True'
                                 type: 'Damage'
-                                value-base: 'wip_Value'
-                                value-scale: '0'
+                                value-base: 'dmgEF'
+                                value-scale: '0.3'
                                 true: 'False'
                                 classifier: 'thunder'
                                 indicator: '2D'
@@ -382,6 +355,9 @@ Electric Fence:
                 right-base: '0'
                 right-scale: '0'
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Repeat-r: 
                   type: 'mechanic'
@@ -389,10 +365,11 @@ Electric Fence:
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    repetitions-base: '40'
+                    repetitions-base: '35'
                     repetitions-scale: '0'
-                    period: '0.1'
+                    period: '0.15'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
                     Particle-s: 
@@ -405,7 +382,7 @@ Electric Fence:
                         arrangement: 'Sphere'
                         radius-base: '0'
                         radius-scale: '0'
-                        particles-base: '2'
+                        particles-base: '1'
                         particles-scale: '0'
                         visible-radius: '100'
                         dx: '0.1'
@@ -428,7 +405,7 @@ Electric Fence:
                         spread: 'Horizontal Cone'
                         amount-base: '1'
                         amount-scale: '0'
-                        velocity-base: '0.5'
+                        velocity-base: '0.6'
                         velocity-scale: '0'
                         angle-base: '30'
                         angle-scale: '0'
@@ -454,7 +431,7 @@ Electric Fence:
                         speed: '1'
                         amount: '0'
                         frequency: '0.05'
-                        lifespan: '4'
+                        lifespan: '3'
                         use-effect: 'False'
                         indicator: '2D'
                       children: 
@@ -470,6 +447,7 @@ Electric Fence:
                             caster: 'False'
                             max-base: '99'
                             max-scale: '0'
+                            random: 'False'
                             indicator: '2D'
                           children: 
                             Damage-v: 
@@ -479,8 +457,8 @@ Electric Fence:
                                 icon-key: ''
                                 counts: 'True'
                                 type: 'Damage'
-                                value-base: 'wip_Value'
-                                value-scale: '0'
+                                value-base: 'dmgEF'
+                                value-scale: '0.3'
                                 true: 'False'
                                 classifier: 'thunder'
                                 indicator: '2D'
@@ -514,6 +492,9 @@ Electric Fence:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Command-y: 
               type: 'mechanic'
@@ -551,7 +532,37 @@ Electric Fence:
               data: 
                 icon-key: ''
                 counts: 'True'
-                command: 'playsound spells.ElectricArch1 ambient @a[r=22] ~ ~ ~ 2 1.3'
+                command: 'playsound spells.ElectricArch1 ambient @a[r=22] ~ ~ ~ 0.7 1.3'
                 type: 'OP'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-db: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-eb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgEF'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.2'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

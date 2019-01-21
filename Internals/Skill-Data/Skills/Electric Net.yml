@@ -9,7 +9,7 @@ Electric Net:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '30'
+    cooldown-base: '40'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -34,43 +34,14 @@ Electric Net:
   - '&7where you placed it in'
   - '&7terms of height.'
   - ''
-  - '&bDamage: {attr:dmg.value} x70 Melee Damage &e퇸'
+  - '&bDamage: {attr:dmg.value} x25 Melee Damage &e䛸'
   - '&bRadius: &64 &fto &69 &fBlocks'
   - '&bSlowness: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bDuration: &68.25 &fSeconds'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-k: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.03'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-l: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgEN'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '0.2'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -90,6 +61,9 @@ Electric Net:
             right-base: '0'
             right-scale: '0'
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Repeat-c: 
               type: 'mechanic'
@@ -97,9 +71,9 @@ Electric Net:
               data: 
                 icon-key: ''
                 counts: 'True'
-                repetitions-base: '70'
+                repetitions-base: '25'
                 repetitions-scale: '0'
-                period: '0.1'
+                period: '0.33'
                 delay: '0'
                 stop-on-fail: 'False'
                 indicator: '2D'
@@ -157,6 +131,7 @@ Electric Net:
                         caster: 'False'
                         max-base: '99'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
                         Damage-f: 
@@ -196,7 +171,7 @@ Electric Net:
                     arrangement: 'Sphere'
                     radius-base: '0.1'
                     radius-scale: '0'
-                    particles-base: '5'
+                    particles-base: '4'
                     particles-scale: '0'
                     visible-radius: '40'
                     dx: '0'
@@ -219,7 +194,7 @@ Electric Net:
                     arrangement: 'Circle'
                     radius-base: '0.3'
                     radius-scale: '0'
-                    particles-base: '3'
+                    particles-base: '2'
                     particles-scale: '0'
                     direction: 'XZ'
                     visible-radius: '40'
@@ -233,3 +208,43 @@ Electric Net:
                     right: '0'
                     indicator: '2D'
                   children:  {}
+        Command-j: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            command: 'playsound spells.wind6 ambient @a[r=18] ~ ~ ~ 0.3 0.9'
+            type: 'OP'
+            indicator: '2D'
+          children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.07'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgEN'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

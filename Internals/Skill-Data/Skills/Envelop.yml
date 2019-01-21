@@ -10,7 +10,7 @@ Envelop:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '60'
+    cooldown-base: '50'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -27,57 +27,22 @@ Envelop:
   - '&2Type: &6{type}'
   - ''
   - '&7Causes a damage and defense debuff,'
-  - '&7as well as stunning, to all enemies'
+  - '&7as well as stunning, causing a healing'
+  - '&7debuff, Slowness, and Fatigue to all enemies'
   - '&7around the Caster for a short time.'
   - ''
   - '&bRadius: {attr:area.radius} Blocks'
   - '&bDamage Debuff: {attr:dmgdebuff.value}%'
   - '&bDefense Debuff: {attr:defdebuff.value}%'
+  - '&bHealing Debuff: &6-50&f%'
   - '&bDebuff Duration: {attr:nerf.seconds} Seconds'
+  - '&bSlowness: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bFatigue Duration: {attr:po12.seconds} Seconds'
   - '&bStun Duration: {attr:stun.duration} Seconds'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Set-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'dmgdebuff'
-                counts: 'True'
-                key: ''
-                value-base: '-10.5'
-                value-scale: '-0.5'
-                indicator: '2D'
-              children:  {}
-            Value Set-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'defdebuff'
-                counts: 'True'
-                key: ''
-                value-base: '-10.5'
-                value-scale: '-0.5'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -85,14 +50,17 @@ Envelop:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-f: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Area-g: 
+            Area-c: 
               type: 'target'
               indicator: '3D'
               data: 
@@ -104,9 +72,10 @@ Envelop:
                 caster: 'False'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
-                Damage Buff-h: 
+                Damage Buff-d: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -114,13 +83,13 @@ Envelop:
                     counts: 'True'
                     type: 'Multiplier'
                     skill: 'False'
-                    value-base: '0.895'
+                    value-base: '0.995'
                     value-scale: '-0.005'
                     seconds-base: '6'
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Damage Buff-i: 
+                Damage Buff-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -128,13 +97,13 @@ Envelop:
                     counts: 'True'
                     type: 'Multiplier'
                     skill: 'True'
-                    value-base: '0.895'
+                    value-base: '0.995'
                     value-scale: '-0.005'
                     seconds-base: '6'
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Defense Buff-j: 
+                Defense Buff-f: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -148,7 +117,7 @@ Envelop:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Defense Buff-k: 
+                Defense Buff-g: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -162,7 +131,7 @@ Envelop:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Status-l: 
+                Status-h: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -173,7 +142,7 @@ Envelop:
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Repeat-m: 
+                Repeat-i: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -186,7 +155,7 @@ Envelop:
                     stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Particle-n: 
+                    Particle-j: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -205,7 +174,7 @@ Envelop:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Repeat-o: 
+                Repeat-k: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -218,7 +187,7 @@ Envelop:
                     stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Particle-p: 
+                    Particle-l: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -242,7 +211,7 @@ Envelop:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Potion-q: 
+                Potion-m: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -252,11 +221,11 @@ Envelop:
                     ambient: 'True'
                     tier-base: '99'
                     tier-scale: '0'
-                    seconds-base: '2.5'
+                    seconds-base: '1.5'
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Command-r: 
+                Command-n: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -266,7 +235,7 @@ Envelop:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Skill Level-s: 
+                Skill Level-o: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -276,7 +245,7 @@ Envelop:
                     max-level: '3'
                     indicator: '2D'
                   children: 
-                    Potion-t: 
+                    Potion-p: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -290,7 +259,7 @@ Envelop:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Potion-u: 
+                    Potion-q: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -304,7 +273,7 @@ Envelop:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Potion-v: 
+                    Potion-r: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -318,7 +287,7 @@ Envelop:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Particle-w: 
+                    Particle-s: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -341,7 +310,50 @@ Envelop:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-            Command-x: 
+                Buff-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    immediate: 'False'
+                    type: 'HEALING'
+                    modifier: 'Multiplier'
+                    value-base: '0.5'
+                    value-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po'
+                    counts: 'True'
+                    potion: 'Slow'
+                    ambient: 'True'
+                    tier-base: '2'
+                    tier-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po12'
+                    counts: 'True'
+                    potion: 'Slow Digging'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '6'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Command-w: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -351,7 +363,7 @@ Envelop:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Command-y: 
+            Command-x: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -361,7 +373,7 @@ Envelop:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Particle-z: 
+            Particle-y: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -379,7 +391,7 @@ Envelop:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-ab: 
+            Particle-z: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -397,7 +409,7 @@ Envelop:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-bb: 
+            Particle-ab: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -415,7 +427,7 @@ Envelop:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-cb: 
+            Particle-bb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -433,7 +445,7 @@ Envelop:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-db: 
+            Particle-cb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -449,5 +461,44 @@ Envelop:
                 forward: '0'
                 upward: '0'
                 right: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-eb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-fb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dmgdebuff'
+                counts: 'True'
+                key: ''
+                value-base: '-0.5'
+                value-scale: '-0.5'
+                indicator: '2D'
+              children:  {}
+            Value Set-gb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'defdebuff'
+                counts: 'True'
+                key: ''
+                value-base: '-0.5'
+                value-scale: '-0.5'
                 indicator: '2D'
               children:  {}

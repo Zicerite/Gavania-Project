@@ -9,7 +9,7 @@ Endure:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '15'
+    cooldown-base: '20'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -27,43 +27,14 @@ Endure:
   - ''
   - '&7The Caster gets a damage'
   - '&7resistance buff for a short time.'
-  - '&7The Caster however, gets Slowness.'
+  - '&7Grants Stun Resistance.'
   - ''
   - '&bDefense Buff: {attr:EndureBuff.value}'
-  - '&bSlowness: {attr:po.tier}'
   - '&bDuration: {attr:defbuff.seconds} Seconds'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-j: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Set-k: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'EndureBuff'
-                counts: 'True'
-                key: 'EndureBuff'
-                value-base: '3.6'
-                value-scale: '0.6'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -77,6 +48,9 @@ Endure:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Defense Buff-c: 
               type: 'mechanic'
@@ -106,35 +80,17 @@ Endure:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Sound-e: 
+            Command-e: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Block Anvil Land'
-                volume-base: '40'
-                volume-scale: '0'
-                pitch-base: '2'
-                pitch-scale: '0'
+                command: 'playsound minecraft:block.anvil.place ambient @a[r=16] ~ ~ ~ 0.6 2'
+                type: 'OP'
                 indicator: '2D'
               children:  {}
-            Potion-f: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'po'
-                counts: 'True'
-                potion: 'Slow'
-                ambient: 'True'
-                tier-base: '5'
-                tier-scale: '0'
-                seconds-base: '5'
-                seconds-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Repeat-g: 
+            Repeat-f: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -144,9 +100,10 @@ Endure:
                 repetitions-scale: '0'
                 period: '0.1'
                 delay: '0'
+                stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Particle-h: 
+                Particle-g: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -165,3 +122,105 @@ Endure:
                     right: '0'
                     indicator: '2D'
                   children:  {}
+            Value Set-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'stunresistance'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '5'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'stunresistance'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'stunresistance'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-m: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'EndureBuff'
+                counts: 'True'
+                key: 'EndureBuff'
+                value-base: '3.6'
+                value-scale: '0.6'
+                indicator: '2D'
+              children:  {}
+            Value-o: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'stunresistance'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Status-p: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    status: 'Stun'
+                    indicator: '2D'
+                  children: 
+                    Cleanse-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: ''
+                        status: 'Stun'
+                        indicator: '2D'
+                      children:  {}

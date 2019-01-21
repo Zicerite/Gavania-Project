@@ -5,11 +5,11 @@ Dragon Spirit:
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
-    level-base: '45'
+    level-base: '25'
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '100'
+    cooldown-base: '0'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -25,61 +25,26 @@ Dragon Spirit:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Push back nearby enemies'
-  - '&7and the caster and nearby allies'
-  - '&7heal mana, equal to half of '
-  - "&7the caster's Spirit attribute."
-  - '&7Grants Regeneration and'
-  - '&7Mana Regeneration as well.'
+  - '&7Push back nearby enemies. The'
+  - '&7caster and nearby allies heal a fixed'
+  - '&7percent of HP, mana equal to &650&f%'
+  - "&7of the caster's Aquatia attribute."
+  - '&7Grants HP and Mana Regen, Haste,'
+  - '&7and Fire Resistance.'
   - ''
-  - '&bMana: {attr:mana.value}'
+  - '&bHP Healed: {attr:zzheal.value}%'
+  - '&bMana Healed: {attr:mana.value}'
+  - '&bFire Resistance Duration: {attr:po3.seconds} Seconds'
   - '&bHP Regen: {attr:po.tier} for {attr:po.seconds} Seconds'
   - '&bMana Regen: {attr:po2.tier} for {attr:po2.seconds} Seconds'
-  - '&bRange: {attr:area.radius} Blocks'
+  - '&bHaste: {attr:po4.tier} for {attr:po4.seconds} Seconds'
+  - '&bRadius: {attr:area.radius} Blocks'
   - ''
   - '&bHP Healed (Yryn 2): {attr:heal.value}%'
   - ''
-  - '{req:level}Level: {attr:level} &eTech: &6100 &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &eTech: &650 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-ab: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.1'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Attribute-bb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'DrS'
-                attribute: 'Spirit'
-                indicator: '2D'
-              children:  {}
-            Value Multiply-cb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'DrS'
-                counts: 'True'
-                key: 'DrS'
-                multiplier-base: '0.5'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -93,6 +58,9 @@ Dragon Spirit:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Value-c: 
               type: 'condition'
@@ -100,7 +68,7 @@ Dragon Spirit:
               data: 
                 icon-key: ''
                 key: 'tech'
-                min-value-base: '100'
+                min-value-base: '50'
                 min-value-scale: '0'
                 max-value-base: '999'
                 max-value-scale: '0'
@@ -111,13 +79,14 @@ Dragon Spirit:
                   indicator: '3D'
                   data: 
                     icon-key: 'area'
-                    radius-base: '5'
+                    radius-base: '6'
                     radius-scale: '0'
                     group: 'Enemy'
                     wall: 'True'
                     caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
                     Push-e: 
@@ -129,6 +98,7 @@ Dragon Spirit:
                         type: 'Inverse'
                         speed-base: '0.5'
                         speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
                     Repeat-f: 
@@ -141,6 +111,7 @@ Dragon Spirit:
                         repetitions-scale: '0'
                         period: '0.1'
                         delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
                         Particle-g: 
@@ -171,16 +142,28 @@ Dragon Spirit:
                   indicator: '3D'
                   data: 
                     icon-key: ''
-                    radius-base: '5'
+                    radius-base: '6'
                     radius-scale: '0'
                     group: 'Ally'
                     wall: 'True'
                     caster: 'True'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Mana-i: 
+                    Heal-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'zzheal'
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '15'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-j: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -191,7 +174,7 @@ Dragon Spirit:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Potion-j: 
+                    Potion-k: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -205,7 +188,7 @@ Dragon Spirit:
                         seconds-scale: '0.1'
                         indicator: '2D'
                       children:  {}
-                    Repeat-k: 
+                    Repeat-l: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -215,9 +198,10 @@ Dragon Spirit:
                         repetitions-scale: '1'
                         period: '0.1'
                         delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Particle-l: 
+                        Particle-m: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -240,7 +224,7 @@ Dragon Spirit:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Skill Level-m: 
+                    Skill Level-n: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -250,7 +234,7 @@ Dragon Spirit:
                         max-level: '2'
                         indicator: '2D'
                       children: 
-                        Heal-n: 
+                        Heal-o: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -261,7 +245,7 @@ Dragon Spirit:
                             value-scale: '0'
                             indicator: '2D'
                           children:  {}
-                    Potion-o: 
+                    Potion-p: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -275,7 +259,53 @@ Dragon Spirit:
                         seconds-scale: '0.1'
                         indicator: '2D'
                       children:  {}
-                Particle-p: 
+                    Potion-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po3'
+                        counts: 'True'
+                        potion: 'Fire Resistance'
+                        ambient: 'True'
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Fire-r: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'On Fire'
+                        indicator: '2D'
+                      children: 
+                        Command-s: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            command: 'ext'
+                            type: 'OP'
+                            indicator: '2D'
+                          children:  {}
+                    Potion-t: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po4'
+                        counts: 'True'
+                        potion: 'Fast Digging'
+                        ambient: 'True'
+                        tier-base: '2'
+                        tier-scale: '0'
+                        seconds-base: '5.1'
+                        seconds-scale: '0.1'
+                        indicator: '2D'
+                      children:  {}
+                Particle-u: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -299,7 +329,7 @@ Dragon Spirit:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-q: 
+                Particle-v: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -323,7 +353,7 @@ Dragon Spirit:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-r: 
+                Particle-w: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -347,7 +377,7 @@ Dragon Spirit:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Command-s: 
+                Command-x: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -357,60 +387,18 @@ Dragon Spirit:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Sound-t: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Entity Enderdragon Growl'
-                    volume-base: '50'
-                    volume-scale: '0'
-                    pitch-base: '1.2'
-                    pitch-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Sound-u: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Entity Enderdragon Hurt'
-                    volume-base: '50'
-                    volume-scale: '0'
-                    pitch-base: '1.5'
-                    pitch-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Sound-v: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Entity Enderdragon Hurt'
-                    volume-base: '40'
-                    volume-scale: '0'
-                    pitch-base: '1.9'
-                    pitch-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Value Add-w: 
+                Value Add-y: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
                     key: 'tech'
-                    amount-base: '-100'
+                    amount-base: '-50'
                     amount-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Skill Level-x: 
+                Skill Level-z: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -420,7 +408,7 @@ Dragon Spirit:
                     max-level: '2'
                     indicator: '2D'
                   children: 
-                    Potion-y: 
+                    Potion-ab: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -434,3 +422,67 @@ Dragon Spirit:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
+                Sound-bb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    sound: 'Entity Enderdragon Ambient'
+                    volume-base: '50'
+                    volume-scale: '0'
+                    pitch-base: '1.2'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Sound-cb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    sound: 'Entity Enderdragon Ambient'
+                    volume-base: '20'
+                    volume-scale: '0'
+                    pitch-base: '1.4'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-eb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Attribute-fb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'DrS'
+                attribute: 'Aquatia'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-gb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'DrS'
+                counts: 'True'
+                key: 'DrS'
+                multiplier-base: '0.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

@@ -2,6 +2,7 @@ Circumference:
   name: 'Circumference'
   type: 'Healing'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -9,10 +10,10 @@ Circumference:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '10'
+    cooldown-base: '20'
     cooldown-scale: '0'
-    mana-base: '9.1'
-    mana-scale: '1.1'
+    mana-base: '11'
+    mana-scale: '1'
     points-spent-req-base: '0'
     points-spent-req-scale: '0'
     incompatible: 
@@ -26,7 +27,9 @@ Circumference:
   - '&2Type: &6{type}'
   - ''
   - '&7Heals all friendly units'
-  - '&7around the caster. and'
+  - '&7around the Caster 10% of'
+  - '&7their missing HP, then heals'
+  - '&7them some additional HP, and'
   - '&7grants HP Regen.'
   - '&7Cleanses Poison and Wither.'
   - ''
@@ -54,6 +57,9 @@ Circumference:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Area-c: 
               type: 'target'
@@ -67,20 +73,10 @@ Circumference:
                 caster: 'True'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
-                Heal-d: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: 'heal'
-                    counts: 'True'
-                    type: 'Health'
-                    value-base: '21'
-                    value-scale: '1'
-                    indicator: '2D'
-                  children:  {}
-                Particle-e: 
+                Particle-d: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -103,7 +99,7 @@ Circumference:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Potion-f: 
+                Potion-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -111,13 +107,13 @@ Circumference:
                     counts: 'True'
                     potion: 'Regeneration'
                     ambient: 'True'
-                    tier-base: '3'
+                    tier-base: '2'
                     tier-scale: '0'
-                    seconds-base: '4'
-                    seconds-scale: '0.1'
+                    seconds-base: '5'
+                    seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-g: 
+                Particle-f: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -134,7 +130,7 @@ Circumference:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Skill Level-h: 
+                Skill Level-g: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -144,7 +140,7 @@ Circumference:
                     max-level: '1'
                     indicator: '2D'
                   children: 
-                    Status-i: 
+                    Status-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -155,7 +151,7 @@ Circumference:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                Skill Level-j: 
+                Skill Level-i: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -165,7 +161,7 @@ Circumference:
                     max-level: '1'
                     indicator: '2D'
                   children: 
-                    Potion-k: 
+                    Potion-j: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -179,7 +175,7 @@ Circumference:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                Skill Level-l: 
+                Skill Level-k: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -189,7 +185,7 @@ Circumference:
                     max-level: '3'
                     indicator: '2D'
                   children: 
-                    Value Add-m: 
+                    Value Add-l: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -200,7 +196,7 @@ Circumference:
                         amount-scale: '0'
                         indicator: '2D'
                       children:  {}
-                Potion-n: 
+                Potion-m: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -213,7 +209,7 @@ Circumference:
                     max-rank-scale: '0'
                     indicator: '2D'
                   children: 
-                    Cleanse-o: 
+                    Cleanse-n: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -223,7 +219,7 @@ Circumference:
                         status: ''
                         indicator: '2D'
                       children:  {}
-                Potion-p: 
+                Potion-o: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -236,7 +232,7 @@ Circumference:
                     max-rank-scale: '0'
                     indicator: '2D'
                   children: 
-                    Cleanse-q: 
+                    Cleanse-p: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -246,7 +242,50 @@ Circumference:
                         status: ''
                         indicator: '2D'
                       children:  {}
-            Particle-r: 
+                Value Health-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'hpMissing'
+                    type: 'Missing'
+                    indicator: '2D'
+                  children:  {}
+                Value Multiply-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'hpMissing'
+                    multiplier-base: '0.1'
+                    multiplier-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Heal-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: 'hpMissing'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Heal-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'heal'
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: '21'
+                    value-scale: '1'
+                    indicator: '2D'
+                  children:  {}
+            Particle-u: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -269,7 +308,7 @@ Circumference:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Command-s: 
+            Command-v: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -279,7 +318,7 @@ Circumference:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Command-t: 
+            Command-w: 
               type: 'mechanic'
               indicator: '3D'
               data: 

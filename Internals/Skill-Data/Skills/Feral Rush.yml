@@ -2,6 +2,7 @@ Feral Rush:
   name: 'Feral Rush'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -28,46 +29,18 @@ Feral Rush:
   - '&7Wildly dash forward, dealing damage'
   - '&7to enemies in your path. The dashing'
   - '&7effect only works while grounded.'
+  - '&7Hit enemies get Fatigue.'
   - ''
-  - '&bDamage: {attr:dmg.value} x50 Melee Damage &9퇇'
+  - '&bDamage: {attr:dmg.value} x50 Melee Damage &9䛇'
   - '&bRadius: {attr:area.radius} Blocks'
-  - '&bDuration: &610 &fSeconds'
+  - '&bFatigue duration: {attr:po3.seconds} Seconds'
+  - '&bDuration: &68 &fSeconds'
   - ''
   - '&bMana (Yryn 2): {attr:mana.value}'
   - ''
   - '{req:level}Level: {attr:level} &aStamina: &6120 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgrush'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '0.3'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -75,14 +48,17 @@ Feral Rush:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-e: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-f: 
+            Value-c: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -94,7 +70,7 @@ Feral Rush:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Value Add-g: 
+                Value Add-d: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -105,26 +81,30 @@ Feral Rush:
                     amount-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Self-h: 
+                Self-e: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Repeat-i: 
+                    Repeat-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        repetitions-base: '50'
+                        repetitions-base: '40'
                         repetitions-scale: '0'
                         period: '0.2'
                         delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Block-j: 
+                        Block-g: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -133,7 +113,7 @@ Feral Rush:
                             material: 'Air'
                             indicator: '2D'
                           children: 
-                            Launch-k: 
+                            Launch-h: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -148,7 +128,7 @@ Feral Rush:
                                 right-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                        Area-l: 
+                        Area-i: 
                           type: 'target'
                           indicator: '3D'
                           data: 
@@ -160,9 +140,10 @@ Feral Rush:
                             caster: 'False'
                             max-base: '999'
                             max-scale: '0'
+                            random: 'False'
                             indicator: '2D'
                           children: 
-                            Damage-m: 
+                            Damage-j: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -170,19 +151,22 @@ Feral Rush:
                                 counts: 'True'
                                 type: 'Damage'
                                 value-base: 'dmgrush'
-                                value-scale: '0.4'
+                                value-scale: '0.3'
                                 true: 'False'
                                 classifier: 'physical'
                                 indicator: '2D'
                               children:  {}
-                            Self-n: 
+                            Self-k: 
                               type: 'target'
                               indicator: '3D'
                               data: 
                                 icon-key: ''
                                 indicator: '2D'
+                                group: 'enemy'
+                                wall: 'false'
+                                caster: 'false'
                               children: 
-                                Skill Level-o: 
+                                Skill Level-l: 
                                   type: 'condition'
                                   indicator: '3D'
                                   data: 
@@ -192,7 +176,7 @@ Feral Rush:
                                     max-level: '2'
                                     indicator: '2D'
                                   children: 
-                                    Mana-p: 
+                                    Mana-m: 
                                       type: 'mechanic'
                                       indicator: '3D'
                                       data: 
@@ -203,7 +187,21 @@ Feral Rush:
                                         value-scale: '0'
                                         indicator: '2D'
                                       children:  {}
-                        Particle-q: 
+                            Potion-n: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'po3'
+                                counts: 'True'
+                                potion: 'Slow Digging'
+                                ambient: 'True'
+                                tier-base: '1'
+                                tier-scale: '0'
+                                seconds-base: '2'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Particle-o: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -226,19 +224,20 @@ Feral Rush:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Repeat-r: 
+                    Repeat-p: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        repetitions-base: '10'
+                        repetitions-base: '8'
                         repetitions-scale: '0'
                         period: '1'
                         delay: '0'
+                        stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Command-s: 
+                        Command-q: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -248,7 +247,7 @@ Feral Rush:
                             type: 'OP'
                             indicator: '2D'
                           children:  {}
-                Delay-t: 
+                Delay-r: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -258,3 +257,33 @@ Feral Rush:
                     delay-scale: '0'
                     indicator: '2D'
                   children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-t: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-u: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgrush'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.35'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

@@ -25,10 +25,10 @@ Eternal Fire:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Fire Damage is increased by 25%'
+  - '&7Fire Damage is increased by &625&f%'
   - '&7when the Caster is on fire.'
   - '&7Get granted Fire Resistance when'
-  - '&7below 20% HP.'
+  - '&7below &620&f% &7HP.'
   desc:  []
   components: 
     Initialize: 
@@ -44,6 +44,9 @@ Eternal Fire:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Passive-c: 
               type: 'mechanic'
@@ -51,7 +54,7 @@ Eternal Fire:
               data: 
                 icon-key: ''
                 counts: 'True'
-                seconds-base: '0.01'
+                seconds-base: '0.02'
                 seconds-scale: '0'
                 indicator: '2D'
               children: 
@@ -74,6 +77,7 @@ Eternal Fire:
                         amount-scale: '0'
                         seconds-base: '0.2'
                         seconds-scale: '0'
+                        stackable: 'False'
                         indicator: '2D'
                       children:  {}
                     Health-f: 
@@ -100,5 +104,117 @@ Eternal Fire:
                             tier-scale: '0'
                             seconds-base: '0.6'
                             seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Skill Level-h: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Rune_Mage_EternalFire'
+                    min-level: '1'
+                    max-level: '1'
+                    indicator: '2D'
+                  children: 
+                    Damage Buff-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Flat'
+                        skill: 'False'
+                        value-base: '1.05'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Flat'
+                        skill: 'True'
+                        value-base: '1.05'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Health-k: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Percent'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '20'
+                    max-value-scale: '2'
+                    indicator: '2D'
+                  children: 
+                    Skill Level-l: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Rune_Mage_EternalFire'
+                        min-level: '2'
+                        max-level: '2'
+                        indicator: '2D'
+                      children: 
+                        Damage Buff-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Flat'
+                            skill: 'False'
+                            value-base: '1.12'
+                            value-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage Buff-n: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Flat'
+                            skill: 'True'
+                            value-base: '1.12'
+                            value-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Skill Level-o: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Rune_Mage_EternalFire'
+                        min-level: '3'
+                        max-level: '3'
+                        indicator: '2D'
+                      children: 
+                        Attribute-p: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'FireDMG'
+                            amount-base: '20'
+                            amount-scale: '2'
+                            seconds-base: '0.3'
+                            seconds-scale: '0'
+                            stackable: 'False'
                             indicator: '2D'
                           children:  {}

@@ -25,74 +25,21 @@ Distilling Waters:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Taking Water Damage grants'
-  - '&7Mana Regen to the Caster and'
+  - '&7Dealing or Taking Water Damage'
+  - '&7grants Mana Regen to the Caster and'
   - '&7nearby allies.'
-  - ''
   - '&7The Caster heals HP and mana'
-  - '&7every second, if they are in water.'
+  - '&7every &60.5&7 seconds, if they are in water,'
+  - '&7and/or if it is raining. Must be in open'
+  - '&7sky, for the raining effect to work.'
   - ''
   - '&bRadius: {attr:area.radius} Blocks'
   - '&bMana Regen: {attr:po.tier} for {attr:po.seconds} Seconds'
   - '&bHP Healed: {attr:heal.value}'
-  - '&bMana Healed: {attr:mana.value}'
+  - '&bMana Healed: {attr:mana.value}%'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-f: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '1'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Self-g: 
-              type: 'target'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                indicator: '2D'
-              children: 
-                Water-h: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    state: 'In Water'
-                    indicator: '2D'
-                  children: 
-                    Heal-i: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'heal'
-                        counts: 'True'
-                        type: 'Health'
-                        value-base: '1.5'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Mana-j: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'mana'
-                        counts: 'True'
-                        type: 'Mana'
-                        value-base: '2'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-    Skill Damage: 
+    Skill Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -102,7 +49,8 @@ Distilling Waters:
         target: 'True'
         dmg-min: '0'
         dmg-max: '999999'
-        category: 'water'
+        category: 
+        - 'water'
         indicator: '2D'
       children: 
         Particle-b: 
@@ -136,6 +84,7 @@ Distilling Waters:
             caster: 'True'
             max-base: '999'
             max-scale: '0'
+            random: 'False'
             indicator: '2D'
           children: 
             Potion-d: 
@@ -152,3 +101,184 @@ Distilling Waters:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
+    Took Skill Damage-e: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'water'
+        indicator: '2D'
+      children: 
+        Particle-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            particle: 'Block Crack'
+            material: 'Water'
+            type: '0'
+            arrangement: 'Sphere'
+            radius-base: '1'
+            radius-scale: '0'
+            particles-base: '5'
+            particles-scale: '0'
+            forward: '0'
+            upward: '1'
+            right: '0'
+            indicator: '2D'
+          children:  {}
+        Area-g: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            radius-base: '10'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            random: 'False'
+            indicator: '2D'
+          children: 
+            Potion-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Saturation'
+                ambient: 'True'
+                tier-base: '2'
+                tier-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-j: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.5'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-k: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Water-l: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    state: 'In Water'
+                    indicator: '2D'
+                  children: 
+                    Heal-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'heal'
+                        counts: 'True'
+                        type: 'Health'
+                        value-base: '5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'mana'
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '0.25'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '3'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Ceiling-p: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    distance-base: '255'
+                    distance-scale: '0'
+                    at-least: 'True'
+                    indicator: '2D'
+                  children: 
+                    Weather-q: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Rain'
+                        indicator: '2D'
+                      children: 
+                        Heal-r: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Health'
+                            value-base: '5'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Mana-s: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Percent'
+                            value-base: '0.25'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Mana-t: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: '3'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}

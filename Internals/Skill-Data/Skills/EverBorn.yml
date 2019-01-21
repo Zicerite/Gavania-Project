@@ -1,0 +1,415 @@
+EverBorn: 
+  name: 'EverBorn'
+  type: 'Life Saving'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes: 
+    level-base: '0'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2is feeling the power of the &6{skill}'
+  icon: 'ACACIA_DOOR'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Grants gradual healing once the caster'
+  - '&7reaches below &625&7% HP that lasts'
+  - "&7for a short time. Can't happen more"
+  - '&7than once every 30 seconds.'
+  - ''
+  - '{req:level}Level: {attr:level} {req:cost}Cost: {attr:cost}'
+  - '&2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Physical Damage-l: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Health-m: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Percent'
+            min-value-base: '0'
+            min-value-scale: '0'
+            max-value-base: '25'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-n: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'HealthTrigger'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '1'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage Buff-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '2'
+                    value-scale: '0'
+                    seconds-base: '10'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Wolf-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    color: 'YELLOW'
+                    name: 'Everborn Guardian'
+                    health-base: '15'
+                    health-scale: '0'
+                    damage-base: '8'
+                    damage-scale: '0'
+                    sitting: 'False'
+                    seconds-base: '10'
+                    seconds-scale: '0'
+                    amount-base: '3'
+                    amount-scale: '0'
+                    skills: 
+                    - ''
+                    indicator: '2D'
+                  children:  {}
+                Repeat-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '5'
+                    repetitions-scale: '0'
+                    period: '0.5'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Lightning-r: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        damage: 'False'
+                        forward-base: '0'
+                        forward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Heal-s: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '20'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Value Set-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'HealthTrigger'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Cooldown_HealthTrigger'
+                    value-base: '30'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-v: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Health-w: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Percent'
+            min-value-base: '0'
+            min-value-scale: '0'
+            max-value-base: '25'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-x: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'HealthTrigger'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '1'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage Buff-y: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '2'
+                    value-scale: '0'
+                    seconds-base: '10'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Wolf-z: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    color: 'YELLOW'
+                    name: 'Everborn Guardian'
+                    health-base: '15'
+                    health-scale: '0'
+                    damage-base: '8'
+                    damage-scale: '0'
+                    sitting: 'False'
+                    seconds-base: '10'
+                    seconds-scale: '0'
+                    amount-base: '3'
+                    amount-scale: '0'
+                    skills: 
+                    - ''
+                    indicator: '2D'
+                  children:  {}
+                Repeat-ab: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '5'
+                    repetitions-scale: '0'
+                    period: '0.5'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Lightning-bb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        damage: 'False'
+                        forward-base: '0'
+                        forward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Heal-cb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '20'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Value Set-db: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'HealthTrigger'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-eb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Cooldown_HealthTrigger'
+                    value-base: '30'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value Set-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'HealthTrigger'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Cooldown_HealthTrigger'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Passive-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '0.1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-f: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'Cooldown_HealthTrigger'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '0'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Set-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Cooldown_HealthTrigger'
+                        value-base: '20'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'HealthTrigger'
+                        value-base: '1'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Passive-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-j: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'Cooldown_HealthTrigger'
+                    min-value-base: '99'
+                    min-value-scale: '0'
+                    max-value-base: '1'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Add-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Cooldown_HealthTrigger'
+                        amount-base: '-1'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}

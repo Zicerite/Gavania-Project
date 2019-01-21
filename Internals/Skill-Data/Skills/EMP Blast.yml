@@ -9,7 +9,7 @@ EMP Blast:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '100'
+    cooldown-base: '80'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -31,7 +31,7 @@ EMP Blast:
   - '&7and nearby enemies take damage'
   - '&7and get stunned for a short time.'
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &e퇸'
+  - '&bDamage: {attr:dmg.value} Skill Damage &e䛸'
   - '&bBlast Radius: {attr:area.radius} Blocks'
   - '&bStun Duration: {attr:stun.duration} Seconds'
   - '&bSlowness: {attr:po.tier} for {attr:po.seconds} Seconds'
@@ -39,36 +39,6 @@ EMP Blast:
   - '{req:level}Level: {attr:level} &aStamina: &6200 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-r: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.03'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-s: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgEMP'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '2'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -82,6 +52,9 @@ EMP Blast:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Value-c: 
               type: 'condition'
@@ -145,13 +118,14 @@ EMP Blast:
                       indicator: '3D'
                       data: 
                         icon-key: 'area'
-                        radius-base: '16'
+                        radius-base: '12'
                         radius-scale: '0'
                         group: 'Enemy'
                         wall: 'True'
                         caster: 'False'
                         max-base: '999'
                         max-scale: '0'
+                        random: 'False'
                         indicator: '2D'
                       children: 
                         Damage-i: 
@@ -242,9 +216,9 @@ EMP Blast:
                         counts: 'True'
                         particle: 'End Rod'
                         arrangement: 'Hemisphere'
-                        radius-base: '16'
+                        radius-base: '12'
                         radius-scale: '0'
-                        particles-base: '60'
+                        particles-base: '40'
                         particles-scale: '0'
                         visible-radius: '70'
                         dx: '0'
@@ -267,9 +241,9 @@ EMP Blast:
                         material: 'Gold Block'
                         type: '0'
                         arrangement: 'Hemisphere'
-                        radius-base: '16'
+                        radius-base: '12'
                         radius-scale: '0'
-                        particles-base: '60'
+                        particles-base: '50'
                         particles-scale: '0'
                         forward: '0'
                         upward: '1'
@@ -286,9 +260,9 @@ EMP Blast:
                         material: 'Gold Block'
                         type: '0'
                         arrangement: 'Circle'
-                        radius-base: '16'
+                        radius-base: '12'
                         radius-scale: '0'
-                        particles-base: '100'
+                        particles-base: '70'
                         particles-scale: '0'
                         direction: 'XZ'
                         forward: '0'
@@ -296,3 +270,33 @@ EMP Blast:
                         right: '0'
                         indicator: '2D'
                       children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-r: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.07'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgEMP'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

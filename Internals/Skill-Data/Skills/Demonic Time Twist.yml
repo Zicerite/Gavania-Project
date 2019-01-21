@@ -38,46 +38,6 @@ Demonic Time Twist:
   - '{req:level}Level: {attr:level} &2Cooldown: &63/10 (Read Description)'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Value Set-l: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'DTT'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-    Took Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'False'
-        dmg-min: '0'
-        dmg-max: '9999999'
-        category: ''
-        indicator: '2D'
-      children: 
-        Remember Targets-r: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'targetp'
-            indicator: '2D'
-          children:  {}
     Took Physical Damage: 
       type: 'trigger'
       indicator: '3D'
@@ -106,6 +66,9 @@ Demonic Time Twist:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Value-p: 
               type: 'condition'
@@ -119,6 +82,28 @@ Demonic Time Twist:
                 max-value-scale: '0'
                 indicator: '2D'
               children:  {}
+    Took Skill Damage: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        category: ''
+        indicator: '2D'
+      children: 
+        Remember Targets-r: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'targetp'
+            indicator: '2D'
+          children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -226,3 +211,21 @@ Demonic Time Twist:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'DTT'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

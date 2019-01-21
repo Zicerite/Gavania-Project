@@ -9,7 +9,7 @@ Electric Smite:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '6'
+    cooldown-base: '5'
     cooldown-scale: '0'
     mana-base: '15'
     mana-scale: '1'
@@ -28,156 +28,19 @@ Electric Smite:
   - '&7Jump up, and crash back down to'
   - '&7the ground to deal AOE Damage,'
   - '&7with a small chance to stun.'
+  - '&7Causes knockback to those'
+  - "&7who didn't get stunned."
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &e퇸'
+  - '&bDamage: {attr:dmg.value} Skill Damage &e䛸'
   - '&bRadius: {attr:area.radius} Blocks'
   - '&bStun: {attr:CC.chance}% for {attr:stun.duration} Seconds'
   - ''
-  - '&bDamage (Alby 1): {attr:dmgLight.value} Skill Damage &f퇆'
+  - '&bDamage (Alby 1): {attr:dmgLight.value} Skill Damage &f䛆'
   - ''
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Value Set-s: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'ELSMT'
-            value-base: '0'
-            value-scale: '0'
-            indicator: '2D'
-          children:  {}
-        Passive-t: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.1'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value-u: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'ELSMT'
-                min-value-base: '1'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Particle-v: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    particle: 'Block Crack'
-                    material: 'Gold Block'
-                    type: '0'
-                    arrangement: 'Sphere'
-                    radius-base: '1'
-                    radius-scale: '0'
-                    particles-base: '10'
-                    particles-scale: '0'
-                    forward: '0'
-                    upward: '1'
-                    right: '0'
-                    indicator: '2D'
-                  children:  {}
-            Value Lore-w: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgELSMT'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '2.25'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-x: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgELSMT_1'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.35'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-    Cast: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Self-z: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Launch-ab: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                relative: 'Caster'
-                forward-base: '1.2'
-                forward-scale: '0'
-                upward-base: '1.2'
-                upward-scale: '0'
-                right-base: '0'
-                right-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Set-bb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'ELSMT'
-                value-base: '1'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Sound-cb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                version: '1.9+'
-                newsound: 'Block Fire Extinguish'
-                volume-base: '50'
-                volume-scale: '0'
-                pitch-base: '1.3'
-                pitch-scale: '0'
-                indicator: '2D'
-              children:  {}
-    Land: 
+    Land-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -225,13 +88,14 @@ Electric Smite:
                   indicator: '3D'
                   data: 
                     icon-key: 'area'
-                    radius-base: '6'
+                    radius-base: '7'
                     radius-scale: '0'
                     group: 'Enemy'
                     wall: 'True'
                     caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
                     Damage-f: 
@@ -361,7 +225,38 @@ Electric Smite:
                             classifier: 'light'
                             indicator: '2D'
                           children:  {}
-                Particle-n: 
+                    Delay-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: '0.05'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Status-o: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'Not Active'
+                            status: 'Stun'
+                            indicator: '2D'
+                          children: 
+                            Push-p: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Fixed'
+                                speed-base: '1.2'
+                                speed-scale: '0'
+                                source: 'none'
+                                indicator: '2D'
+                              children:  {}
+                Particle-q: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -371,7 +266,7 @@ Electric Smite:
                     material: 'Gold Block'
                     type: '0'
                     arrangement: 'Circle'
-                    radius-base: '6'
+                    radius-base: '7'
                     radius-scale: '0'
                     particles-base: '140'
                     particles-scale: '0'
@@ -381,7 +276,7 @@ Electric Smite:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Command-o: 
+                Command-r: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -391,21 +286,20 @@ Electric Smite:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Sound-p: 
+                Sound-s: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    version: '1.9+'
-                    newsound: 'Entity Lightning Impact'
+                    sound: 'Ambience Cave'
                     volume-base: '80'
                     volume-scale: '0'
                     pitch-base: '1'
                     pitch-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Explosion-q: 
+                Explosion-t: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -417,3 +311,144 @@ Electric Smite:
                     fire: 'False'
                     indicator: '2D'
                   children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-v: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Launch-w: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                relative: 'Caster'
+                forward-base: '1.2'
+                forward-scale: '0'
+                upward-base: '1.2'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-x: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'ELSMT'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-y: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                sound: 'Ambience Cave'
+                volume-base: '50'
+                volume-scale: '0'
+                pitch-base: '1.3'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-ab: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'ELSMT'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-bb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.11'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-cb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ELSMT'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Particle-db: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Gold Block'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '10'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Value Lore-eb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgELSMT'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '2.25'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-fb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgELSMT_1'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.35'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
