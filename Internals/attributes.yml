@@ -1,17 +1,68 @@
 # Attributes.yml
-
+#
 # For full details, visit
-# https://github.com/Eniripsa96/SkillAPI/wiki/Attributes
-
+# http://dev.bukkit.org/bukkit-plugins/skillapi/pages/attributes/
+#
 # List of available stats to modify:
-#   health           - the max health of the player
-#   mana             - the amount of mana the player has
-#   mana-regen       - how much mana the player regenerates over time
-#   physical-damage  - damage dealt without using skills
-#   physical-defense - damage taken from non-skill attacks
-#   skill-damage     - damage dealt with skills
-#   skill-defense    - damage taken from skills
-#   move-speed       - movement speed of the player
+#   armor            | [PREM, 1.9+] Vanilla damage mitigation
+#   armor-toughness  | [PREM, 1.9+] Secondary vanilla damage mitigation
+#   attack-speed	 | [PREM, 1.9+] Weapon recharge time
+#   cooldown         | [PREM] Modifies skill cooldowns
+#   defense-<type>   | [PREM] Reduces damage taken from various damage sources.
+#                    |     See the DamageCause docs to see supported types.
+#                    |     Use lower-case versions of it, such as "defense-block_explosion".
+#   exp              | [PREM] increases all class experience gained
+#   health           | The max health of the player
+#   hunger           | [PREM] Increases how long hunger lasts. This attribute is always based off of a base value of 1. A resulting value of 2 would double how long the hunger bar lasts, for example.
+#   hunger-heal      | [PREM] Increases how much you heal while satiated
+#   knockback-resist | [PREM, 1.9+] Probability of resisting knockback as a decimal (1.0 is 100% change to resist)
+#   luck	         | [PREM, 1.9+] loot table chances
+#   mana	         | The max mana of the player
+#   mana-regen       | The amount of mana regeneration the player has
+#   move-speed       | The movement speed of the player
+#   physical-damage  | The amount of damage done by physical (basic or projectile) attacks
+#   physical-defense | The amount of damage taken by physical (basic or projectile) attacks
+#   skill-damage	 | The amount of damage done by skills
+#   skill-defense    | The amount of damage taken by skills
+
+#   skill-damage-<classification>  | [PREM] The amount of damage done by skills with the specified classification
+#   skill-defense-<classification> | [PREM] The amount of damage taken by skills with the specified classification
+DirectDMG: 
+  display: 'DirectDMG'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '1'
+  icon-lore: 
+  - '&6Vitality &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +0.2 damage per'
+  - '&7point invested.'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    physical-damage: 'a*0.25+v'
+    skill-damage: 'a*0.25+v'
+DirectDEF: 
+  display: 'DirectDEF'
+  max: '1000'
+  icon: 'iron_pickaxe'
+  icon-data: '2'
+  icon-lore: 
+  - '&6Vitality &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +0.1 defense per'
+  - '&7point invested.'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    physical-defense: 'a*-0.25+v'
+    skill-defense: 'a*-0.25+v'
 Vitality: 
   display: 'Vitality'
   max: '1000'
@@ -23,9 +74,6 @@ Vitality:
   - '&7Grants +1 health per'
   - '&7point invested.'
   - ''
-  - '&7Increases &4퇵 Fire &7Element'
-  - '&7Damage and Defense by 0.05%'
-  - ''
   global: 
     condition:  {}
     mechanic:  {}
@@ -33,8 +81,6 @@ Vitality:
   stats: 
     health: 'a+v'
     #skill-damage: 'a*1+v'
-    skill-damage-fire: 'a*0.0005+1*v'
-    skill-defense-fire: (0-a*0.0005+1*v)'
 Spirit: 
   display: 'Spirit'
   max: '1000'
@@ -47,9 +93,6 @@ Spirit:
   - '&7Grants +1% mana regeneration'
   - '&7per point invested.'
   - ''
-  - '&7Increases &e퇆 Light &7Element'
-  - '&7Damage and Defense by 0.1%'
-  - ''
   global: 
     condition:  {}
     mechanic:  {}
@@ -57,8 +100,6 @@ Spirit:
   stats: 
     mana: 'a+v'
     mana-regen: 'a*0.01+1*v'
-    skill-damage-light: 'a*0.001+1*v'
-    skill-defense-light: '(0-a*0.001+1*v)'
 Aquatia: 
   display: 'Aquatia'
   max: '1000'
@@ -70,17 +111,12 @@ Aquatia:
   - '&7Grants +0.25% increased Healing'
   - '&7bonus per point invested.'
   - ''
-  - '&7Increases &1퇴 Water &7Element'
-  - '&7Damage and Defense by 0.25%'
-  - ''
   global: 
     condition:  {}
     mechanic: 
       Heal-value: 'a*0.0025+1*v:icon-key=heal'
     target:  {}
-  stats: 
-    skill-damage-water: 'a*0.0025+1*v'
-    skill-defense-water: '(0-a*0.0025+1*v)'
+  stats:  {}
 Strength: 
   display: 'Strength'
   max: '1000'
@@ -90,22 +126,18 @@ Strength:
   - '&6Strength &7(&2{amount}&7)'
   - ''
   - '&7Increases the damage'
-  - '&7from a class''s left and'
+  - '&7from a class's left and'
   - '&7right click attacks.'
   - '&7How useful this is depends'
   - '&7on the class.'
   - ''
-  - '&7Increases &9퇇 Physical &7Element'
-  - '&7Damage and Defense by 0.1%'
-  - ''
   global: 
     condition:  {}
-    mechanic:  {}
+    mechanic:
+      Value Lore-multiplier: 'a*0.005+1*v:icon-key=meleedmg'
     target:  {}
   stats: 
-    physical-damage: 'a*0.005+1*v' 
-    skill-damage-physical: 'a*0.001+1*v'
-    skill-defense-physical: '(0-a*0.001+1*v)'
+    physical-damage: 'a*0.005+1*v'
 Intelligence: 
   display: 'Intelligence'
   max: '1000'
@@ -117,18 +149,13 @@ Intelligence:
   - '&7Grants +0.5% increased skill'
   - '&7damage per point invested.'
   - ''
-  - '&7Increases 퇶 Neutral Element'
-  - '&7Damage and Defense by 0.1%'
-  - ''
   global: 
     condition:  {}
     mechanic: 
       Damage Lore-multiplier: 'a*0.005+1*v'
       Value Lore-multiplier: 'a*0.005+1*v:icon-key=wepdmg'
     target:  {}
-  stats: 
-    skill-damage-neutral: 'a*0.001+1*v'
-    skill-defense-neutral: '(0-a*0.001+1*v)'
+  stats:  {}
 Endurance: 
   display: 'Endurance'
   max: '200'
@@ -141,11 +168,8 @@ Endurance:
   - '&7Physical-Defense per'
   - '&7point invested.'
   - ''
-  - '&7Increases &2퇷 Earth &7Element'
-  - '&7Damage and Defense by 0.3%'
-  - ''
   - '&7Increases &2? Piercing &7Element'
-  - '&7Defense by 0.5%'
+  - '&7Defense by 0.5% (Coming later)'
   - ''
   global: 
     condition:  {}
@@ -153,9 +177,7 @@ Endurance:
     target:  {}
   stats: 
     physical-defense: '(0-a*0.002+1*v)'
-    skill-damage-earth: 'a*0.003+1*v'
-    skill-defense-earth: '(0-a*0.003+1*v)'
-    skill-defense-piercing: '(0-a*0.005+1*v)'
+    skill-defense-piercing: 'a*-0.05+1*v'
 Willpower: 
   display: 'Willpower'
   max: '200'
@@ -168,17 +190,12 @@ Willpower:
   - '&7Skill-Defense per'
   - '&7point invested.'
   - ''
-  - '&7Increases &6퇸 Thunder &7Element'
-  - '&7Damage and Defense by 0.3%'
-  - ''
   global: 
     condition:  {}
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense: '(0-a*0.002+1*v)'
-    skill-damage-thunder: 'a*0.003+1*v'
-    skill-defense-thunder: '(0-a*0.003+1*v)'
+    skill-defense: 'a*-0.002+1*v'
 Agility: 
   display: 'Agility'
   max: '200'
@@ -191,17 +208,12 @@ Agility:
   - '&7walk speed per'
   - '&7point invested.'
   - ''
-  - '&7Increases &f퇳 Wind &7Element'
-  - '&7Damage and Defense by 0.25%'
-  - ''
   global: 
     condition:  {}
     mechanic:  {}
     target:  {}
   stats: 
     move-speed: 'a*0.0025+1*v'
-    skill-damage-wind: 'a*0.0025+1*v'
-    skill-defense-wind: '(0-a*0.0025+1*v)'
 Dice: 
   display: 'Dice'
   max: '200'
@@ -215,24 +227,19 @@ Dice:
   - '&7(This is for passives/skills with'
   - '&7a chance element to it.)'
   - ''
-  - '&7Increases &5퇾 Dark &7Element'
-  - '&7Damage and Defense by 0.2%'
-  - ''
   global: 
     condition: 
       Chance-chance: 'a*0.0025+1*v'
     mechanic:  {}
     target:  {}
-  stats: 
-    skill-damage-dark: 'a*0.002+1*v'
-    skill-defense-dark: '(0-a*0.002+1*v)'
+  stats:  {}
 XpBonus: 
   display: 'XpBonus'
   max: '1000'
   icon: 'iron_pickaxe'
   icon-data: '249'
   icon-lore: 
-  - '&6Dice &7(&2{amount}&7)'
+  - '&6XpBonus &7(&2{amount}&7)'
   - ''
   - '&7Grants +1% increased XP'
   - '&7per point invested.'
@@ -411,7 +418,7 @@ FireDEF:
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense-fire: 'a*0.01+1*v'
+    skill-defense-fire: 'a*-0.01+1*v'
 WaterDEF: 
   display: 'WaterDEF'
   max: '1000'
@@ -428,7 +435,7 @@ WaterDEF:
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense-water: 'a*(-0.01)+1*v'
+    skill-defense-water: 'a*-0.01+1*v'
 LightDEF: 
   display: 'LightDEF'
   max: '1000'
@@ -445,7 +452,7 @@ LightDEF:
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense-light: 'a*0.01+1*v'
+    skill-defense-light: 'a*-0.01+1*v'
 EarthDEF: 
   display: 'EarthDEF'
   max: '1000'
@@ -462,7 +469,7 @@ EarthDEF:
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense-earth: 'a*0.01+1*v'
+    skill-defense-earth: 'a*-0.01+1*v'
 ThunderDEF: 
   display: 'ThunderDEF'
   max: '1000'
@@ -479,7 +486,7 @@ ThunderDEF:
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense-thunder: '-1*(a*0.01+1*v)'
+    skill-defense-thunder: 'a*-0.01+1*v'
 WindDEF: 
   display: 'WindDEF'
   max: '1000'
@@ -496,7 +503,7 @@ WindDEF:
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense-wind: 'a*0.01+1*v'
+    skill-defense-wind: 'a*-0.01+1*v'
 DarkDEF: 
   display: 'DarkDEF'
   max: '1000'
@@ -513,7 +520,7 @@ DarkDEF:
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense-dark: 'a*0.01+1*v'
+    skill-defense-dark: 'a*-0.01+1*v'
 NeutralDEF: 
   display: 'NeutralDEF'
   max: '1000'
@@ -530,7 +537,7 @@ NeutralDEF:
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense-neutral: 'a*0.01+1*v'
+    skill-defense-neutral: 'a*-0.01+1*v'
 PhysicalDEF: 
   display: 'PhysicalDEF'
   max: '1000'
@@ -547,7 +554,7 @@ PhysicalDEF:
     mechanic:  {}
     target:  {}
   stats: 
-    skill-defense-physical: 'a*0.01+1*v'
+    skill-defense-physical: 'a*-0.01+1*v'
 BaseSpeed: 
   display: 'BaseSpeed'
   max: '100'

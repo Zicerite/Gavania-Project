@@ -21,12 +21,12 @@ Accounts:
   one-per-class: 'false'
 
   # The max number of accounts a normal user can use
-  max-accounts: '16'
+  max-accounts: '22'
 
   # The max number of accounts users can have with certain permissions
   # must be in the format '<permission>:<accounts>'
   perm-accounts: 
-  - 'skillapi.account.admin:16'
+  - 'skillapi.account.admin:22'
 
 # While targeting settings aren't necessary most of the time,
 # they can help make running ally checks much faster if
@@ -65,6 +65,7 @@ Targeting:
   - 'Gavania_nether'
   - 'WWW'
   - 'HomeBase'
+  - 'Dungeons'
 
   # Whether or not to check for player allies via Parties
   parties-ally: 'false'
@@ -81,7 +82,7 @@ Saving:
   auto-save: 'true'
 
   # How often to auto-save in minutes
-  minutes: '1'
+  minutes: '3'
 
   # Whether or not to use an SQL database to save
   sql-database: 'false'
@@ -212,7 +213,6 @@ Items:
   - '9'
   - '18'
   - '27'
-  - '7'
   - '40'
 
 GUI: 
@@ -252,7 +252,7 @@ GUI:
   #   {attr}        - the player's attribute points
   #   {sp}          - the player's main class skill points
   #   {value:<key>} - a skill value
-  action-bar-text: '&c[퇰{health}/{maxHealth}퇰] &b[퇤{mana}/{maxMana}퇤] &a[&2퇸&a{value:stamina}%&2퇸&a] &e[퇢{value:tech}퇢] &1[&e{value:a}&a퇳 &e{value:b}&7퇱&1] &0[&3퇽&5{value:masterful}%&3퇽&0]'
+  action-bar-text: '&c[䛰{health}/{maxHealth}䛰] &b[䛤{mana}/{maxMana}䛤] &a[&2䛸&a{value:stamina}%&2䛸&a] &e[䛢{value:tech}䛢] &1[&e{value:a}&a䛳 &e{value:b}&7䛱&1] &0[&3䛽&5{value:masterful}%&3䛽&0]'
 
   # Whether or not to use title messages
   title-enabled: 'true'
@@ -281,10 +281,10 @@ GUI:
   scoreboard-enabled: 'true'
 
   # Whether or not to add a prefix to players with their class name
-  show-class-name: 'true'
+  show-class-name: 'false'
 
   # Whether or not to display a player's level below their name
-  show-class-level: 'true'
+  show-class-level: 'false'
   # Whether or not to use map trees instead of the regular ones
   # View map.yml for further customization for this option
   # Also add more schemes by adding folders in the "img" folder
@@ -333,6 +333,12 @@ Click Combos:
   # Whether or not Q clicks are allowed at all.
   # Enabling this disables dropping items via Q outside of menus.
   use-click-q: 'false'
+
+  # Whether or not to automatically assign combos to skills
+  # without a combo manually defined. When disabled, only skills
+  # configured to have a combo or have had a combo set by
+  # a command will have combos.
+  auto-assign: 'true'
 
 Skill Bar: 
 
@@ -421,7 +427,7 @@ Experience:
   # The custom formula to use with 'lvl' being the current player level
   # Note: this formula does not use x, y, or z. Use numbers directly
   # in the formula instead.
-  custom-formula: '80(1.10^(lvl-1))'
+  custom-formula: '100(1.10^(lvl-1))'
 
   # The experience yields from each mob type
   # When exp orbs are enabled, these values are ignored
@@ -455,18 +461,22 @@ Experience:
     vex: '3'
     vindicator: '5'
 
+  # Worlds where experience is not lost on death
+  lose-exp-blacklist: 
+  - 'pvpWorld'
+
 # How much logging to do when loading SkillAPI
 # When testing setting up skills/classes, increase this to 1-5
 Logging: 
 
   # Logs for loading attributes
-  attribute-load: '0'
+  attribute-load: '5'
 
   # Logs for attack/defense buffs applying
   buff: '0'
 
   # Logs for registration of skills and classes
-  registration: '0'
+  registration: '5'
 
   # Logs for GUI updates
   gui: '0'
