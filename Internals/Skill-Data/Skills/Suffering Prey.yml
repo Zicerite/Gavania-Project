@@ -1,0 +1,202 @@
+Suffering Prey: 
+  name: 'Suffering Prey'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'ROTTEN_FLESH'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Cause a &615&f% &7damage and'
+  - '&7defense debuff for &61.5 &7seconds'
+  - '&7to an enemy, if the hit enemy'
+  - '&7is stunned.'
+  - ''
+  - '&7Causes Slowness {attr:po1.tier} &7for {attr:po1.seconds}'
+  - '&7seconds if the hit enemy is on fire.'
+  - ''
+  - '&7Causes Poison {attr:po2.tier} &7for {attr:po2.seconds} &7seconds'
+  - '&7if the hit enemy has Wither.'
+  desc:  []
+  components: 
+    Physical Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Status-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Active'
+            status: 'Stun'
+            indicator: '2D'
+          children: 
+            Damage Buff-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '0.85'
+                value-scale: '0'
+                seconds-base: '1.5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Damage Buff-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '0.85'
+                value-scale: '0'
+                seconds-base: '1.5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '1.15'
+                value-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '1.15'
+                value-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '7'
+                repetitions-scale: '0'
+                period: '0.2'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Particle-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '3'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+        Fire-i: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'On Fire'
+            indicator: '2D'
+          children: 
+            Potion-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po1'
+                counts: 'True'
+                potion: 'Slow'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Potion-k: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Active'
+            potion: 'Wither'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Potion-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po2'
+                counts: 'True'
+                potion: 'Poison'
+                ambient: 'True'
+                tier-base: '3'
+                tier-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}

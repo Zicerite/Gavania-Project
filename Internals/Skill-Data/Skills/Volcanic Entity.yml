@@ -1,0 +1,351 @@
+Volcanic Entity: 
+  name: 'Volcanic Entity'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'MAGMA'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Take &640&f% &7Less Fire Damage.'
+  - '&7Automatically extinguishes ignition'
+  - '&7after taking damage from it.'
+  - ''
+  - '&7Taking Fire Damage'
+  - '&7regenerates &62 &bEnergy&7.'
+  - ''
+  - '&7Has a fixed &65&f% &7chance that'
+  - '&7enemies that hit the caster with Fire damage,'
+  - '&7cause the caster to combust, igniting'
+  - '&7enemies within a &65 &7block radius'
+  - '&7for &63 &7seconds, and cause a &610&f%'
+  - '&7damage and defense debuff for'
+  - '&7&63 &7seconds.'
+  desc:  []
+  components: 
+    Took Skill Damage-d: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'fire'
+        indicator: '2D'
+      children: 
+        Value-e: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'energy'
+            min-value-base: '0'
+            min-value-scale: '0'
+            max-value-base: '98'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Add-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'energy'
+                amount-base: '2'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Value-g: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'energy'
+            min-value-base: '99'
+            min-value-scale: '0'
+            max-value-base: '100'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'energy'
+                value-base: '100'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Value Random-i: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'combust'
+            type: 'Normal'
+            min-base: '0'
+            min-scale: '0'
+            max-base: '100'
+            max-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value-j: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'combust'
+            min-value-base: '0'
+            min-value-scale: '0'
+            max-value-base: '5'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-k: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Area-l: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area'
+                    radius-base: '5'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Fire-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        seconds-base: '3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '1.1'
+                        value-scale: '0'
+                        seconds-base: '3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '1.1'
+                        value-scale: '0'
+                        seconds-base: '3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '15'
+                        repetitions-scale: '0'
+                        period: '0.2'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Particle-q: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Block Crack'
+                            material: 'Magma'
+                            type: '0'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Command-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.fire3 ambient @a[r=16] ~ ~ ~ 0.5 1.5'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Particle-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Flame'
+                    arrangement: 'Sphere'
+                    radius-base: '5'
+                    radius-scale: '0'
+                    particles-base: '25'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0.1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Sweep Attack'
+                    arrangement: 'Sphere'
+                    radius-base: '5'
+                    radius-scale: '0'
+                    particles-base: '10'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0.1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+    Environment Damage-u: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Fire Tick'
+        indicator: '2D'
+      children: 
+        Delay-v: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            delay-base: '0.05'
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Fire-w: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'On Fire'
+                indicator: '2D'
+              children: 
+                Command-x: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'ext'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.5'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Buff-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                immediate: 'False'
+                type: 'SKILL_DEFENSE'
+                modifier: 'Multiplier'
+                category: 'fire'
+                value-base: '0.6'
+                value-scale: '0'
+                seconds-base: '1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
