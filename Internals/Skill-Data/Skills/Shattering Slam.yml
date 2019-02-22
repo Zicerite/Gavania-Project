@@ -1,0 +1,469 @@
+Shattering Slam:
+  name: 'Shattering Slam'
+  type: 'Damage'
+  max-level: 100
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Stone'
+  icon-data: 1
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7The Caster raises up, then launches'
+  - '&7downward, dealing damage, and hitstun'
+  - '&7on the way down. Deals damage,'
+  - '&7knockback, and hitstun on landing.'
+  - '&7Caster is invincible for a second'
+  - '&7after casting. You cannot cancel the'
+  - '&7falling, but it cancels when landing'
+  - '&7in water.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &2䛷'
+  - '&bFalling Damage: {attr:dmg2.value} x?? Melee Damage &2䛷'
+  - '&bLanding Radius: {attr:area.radius} Blocks'
+  - '&bFalling Radius: {attr:areaS.radius} Blocks'
+  - ''
+  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 14
+    level-scale: 2
+    cost-base: 0
+    cost-scale: 0
+    cooldown-base: 12
+    cooldown-scale: 0
+    mana-base: 16
+    mana-scale: 1
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Land-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: 0
+      children:
+        Value-b:
+          type: 'condition'
+          data:
+            icon-key: ''
+            key: 'quakelanding'
+            min-value-base: 1
+            min-value-scale: 0
+            max-value-base: 1
+            max-value-scale: 0
+          children:
+            Area-c:
+              type: 'target'
+              data:
+                icon-key: 'area'
+                radius-base: 7
+                radius-scale: 0
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: 999
+                max-scale: 0
+                random: 'False'
+              children:
+                Damage-d:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'dmg'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: dmgSS
+                    value-scale: 0.3
+                    true: 'False'
+                    classifier: 'earth'
+                Particle-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Stone'
+                    type: 1
+                    arrangement: 'Sphere'
+                    radius-base: 1
+                    radius-scale: 0
+                    particles-base: 20
+                    particles-scale: 0
+                    forward: 0
+                    upward: 1
+                    right: 0
+            Command-f:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.earth1 ambient @a[r=22] ~ ~ ~ 0.65 1'
+                type: 'OP'
+            Particle-g:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                particle: 'Block Crack'
+                material: 'Dirt'
+                type: 0
+                arrangement: 'Circle'
+                radius-base: 7
+                radius-scale: 0
+                particles-base: 40
+                particles-scale: 0
+                direction: 'XZ'
+                forward: 0
+                upward: 0.1
+                right: 0
+            Particle-h:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                particle: 'Block Crack'
+                material: 'Stone'
+                type: 0
+                arrangement: 'Circle'
+                radius-base: 7
+                radius-scale: 0
+                particles-base: 40
+                particles-scale: 0
+                direction: 'XZ'
+                forward: 0
+                upward: 0.1
+                right: 0
+            Value Set-i:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'quakelanding'
+                value-base: 0
+                value-scale: 0
+    Cast-j:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-k:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Launch-l:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                relative: 'Target'
+                forward-base: 0
+                forward-scale: 0
+                upward-base: 1
+                upward-scale: 0
+                right-base: 0
+                right-scale: 0
+            Command-m:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 0.5 1.2'
+                type: 'OP'
+            Delay-n:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                delay-base: 0.25
+                delay-scale: 0
+              children:
+                Launch-o:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: 0
+                    forward-scale: 0
+                    upward-base: -2
+                    upward-scale: 0
+                    right-base: 0
+                    right-scale: 0
+                Command-p:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.earth4 ambient @a[r=16] ~ ~ ~ 0.25 1.2'
+                    type: 'OP'
+                Area-q:
+                  type: 'target'
+                  data:
+                    icon-key: ''
+                    radius-base: 3
+                    radius-scale: 0
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: 999
+                    max-scale: 0
+                    random: 'False'
+                  children:
+                    Status-r:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Disarm'
+                        duration-base: 0.5
+                        duration-scale: 0
+                    Status-s:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Silence'
+                        duration-base: 0.5
+                        duration-scale: 0
+                    Launch-t:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Caster'
+                        forward-base: 0.01
+                        forward-scale: 0
+                        upward-base: -1
+                        upward-scale: 0
+                        right-base: 0
+                        right-scale: 0
+                Value Set-u:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'quakelanding'
+                    value-base: 1
+                    value-scale: 0
+            Status-v:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                status: 'Invincible'
+                duration-base: 1
+                duration-scale: 0
+            Repeat-w:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: 6
+                repetitions-scale: 0
+                period: 0.1
+                delay: 0
+                stop-on-fail: 'False'
+              children:
+                Particle-x:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Cloud'
+                    arrangement: 'Circle'
+                    radius-base: 1
+                    radius-scale: 0
+                    particles-base: 3
+                    particles-scale: 0
+                    direction: 'XZ'
+                    visible-radius: 40
+                    dx: 0
+                    dy: 0
+                    dz: 0
+                    speed: 0
+                    amount: 1
+                    forward: 0
+                    upward: 0
+                    right: 0
+    Initialize-y:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-z:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.1
+            seconds-scale: 0
+          children:
+            Value Lore-ab:
+              type: 'mechanic'
+              data:
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSS'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: 1.1
+                multiplier-scale: 0
+            Value Lore-bb:
+              type: 'mechanic'
+              data:
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgSS_falling'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: 0.05
+                multiplier-scale: 0
+        Repeat-cb:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: 3
+            repetitions-scale: 0
+            period: 0.1
+            delay: 0
+            stop-on-fail: 'False'
+          children:
+            Value Set-db:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'quakelanding'
+                value-base: 0
+                value-scale: 0
+        Passive-eb:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.1
+            seconds-scale: 0
+          children:
+            Value-fb:
+              type: 'condition'
+              data:
+                icon-key: ''
+                key: 'quakelanding'
+                min-value-base: 1
+                min-value-scale: 0
+                max-value-base: 1
+                max-value-scale: 0
+              children:
+                Particle-gb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Cloud'
+                    arrangement: 'Circle'
+                    radius-base: 1
+                    radius-scale: 0
+                    particles-base: 3
+                    particles-scale: 0
+                    direction: 'XZ'
+                    visible-radius: 40
+                    dx: 0
+                    dy: 0
+                    dz: 0
+                    speed: 0.1
+                    amount: 1
+                    forward: 0
+                    upward: 0
+                    right: 0
+                Self-hb:
+                  type: 'target'
+                  data:
+                    icon-key: ''
+                  children:
+                    Launch-ib:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: 0
+                        forward-scale: 0
+                        upward-base: -1.8
+                        upward-scale: 0
+                        right-base: 0
+                        right-scale: 0
+                    Area-jb:
+                      type: 'target'
+                      data:
+                        icon-key: 'areaS'
+                        radius-base: 4
+                        radius-scale: 0
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: 999
+                        max-scale: 0
+                        random: 'False'
+                      children:
+                        Status-kb:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Disarm'
+                            duration-base: 0.7
+                            duration-scale: 0
+                        Status-lb:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Silence'
+                            duration-base: 0.7
+                            duration-scale: 0
+                        Launch-mb:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: 0.01
+                            forward-scale: 0
+                            upward-base: -2.25
+                            upward-scale: 0
+                            right-base: 0
+                            right-scale: 0
+                        Damage-nb:
+                          type: 'mechanic'
+                          data:
+                            icon-key: 'dmg2'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: dmgSS_falling
+                            value-scale: 0.3
+                            true: 'False'
+                            classifier: 'earth'
+            Water-ob:
+              type: 'condition'
+              data:
+                icon-key: ''
+                state: 'In Water'
+              children:
+                Value Set-pb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'quakelanding'
+                    value-base: 0
+                    value-scale: 0

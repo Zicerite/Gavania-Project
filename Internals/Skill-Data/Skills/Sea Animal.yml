@@ -1,0 +1,135 @@
+Sea Animal:
+  name: 'Sea Animal'
+  type: 'Passive'
+  max-level: 1
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Prismarine'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Swim faster in water (Coming post 1.13), and'
+  - '&7have &6permanent &7Water Breathing.'
+  - ''
+  - '&7Mana Regen &61 &7is granted while in water.'
+  - "&7Doesn't override higher tiered effect."
+  - ''
+  - '&7Heal &69 &aStamina &7every second while in water.'
+  - '&7Does not stack with being grounded.'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  attributes:
+    level-base: 80
+    level-scale: 0
+    cost-base: 0
+    cost-scale: 0
+    cooldown-base: 0
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Initialize-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Passive-c:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                seconds-base: 0.05
+                seconds-scale: 0
+              children:
+                Water-d:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    state: 'In Water'
+                  children:
+                    Potion-e:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Water Breathing'
+                        ambient: 'True'
+                        tier-base: 1
+                        tier-scale: 0
+                        seconds-base: 0.9
+                        seconds-scale: 0
+                    Potion-f:
+                      type: 'condition'
+                      data:
+                        icon-key: ''
+                        type: 'Active'
+                        potion: 'Saturation'
+                        min-rank-base: 0
+                        min-rank-scale: 0
+                        max-rank-base: 0
+                        max-rank-scale: 0
+                      children:
+                        Potion-g:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Saturation'
+                            ambient: 'True'
+                            tier-base: 1
+                            tier-scale: 0
+                            seconds-base: 0.25
+                            seconds-scale: 0
+            Passive-h:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                seconds-base: 0.3
+                seconds-scale: 0
+              children:
+                Water-i:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    state: 'In Water'
+                  children:
+                    Ground-j:
+                      type: 'condition'
+                      data:
+                        icon-key: ''
+                        type: 'Not On Ground'
+                      children:
+                        Value-k:
+                          type: 'condition'
+                          data:
+                            icon-key: ''
+                            key: 'stamina'
+                            min-value-base: -999
+                            min-value-scale: 0
+                            max-value-base: 99
+                            max-value-scale: 0
+                          children:
+                            Value Add-l:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: 3
+                                amount-scale: 0

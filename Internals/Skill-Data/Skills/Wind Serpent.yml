@@ -1,0 +1,204 @@
+Wind Serpent:
+  name: 'Wind Serpent'
+  type: 'Damage'
+  max-level: 100
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Feather'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Casts a serpent of wind that'
+  - '&7the Caster can steer. Deals'
+  - '&7damage and knockback.'
+  - '&7This is really good against'
+  - '&7rushdown enemies.'
+  - ''
+  - '&bDamage: {attr:dmg1.value} x10 Skill Damage &f䛳'
+  - '&bRange: &61&f-&610 &fBlocks'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - ''
+  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 15
+    level-scale: 2
+    cost-base: 0
+    cost-scale: 0
+    cooldown-base: 10
+    cooldown-scale: 0
+    mana-base: 9
+    mana-scale: 1
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Repeat-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: 10
+            repetitions-scale: 0
+            period: 0.1
+            delay: 0
+            stop-on-fail: 'False'
+          children:
+            Value Add-c:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'rep'
+                amount-base: 1
+                amount-scale: 0
+            Location-d:
+              type: 'target'
+              data:
+                icon-key: ''
+                range-base: rep
+                range-scale: 0
+                ground: 'False'
+              children:
+                Particle-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Cloud'
+                    arrangement: 'Sphere'
+                    radius-base: 1.5
+                    radius-scale: 0
+                    particles-base: 10
+                    particles-scale: 0
+                    visible-radius: 100
+                    dx: 0
+                    dy: 0
+                    dz: 0
+                    speed: 0.01
+                    amount: 1
+                    forward: 0
+                    upward: 0
+                    right: 0
+                Area-f:
+                  type: 'target'
+                  data:
+                    icon-key: 'area'
+                    radius-base: 3
+                    radius-scale: 0
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: 999
+                    max-scale: 0
+                    random: 'False'
+                  children:
+                    Damage-g:
+                      type: 'mechanic'
+                      data:
+                        icon-key: 'dmg1'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: dmgWIS
+                        value-scale: 0.3
+                        true: 'False'
+                        classifier: 'wind'
+                    Repeat-h:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: 3
+                        repetitions-scale: 0
+                        period: 0.075
+                        delay: 0
+                        stop-on-fail: 'False'
+                      children:
+                        Launch-i:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: 0.7
+                            forward-scale: 0
+                            upward-base: 0.01
+                            upward-scale: 0
+                            right-base: 0
+                            right-scale: 0
+        Delay-j:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            delay-base: 1.1
+            delay-scale: 0
+          children:
+            Value Set-k:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'rep'
+                value-base: 0
+                value-scale: 0
+        Command-l:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            command: 'playsound spells.wind5 ambient @a[r=16] ~ ~ ~ 0.5 1.25'
+            type: 'OP'
+    Initialize-m:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-n:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.1
+            seconds-scale: 0
+          children:
+            Value Lore-o:
+              type: 'mechanic'
+              data:
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgWIS'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: 0.125
+                multiplier-scale: 0
+        Repeat-p:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: 2
+            repetitions-scale: 0
+            period: 0.1
+            delay: 0
+            stop-on-fail: 'False'
+          children:
+            Value Set-q:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'rep'
+                value-base: 0
+                value-scale: 0

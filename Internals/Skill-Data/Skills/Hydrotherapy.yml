@@ -1,0 +1,180 @@
+Hydrotherapy:
+  name: 'Hydrotherapy'
+  type: 'Healing/Support'
+  max-level: 100
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Melon Block'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Heals HP, Mana, and Stamina to'
+  - '&7the Caster and nearby allies. Grants'
+  - '&7HP and Mana Regen. Cleanses'
+  - '&7all negative potion effects.'
+  - '&7Extinguishes too. Reduces the'
+  - '&7cooldown if casted in the water.'
+  - ''
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bMana Healed: {attr:mana.value}'
+  - '&bHP Regen: {attr:po1.tier} for {attr:po1.seconds} Seconds'
+  - '&bMana Regen: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - '&bCooldown Reduction: &615&f%'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 1
+    level-scale: 2
+    cost-base: 0
+    cost-scale: 0
+    cooldown-base: 15
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Command-c:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.water1 ambient @a[r=16] ~ ~ ~ 0.5 1'
+                type: 'OP'
+            Area-d:
+              type: 'target'
+              data:
+                icon-key: 'area'
+                radius-base: 6
+                radius-scale: 0
+                group: 'Ally'
+                wall: 'True'
+                caster: 'True'
+                max-base: 999
+                max-scale: 0
+                random: 'False'
+              children:
+                Heal-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'heal'
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: 11
+                    value-scale: 1
+                Mana-f:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'mana'
+                    counts: 'True'
+                    type: 'Mana'
+                    value-base: 11
+                    value-scale: 1
+                Value Add-g:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: 15
+                    amount-scale: 0
+                Potion-h:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'po1'
+                    counts: 'True'
+                    potion: 'Regeneration'
+                    ambient: 'True'
+                    tier-base: 3
+                    tier-scale: 0
+                    seconds-base: 5
+                    seconds-scale: 0
+                Potion-i:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'po2'
+                    counts: 'True'
+                    potion: 'Saturation'
+                    ambient: 'True'
+                    tier-base: 1
+                    tier-scale: 0
+                    seconds-base: 5
+                    seconds-scale: 0
+                Cleanse-j:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'All'
+                    status: 'All'
+                Fire-k:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    type: 'On Fire'
+                  children:
+                    Command-l:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'ext'
+                        type: 'OP'
+                Particle-m:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Water'
+                    type: 0
+                    arrangement: 'Sphere'
+                    radius-base: 1
+                    radius-scale: 0
+                    particles-base: 10
+                    particles-scale: 0
+                    forward: 0
+                    upward: 1
+                    right: 0
+            Water-n:
+              type: 'condition'
+              data:
+                icon-key: ''
+                state: 'In Water'
+              children:
+                Delay-o:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: 0.01
+                    delay-scale: 0
+                  children:
+                    Cooldown-p:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        skill: 'Hydrotherapy'
+                        type: 'Percent'
+                        value-base: 15
+                        value-scale: 0

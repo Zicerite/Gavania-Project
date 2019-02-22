@@ -1,0 +1,197 @@
+Turtle Barrier:
+  name: 'Turtle Barrier'
+  type: 'Defense/Healing'
+  max-level: 100
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Shield'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Grants a flat and percent defense'
+  - '&7buff to the Caster and nearby allies.'
+  - '&7Also grants HP Regen.'
+  - ''
+  - '&bPercent Defense Buff: {attr:deff.value}%'
+  - '&bFlat Defense Buff: {attr:defflat.value}'
+  - '&bDuration: {attr:def.seconds} Seconds'
+  - '&bHP Regen: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 1
+    level-scale: 2
+    cost-base: 0
+    cost-scale: 0
+    cooldown-base: 40
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Area-c:
+              type: 'target'
+              data:
+                icon-key: 'area'
+                radius-base: 6
+                radius-scale: 0
+                group: 'Ally'
+                wall: 'True'
+                caster: 'True'
+                max-base: 999
+                max-scale: 0
+                random: 'False'
+              children:
+                Defense Buff-d:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'def'
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: 0.899
+                    value-scale: -0.01
+                    seconds-base: 10
+                    seconds-scale: 0
+                Defense Buff-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: 0.899
+                    value-scale: -0.01
+                    seconds-base: 10
+                    seconds-scale: 0
+                Repeat-f:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: 100
+                    repetitions-scale: 0
+                    period: 0.1
+                    delay: 0
+                    stop-on-fail: 'False'
+                  children:
+                    Particle-g:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Emerald Block'
+                        type: 0
+                        arrangement: 'Sphere'
+                        radius-base: 1
+                        radius-scale: 0
+                        particles-base: 1
+                        particles-scale: 0
+                        forward: -0.5
+                        upward: 1
+                        right: 0
+                    Particle-h:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Sea Lantern'
+                        type: 0
+                        arrangement: 'Sphere'
+                        radius-base: 1
+                        radius-scale: 0
+                        particles-base: 1
+                        particles-scale: 0
+                        forward: -0.5
+                        upward: 1
+                        right: 0
+                Command-i:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.magic1 ambient @a[r=16] ~ ~ ~ 0.4 1'
+                    type: 'OP'
+                Defense Buff-j:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Flat'
+                    skill: 'False'
+                    value-base: -10.4
+                    value-scale: -0.4
+                    seconds-base: 10
+                    seconds-scale: 0
+                Defense Buff-k:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Flat'
+                    skill: 'True'
+                    value-base: -10.4
+                    value-scale: -0.4
+                    seconds-base: 10
+                    seconds-scale: 0
+                Potion-l:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'po'
+                    counts: 'True'
+                    potion: 'Regeneration'
+                    ambient: 'True'
+                    tier-base: 1
+                    tier-scale: 0
+                    seconds-base: 10
+                    seconds-scale: 0
+    Initialize-m:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-n:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.02
+            seconds-scale: 0
+          children:
+            Value Set-o:
+              type: 'mechanic'
+              data:
+                icon-key: 'deff'
+                counts: 'True'
+                key: 'v'
+                value-base: 10.1
+                value-scale: 0.1
+            Value Set-p:
+              type: 'mechanic'
+              data:
+                icon-key: 'defflat'
+                counts: 'True'
+                key: 'c'
+                value-base: 10.4
+                value-scale: 0.4

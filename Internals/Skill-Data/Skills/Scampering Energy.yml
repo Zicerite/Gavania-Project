@@ -1,0 +1,159 @@
+Scampering Energy:
+  name: 'Scampering Energy'
+  type: 'Support'
+  max-level: 1
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Leather Boots'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Grants Speed, and Haste to the'
+  - '&7Caster and nearby allies. Cleanses'
+  - '&7Slowness and Fatigue.'
+  - ''
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bSpeed: {attr:po1.tier} for {attr:po1.seconds} Seconds'
+  - '&bHaste: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 30
+    level-scale: 0
+    cost-base: 0
+    cost-scale: 0
+    cooldown-base: 30
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Command-c:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.wind3 ambient @a[r=16] ~ ~ ~ 0.3 1.25'
+                type: 'OP'
+            Area-d:
+              type: 'target'
+              data:
+                icon-key: 'area'
+                radius-base: 6
+                radius-scale: 0
+                group: 'Ally'
+                wall: 'True'
+                caster: 'True'
+                max-base: 999
+                max-scale: 0
+                random: 'False'
+              children:
+                Potion-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'po1'
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'True'
+                    tier-base: 1
+                    tier-scale: 0
+                    seconds-base: 10
+                    seconds-scale: 0
+                Potion-f:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'po2'
+                    counts: 'True'
+                    potion: 'Fast Digging'
+                    ambient: 'True'
+                    tier-base: 1
+                    tier-scale: 0
+                    seconds-base: 10
+                    seconds-scale: 0
+                Repeat-g:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: 50
+                    repetitions-scale: 0
+                    period: 0.2
+                    delay: 0
+                    stop-on-fail: 'False'
+                  children:
+                    Particle-h:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Red Dust'
+                        arrangement: 'Circle'
+                        radius-base: 1.5
+                        radius-scale: 0
+                        particles-base: 3
+                        particles-scale: 0
+                        direction: 'XZ'
+                        visible-radius: 50
+                        dx: 0.7
+                        dy: 0.7
+                        dz: 0.7
+                        speed: 1
+                        amount: 0
+                        forward: 0
+                        upward: 0.1
+                        right: 0
+                Potion-i:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Slow'
+                    min-rank-base: 0
+                    min-rank-scale: 0
+                    max-rank-base: 999
+                    max-rank-scale: 0
+                  children:
+                    Cleanse-j:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Slow'
+                        status: ''
+                Potion-k:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Slow Digging'
+                    min-rank-base: 0
+                    min-rank-scale: 0
+                    max-rank-base: 999
+                    max-rank-scale: 0
+                  children:
+                    Cleanse-l:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Slow Digging'
+                        status: ''

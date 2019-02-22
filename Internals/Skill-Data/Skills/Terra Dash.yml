@@ -1,0 +1,330 @@
+Terra Dash:
+  name: 'Terra Dash'
+  type: 'Damage'
+  max-level: 100
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Fence'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Dash forward, dealing strong knockback'
+  - '&7to enemies, and causing hitstun. Caster'
+  - '&7is invincible while dashing. Uses half'
+  - '&7as much Stamina when in water.'
+  - ''
+  - '&bDamage: {attr:dmg.value} x5 Melee Damage &2䛷'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - ''
+  - '{req:level}Level: {attr:level} &aStamina: &670 &2Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 7
+    level-scale: 2
+    cost-base: 0
+    cost-scale: 0
+    cooldown-base: 1
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Water-c:
+              type: 'condition'
+              data:
+                icon-key: ''
+                state: 'Out Of Water'
+              children:
+                Value-d:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    key: 'stamina'
+                    min-value-base: 0
+                    min-value-scale: 0
+                    max-value-base: 999
+                    max-value-scale: 0
+                  children:
+                    Value Add-e:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'stamina'
+                        amount-base: -70
+                        amount-scale: 0
+                    Status-f:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Invincible'
+                        duration-base: 0.65
+                        duration-scale: 0
+                    Command-g:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:entity.blaze.shoot ambient @a[r=16] ~ ~ ~ 0.8 1.2'
+                        type: 'OP'
+                    Repeat-h:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: 5
+                        repetitions-scale: 0
+                        period: 0.1
+                        delay: 0
+                        stop-on-fail: 'False'
+                      children:
+                        Launch-i:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: 1
+                            forward-scale: 0
+                            upward-base: 0.1
+                            upward-scale: 0
+                            right-base: 0
+                            right-scale: 0
+                        Particle-j:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Block Crack'
+                            material: 'Dirt'
+                            type: 0
+                            arrangement: 'Sphere'
+                            radius-base: 4
+                            radius-scale: 0
+                            particles-base: 20
+                            particles-scale: 0
+                            forward: 0
+                            upward: 1
+                            right: 0
+                        Area-k:
+                          type: 'target'
+                          data:
+                            icon-key: 'area'
+                            radius-base: 4
+                            radius-scale: 0
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: 999
+                            max-scale: 0
+                            random: 'False'
+                          children:
+                            Damage-l:
+                              type: 'mechanic'
+                              data:
+                                icon-key: 'dmg'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: dmgTD
+                                value-scale: 0.3
+                                true: 'False'
+                                classifier: 'earth'
+                            Launch-m:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Caster'
+                                forward-base: 1.1
+                                forward-scale: 0
+                                upward-base: 0.1
+                                upward-scale: 0
+                                right-base: 0
+                                right-scale: 0
+                            Status-n:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                status: 'Disarm'
+                                duration-base: 0.4
+                                duration-scale: 0
+                            Status-o:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                status: 'Silence'
+                                duration-base: 0.4
+                                duration-scale: 0
+            Water-p:
+              type: 'condition'
+              data:
+                icon-key: ''
+                state: 'In Water'
+              children:
+                Value-q:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    key: 'stamina'
+                    min-value-base: 0
+                    min-value-scale: 0
+                    max-value-base: 999
+                    max-value-scale: 0
+                  children:
+                    Value Add-r:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'stamina'
+                        amount-base: -35
+                        amount-scale: 0
+                    Status-s:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Invincible'
+                        duration-base: 0.65
+                        duration-scale: 0
+                    Command-t:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:entity.blaze.shoot ambient @a[r=16] ~ ~ ~ 0.8 1.2'
+                        type: 'OP'
+                    Repeat-u:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: 5
+                        repetitions-scale: 0
+                        period: 0.1
+                        delay: 0
+                        stop-on-fail: 'False'
+                      children:
+                        Launch-v:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: 1
+                            forward-scale: 0
+                            upward-base: 0.1
+                            upward-scale: 0
+                            right-base: 0
+                            right-scale: 0
+                        Particle-w:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Block Crack'
+                            material: 'Dirt'
+                            type: 0
+                            arrangement: 'Sphere'
+                            radius-base: 4
+                            radius-scale: 0
+                            particles-base: 20
+                            particles-scale: 0
+                            forward: 0
+                            upward: 1
+                            right: 0
+                        Area-x:
+                          type: 'target'
+                          data:
+                            icon-key: ''
+                            radius-base: 4
+                            radius-scale: 0
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: 999
+                            max-scale: 0
+                            random: 'False'
+                          children:
+                            Damage-y:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: dmgTD
+                                value-scale: 0.3
+                                true: 'False'
+                                classifier: 'earth'
+                            Launch-z:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Caster'
+                                forward-base: 1.2
+                                forward-scale: 0
+                                upward-base: 0.1
+                                upward-scale: 0
+                                right-base: 0
+                                right-scale: 0
+                            Status-ab:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                status: 'Disarm'
+                                duration-base: 0.4
+                                duration-scale: 0
+                            Status-bb:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                status: 'Silence'
+                                duration-base: 0.4
+                                duration-scale: 0
+    Initialize-cb:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-db:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.1
+            seconds-scale: 0
+          children:
+            Value Lore-eb:
+              type: 'mechanic'
+              data:
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgTD'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: 0.2
+                multiplier-scale: 0

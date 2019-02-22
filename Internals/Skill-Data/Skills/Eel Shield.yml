@@ -1,0 +1,481 @@
+Eel Shield:
+  name: 'Eel Shield'
+  type: 'Defense/Damage'
+  max-level: 100
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Cactus'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Covers the Caster in eels, which'
+  - '&7cause a blast of electricity that deals'
+  - '&7damage to enemies when the Caster is'
+  - '&7touched, or when the Caster takes'
+  - '&7damage. Grants a defense buff, as'
+  - '&7well as a stun immunity.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &e䛸'
+  - '&bShock Radius: {attr:area.radius} Blocks'
+  - '&bTouch Radius: {attr:area2.radius} Blocks'
+  - '&bDefense Buff: {attr:Eelbuff.value}%'
+  - '&bDuration: {attr:delay.delay} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 25
+    level-scale: 2
+    cost-base: 0
+    cost-scale: 0
+    cooldown-base: 25
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Took Physical Damage-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: 0
+        dmg-max: 999999
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Value-c:
+              type: 'condition'
+              data:
+                icon-key: ''
+                key: 'SpikeShield'
+                min-value-base: 1
+                min-value-scale: 0
+                max-value-base: 1
+                max-value-scale: 0
+              children:
+                Command-d:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.thunder6 ambient @a[r=32] ~ ~ ~ 0.4 1.35'
+                    type: 'OP'
+                Particle-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: 3.5
+                    radius-scale: 0
+                    particles-base: 5
+                    particles-scale: 0
+                    visible-radius: 70
+                    dx: 0.8
+                    dy: 0.8
+                    dz: 0
+                    speed: 0
+                    amount: 1
+                    forward: 0
+                    upward: 1
+                    right: 0
+                Area-f:
+                  type: 'target'
+                  data:
+                    icon-key: 'area'
+                    radius-base: 3.5
+                    radius-scale: 0
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: 999
+                    max-scale: 0
+                    random: 'False'
+                  children:
+                    Damage-g:
+                      type: 'mechanic'
+                      data:
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: dmgEELSHIELD
+                        value-scale: 0.3
+                        true: 'False'
+                        classifier: 'thunder'
+    Took Skill Damage-h:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: 0
+        dmg-max: 999999
+        category:
+        - ''
+      children:
+        Self-i:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Value-j:
+              type: 'condition'
+              data:
+                icon-key: ''
+                key: 'SpikeShield'
+                min-value-base: 1
+                min-value-scale: 0
+                max-value-base: 1
+                max-value-scale: 0
+              children:
+                Command-k:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.thunder6 ambient @a[r=32] ~ ~ ~ 0.4 1.35'
+                    type: 'OP'
+                Particle-l:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: 3.5
+                    radius-scale: 0
+                    particles-base: 5
+                    particles-scale: 0
+                    visible-radius: 70
+                    dx: 0.8
+                    dy: 0.8
+                    dz: 0
+                    speed: 0
+                    amount: 1
+                    forward: 0
+                    upward: 1
+                    right: 0
+                Area-m:
+                  type: 'target'
+                  data:
+                    icon-key: ''
+                    radius-base: 3.5
+                    radius-scale: 0
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: 999
+                    max-scale: 0
+                    random: 'False'
+                  children:
+                    Damage-n:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: dmgEELSHIELD
+                        value-scale: 0.3
+                        true: 'False'
+                        classifier: 'thunder'
+    Cast-o:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-p:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Value Set-q:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'SpikeShield'
+                value-base: 1
+                value-scale: 0
+            Particle-r:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                particle: 'Firework Spark'
+                arrangement: 'Hemisphere'
+                radius-base: 1
+                radius-scale: 0
+                particles-base: 8
+                particles-scale: 0
+                forward: 0
+                upward: 1
+                right: 0
+            Command-s:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.electricarch4 ambient @a[r=32] ~ ~ ~ 1 1.2'
+                type: 'OP'
+            Command-t:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.thunder6 ambient @a[r=32] ~ ~ ~ 0.5 1.2'
+                type: 'OP'
+            Delay-u:
+              type: 'mechanic'
+              data:
+                icon-key: 'delay'
+                counts: 'True'
+                delay-base: 8
+                delay-scale: 0
+              children:
+                Value Set-v:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'SpikeShield'
+                    value-base: 0
+                    value-scale: 0
+            Defense Buff-w:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: 0.8475
+                value-scale: -0.0025
+                seconds-base: 8
+                seconds-scale: 0
+            Defense Buff-x:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: 0.8475
+                value-scale: -0.0025
+                seconds-base: 8
+                seconds-scale: 0
+    Initialize-y:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Value Set-z:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            key: 'SpikeShield'
+            value-base: 0
+            value-scale: 0
+        Passive-ab:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.12
+            seconds-scale: 0
+          children:
+            Value Lore-bb:
+              type: 'mechanic'
+              data:
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgEELSHIELD'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: 0.3
+                multiplier-scale: 0
+            Value Set-cb:
+              type: 'mechanic'
+              data:
+                icon-key: 'Eelbuff'
+                counts: 'True'
+                key: 'buffen'
+                value-base: 15.25
+                value-scale: 0.25
+        Passive-db:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.1
+            seconds-scale: 0
+          children:
+            Value-eb:
+              type: 'condition'
+              data:
+                icon-key: ''
+                key: 'SpikeShield'
+                min-value-base: 1
+                min-value-scale: 0
+                max-value-base: 1
+                max-value-scale: 0
+              children:
+                Particle-fb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Crit'
+                    arrangement: 'Circle'
+                    radius-base: 0.1
+                    radius-scale: 0
+                    particles-base: 15
+                    particles-scale: 0
+                    direction: 'XZ'
+                    visible-radius: 40
+                    dx: 1
+                    dy: 0
+                    dz: 0
+                    speed: 0
+                    amount: 1
+                    forward: 0
+                    upward: 1
+                    right: 0
+                Particle-gb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Circle'
+                    radius-base: 0.1
+                    radius-scale: 0
+                    particles-base: 15
+                    particles-scale: 0
+                    direction: 'XZ'
+                    visible-radius: 40
+                    dx: 0
+                    dy: 0
+                    dz: 1
+                    speed: 0
+                    amount: 1
+                    forward: 0
+                    upward: 1
+                    right: 0
+                Particle-hb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Circle'
+                    radius-base: 1
+                    radius-scale: 0
+                    particles-base: 4
+                    particles-scale: 0
+                    direction: 'XZ'
+                    visible-radius: 40
+                    dx: 0.8
+                    dy: 0.8
+                    dz: 0
+                    speed: 1
+                    amount: 0
+                    forward: 0
+                    upward: 1
+                    right: 0
+                Area-ib:
+                  type: 'target'
+                  data:
+                    icon-key: 'area2'
+                    radius-base: 1.25
+                    radius-scale: 0
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: 999
+                    max-scale: 0
+                    random: 'False'
+                  children:
+                    Damage-jb:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: dmgEELSHIELD
+                        value-scale: 0.3
+                        true: 'False'
+                        classifier: 'thunder'
+                Area-kb:
+                  type: 'target'
+                  data:
+                    icon-key: ''
+                    radius-base: 1.3
+                    radius-scale: 0
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: 1
+                    max-scale: 0
+                    random: 'False'
+                  children:
+                    Self-lb:
+                      type: 'target'
+                      data:
+                        icon-key: ''
+                      children:
+                        Command-mb:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            command: 'playsound spells.thunder6 ambient @a[r=32] ~ ~ ~ 0.4 1.35'
+                            type: 'OP'
+        Passive-nb:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.05
+            seconds-scale: 0
+          children:
+            Value-ob:
+              type: 'condition'
+              data:
+                icon-key: ''
+                key: 'SpikeShield'
+                min-value-base: 1
+                min-value-scale: 0
+                max-value-base: 999
+                max-value-scale: 0
+              children:
+                Status-pb:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    type: 'Active'
+                    status: 'Stun'
+                  children:
+                    Cleanse-qb:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        potion: ''
+                        status: 'Stun'
