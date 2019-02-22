@@ -13,15 +13,21 @@ Heavy Combo Sea-Turtle:
   icon-lore:
   - '&d{name} &7({level}/{max})'
   - ''
-  - '&bR: &fDeals Damage to enemies'
-  - '&fin front of the caster, while boosting'
-  - '&fforward. Forward launch is faster'
-  - '&fin water. Attack speed is faster'
-  - '&fwhen used in water.'
+  - '&bR: &fDoes something, depending on'
+  - '&fyour Right Click Rune.'
   - ''
-  - '&9Damage: {attr:dmgHC0.value} &r䛶'
-  - '&9Piercing Damage: {attr:dmgHCO_P.value} &r䛶'
-  - '&9Radius: {attr:area.radius} Blocks'
+  - '&3Damage (Mode 0):'
+  - '  &9Damage: {attr:dmgHC0.value} &r䛶'
+  - '  &9Piercing Damage: {attr:dmgHCO_P.value} &r䛶'
+  - '  &9Range: {attr:range0.range} Blocks'
+  - '&3Damage (Mode 1):'
+  - '  &9Damage: {attr:dmgHC1.value} x3 &r䛶'
+  - '  &9Piercing Damage: {attr:dmgHC1_P.value} &r䛶'
+  - '  &9Range: {attr:range1.range} Blocks'
+  - '&3Damage (Mode 2):'
+  - '  &9Damage: {attr:dmgHC2.value} &r䛶'
+  - '  &9Piercing Damage: {attr:dmgHC2_P.value} &r䛶'
+  - '  &9Range: {attr:range2.range} Blocks'
   attributes:
     level-base: 1
     level-scale: 2
@@ -52,262 +58,882 @@ Heavy Combo Sea-Turtle:
             max-rank-base: 999
             max-rank-scale: 0
           children:
-            Value-c:
+            Skill Level-c:
               type: 'condition'
               data:
                 icon-key: ''
-                key: 'AbleToHit'
-                min-value-base: 1
-                min-value-scale: 0
-                max-value-base: 999
-                max-value-scale: 0
+                skill: 'Rune_Sea-Turtle_Right'
+                min-level: 0
+                max-level: 0
               children:
-                Self-d:
-                  type: 'target'
+                Value-d:
+                  type: 'condition'
                   data:
                     icon-key: ''
+                    key: 'b'
+                    min-value-base: 1
+                    min-value-scale: 0
+                    max-value-base: 999
+                    max-value-scale: 0
                   children:
-                    Linear-e:
+                    Self-e:
                       type: 'target'
                       data:
-                        icon-key: 'range0'
-                        range-base: 5.5
-                        range-scale: 0
-                        tolerance-base: 20
-                        tolerance-scale: 0
-                        group: 'Enemy'
-                        wall: 'True'
-                        caster: 'False'
-                        max-base: 999
-                        max-scale: 0
+                        icon-key: ''
                       children:
-                        Damage-f:
-                          type: 'mechanic'
+                        Linear-f:
+                          type: 'target'
                           data:
-                            icon-key: 'dmgHC0'
-                            counts: 'True'
-                            type: 'Damage'
-                            value-base: dmgHCST_0
-                            value-scale: 0.3
-                            true: 'False'
-                            classifier: 'neutral'
-                        Damage-g:
-                          type: 'mechanic'
-                          data:
-                            icon-key: 'dmgHCO_P'
-                            counts: 'True'
-                            type: 'Damage'
-                            value-base: dmgHCST_0_P
-                            value-scale: 0
-                            true: 'True'
-                            classifier: 'neutral'
-                        Particle-h:
+                            icon-key: 'range0'
+                            range-base: 5.5
+                            range-scale: 0
+                            tolerance-base: 20
+                            tolerance-scale: 0
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: 999
+                            max-scale: 0
+                          children:
+                            Damage-g:
+                              type: 'mechanic'
+                              data:
+                                icon-key: 'dmgHC0'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: dmgHCST_0
+                                value-scale: 0.3
+                                true: 'False'
+                                classifier: 'neutral'
+                            Damage-h:
+                              type: 'mechanic'
+                              data:
+                                icon-key: 'dmgHCO_P'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: dmgHCST_0_P
+                                value-scale: 0
+                                true: 'True'
+                                classifier: 'neutral'
+                            Particle-i:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Sphere'
+                                radius-base: 1
+                                radius-scale: 0
+                                particles-base: 10
+                                particles-scale: 0
+                                visible-radius: 40
+                                dx: 0
+                                dy: 0
+                                dz: 0
+                                speed: 1
+                                amount: 1
+                                forward: 0
+                                upward: 1
+                                right: 0
+                            Self-j:
+                              type: 'target'
+                              data:
+                                icon-key: ''
+                              children:
+                                Value Add-k:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'tech'
+                                    amount-base: 1
+                                    amount-scale: 0
+                            Delay-l:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: 0.05
+                                delay-scale: 0
+                              children:
+                                Push-m:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Fixed'
+                                    speed-base: 0.8
+                                    speed-scale: 0
+                                    source: 'none'
+                        Command-n:
                           type: 'mechanic'
                           data:
                             icon-key: ''
                             counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Sphere'
-                            radius-base: 1
-                            radius-scale: 0
-                            particles-base: 10
-                            particles-scale: 0
-                            visible-radius: 40
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 1
-                            amount: 1
-                            forward: 0
-                            upward: 1
-                            right: 0
-                        Self-i:
+                            command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.25 1.15'
+                            type: 'OP'
+                        Location-o:
                           type: 'target'
                           data:
                             icon-key: ''
+                            range-base: 5
+                            range-scale: 0
+                            ground: 'False'
                           children:
-                            Value Add-j:
+                            Particle-p:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                key: 'tech'
-                                amount-base: 1
-                                amount-scale: 0
-                        Delay-k:
-                          type: 'mechanic'
+                                particle: 'Crit'
+                                arrangement: 'Circle'
+                                radius-base: 4
+                                radius-scale: 0
+                                particles-base: 15
+                                particles-scale: 0
+                                direction: 'XZ'
+                                visible-radius: 40
+                                dx: 0
+                                dy: 0
+                                dz: 0
+                                speed: 0.1
+                                amount: 1
+                                forward: 0
+                                upward: 0
+                                right: 0
+                        Water-q:
+                          type: 'condition'
                           data:
                             icon-key: ''
-                            counts: 'True'
-                            delay-base: 0.05
-                            delay-scale: 0
+                            state: 'In Water'
                           children:
-                            Push-l:
+                            Delay-r:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                type: 'Fixed'
-                                speed-base: 0.8
-                                speed-scale: 0
-                                source: 'none'
-                    Command-m:
+                                delay-base: 0.33
+                                delay-scale: 0
+                              children:
+                                Value Set-s:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'b'
+                                    value-base: 1
+                                    value-scale: 0
+                        Water-t:
+                          type: 'condition'
+                          data:
+                            icon-key: ''
+                            state: 'Out Of Water'
+                          children:
+                            Delay-u:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: 0.5
+                                delay-scale: 0
+                              children:
+                                Value Set-v:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'b'
+                                    value-base: 1
+                                    value-scale: 0
+                    Value Set-w:
                       type: 'mechanic'
                       data:
                         icon-key: ''
                         counts: 'True'
-                        command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.25 1.15'
-                        type: 'OP'
-                    Location-n:
+                        key: 'b'
+                        value-base: 0
+                        value-scale: 0
+                    Self-x:
                       type: 'target'
                       data:
                         icon-key: ''
-                        range-base: 5
-                        range-scale: 0
-                        ground: 'False'
                       children:
-                        Particle-o:
-                          type: 'mechanic'
+                        Water-y:
+                          type: 'condition'
                           data:
                             icon-key: ''
-                            counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Circle'
-                            radius-base: 4
-                            radius-scale: 0
-                            particles-base: 15
-                            particles-scale: 0
-                            direction: 'XZ'
-                            visible-radius: 40
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 0.1
-                            amount: 1
-                            forward: 0
-                            upward: 0
-                            right: 0
-                    Water-p:
-                      type: 'condition'
-                      data:
-                        icon-key: ''
-                        state: 'In Water'
-                      children:
-                        Delay-q:
-                          type: 'mechanic'
-                          data:
-                            icon-key: ''
-                            counts: 'True'
-                            delay-base: 0.33
-                            delay-scale: 0
+                            state: 'In Water'
                           children:
-                            Value Set-r:
+                            Repeat-z:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                key: 'AbleToHit'
-                                value-base: 1
-                                value-scale: 0
-                    Water-s:
-                      type: 'condition'
-                      data:
-                        icon-key: ''
-                        state: 'Out Of Water'
-                      children:
-                        Delay-t:
-                          type: 'mechanic'
+                                repetitions-base: 2
+                                repetitions-scale: 0
+                                period: 0.05
+                                delay: 0
+                                stop-on-fail: 'False'
+                              children:
+                                Launch-ab:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: 1
+                                    forward-scale: 0
+                                    upward-base: 0.2
+                                    upward-scale: 0
+                                    right-base: 0
+                                    right-scale: 0
+                        Water-bb:
+                          type: 'condition'
                           data:
                             icon-key: ''
-                            counts: 'True'
-                            delay-base: 0.5
-                            delay-scale: 0
+                            state: 'Out Of Water'
                           children:
-                            Value Set-u:
+                            Repeat-cb:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                key: 'AbleToHit'
-                                value-base: 1
-                                value-scale: 0
-                Value Set-v:
-                  type: 'mechanic'
+                                repetitions-base: 2
+                                repetitions-scale: 0
+                                period: 0.05
+                                delay: 0
+                                stop-on-fail: 'False'
+                              children:
+                                Launch-db:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: 0.5
+                                    forward-scale: 0
+                                    upward-base: 0.1
+                                    upward-scale: 0
+                                    right-base: 0
+                                    right-scale: 0
+            Skill Level-eb:
+              type: 'condition'
+              data:
+                icon-key: ''
+                skill: 'Rune_Sea-Turtle_Right'
+                min-level: 1
+                max-level: 1
+              children:
+                Value-fb:
+                  type: 'condition'
                   data:
                     icon-key: ''
-                    counts: 'True'
-                    key: 'AbleToHit'
-                    value-base: 0
-                    value-scale: 0
-                Self-w:
-                  type: 'target'
-                  data:
-                    icon-key: ''
+                    key: 'b'
+                    min-value-base: 1
+                    min-value-scale: 0
+                    max-value-base: 999
+                    max-value-scale: 0
                   children:
-                    Water-x:
-                      type: 'condition'
+                    Self-gb:
+                      type: 'target'
                       data:
                         icon-key: ''
-                        state: 'In Water'
                       children:
-                        Repeat-y:
+                        Repeat-hb:
                           type: 'mechanic'
                           data:
                             icon-key: ''
                             counts: 'True'
-                            repetitions-base: 2
+                            repetitions-base: 3
                             repetitions-scale: 0
-                            period: 0.05
+                            period: 0.15
                             delay: 0
                             stop-on-fail: 'False'
                           children:
-                            Launch-z:
+                            Linear-ib:
+                              type: 'target'
+                              data:
+                                icon-key: 'range1'
+                                range-base: 5.5
+                                range-scale: 0
+                                tolerance-base: 20
+                                tolerance-scale: 0
+                                group: 'Enemy'
+                                wall: 'True'
+                                caster: 'False'
+                                max-base: 999
+                                max-scale: 0
+                              children:
+                                Damage-jb:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: 'dmgHC1'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: dmgHCST_1
+                                    value-scale: 0.3
+                                    true: 'False'
+                                    classifier: 'neutral'
+                                Damage-kb:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: 'dmgHC1_P'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: dmgHCST_1_P
+                                    value-scale: 0
+                                    true: 'True'
+                                    classifier: 'neutral'
+                                Particle-lb:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Crit'
+                                    arrangement: 'Sphere'
+                                    radius-base: 1
+                                    radius-scale: 0
+                                    particles-base: 10
+                                    particles-scale: 0
+                                    visible-radius: 40
+                                    dx: 0
+                                    dy: 0
+                                    dz: 0
+                                    speed: 1
+                                    amount: 1
+                                    forward: 0
+                                    upward: 1
+                                    right: 0
+                                Self-mb:
+                                  type: 'target'
+                                  data:
+                                    icon-key: ''
+                                  children:
+                                    Value Add-nb:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'tech'
+                                        amount-base: 1
+                                        amount-scale: 0
+                                Delay-ob:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    delay-base: 0.05
+                                    delay-scale: 0
+                                  children:
+                                    Push-pb:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        type: 'Fixed'
+                                        speed-base: 0.5
+                                        speed-scale: 0
+                                        source: 'none'
+                            Location-qb:
+                              type: 'target'
+                              data:
+                                icon-key: ''
+                                range-base: 5
+                                range-scale: 0
+                                ground: 'False'
+                              children:
+                                Particle-rb:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Crit'
+                                    arrangement: 'Circle'
+                                    radius-base: 4
+                                    radius-scale: 0
+                                    particles-base: 12
+                                    particles-scale: 0
+                                    direction: 'XZ'
+                                    visible-radius: 40
+                                    dx: 0
+                                    dy: 0
+                                    dz: 0
+                                    speed: 0.1
+                                    amount: 1
+                                    forward: 0
+                                    upward: 0
+                                    right: 0
+                            Command-sb:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                relative: 'Target'
-                                forward-base: 1
-                                forward-scale: 0
-                                upward-base: 0.2
-                                upward-scale: 0
-                                right-base: 0
-                                right-scale: 0
-                    Water-ab:
+                                command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.25 1.15'
+                                type: 'OP'
+                            Self-tb:
+                              type: 'target'
+                              data:
+                                icon-key: ''
+                              children:
+                                Water-ub:
+                                  type: 'condition'
+                                  data:
+                                    icon-key: ''
+                                    state: 'In Water'
+                                  children:
+                                    Repeat-vb:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        repetitions-base: 2
+                                        repetitions-scale: 0
+                                        period: 0.05
+                                        delay: 0
+                                        stop-on-fail: 'False'
+                                      children:
+                                        Launch-wb:
+                                          type: 'mechanic'
+                                          data:
+                                            icon-key: ''
+                                            counts: 'True'
+                                            relative: 'Target'
+                                            forward-base: 1
+                                            forward-scale: 0
+                                            upward-base: 0.2
+                                            upward-scale: 0
+                                            right-base: 0
+                                            right-scale: 0
+                                Water-xb:
+                                  type: 'condition'
+                                  data:
+                                    icon-key: ''
+                                    state: 'Out Of Water'
+                                  children:
+                                    Repeat-yb:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        repetitions-base: 2
+                                        repetitions-scale: 0
+                                        period: 0.05
+                                        delay: 0
+                                        stop-on-fail: 'False'
+                                      children:
+                                        Launch-zb:
+                                          type: 'mechanic'
+                                          data:
+                                            icon-key: ''
+                                            counts: 'True'
+                                            relative: 'Target'
+                                            forward-base: 0.5
+                                            forward-scale: 0
+                                            upward-base: 0.1
+                                            upward-scale: 0
+                                            right-base: 0
+                                            right-scale: 0
+                        Water-ac:
+                          type: 'condition'
+                          data:
+                            icon-key: ''
+                            state: 'In Water'
+                          children:
+                            Delay-bc:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: 0.55
+                                delay-scale: 0
+                              children:
+                                Value Set-cc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'b'
+                                    value-base: 1
+                                    value-scale: 0
+                        Water-dc:
+                          type: 'condition'
+                          data:
+                            icon-key: ''
+                            state: 'Out Of Water'
+                          children:
+                            Delay-ec:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: 1
+                                delay-scale: 0
+                              children:
+                                Value Set-fc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'b'
+                                    value-base: 1
+                                    value-scale: 0
+                    Value Set-gc:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'b'
+                        value-base: 0
+                        value-scale: 0
+            Skill Level-hc:
+              type: 'condition'
+              data:
+                icon-key: ''
+                skill: 'Rune_Sea-Turtle_Right'
+                min-level: 2
+                max-level: 2
+              children:
+                Value-ic:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    key: 'b'
+                    min-value-base: 1
+                    min-value-scale: 0
+                    max-value-base: 999
+                    max-value-scale: 0
+                  children:
+                    Value-jc:
                       type: 'condition'
                       data:
                         icon-key: ''
-                        state: 'Out Of Water'
+                        key: 'soar'
+                        min-value-base: 0
+                        min-value-scale: 0
+                        max-value-base: 0
+                        max-value-scale: 0
                       children:
-                        Repeat-bb:
+                        Self-kc:
+                          type: 'target'
+                          data:
+                            icon-key: ''
+                          children:
+                            Linear-lc:
+                              type: 'target'
+                              data:
+                                icon-key: 'range2'
+                                range-base: 5.5
+                                range-scale: 0
+                                tolerance-base: 20
+                                tolerance-scale: 0
+                                group: 'Enemy'
+                                wall: 'True'
+                                caster: 'False'
+                                max-base: 999
+                                max-scale: 0
+                              children:
+                                Damage-mc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: 'dmgHC2'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: dmgHCST_2
+                                    value-scale: 0.3
+                                    true: 'False'
+                                    classifier: 'neutral'
+                                Damage-nc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: 'dmgHC2_P'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: dmgHCST_2_P
+                                    value-scale: 0
+                                    true: 'True'
+                                    classifier: 'neutral'
+                                Particle-oc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Crit'
+                                    arrangement: 'Sphere'
+                                    radius-base: 1
+                                    radius-scale: 0
+                                    particles-base: 10
+                                    particles-scale: 0
+                                    visible-radius: 40
+                                    dx: 0
+                                    dy: 0
+                                    dz: 0
+                                    speed: 1
+                                    amount: 1
+                                    forward: 0
+                                    upward: 1
+                                    right: 0
+                                Self-pc:
+                                  type: 'target'
+                                  data:
+                                    icon-key: ''
+                                  children:
+                                    Value Add-qc:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'tech'
+                                        amount-base: 1
+                                        amount-scale: 0
+                                Repeat-rc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    repetitions-base: 3
+                                    repetitions-scale: 0
+                                    period: 0.1
+                                    delay: 0
+                                    stop-on-fail: 'False'
+                                  children:
+                                    Launch-sc:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        relative: 'Caster'
+                                        forward-base: 0.1
+                                        forward-scale: 0
+                                        upward-base: 1
+                                        upward-scale: 0
+                                        right-base: 0
+                                        right-scale: 0
+                                Status-tc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    status: 'Disarm'
+                                    duration-base: 1
+                                    duration-scale: 0
+                                Status-uc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    status: 'Silence'
+                                    duration-base: 1
+                                    duration-scale: 0
+                            Command-vc:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                command: 'playsound spells.wind1 ambient @a[r=16] ~ ~ ~ 0.25 1.2'
+                                type: 'OP'
+                            Location-wc:
+                              type: 'target'
+                              data:
+                                icon-key: ''
+                                range-base: 5
+                                range-scale: 0
+                                ground: 'False'
+                              children:
+                                Particle-xc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Crit'
+                                    arrangement: 'Circle'
+                                    radius-base: 4
+                                    radius-scale: 0
+                                    particles-base: 15
+                                    particles-scale: 0
+                                    direction: 'XZ'
+                                    visible-radius: 40
+                                    dx: 0
+                                    dy: 0
+                                    dz: 0
+                                    speed: 0.1
+                                    amount: 1
+                                    forward: 0
+                                    upward: 0
+                                    right: 0
+                            Water-yc:
+                              type: 'condition'
+                              data:
+                                icon-key: ''
+                                state: 'In Water'
+                              children:
+                                Delay-zc:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    delay-base: 0.75
+                                    delay-scale: 0
+                                  children:
+                                    Value Set-ad:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'b'
+                                        value-base: 1
+                                        value-scale: 0
+                            Water-bd:
+                              type: 'condition'
+                              data:
+                                icon-key: ''
+                                state: 'Out Of Water'
+                              children:
+                                Delay-cd:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    delay-base: 1.5
+                                    delay-scale: 0
+                                  children:
+                                    Value Set-dd:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'b'
+                                        value-base: 1
+                                        value-scale: 0
+                            Repeat-ed:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: 3
+                                repetitions-scale: 0
+                                period: 0.1
+                                delay: 0
+                                stop-on-fail: 'False'
+                              children:
+                                Launch-fd:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Caster'
+                                    forward-base: 0.1
+                                    forward-scale: 0
+                                    upward-base: 1
+                                    upward-scale: 0
+                                    right-base: 0
+                                    right-scale: 0
+                        Self-gd:
+                          type: 'target'
+                          data:
+                            icon-key: ''
+                          children:
+                            Water-hd:
+                              type: 'condition'
+                              data:
+                                icon-key: ''
+                                state: 'In Water'
+                              children:
+                                Repeat-id:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    repetitions-base: 2
+                                    repetitions-scale: 0
+                                    period: 0.05
+                                    delay: 0
+                                    stop-on-fail: 'False'
+                                  children:
+                                    Launch-jd:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        relative: 'Target'
+                                        forward-base: 0.1
+                                        forward-scale: 0
+                                        upward-base: 1.2
+                                        upward-scale: 0
+                                        right-base: 0
+                                        right-scale: 0
+                            Water-kd:
+                              type: 'condition'
+                              data:
+                                icon-key: ''
+                                state: 'Out Of Water'
+                              children:
+                                Repeat-ld:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    repetitions-base: 2
+                                    repetitions-scale: 0
+                                    period: 0.05
+                                    delay: 0
+                                    stop-on-fail: 'False'
+                                  children:
+                                    Launch-md:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        relative: 'Target'
+                                        forward-base: 0.1
+                                        forward-scale: 0
+                                        upward-base: 1
+                                        upward-scale: 0
+                                        right-base: 0
+                                        right-scale: 0
+                        Value Set-nd:
                           type: 'mechanic'
                           data:
                             icon-key: ''
                             counts: 'True'
-                            repetitions-base: 2
-                            repetitions-scale: 0
-                            period: 0.05
-                            delay: 0
-                            stop-on-fail: 'False'
+                            key: 'b'
+                            value-base: 0
+                            value-scale: 0
+                        Value Set-od:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'soar'
+                            value-base: 1
+                            value-scale: 0
+                        Delay-pd:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: 0.01
+                            delay-scale: 0
                           children:
-                            Launch-cb:
-                              type: 'mechanic'
+                            Water-qd:
+                              type: 'condition'
                               data:
                                 icon-key: ''
-                                counts: 'True'
-                                relative: 'Target'
-                                forward-base: 0.5
-                                forward-scale: 0
-                                upward-base: 0.1
-                                upward-scale: 0
-                                right-base: 0
-                                right-scale: 0
-    Initialize-db:
+                                state: 'In Water'
+                              children:
+                                Value Set-rd:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'soar'
+                                    value-base: 0
+                                    value-scale: 0
+    Initialize-sd:
       type: 'trigger'
       data:
         icon-key: ''
       children:
-        Passive-eb:
+        Passive-td:
           type: 'mechanic'
           data:
             icon-key: ''
@@ -315,7 +941,7 @@ Heavy Combo Sea-Turtle:
             seconds-base: 0.1
             seconds-scale: 0
           children:
-            Value Lore-fb:
+            Value Lore-ud:
               type: 'mechanic'
               data:
                 icon-key: 'meleedmg'
@@ -325,7 +951,7 @@ Heavy Combo Sea-Turtle:
                 regex: 'Melee Damage - {value}'
                 multiplier-base: 0.33
                 multiplier-scale: 0
-            Value Lore-gb:
+            Value Lore-vd:
               type: 'mechanic'
               data:
                 icon-key: 'meleedmg'
@@ -335,11 +961,75 @@ Heavy Combo Sea-Turtle:
                 regex: 'Melee Damage - {value}'
                 multiplier-base: 0.1
                 multiplier-scale: 0
-        Value Set-hb:
+            Value Lore-wd:
+              type: 'mechanic'
+              data:
+                icon-key: 'meleedmg'
+                counts: 'True'
+                key: 'dmgHCST_1'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: 0.08
+                multiplier-scale: 0
+            Value Lore-xd:
+              type: 'mechanic'
+              data:
+                icon-key: 'meleedmg'
+                counts: 'True'
+                key: 'dmgHCST_1_P'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: 0.05
+                multiplier-scale: 0
+            Value Lore-yd:
+              type: 'mechanic'
+              data:
+                icon-key: 'meleedmg'
+                counts: 'True'
+                key: 'dmgHCST_2'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: 0.15
+                multiplier-scale: 0
+            Value Lore-zd:
+              type: 'mechanic'
+              data:
+                icon-key: 'meleedmg'
+                counts: 'True'
+                key: 'dmgHCST_2_P'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: 0.05
+                multiplier-scale: 0
+        Value Set-ae:
           type: 'mechanic'
           data:
             icon-key: ''
             counts: 'True'
-            key: 'AbleToHit'
+            key: 'b'
             value-base: 1
+            value-scale: 0
+        Value Set-be:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            key: 'soar'
+            value-base: 0
+            value-scale: 0
+    Land-ce:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: 0
+      children:
+        Value Set-de:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            key: 'soar'
+            value-base: 0
             value-scale: 0

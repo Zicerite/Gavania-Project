@@ -20,6 +20,14 @@ Light Combo Sea-Turtle:
   - '  &9Damage: {attr:dmgLC0.value} &9䛇'
   - '  &9Piercing Damage: {attr:dmgLC0_P.value} &9䛇'
   - '  &9Range: {attr:range0.range} Blocks'
+  - '&3Damage (Mode 1)'
+  - '  &9Damage: {attr:dmgLC1.value} &9䛇'
+  - '  &9Piercing Damage: {attr:dmgLC1_P.value} &9䛇'
+  - '  &9Range: {attr:range1.range} Blocks'
+  - '&3Damage (Mode 2)'
+  - '  &9Damage: {attr:dmgLC2.value} &9䛇'
+  - '  &9Piercing Damage: {attr:dmgLC2_P.value} &9䛇'
+  - '  &9Range: {attr:range2.range} Blocks'
   attributes:
     level-base: 1
     level-scale: 2
@@ -69,18 +77,11 @@ Light Combo Sea-Turtle:
                   type: 'condition'
                   data:
                     icon-key: ''
-                    skill: 'Rune_Swordsman_Left'
+                    skill: 'Rune_Sea-Turtle_Left'
                     min-level: 0
                     max-level: 0
-                Skill Level-f:
-                  type: 'condition'
-                  data:
-                    icon-key: ''
-                    skill: 'Rune_Swordsman_Left'
-                    min-level: 1
-                    max-level: 1
                   children:
-                    Value-g:
+                    Value-f:
                       type: 'condition'
                       data:
                         icon-key: ''
@@ -90,15 +91,15 @@ Light Combo Sea-Turtle:
                         max-value-base: 999
                         max-value-scale: 0
                       children:
-                        Self-h:
+                        Self-g:
                           type: 'target'
                           data:
                             icon-key: ''
                           children:
-                            Linear-i:
+                            Linear-h:
                               type: 'target'
                               data:
-                                icon-key: 'range1'
+                                icon-key: 'range0'
                                 range-base: 5
                                 range-scale: 0
                                 tolerance-base: 25
@@ -109,15 +110,25 @@ Light Combo Sea-Turtle:
                                 max-base: 999
                                 max-scale: 0
                               children:
+                                Damage-i:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: 'dmgLC0'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: dmgLCST_0
+                                    value-scale: 0.3
+                                    true: 'False'
+                                    classifier: 'physical'
                                 Damage-j:
                                   type: 'mechanic'
                                   data:
-                                    icon-key: 'dmg1'
+                                    icon-key: 'dmgLC0_P'
                                     counts: 'True'
                                     type: 'Damage'
-                                    value-base: strL1
+                                    value-base: dmgLCST_0_P
                                     value-scale: 0
-                                    true: 'False'
+                                    true: 'True'
                                     classifier: 'physical'
                                 Particle-k:
                                   type: 'mechanic'
@@ -128,7 +139,7 @@ Light Combo Sea-Turtle:
                                     arrangement: 'Sphere'
                                     radius-base: 1
                                     radius-scale: 0
-                                    particles-base: 10
+                                    particles-base: 7
                                     particles-scale: 0
                                     visible-radius: 40
                                     dx: 0
@@ -139,27 +150,12 @@ Light Combo Sea-Turtle:
                                     forward: 0
                                     upward: 1
                                     right: 0
-                                Push-l:
-                                  type: 'mechanic'
-                                  data:
-                                    icon-key: ''
-                                    counts: 'True'
-                                    type: 'Fixed'
-                                    speed-base: 0.5
-                                    speed-scale: 0
-                                    source: 'none'
-                                Remember Targets-m:
-                                  type: 'mechanic'
-                                  data:
-                                    icon-key: ''
-                                    counts: 'True'
-                                    key: 'uppercutted'
-                                Self-n:
+                                Self-l:
                                   type: 'target'
                                   data:
                                     icon-key: ''
                                   children:
-                                    Value Add-o:
+                                    Value Add-m:
                                       type: 'mechanic'
                                       data:
                                         icon-key: ''
@@ -167,124 +163,22 @@ Light Combo Sea-Turtle:
                                         key: 'tech'
                                         amount-base: 1
                                         amount-scale: 0
-                                    Ground-p:
-                                      type: 'condition'
-                                      data:
-                                        icon-key: ''
-                                        type: 'Not On Ground'
-                                      children:
-                                        Value-q:
-                                          type: 'condition'
-                                          data:
-                                            icon-key: ''
-                                            key: 'uppercut'
-                                            min-value-base: 2
-                                            min-value-scale: 0
-                                            max-value-base: 999
-                                            max-value-scale: 0
-                                          children:
-                                            Remember-r:
-                                              type: 'target'
-                                              data:
-                                                icon-key: ''
-                                                key: 'uppercutted'
-                                              children:
-                                                Launch-s:
-                                                  type: 'mechanic'
-                                                  data:
-                                                    icon-key: ''
-                                                    counts: 'True'
-                                                    relative: 'Target'
-                                                    forward-base: 0
-                                                    forward-scale: 0
-                                                    upward-base: 0.22
-                                                    upward-scale: 0
-                                                    right-base: 0
-                                                    right-scale: 0
-                                            Launch-t:
-                                              type: 'mechanic'
-                                              data:
-                                                icon-key: ''
-                                                counts: 'True'
-                                                relative: 'Target'
-                                                forward-base: 0
-                                                forward-scale: 0
-                                                upward-base: 0.2
-                                                upward-scale: 0
-                                                right-base: 0
-                                                right-scale: 0
-                                            Value Add-u:
-                                              type: 'mechanic'
-                                              data:
-                                                icon-key: ''
-                                                counts: 'True'
-                                                key: 'uppercut'
-                                                amount-base: 1
-                                                amount-scale: 0
-                                        Value-v:
-                                          type: 'condition'
-                                          data:
-                                            icon-key: ''
-                                            key: 'uppercut'
-                                            min-value-base: 0
-                                            min-value-scale: 0
-                                            max-value-base: 1
-                                            max-value-scale: 0
-                                          children:
-                                            Remember-w:
-                                              type: 'target'
-                                              data:
-                                                icon-key: ''
-                                                key: 'uppercutted'
-                                              children:
-                                                Launch-x:
-                                                  type: 'mechanic'
-                                                  data:
-                                                    icon-key: ''
-                                                    counts: 'True'
-                                                    relative: 'Target'
-                                                    forward-base: 0
-                                                    forward-scale: 0
-                                                    upward-base: 0.665
-                                                    upward-scale: 0
-                                                    right-base: 0
-                                                    right-scale: 0
-                                            Launch-y:
-                                              type: 'mechanic'
-                                              data:
-                                                icon-key: ''
-                                                counts: 'True'
-                                                relative: 'Target'
-                                                forward-base: 0
-                                                forward-scale: 0
-                                                upward-base: 0.65
-                                                upward-scale: 0
-                                                right-base: 0
-                                                right-scale: 0
-                                            Value Add-z:
-                                              type: 'mechanic'
-                                              data:
-                                                icon-key: ''
-                                                counts: 'True'
-                                                key: 'uppercut'
-                                                amount-base: 1
-                                                amount-scale: 0
-                            Command-ab:
+                            Command-n:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.35 0.85'
+                                command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.5 0.9'
                                 type: 'OP'
-                            Delay-bb:
+                            Delay-o:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                delay-base: 0.4
+                                delay-base: 0.333
                                 delay-scale: 0
                               children:
-                                Value Set-cb:
+                                Value Set-p:
                                   type: 'mechanic'
                                   data:
                                     icon-key: ''
@@ -292,7 +186,7 @@ Light Combo Sea-Turtle:
                                     key: 'a'
                                     value-base: 1
                                     value-scale: 0
-                        Value Set-db:
+                        Value Set-q:
                           type: 'mechanic'
                           data:
                             icon-key: ''
@@ -300,15 +194,15 @@ Light Combo Sea-Turtle:
                             key: 'a'
                             value-base: 0
                             value-scale: 0
-                Skill Level-eb:
+                Skill Level-r:
                   type: 'condition'
                   data:
                     icon-key: ''
-                    skill: 'Rune_Swordsman_Left'
-                    min-level: 2
-                    max-level: 2
+                    skill: 'Rune_Sea-Turtle_Left'
+                    min-level: 1
+                    max-level: 1
                   children:
-                    Value-fb:
+                    Value-s:
                       type: 'condition'
                       data:
                         icon-key: ''
@@ -318,35 +212,46 @@ Light Combo Sea-Turtle:
                         max-value-base: 999
                         max-value-scale: 0
                       children:
-                        Self-gb:
+                        Self-t:
                           type: 'target'
                           data:
                             icon-key: ''
                           children:
-                            Area-hb:
+                            Linear-u:
                               type: 'target'
                               data:
-                                icon-key: 'area2'
-                                radius-base: 5
-                                radius-scale: 0
+                                icon-key: ''
+                                range-base: 5
+                                range-scale: 0
+                                tolerance-base: 25
+                                tolerance-scale: 0
                                 group: 'Enemy'
                                 wall: 'True'
                                 caster: 'False'
                                 max-base: 999
                                 max-scale: 0
-                                random: 'False'
                               children:
-                                Damage-ib:
+                                Damage-v:
                                   type: 'mechanic'
                                   data:
-                                    icon-key: 'dmg2'
+                                    icon-key: 'dmgLC1'
                                     counts: 'True'
                                     type: 'Damage'
-                                    value-base: strL2
-                                    value-scale: 0
+                                    value-base: dmgLCST_1
+                                    value-scale: 0.3
                                     true: 'False'
                                     classifier: 'physical'
-                                Particle-jb:
+                                Damage-w:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: 'dmgLC1_P'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: dmgLCST_1_P
+                                    value-scale: 0
+                                    true: 'True'
+                                    classifier: 'physical'
+                                Particle-x:
                                   type: 'mechanic'
                                   data:
                                     icon-key: ''
@@ -355,7 +260,7 @@ Light Combo Sea-Turtle:
                                     arrangement: 'Sphere'
                                     radius-base: 1
                                     radius-scale: 0
-                                    particles-base: 6
+                                    particles-base: 7
                                     particles-scale: 0
                                     visible-radius: 40
                                     dx: 0
@@ -366,12 +271,12 @@ Light Combo Sea-Turtle:
                                     forward: 0
                                     upward: 1
                                     right: 0
-                                Self-kb:
+                                Self-y:
                                   type: 'target'
                                   data:
                                     icon-key: ''
                                   children:
-                                    Value Add-lb:
+                                    Value Add-z:
                                       type: 'mechanic'
                                       data:
                                         icon-key: ''
@@ -379,22 +284,39 @@ Light Combo Sea-Turtle:
                                         key: 'tech'
                                         amount-base: 1
                                         amount-scale: 0
-                            Command-mb:
+                                Delay-ab:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    delay-base: 0.01
+                                    delay-scale: 0
+                                  children:
+                                    Push-bb:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        type: 'Fixed'
+                                        speed-base: 0.8
+                                        speed-scale: 0
+                                        source: 'none'
+                            Command-cb:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.35 1.1'
+                                command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.5 0.75'
                                 type: 'OP'
-                            Delay-nb:
+                            Delay-db:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                delay-base: 0.35
+                                delay-base: 0.45
                                 delay-scale: 0
                               children:
-                                Value Set-ob:
+                                Value Set-eb:
                                   type: 'mechanic'
                                   data:
                                     icon-key: ''
@@ -402,45 +324,127 @@ Light Combo Sea-Turtle:
                                     key: 'a'
                                     value-base: 1
                                     value-scale: 0
-                            Ground-pb:
-                              type: 'condition'
+                        Value Set-fb:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'a'
+                            value-base: 0
+                            value-scale: 0
+                Skill Level-gb:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    skill: 'Rune_Sea-Turtle_Left'
+                    min-level: 2
+                    max-level: 2
+                  children:
+                    Value-hb:
+                      type: 'condition'
+                      data:
+                        icon-key: ''
+                        key: 'a'
+                        min-value-base: 1
+                        min-value-scale: 0
+                        max-value-base: 999
+                        max-value-scale: 0
+                      children:
+                        Self-ib:
+                          type: 'target'
+                          data:
+                            icon-key: ''
+                          children:
+                            Linear-jb:
+                              type: 'target'
                               data:
                                 icon-key: ''
-                                type: 'Not On Ground'
+                                range-base: 5
+                                range-scale: 0
+                                tolerance-base: 25
+                                tolerance-scale: 0
+                                group: 'Enemy'
+                                wall: 'True'
+                                caster: 'False'
+                                max-base: 999
+                                max-scale: 0
                               children:
-                                Launch-qb:
+                                Damage-kb:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: 'dmgLC2_P'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: dmgLCST_2
+                                    value-scale: 0.3
+                                    true: 'False'
+                                    classifier: 'physical'
+                                Damage-lb:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: 'dmgLC2_P'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: dmgLCST_2_P
+                                    value-scale: 0
+                                    true: 'True'
+                                    classifier: 'physical'
+                                Particle-mb:
                                   type: 'mechanic'
                                   data:
                                     icon-key: ''
                                     counts: 'True'
-                                    relative: 'Target'
-                                    forward-base: 0.5
-                                    forward-scale: 0
-                                    upward-base: 0.1
-                                    upward-scale: 0
-                                    right-base: 0
-                                    right-scale: 0
-                            Particle-rb:
+                                    particle: 'Crit'
+                                    arrangement: 'Sphere'
+                                    radius-base: 1
+                                    radius-scale: 0
+                                    particles-base: 7
+                                    particles-scale: 0
+                                    visible-radius: 40
+                                    dx: 0
+                                    dy: 0
+                                    dz: 0
+                                    speed: 1
+                                    amount: 1
+                                    forward: 0
+                                    upward: 1
+                                    right: 0
+                                Self-nb:
+                                  type: 'target'
+                                  data:
+                                    icon-key: ''
+                                  children:
+                                    Value Add-ob:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'tech'
+                                        amount-base: 1
+                                        amount-scale: 0
+                            Command-pb:
                               type: 'mechanic'
                               data:
                                 icon-key: ''
                                 counts: 'True'
-                                particle: 'Crit'
-                                arrangement: 'Circle'
-                                radius-base: 5
-                                radius-scale: 0
-                                particles-base: 20
-                                particles-scale: 0
-                                direction: 'XZ'
-                                visible-radius: 40
-                                dx: 0
-                                dy: 0
-                                dz: 0
-                                speed: 0.01
-                                amount: 1
-                                forward: 0
-                                upward: 1
-                                right: 0
+                                command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.5 1.05'
+                                type: 'OP'
+                            Delay-qb:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: 0.666
+                                delay-scale: 0
+                              children:
+                                Value Set-rb:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'a'
+                                    value-base: 1
+                                    value-scale: 0
                         Value Set-sb:
                           type: 'mechanic'
                           data:
@@ -449,125 +453,12 @@ Light Combo Sea-Turtle:
                             key: 'a'
                             value-base: 0
                             value-scale: 0
-            Value-tb:
-              type: 'condition'
-              data:
-                icon-key: ''
-                key: 'a'
-                min-value-base: 1
-                min-value-scale: 0
-                max-value-base: 999
-                max-value-scale: 0
-              children:
-                Self-ub:
-                  type: 'target'
-                  data:
-                    icon-key: ''
-                  children:
-                    Linear-vb:
-                      type: 'target'
-                      data:
-                        icon-key: 'range0'
-                        range-base: 5
-                        range-scale: 0
-                        tolerance-base: 25
-                        tolerance-scale: 0
-                        group: 'Enemy'
-                        wall: 'True'
-                        caster: 'False'
-                        max-base: 999
-                        max-scale: 0
-                      children:
-                        Damage-wb:
-                          type: 'mechanic'
-                          data:
-                            icon-key: 'dmgLC0'
-                            counts: 'True'
-                            type: 'Damage'
-                            value-base: dmgLCST_0
-                            value-scale: 0.3
-                            true: 'False'
-                            classifier: 'physical'
-                        Damage-xb:
-                          type: 'mechanic'
-                          data:
-                            icon-key: 'dmgLC0_P'
-                            counts: 'True'
-                            type: 'Damage'
-                            value-base: dmgLCST_0_P
-                            value-scale: 0
-                            true: 'True'
-                            classifier: 'physical'
-                        Particle-yb:
-                          type: 'mechanic'
-                          data:
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Crit'
-                            arrangement: 'Sphere'
-                            radius-base: 1
-                            radius-scale: 0
-                            particles-base: 7
-                            particles-scale: 0
-                            visible-radius: 40
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 1
-                            amount: 1
-                            forward: 0
-                            upward: 1
-                            right: 0
-                        Self-zb:
-                          type: 'target'
-                          data:
-                            icon-key: ''
-                          children:
-                            Value Add-ac:
-                              type: 'mechanic'
-                              data:
-                                icon-key: ''
-                                counts: 'True'
-                                key: 'tech'
-                                amount-base: 1
-                                amount-scale: 0
-                    Command-bc:
-                      type: 'mechanic'
-                      data:
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.5 0.9'
-                        type: 'OP'
-                    Delay-cc:
-                      type: 'mechanic'
-                      data:
-                        icon-key: ''
-                        counts: 'True'
-                        delay-base: 0.333
-                        delay-scale: 0
-                      children:
-                        Value Set-dc:
-                          type: 'mechanic'
-                          data:
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'a'
-                            value-base: 1
-                            value-scale: 0
-                Value Set-ec:
-                  type: 'mechanic'
-                  data:
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'a'
-                    value-base: 0
-                    value-scale: 0
-    Initialize-fc:
+    Initialize-tb:
       type: 'trigger'
       data:
         icon-key: ''
       children:
-        Passive-gc:
+        Passive-ub:
           type: 'mechanic'
           data:
             icon-key: ''
@@ -575,12 +466,12 @@ Light Combo Sea-Turtle:
             seconds-base: 0.1
             seconds-scale: 0
           children:
-            Self-hc:
+            Self-vb:
               type: 'target'
               data:
                 icon-key: ''
               children:
-                Value Lore-ic:
+                Value Lore-wb:
                   type: 'mechanic'
                   data:
                     icon-key: 'meleedmg'
@@ -590,7 +481,7 @@ Light Combo Sea-Turtle:
                     regex: 'Melee Damage - {value}'
                     multiplier-base: 0.25
                     multiplier-scale: 0
-                Value Lore-jc:
+                Value Lore-xb:
                   type: 'mechanic'
                   data:
                     icon-key: 'meleedmg'
@@ -600,7 +491,47 @@ Light Combo Sea-Turtle:
                     regex: 'Melee Damage - {value}'
                     multiplier-base: 0.05
                     multiplier-scale: 0
-        Value Set-kc:
+                Value Lore-yb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'meleedmg'
+                    counts: 'True'
+                    key: 'dmgLCST_1'
+                    hand: 'Main'
+                    regex: 'Melee Damage - {value}'
+                    multiplier-base: 0.3
+                    multiplier-scale: 0
+                Value Lore-zb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'meleedmg'
+                    counts: 'True'
+                    key: 'dmgLCST_1_P'
+                    hand: 'Main'
+                    regex: 'Melee Damage - {value}'
+                    multiplier-base: 0.08
+                    multiplier-scale: 0
+                Value Lore-ac:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'meleedmg'
+                    counts: 'True'
+                    key: 'dmgLCST_2'
+                    hand: 'Main'
+                    regex: 'Melee Damage - {value}'
+                    multiplier-base: 0.1
+                    multiplier-scale: 0
+                Value Lore-bc:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'meleedmg'
+                    counts: 'True'
+                    key: 'dmgLCST_2_P'
+                    hand: 'Main'
+                    regex: 'Melee Damage - {value}'
+                    multiplier-base: 0.125
+                    multiplier-scale: 0
+        Value Set-cc:
           type: 'mechanic'
           data:
             icon-key: ''
@@ -608,7 +539,7 @@ Light Combo Sea-Turtle:
             key: 'a'
             value-base: 1
             value-scale: 0
-        Value Set-lc:
+        Value Set-dc:
           type: 'mechanic'
           data:
             icon-key: ''
