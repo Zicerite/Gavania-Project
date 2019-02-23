@@ -25,11 +25,14 @@ Graceful Water:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7WaterDMG is increased by 15%'
-  - '&7and WaterDEF is increased by 33%'
+  - '&7WaterDMG is increased by &615&f%'
   - '&7when the Caster is in water.'
-  - '&7Also increases Aquatia by {attr:aq.amount} &7when'
-  - '&7the Caster is in water.'
+  - ''
+  - '&7WaterDEF is increased by &633&f%'
+  - '&7when the Caster is in water.'
+  - ''
+  - '&7Increases healing dealt by &67.5&f%'
+  - '&7when the Caster is in water.'
   desc:  []
   components: 
     Initialize: 
@@ -45,6 +48,9 @@ Graceful Water:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Passive-c: 
               type: 'mechanic'
@@ -52,7 +58,7 @@ Graceful Water:
               data: 
                 icon-key: ''
                 counts: 'True'
-                seconds-base: '0.01'
+                seconds-base: '0.02'
                 seconds-scale: '0'
                 indicator: '2D'
               children: 
@@ -68,19 +74,6 @@ Graceful Water:
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
-                        icon-key: 'aq'
-                        counts: 'True'
-                        key: 'Aquatia'
-                        amount-base: '10'
-                        amount-scale: '2'
-                        seconds-base: '0.2'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Attribute-f: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
                         icon-key: ''
                         counts: 'True'
                         key: 'WaterDMG'
@@ -88,9 +81,10 @@ Graceful Water:
                         amount-scale: '0'
                         seconds-base: '0.2'
                         seconds-scale: '0'
+                        stackable: 'False'
                         indicator: '2D'
                       children:  {}
-                    Attribute-g: 
+                    Attribute-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -101,5 +95,106 @@ Graceful Water:
                         amount-scale: '0'
                         seconds-base: '0.2'
                         seconds-scale: '0'
+                        stackable: 'False'
                         indicator: '2D'
                       children:  {}
+                    Skill Level-g: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Rune_Mage_GracefulWater'
+                        min-level: '2'
+                        max-level: '2'
+                        indicator: '2D'
+                      children: 
+                        Potion-h: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Saturation'
+                            ambient: 'True'
+                            tier-base: '1'
+                            tier-scale: '0'
+                            seconds-base: '0.5'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Buff-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        immediate: 'False'
+                        type: 'HEALING'
+                        modifier: 'Multiplier'
+                        value-base: '1.075'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Skill Level-j: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Rune_Mage_GracefulWater'
+                    min-level: '1'
+                    max-level: '1'
+                    indicator: '2D'
+                  children: 
+                    Buff-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        immediate: 'False'
+                        type: 'HEALING'
+                        modifier: 'Multiplier'
+                        value-base: '1.05'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Skill Level-l: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    skill: 'Rune_Mage_GracefulWater'
+                    min-level: '3'
+                    max-level: '3'
+                    indicator: '2D'
+                  children: 
+                    Health-m: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Percent'
+                        min-value-base: '0'
+                        min-value-scale: '0'
+                        max-value-base: '20'
+                        max-value-scale: '2'
+                        indicator: '2D'
+                      children: 
+                        Attribute-n: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'WaterDMG'
+                            amount-base: '20'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
+                            stackable: 'False'
+                            indicator: '2D'
+                          children:  {}

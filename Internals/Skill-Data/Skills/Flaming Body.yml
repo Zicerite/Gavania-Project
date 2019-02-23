@@ -1,0 +1,204 @@
+Flaming Body: 
+  name: 'Flaming Body'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GOLD_CHESTPLATE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Effects from Fire Tick damage'
+  - '&7are cut in half, and has a fixed'
+  - '&640&f% &7chance each time Fire Tick'
+  - '&7damage is taken for it to be'
+  - '&7extinguished after.'
+  - ''
+  - '&610&f% &7of the damage taken from'
+  - '&7Fire Damage heals into &bMana&7.'
+  - ''
+  - '&7Increases FireDEF by &610&f%'
+  - ''
+  desc:  []
+  components: 
+    Took Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '99999999'
+        category: 
+        - 'fire'
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value Set-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'X_api-taken'
+                value-base: 'api-taken'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'X_api-taken'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Mana-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Mana'
+                value-base: 'X_api-taken'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Environment Damage-f: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Fire Tick'
+        indicator: '2D'
+      children: 
+        Value Random-g: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'firetick'
+            type: 'Normal'
+            min-base: '1'
+            min-scale: '0'
+            max-base: '10'
+            max-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value-h: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'firetick'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '4'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Fire-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'On Fire'
+                indicator: '2D'
+              children: 
+                Command-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'ext'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.5'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Attribute-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'FireDEF'
+                amount-base: '10'
+                amount-scale: '0'
+                seconds-base: '1.2'
+                seconds-scale: '0'
+                stackable: 'False'
+                indicator: '2D'
+              children:  {}
+        Value Set-n: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'manahealed'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value Set-o: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'firetick'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

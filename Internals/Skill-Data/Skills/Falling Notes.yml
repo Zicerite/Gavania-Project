@@ -1,0 +1,440 @@
+Falling Notes: 
+  name: 'Falling Notes'
+  type: 'Damage/Support'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '18'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '5'
+    cooldown-scale: '0'
+    mana-base: '11'
+    mana-scale: '1'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_PLATE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Jump up, and crash back down to'
+  - '&7the ground to deal damage on landing.'
+  - '&7Stuns enemies.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Skill Damage &2䛷'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bStun: {attr:stun.duration} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Land-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: '0'
+        indicator: '2D'
+      children: 
+        Value-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'ELSMT'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Delay-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Area-d: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area'
+                    radius-base: '7'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 'dmgFN'
+                        value-scale: '0.3'
+                        true: 'False'
+                        classifier: 'earth'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Angry Villager'
+                        arrangement: 'Circle'
+                        radius-base: '0.5'
+                        radius-scale: '0'
+                        particles-base: '3'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '40'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1.5'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'End Rod'
+                        arrangement: 'Circle'
+                        radius-base: '0.15'
+                        radius-scale: '0'
+                        particles-base: '15'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '40'
+                        dx: '0'
+                        dy: '1'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Status-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'stun'
+                        counts: 'True'
+                        status: 'Stun'
+                        duration-base: '1.5'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '15'
+                        repetitions-scale: '0'
+                        period: '0.1'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Particle-j: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Angry Villager'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1.6'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                Self-k: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Particle-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Emerald Block'
+                        type: '0'
+                        arrangement: 'Circle'
+                        radius-base: '7'
+                        radius-scale: '0'
+                        particles-base: '140'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        forward: '0'
+                        upward: '0.05'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound spells.thunder1 ambient @a[r=16] ~ ~ ~ 0.2 1.1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Explosion-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        power-base: '0'
+                        power-scale: '0'
+                        damage: 'False'
+                        fire: 'False'
+                        indicator: '2D'
+                      children:  {}
+            Value Set-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'ELSMT'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'note'
+                value-base: '2'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-r: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Launch-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                relative: 'Caster'
+                forward-base: '1.25'
+                forward-scale: '0'
+                upward-base: '1.15'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'ELSMT'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Repeat-v: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: '3'
+            repetitions-scale: '0'
+            period: '0.1'
+            delay: '0'
+            stop-on-fail: 'False'
+            indicator: '2D'
+          children: 
+            Value Set-w: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'ELSMT'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-x: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'note'
+                value-base: '2'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Passive-y: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.2'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-z: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ELSMT'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Particle-ab: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Emerald Block'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '6'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value-bb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'note'
+                    min-value-base: '0.5'
+                    min-value-scale: '0'
+                    max-value-base: '2'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Command-cb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:block.note.harp ambient @a[r=24] ~ ~ ~ 0.5 {note}'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Value Add-db: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'note'
+                        amount-base: '-0.1'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Value Lore-eb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgFN'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

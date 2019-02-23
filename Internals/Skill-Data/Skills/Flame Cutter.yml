@@ -1,0 +1,309 @@
+Flame Cutter: 
+  name: 'Flame Cutter'
+  type: 'Damage'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '6'
+    cooldown-scale: '0'
+    mana-base: '11'
+    mana-scale: '1'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'BLAZE_POWDER'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Shoots out 1 large projectile, then 3'
+  - '&7smaller projectiles that deal damage,'
+  - '&7and ignite enemies.'
+  - ''
+  - '&bDamage (Large): {attr:dmg1.value} Skill Damage &4䛵'
+  - '&bDamage (Small): {attr:dmg2.value} x3 Skill Damage &4䛵'
+  - '&bIgnition Duration: {attr:fire.seconds} Seconds'
+  - ''
+  - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Particle Projectile-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: '1'
+                amount-scale: '0'
+                velocity-base: '2'
+                velocity-scale: '0'
+                angle-base: '30'
+                angle-scale: '0'
+                position: '0'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '1.5'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                gravity: '0'
+                pierce: 'False'
+                particle: 'Flame'
+                arrangement: 'Circle'
+                radius-base: '3'
+                radius-scale: '0'
+                particles-base: '30'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '60'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0'
+                amount: '1'
+                frequency: '0.05'
+                lifespan: '2'
+                use-effect: 'False'
+                indicator: '2D'
+              children: 
+                Area-d: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '2'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg1'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 'dmgFC_1'
+                        value-scale: '0.3'
+                        true: 'False'
+                        classifier: 'fire'
+                        indicator: '2D'
+                      children:  {}
+                    Fire-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'fire'
+                        counts: 'True'
+                        seconds-base: '3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Command-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.fire1 ambient @a[r=16] ~ ~ ~ 0.6 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Delay-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.4'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Repeat-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '1'
+                    repetitions-scale: '0'
+                    period: '0.3'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle Projectile-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        group: 'Enemy'
+                        spread: 'Cone'
+                        amount-base: '3'
+                        amount-scale: '0'
+                        velocity-base: '2'
+                        velocity-scale: '0'
+                        angle-base: '24'
+                        angle-scale: '0'
+                        position: '0'
+                        forward-base: '0'
+                        forward-scale: '0'
+                        upward-base: '1.5'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        gravity: '0'
+                        pierce: 'False'
+                        particle: 'Flame'
+                        arrangement: 'Sphere'
+                        radius-base: '0.75'
+                        radius-scale: '0'
+                        particles-base: '8'
+                        particles-scale: '0'
+                        visible-radius: '60'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        frequency: '0.05'
+                        lifespan: '2'
+                        use-effect: 'False'
+                        indicator: '2D'
+                      children: 
+                        Area-k: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            radius-base: '2'
+                            radius-scale: '0'
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: '999'
+                            max-scale: '0'
+                            random: 'False'
+                            indicator: '2D'
+                          children: 
+                            Damage-l: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'dmg2'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: 'dmgFC_2'
+                                value-scale: '0.3'
+                                true: 'False'
+                                classifier: 'fire'
+                                indicator: '2D'
+                              children:  {}
+                            Fire-m: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                seconds-base: '3'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Command-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound spells.fire1 ambient @a[r=16] ~ ~ ~ 0.4 1.2'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-p: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.12'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Charging'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgFC_1'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.35'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgFC_2'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.25'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

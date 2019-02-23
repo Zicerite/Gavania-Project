@@ -2,7 +2,6 @@ Forcefield:
   name: 'Forcefield'
   type: 'Defense'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -10,7 +9,7 @@ Forcefield:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '36'
+    cooldown-base: '30'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -38,34 +37,6 @@ Forcefield:
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.1'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Set-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'ddd'
-                counts: 'True'
-                key: 'defbuffBuff'
-                value-base: '5.75'
-                value-scale: '0.75'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -73,14 +44,17 @@ Forcefield:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-e: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Repeat-f: 
+            Repeat-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -93,7 +67,7 @@ Forcefield:
                 stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Particle-g: 
+                Particle-d: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -112,7 +86,7 @@ Forcefield:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Command-h: 
+            Command-e: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -122,7 +96,7 @@ Forcefield:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Defense Buff-i: 
+            Defense Buff-f: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -130,13 +104,13 @@ Forcefield:
                 counts: 'True'
                 type: 'Flat'
                 skill: 'False'
-                value-base: '-5.75'
-                value-scale: '-0.75'
-                seconds-base: '12'
+                value-base: '-5.5'
+                value-scale: '-0.5'
+                seconds-base: '10'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Defense Buff-j: 
+            Defense Buff-g: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -144,13 +118,13 @@ Forcefield:
                 counts: 'True'
                 type: 'Flat'
                 skill: 'True'
-                value-base: '-5.75'
-                value-scale: '-0.75'
-                seconds-base: '12'
+                value-base: '-5.5'
+                value-scale: '-0.5'
+                seconds-base: '10'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Skill Level-k: 
+            Skill Level-h: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -160,7 +134,7 @@ Forcefield:
                 max-level: '1'
                 indicator: '2D'
               children: 
-                Status-l: 
+                Status-i: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -171,7 +145,7 @@ Forcefield:
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-        Skill Level-m: 
+        Skill Level-j: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -181,7 +155,7 @@ Forcefield:
             max-level: '2'
             indicator: '2D'
           children: 
-            Heal-n: 
+            Heal-k: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -192,7 +166,7 @@ Forcefield:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Mana-o: 
+            Mana-l: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -201,5 +175,33 @@ Forcefield:
                 type: 'Percent'
                 value-base: '8'
                 value-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-n: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'ddd'
+                counts: 'True'
+                key: 'defbuffBuff'
+                value-base: '5.5'
+                value-scale: '0.5'
                 indicator: '2D'
               children:  {}

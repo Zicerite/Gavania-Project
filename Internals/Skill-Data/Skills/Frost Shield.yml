@@ -2,6 +2,7 @@ Frost Shield:
   name: 'Frost Shield'
   type: 'Defense/Support'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -36,142 +37,7 @@ Frost Shield:
   - '{req:level}Level: {attr:level} &eTech: &630 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Cast: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Self-b: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Value-c: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'tech'
-                min-value-base: '30'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Value Add-d: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    key: 'tech'
-                    amount-base: '-30'
-                    amount-scale: '0'
-                    indicator: '2D'
-                  children:  {}
-                Self-e: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    indicator: '2D'
-                  children: 
-                    Value Set-f: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'FrostArmor'
-                        value-base: '1'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Defense Buff-g: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Flat'
-                        skill: 'False'
-                        value-base: '-5.25'
-                        value-scale: '-0.25'
-                        seconds-base: '10'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Defense Buff-h: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        type: 'Flat'
-                        skill: 'True'
-                        value-base: '-5.25'
-                        value-scale: '-0.25'
-                        seconds-base: '10'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Command-i: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        command: 'playsound spells.ice2 ambient @a[r=16] ~ ~ ~ 0.5 1.2'
-                        type: 'OP'
-                        indicator: '2D'
-                      children:  {}
-                    Delay-j: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: 'delay'
-                        counts: 'True'
-                        delay-base: '7'
-                        delay-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Value Set-k: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'FrostArmor'
-                            value-base: '0'
-                            value-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                    Skill Level-l: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        skill: 'Xync-Mage'
-                        min-level: '2'
-                        max-level: '2'
-                        indicator: '2D'
-                      children: 
-                        Status-m: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            status: 'Invincible'
-                            duration-base: '1.5'
-                            duration-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-    Took Physical Damage: 
+    Took Physical Damage-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -184,7 +50,7 @@ Frost Shield:
         dmg-max: '999999'
         indicator: '2D'
       children: 
-        Remember Targets-u: 
+        Remember Targets-b: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -193,14 +59,17 @@ Frost Shield:
             key: 'targetFrost'
             indicator: '2D'
           children:  {}
-        Self-v: 
+        Self-c: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value-w: 
+            Value-d: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -212,15 +81,18 @@ Frost Shield:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Remember-x: 
+                Remember-e: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     key: 'targetFrost'
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Potion-y: 
+                    Potion-f: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -234,7 +106,7 @@ Frost Shield:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Particle-z: 
+                    Particle-g: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -253,35 +125,42 @@ Frost Shield:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-    Initialize: 
+    Took Skill Damage-h: 
       type: 'trigger'
       indicator: '3D'
       data: 
         icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ' '
+        - '{'
+        - '}'
         indicator: '2D'
       children: 
-        Passive-o: 
+        Remember Targets-i: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.1'
-            seconds-scale: '0'
+            key: 'targetFrost'
             indicator: '2D'
+          children:  {}
+        Self-j: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Value Set-p: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'defbuff'
-                counts: 'True'
-                key: 'value'
-                value-base: '10.25'
-                value-scale: '0.25'
-                indicator: '2D'
-              children:  {}
-            Value-q: 
+            Value-k: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -293,7 +172,318 @@ Frost Shield:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Particle-r: 
+                Remember-l: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'targetFrost'
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Potion-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Slow'
+                        ambient: 'True'
+                        tier-base: '3'
+                        tier-scale: '0'
+                        seconds-base: '3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Packed Ice'
+                        type: '0'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '10'
+                        particles-scale: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-p: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value-q: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'tech'
+                min-value-base: '30'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '-30'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Self-s: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Set-t: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'FrostArmor'
+                        value-base: '1'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-u: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Flat'
+                        skill: 'False'
+                        value-base: '-5.25'
+                        value-scale: '-0.25'
+                        seconds-base: '10'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-v: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Flat'
+                        skill: 'True'
+                        value-base: '-5.25'
+                        value-scale: '-0.25'
+                        seconds-base: '10'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-w: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound spells.ice2 ambient @a[r=16] ~ ~ ~ 0.5 1.2'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Delay-x: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'delay'
+                        counts: 'True'
+                        delay-base: '7'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value Set-y: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'FrostArmor'
+                            value-base: '0'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Skill Level-z: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Rune_Mage_FrostShield'
+                        min-level: '2'
+                        max-level: '2'
+                        indicator: '2D'
+                      children: 
+                        Delay-ab: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.01'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Add-bb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'tech'
+                                amount-base: '20'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Skill Level-cb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Rune_Mage_FrostShield'
+                        min-level: '2'
+                        max-level: '2'
+                        indicator: '2D'
+                      children: 
+                        Defense Buff-db: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Multiplier'
+                            skill: 'False'
+                            value-base: '0.8'
+                            value-scale: '0'
+                            seconds-base: '7'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Defense Buff-eb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Multiplier'
+                            skill: 'True'
+                            value-base: '0.8'
+                            value-scale: '0'
+                            seconds-base: '7'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Skill Level-fb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Rune_Mage_FrostShield'
+                        min-level: '3'
+                        max-level: '3'
+                        indicator: '2D'
+                      children: 
+                        Attribute-gb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'WaterDMG'
+                            amount-base: '30'
+                            amount-scale: '0'
+                            seconds-base: '7'
+                            seconds-scale: '0'
+                            stackable: 'False'
+                            indicator: '2D'
+                          children:  {}
+                        Attribute-hb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'WaterDEF'
+                            amount-base: '30'
+                            amount-scale: '0'
+                            seconds-base: '7'
+                            seconds-scale: '0'
+                            stackable: 'False'
+                            indicator: '2D'
+                          children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-jb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-kb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'defbuff'
+                counts: 'True'
+                key: 'value'
+                value-base: '10.25'
+                value-scale: '0.25'
+                indicator: '2D'
+              children:  {}
+            Value-lb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'FrostArmor'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Particle-mb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -312,7 +502,7 @@ Frost Shield:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-        Value Set-s: 
+        Value Set-nb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -323,85 +513,3 @@ Frost Shield:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-    Took Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'False'
-        dmg-min: '0'
-        dmg-max: '999999'
-        category: ' {}'
-        indicator: '2D'
-      children: 
-        Remember Targets-bb: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            key: 'targetFrost'
-            indicator: '2D'
-          children:  {}
-        Self-cb: 
-          type: 'target'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            indicator: '2D'
-          children: 
-            Value-db: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'FrostArmor'
-                min-value-base: '1'
-                min-value-scale: '0'
-                max-value-base: '999'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Remember-eb: 
-                  type: 'target'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'targetFrost'
-                    indicator: '2D'
-                  children: 
-                    Potion-fb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        potion: 'Slow'
-                        ambient: 'True'
-                        tier-base: '3'
-                        tier-scale: '0'
-                        seconds-base: '3'
-                        seconds-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Particle-gb: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        particle: 'Block Crack'
-                        material: 'Packed Ice'
-                        type: '0'
-                        arrangement: 'Sphere'
-                        radius-base: '1'
-                        radius-scale: '0'
-                        particles-base: '10'
-                        particles-scale: '0'
-                        forward: '0'
-                        upward: '1'
-                        right: '0'
-                        indicator: '2D'
-                      children:  {}

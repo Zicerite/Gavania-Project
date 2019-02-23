@@ -9,7 +9,7 @@ Grim Reaper Form:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '127'
+    cooldown-base: '100'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -25,15 +25,14 @@ Grim Reaper Form:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Enables the Caster to deal double'
-  - '&7damage, become invincible, and'
+  - '&7Enables the Caster to deal 50%'
+  - '&7more damage, become invincible, and'
   - '&7gain Speed and Haste for a short time.'
   - ''
   - '&bSpeed: {attr:po1.tier}'
   - '&bHaste: {attr:po2.tier}'
   - '&bDuration: {attr:po1.seconds} Seconds'
   - ''
-  - '&eTech: &6100'
   - '&cHealth: {attr:healthcost.value}% &fof Current HP'
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
@@ -45,17 +44,15 @@ Grim Reaper Form:
         icon-key: ''
         indicator: '2D'
       children: 
-        Value-b: 
-          type: 'condition'
+        Self-b: 
+          type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
-            key: 'tech'
-            min-value-base: '100'
-            min-value-scale: '0'
-            max-value-base: '999'
-            max-value-scale: '0'
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Damage-c: 
               type: 'mechanic'
@@ -64,7 +61,7 @@ Grim Reaper Form:
                 icon-key: 'healthcost'
                 counts: 'True'
                 type: 'Percent Left'
-                value-base: '75'
+                value-base: '80'
                 value-scale: '0'
                 true: 'True'
                 classifier: 'default'
@@ -86,6 +83,9 @@ Grim Reaper Form:
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
                     Potion-f: 
                       type: 'mechanic'
@@ -95,9 +95,9 @@ Grim Reaper Form:
                         counts: 'True'
                         potion: 'Speed'
                         ambient: 'True'
-                        tier-base: '3'
-                        tier-scale: '0'
-                        seconds-base: '10'
+                        tier-base: '2.02'
+                        tier-scale: '0.02'
+                        seconds-base: '6'
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
@@ -109,9 +109,9 @@ Grim Reaper Form:
                         counts: 'True'
                         potion: 'Fast Digging'
                         ambient: 'True'
-                        tier-base: '3.525'
-                        tier-scale: '0.025'
-                        seconds-base: '10'
+                        tier-base: '2'
+                        tier-scale: '0'
+                        seconds-base: '6'
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
@@ -122,7 +122,7 @@ Grim Reaper Form:
                         icon-key: ''
                         counts: 'True'
                         status: 'Invincible'
-                        duration-base: '10'
+                        duration-base: '6'
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
@@ -134,9 +134,9 @@ Grim Reaper Form:
                         counts: 'True'
                         type: 'Multiplier'
                         skill: 'False'
-                        value-base: '2'
+                        value-base: '1.5'
                         value-scale: '0'
-                        seconds-base: '10'
+                        seconds-base: '6'
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
@@ -146,11 +146,11 @@ Grim Reaper Form:
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        type: 'Flat'
-                        skill: 'False'
-                        value-base: '2'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '1.5'
                         value-scale: '0'
-                        seconds-base: '10'
+                        seconds-base: '6'
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
@@ -189,6 +189,7 @@ Grim Reaper Form:
                     caster: 'True'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
                     Potion-m: 
@@ -214,6 +215,7 @@ Grim Reaper Form:
                         type: 'Fixed'
                         speed-base: '0.75'
                         speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
                 Repeat-o: 
@@ -222,10 +224,11 @@ Grim Reaper Form:
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    repetitions-base: '100'
+                    repetitions-base: '60'
                     repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
+                    stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
                     Particle-p: 

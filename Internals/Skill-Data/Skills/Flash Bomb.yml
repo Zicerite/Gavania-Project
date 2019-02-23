@@ -25,11 +25,12 @@ Flash Bomb:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Blinds nearby targets, and'
-  - '&7the caster gets speed and'
-  - '&7invisibility for a short time.'
-  - '&7Enemies get stunned for a'
-  - '&7moment as well.'
+  - '&7Blinds nearby targets, and the caster'
+  - '&7gets speed and invisibility for a short'
+  - '&7time. Enemies get stunned for a'
+  - '&7moment as well. Flash bomb an'
+  - '&7enemy right next to you, to stun'
+  - '&7them slightly longer.'
   - ''
   - '&bRadius: {attr:area.radius} Blocks'
   - '&bStun Duration: {attr:stun.duration} Seconds'
@@ -37,41 +38,11 @@ Flash Bomb:
   - '&bInvisibility: {attr:po6.tier} for {attr:po6.seconds} Seconds'
   - '&bBlindness Duration: {attr:po.seconds} Seconds'
   - ''
-  - '&bPiercing Damage (Alby 3): {attr:dmg2.value} Melee Damage &1퇴'
+  - '&bPiercing Damage (Alby 3): {attr:dmg2.value} Melee Damage &1䛴'
   - ''
-  - '&2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'dmgFBP'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -79,14 +50,17 @@ Flash Bomb:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-e: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Command-f: 
+            Command-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -96,7 +70,7 @@ Flash Bomb:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Potion-g: 
+            Potion-d: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -110,7 +84,7 @@ Flash Bomb:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Potion-h: 
+            Potion-e: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -124,7 +98,7 @@ Flash Bomb:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Particle-i: 
+            Particle-f: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -147,7 +121,7 @@ Flash Bomb:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-j: 
+            Particle-g: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -165,7 +139,7 @@ Flash Bomb:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-k: 
+            Particle-h: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -183,7 +157,7 @@ Flash Bomb:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-l: 
+            Particle-i: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -201,7 +175,7 @@ Flash Bomb:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Particle-m: 
+            Particle-j: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -219,7 +193,7 @@ Flash Bomb:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Potion-n: 
+            Potion-k: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -233,7 +207,7 @@ Flash Bomb:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-        Area-o: 
+        Area-l: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -245,9 +219,10 @@ Flash Bomb:
             caster: 'False'
             max-base: '999'
             max-scale: '0'
+            random: 'False'
             indicator: '2D'
           children: 
-            Potion-p: 
+            Potion-m: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -261,17 +236,17 @@ Flash Bomb:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Delay-q: 
+            Delay-n: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                delay-base: '0.1'
+                delay-base: '0.12'
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Potion-r: 
+                Potion-o: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -281,11 +256,11 @@ Flash Bomb:
                     ambient: 'True'
                     tier-base: '1'
                     tier-scale: '0'
-                    seconds-base: '5'
+                    seconds-base: '3'
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Status-s: 
+            Status-p: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -296,7 +271,7 @@ Flash Bomb:
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
-            Skill Level-t: 
+            Skill Level-q: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -306,7 +281,7 @@ Flash Bomb:
                 max-level: '3'
                 indicator: '2D'
               children: 
-                Damage-u: 
+                Damage-r: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -319,3 +294,97 @@ Flash Bomb:
                     classifier: 'water'
                     indicator: '2D'
                   children:  {}
+        Area-s: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            radius-base: '1.5'
+            radius-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            caster: 'False'
+            max-base: '999'
+            max-scale: '0'
+            random: 'False'
+            indicator: '2D'
+          children: 
+            Potion-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Night Vision'
+                ambient: 'True'
+                tier-base: '99'
+                tier-scale: '0'
+                seconds-base: '1'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-u: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.12'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Blindness'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Status-w: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Stun'
+                duration-base: '2'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-y: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.01'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgFBP'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

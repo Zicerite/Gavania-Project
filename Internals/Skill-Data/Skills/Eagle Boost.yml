@@ -2,7 +2,6 @@ Eagle Boost:
   name: 'Eagle Boost'
   type: 'Damage'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -12,8 +11,8 @@ Eagle Boost:
     cost-scale: '0'
     cooldown-base: '8'
     cooldown-scale: '0'
-    mana-base: '11'
-    mana-scale: '1'
+    mana-base: '0'
+    mana-scale: '0'
     points-spent-req-base: '0'
     points-spent-req-scale: '0'
     incompatible: 
@@ -33,7 +32,7 @@ Eagle Boost:
   - '&7Caster is facing. Caster is'
   - '&7invincible while boosting.'
   - ''
-  - '&bDamage: {attr:dmg.value} x7 Melee Damage &f䛳'
+  - '&bDamage: {attr:dmg.value} x8 Melee Damage &f䛳'
   - '&bRadius: {attr:area.radius} Blocks'
   - ''
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
@@ -105,7 +104,7 @@ Eagle Boost:
                       data: 
                         icon-key: ''
                         counts: 'True'
-                        delay-base: '0.5'
+                        delay-base: '0.8'
                         delay-scale: '0'
                         indicator: '2D'
                       children: 
@@ -133,20 +132,33 @@ Eagle Boost:
                                 right-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                Repeat-j: 
+                            Repeat-j: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '2'
+                                repetitions-scale: '0'
+                                period: '0.1'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children:  {}
+                Repeat-k: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    repetitions-base: '6'
+                    repetitions-base: '8'
                     repetitions-scale: '0'
                     period: '0.1'
                     delay: '0'
                     stop-on-fail: 'False'
                     indicator: '2D'
                   children: 
-                    Self-k: 
+                    Self-l: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -156,7 +168,7 @@ Eagle Boost:
                         wall: 'false'
                         caster: 'false'
                       children: 
-                        Launch-l: 
+                        Launch-m: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -171,7 +183,7 @@ Eagle Boost:
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Particle-m: 
+                        Particle-n: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -194,7 +206,7 @@ Eagle Boost:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Area-n: 
+                    Area-o: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -209,7 +221,7 @@ Eagle Boost:
                         random: 'False'
                         indicator: '2D'
                       children: 
-                        Damage-o: 
+                        Damage-p: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -222,7 +234,7 @@ Eagle Boost:
                             classifier: 'wind'
                             indicator: '2D'
                           children:  {}
-                        Particle-p: 
+                        Particle-q: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -245,7 +257,7 @@ Eagle Boost:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Delay-q: 
+                        Delay-r: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -255,7 +267,7 @@ Eagle Boost:
                             delay-scale: '0'
                             indicator: '2D'
                           children: 
-                            Repeat-r: 
+                            Repeat-s: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -268,7 +280,7 @@ Eagle Boost:
                                 stop-on-fail: 'False'
                                 indicator: '2D'
                               children: 
-                                Launch-s: 
+                                Launch-t: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -283,7 +295,7 @@ Eagle Boost:
                                     right-scale: '0'
                                     indicator: '2D'
                                   children:  {}
-                        Status-t: 
+                        Status-u: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -294,7 +306,7 @@ Eagle Boost:
                             duration-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Status-u: 
+                        Status-v: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -305,17 +317,17 @@ Eagle Boost:
                             duration-scale: '0'
                             indicator: '2D'
                           children:  {}
-                Delay-v: 
+                Delay-w: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    delay-base: '0.61'
+                    delay-base: '0.81'
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Area-w: 
+                    Area-x: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -330,7 +342,7 @@ Eagle Boost:
                         random: 'False'
                         indicator: '2D'
                       children: 
-                        Damage-x: 
+                        Damage-y: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -343,7 +355,7 @@ Eagle Boost:
                             classifier: 'wind'
                             indicator: '2D'
                           children:  {}
-                        Particle-y: 
+                        Particle-z: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -366,7 +378,7 @@ Eagle Boost:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Delay-z: 
+                        Delay-ab: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -376,7 +388,7 @@ Eagle Boost:
                             delay-scale: '0'
                             indicator: '2D'
                           children: 
-                            Repeat-ab: 
+                            Repeat-bb: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -389,7 +401,7 @@ Eagle Boost:
                                 stop-on-fail: 'False'
                                 indicator: '2D'
                               children: 
-                                Launch-bb: 
+                                Launch-cb: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -404,7 +416,7 @@ Eagle Boost:
                                     right-scale: '0'
                                     indicator: '2D'
                                   children:  {}
-                        Status-cb: 
+                        Status-db: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -415,7 +427,7 @@ Eagle Boost:
                             duration-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Status-db: 
+                        Status-eb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -426,7 +438,7 @@ Eagle Boost:
                             duration-scale: '0'
                             indicator: '2D'
                           children:  {}
-                    Explosion-eb: 
+                    Explosion-fb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -438,7 +450,7 @@ Eagle Boost:
                         fire: 'False'
                         indicator: '2D'
                       children:  {}
-                    Self-fb: 
+                    Self-gb: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -448,7 +460,7 @@ Eagle Boost:
                         wall: 'false'
                         caster: 'false'
                       children: 
-                        Launch-gb: 
+                        Launch-hb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -463,7 +475,7 @@ Eagle Boost:
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Particle-hb: 
+                        Particle-ib: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -493,7 +505,7 @@ Eagle Boost:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-jb: 
+        Passive-kb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -503,7 +515,7 @@ Eagle Boost:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-kb: 
+            Value Lore-lb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -512,7 +524,7 @@ Eagle Boost:
                 key: 'dmgEB'
                 hand: 'Main'
                 regex: 'Melee Damage - {value}'
-                multiplier-base: '0.2'
+                multiplier-base: '0.22'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

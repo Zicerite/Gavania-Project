@@ -9,7 +9,7 @@ Get Away Sprint:
     level-scale: '0'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '99'
+    cooldown-base: '30'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -27,10 +27,13 @@ Get Away Sprint:
   - ''
   - '&7Grants Speed and Haste to the'
   - '&7Caster and nearby allies for a short time.'
+  - '&7Cleanses Slowness and Fatigue.'
+  - '&7Heals Stamina.'
   - ''
   - '&bRadius: {attr:area.radius} Blocks'
   - '&bSpeed: {attr:po1.tier} for {attr:po1.seconds} Seconds'
   - '&bHaste: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - '&bStamina Healed: {attr:stradd.amount}'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
@@ -48,6 +51,9 @@ Get Away Sprint:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Particle-c: 
               type: 'mechanic'
@@ -57,7 +63,7 @@ Get Away Sprint:
                 counts: 'True'
                 particle: 'Magic Crit'
                 arrangement: 'Circle'
-                radius-base: '5'
+                radius-base: '6'
                 radius-scale: '0'
                 particles-base: '40'
                 particles-scale: '0'
@@ -109,13 +115,14 @@ Get Away Sprint:
           indicator: '3D'
           data: 
             icon-key: 'area'
-            radius-base: '5'
+            radius-base: '6'
             radius-scale: '0'
             group: 'Ally'
             wall: 'True'
             caster: 'True'
             max-base: '999'
             max-scale: '0'
+            random: 'False'
             indicator: '2D'
           children: 
             Particle-h: 
@@ -149,9 +156,9 @@ Get Away Sprint:
                 counts: 'True'
                 potion: 'Speed'
                 ambient: 'True'
-                tier-base: '3'
+                tier-base: '2'
                 tier-scale: '0'
-                seconds-base: '5'
+                seconds-base: '6'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
@@ -163,9 +170,9 @@ Get Away Sprint:
                 counts: 'True'
                 potion: 'Fast Digging'
                 ambient: 'True'
-                tier-base: '3'
+                tier-base: '1'
                 tier-scale: '0'
-                seconds-base: '5'
+                seconds-base: '6'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
@@ -190,3 +197,60 @@ Get Away Sprint:
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
+            Potion-m: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                potion: 'Slow Digging'
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Cleanse-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Slow Digging'
+                    status: ''
+                    indicator: '2D'
+                  children:  {}
+            Potion-o: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                potion: 'Slow'
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Cleanse-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Slow'
+                    status: ''
+                    indicator: '2D'
+                  children:  {}
+            Value Add-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'stradd'
+                counts: 'True'
+                key: 'stamina'
+                amount-base: '15'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}

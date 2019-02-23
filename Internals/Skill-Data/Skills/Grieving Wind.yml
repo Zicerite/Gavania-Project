@@ -2,6 +2,7 @@ Grieving Wind:
   name: 'Grieving Wind'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -32,8 +33,8 @@ Grieving Wind:
   - '&7Also extinguishes the Caster and'
   - '&7allies if either are on fire.'
   - ''
-  - '&bDamage: {attr:dmg1.value} Skill Damage &r퇳'
-  - '&bPiercing Damage: {attr:dmg2.value} Melee Damage &r퇳'
+  - '&bDamage: {attr:dmg1.value} Skill Damage &r䛳'
+  - '&bPiercing Damage: {attr:dmg2.value} Melee Damage &r䛳'
   - '&bRange: {attr:range.range} Blocks'
   - ''
   - '&2Mana: {attr:mana}'
@@ -41,49 +42,6 @@ Grieving Wind:
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-b: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgGW1'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.9'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgGW2'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '0.1'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -91,14 +49,17 @@ Grieving Wind:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-f: 
+        Self-b: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Command-g: 
+            Command-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -108,14 +69,14 @@ Grieving Wind:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Linear-h: 
+            Linear-d: 
               type: 'target'
               indicator: '3D'
               data: 
                 icon-key: 'range'
-                range-base: '12'
+                range-base: '10'
                 range-scale: '0'
-                tolerance-base: '25'
+                tolerance-base: '23'
                 tolerance-scale: '0'
                 group: 'Enemy'
                 wall: 'True'
@@ -124,7 +85,7 @@ Grieving Wind:
                 max-scale: '0'
                 indicator: '2D'
               children: 
-                Damage-i: 
+                Damage-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -137,7 +98,7 @@ Grieving Wind:
                     classifier: 'wind'
                     indicator: '2D'
                   children:  {}
-                Damage-j: 
+                Damage-f: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -150,7 +111,7 @@ Grieving Wind:
                     classifier: 'wind'
                     indicator: '2D'
                   children:  {}
-                Delay-k: 
+                Delay-g: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -160,7 +121,7 @@ Grieving Wind:
                     delay-scale: '0'
                     indicator: '2D'
                   children: 
-                    Push-l: 
+                    Push-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -169,16 +130,17 @@ Grieving Wind:
                         type: 'Fixed'
                         speed-base: '1.1'
                         speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
-            Linear-m: 
+            Linear-i: 
               type: 'target'
               indicator: '3D'
               data: 
                 icon-key: ''
                 range-base: '12'
                 range-scale: '0'
-                tolerance-base: '25'
+                tolerance-base: '23'
                 tolerance-scale: '0'
                 group: 'Ally'
                 wall: 'True'
@@ -187,7 +149,7 @@ Grieving Wind:
                 max-scale: '0'
                 indicator: '2D'
               children: 
-                Fire-n: 
+                Fire-j: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -195,7 +157,7 @@ Grieving Wind:
                     type: 'On Fire'
                     indicator: '2D'
                   children: 
-                    Command-o: 
+                    Command-k: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -205,35 +167,113 @@ Grieving Wind:
                         type: 'OP'
                         indicator: '2D'
                       children:  {}
-            Damage-p: 
+            Damage-l: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: 'healthcost'
                 counts: 'True'
                 type: 'Percent Left'
-                value-base: '9'
+                value-base: '10'
                 value-scale: '0'
                 true: 'True'
                 classifier: 'default'
                 indicator: '2D'
               children:  {}
-        Self-q: 
+        Self-m: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
+            Location-n: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                range-base: '2'
+                range-scale: '0'
+                ground: 'False'
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Particle-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Sphere'
+                    radius-base: '2.9'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Location-p: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                range-base: '4'
+                range-scale: '0'
+                ground: 'False'
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Particle-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Sphere'
+                    radius-base: '2.9'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
             Location-r: 
               type: 'target'
               indicator: '3D'
               data: 
                 icon-key: ''
-                range-base: '3'
+                range-base: '6'
                 range-scale: '0'
                 ground: 'False'
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Particle-s: 
                   type: 'mechanic'
@@ -243,11 +283,11 @@ Grieving Wind:
                     counts: 'True'
                     particle: 'Magic Crit'
                     arrangement: 'Sphere'
-                    radius-base: '3'
+                    radius-base: '2.9'
                     radius-scale: '0'
                     particles-base: '20'
                     particles-scale: '0'
-                    visible-radius: '25'
+                    visible-radius: '50'
                     dx: '0'
                     dy: '0'
                     dz: '0'
@@ -263,10 +303,13 @@ Grieving Wind:
               indicator: '3D'
               data: 
                 icon-key: ''
-                range-base: '6'
+                range-base: '8'
                 range-scale: '0'
                 ground: 'False'
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Particle-u: 
                   type: 'mechanic'
@@ -276,11 +319,11 @@ Grieving Wind:
                     counts: 'True'
                     particle: 'Magic Crit'
                     arrangement: 'Sphere'
-                    radius-base: '3'
+                    radius-base: '2.9'
                     radius-scale: '0'
                     particles-base: '20'
                     particles-scale: '0'
-                    visible-radius: '25'
+                    visible-radius: '50'
                     dx: '0'
                     dy: '0'
                     dz: '0'
@@ -296,10 +339,13 @@ Grieving Wind:
               indicator: '3D'
               data: 
                 icon-key: ''
-                range-base: '9'
+                range-base: '10'
                 range-scale: '0'
                 ground: 'False'
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Particle-w: 
                   type: 'mechanic'
@@ -309,11 +355,11 @@ Grieving Wind:
                     counts: 'True'
                     particle: 'Magic Crit'
                     arrangement: 'Sphere'
-                    radius-base: '3'
+                    radius-base: '2.9'
                     radius-scale: '0'
                     particles-base: '20'
                     particles-scale: '0'
-                    visible-radius: '25'
+                    visible-radius: '50'
                     dx: '0'
                     dy: '0'
                     dz: '0'
@@ -324,40 +370,7 @@ Grieving Wind:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Location-x: 
-              type: 'target'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                range-base: '12'
-                range-scale: '0'
-                ground: 'False'
-                indicator: '2D'
-              children: 
-                Particle-y: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    particle: 'Magic Crit'
-                    arrangement: 'Sphere'
-                    radius-base: '3'
-                    radius-scale: '0'
-                    particles-base: '20'
-                    particles-scale: '0'
-                    visible-radius: '25'
-                    dx: '0'
-                    dy: '0'
-                    dz: '0'
-                    speed: '0'
-                    amount: '1'
-                    forward: '0'
-                    upward: '0'
-                    right: '0'
-                    indicator: '2D'
-                  children:  {}
-        Skill Level-z: 
+        Skill Level-x: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -367,7 +380,7 @@ Grieving Wind:
             max-level: '1'
             indicator: '2D'
           children: 
-            Status-ab: 
+            Status-y: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -376,5 +389,48 @@ Grieving Wind:
                 status: 'Invincible'
                 duration-base: '0.5'
                 duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-ab: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgGW1'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.75'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-cb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgGW2'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

@@ -2,7 +2,6 @@ Elemental Dive:
   name: 'Elemental Dive'
   type: 'Damage'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -10,7 +9,7 @@ Elemental Dive:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '5'
+    cooldown-base: '6'
     cooldown-scale: '0'
     mana-base: '11'
     mana-scale: '1'
@@ -644,53 +643,105 @@ Elemental Dive:
             wall: 'false'
             caster: 'false'
           children: 
-            Launch-tb: 
-              type: 'mechanic'
+            Ground-tb: 
+              type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                counts: 'True'
-                relative: 'Target'
-                forward-base: '1'
-                forward-scale: '0'
-                upward-base: '1'
-                upward-scale: '0'
-                right-base: '0'
-                right-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Set-ub: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'didjump02'
-                value-base: '1'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Command-vb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1'
-                type: 'OP'
-                indicator: '2D'
-              children:  {}
-            Delay-wb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                delay-base: '0.25'
-                delay-scale: '0'
+                type: 'On Ground'
                 indicator: '2D'
               children: 
-                Launch-xb: 
+                Launch-ub: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '1'
+                    forward-scale: '0'
+                    upward-base: '1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-vb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'didjump02'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Command-wb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Delay-xb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.25'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Launch-yb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: '0.75'
+                        forward-scale: '0'
+                        upward-base: '-1.5'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-zb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+            Ground-ac: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Set-bc: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'didjump02'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Launch-cc: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -705,7 +756,7 @@ Elemental Dive:
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Command-yb: 
+                Command-dc: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -715,7 +766,7 @@ Elemental Dive:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-        Value Set-zb: 
+        Value Set-ec: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -726,7 +777,7 @@ Elemental Dive:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Skill Level-ac: 
+        Skill Level-fc: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -736,7 +787,7 @@ Elemental Dive:
             max-level: '1'
             indicator: '2D'
           children: 
-            Status-bc: 
+            Status-gc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -747,7 +798,7 @@ Elemental Dive:
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
-        Value Random-cc: 
+        Value Random-hc: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -768,7 +819,7 @@ Elemental Dive:
         icon-key: ''
         indicator: '2D'
       children: 
-        Repeat-ec: 
+        Repeat-jc: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -781,7 +832,7 @@ Elemental Dive:
             stop-on-fail: 'False'
             indicator: '2D'
           children: 
-            Value Set-fc: 
+            Value Set-kc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -792,7 +843,7 @@ Elemental Dive:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Set-gc: 
+            Value Set-lc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -803,7 +854,7 @@ Elemental Dive:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-        Passive-hc: 
+        Passive-mc: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -813,7 +864,7 @@ Elemental Dive:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value-ic: 
+            Value-nc: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -825,7 +876,7 @@ Elemental Dive:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Particle-jc: 
+                Particle-oc: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -849,7 +900,7 @@ Elemental Dive:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Value-kc: 
+                Value-pc: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -861,7 +912,7 @@ Elemental Dive:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Particle-lc: 
+                    Particle-qc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -884,7 +935,7 @@ Elemental Dive:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Value-mc: 
+                Value-rc: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -896,7 +947,7 @@ Elemental Dive:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Particle-nc: 
+                    Particle-sc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -919,7 +970,7 @@ Elemental Dive:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Value-oc: 
+                Value-tc: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -931,7 +982,7 @@ Elemental Dive:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Particle-pc: 
+                    Particle-uc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -954,7 +1005,7 @@ Elemental Dive:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Area-qc: 
+                Area-vc: 
                   type: 'target'
                   indicator: '3D'
                   data: 
@@ -969,7 +1020,7 @@ Elemental Dive:
                     random: 'False'
                     indicator: '2D'
                   children: 
-                    Repeat-rc: 
+                    Repeat-wc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -982,7 +1033,7 @@ Elemental Dive:
                         stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Launch-sc: 
+                        Launch-xc: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -997,7 +1048,7 @@ Elemental Dive:
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Status-tc: 
+                        Status-yc: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -1008,7 +1059,7 @@ Elemental Dive:
                             duration-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Status-uc: 
+                        Status-zc: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -1019,7 +1070,7 @@ Elemental Dive:
                             duration-scale: '0'
                             indicator: '2D'
                           children:  {}
-            Value Lore-vc: 
+            Value Lore-ad: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -1032,7 +1083,7 @@ Elemental Dive:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Lore-wc: 
+            Value Lore-bd: 
               type: 'mechanic'
               indicator: '3D'
               data: 

@@ -2,7 +2,6 @@ Drain Dive:
   name: 'Drain Dive'
   type: 'Damage/Healing'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -10,7 +9,7 @@ Drain Dive:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '5'
+    cooldown-base: '6'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -631,43 +630,115 @@ Drain Dive:
             wall: 'false'
             caster: 'false'
           children: 
-            Launch-ub: 
-              type: 'mechanic'
+            Ground-ub: 
+              type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                counts: 'True'
-                relative: 'Target'
-                forward-base: '1'
-                forward-scale: '0'
-                upward-base: '1'
-                upward-scale: '0'
-                right-base: '0'
-                right-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Set-vb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'didjump01'
-                value-base: '1'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Delay-wb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                delay-base: '0.25'
-                delay-scale: '0'
+                type: 'On Ground'
                 indicator: '2D'
               children: 
-                Launch-xb: 
+                Launch-vb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '1'
+                    forward-scale: '0'
+                    upward-base: '1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-wb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'didjump01'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Delay-xb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.25'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Launch-yb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: '0.75'
+                        forward-scale: '0'
+                        upward-base: '-1.5'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-zb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1.2'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                Command-ac: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1.2'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+            Ground-bc: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Set-cc: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'didjump01'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Command-dc: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1.2'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Launch-ec: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -682,27 +753,7 @@ Drain Dive:
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Command-yb: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1.2'
-                    type: 'OP'
-                    indicator: '2D'
-                  children:  {}
-            Command-zb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1.2'
-                type: 'OP'
-                indicator: '2D'
-              children:  {}
-        Skill Level-ac: 
+        Skill Level-fc: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -712,7 +763,7 @@ Drain Dive:
             max-level: '1'
             indicator: '2D'
           children: 
-            Status-bc: 
+            Status-gc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -730,7 +781,7 @@ Drain Dive:
         icon-key: ''
         indicator: '2D'
       children: 
-        Value Set-dc: 
+        Value Set-ic: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -741,7 +792,7 @@ Drain Dive:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Delay-ec: 
+        Delay-jc: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -751,7 +802,7 @@ Drain Dive:
             delay-scale: '0'
             indicator: '2D'
           children: 
-            Passive-fc: 
+            Passive-kc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -761,7 +812,7 @@ Drain Dive:
                 seconds-scale: '0'
                 indicator: '2D'
               children: 
-                Value-gc: 
+                Value-lc: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -773,7 +824,7 @@ Drain Dive:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Particle-hc: 
+                    Particle-mc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -797,7 +848,7 @@ Drain Dive:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                    Value-ic: 
+                    Value-nc: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -809,7 +860,7 @@ Drain Dive:
                         max-value-scale: '0'
                         indicator: '2D'
                       children: 
-                        Particle-jc: 
+                        Particle-oc: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -832,7 +883,7 @@ Drain Dive:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Area-kc: 
+                    Area-pc: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -847,7 +898,7 @@ Drain Dive:
                         random: 'False'
                         indicator: '2D'
                       children: 
-                        Repeat-lc: 
+                        Repeat-qc: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -860,7 +911,7 @@ Drain Dive:
                             stop-on-fail: 'False'
                             indicator: '2D'
                           children: 
-                            Launch-mc: 
+                            Launch-rc: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -875,7 +926,7 @@ Drain Dive:
                                 right-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Status-nc: 
+                            Status-sc: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -886,7 +937,7 @@ Drain Dive:
                                 duration-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Status-oc: 
+                            Status-tc: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -897,7 +948,7 @@ Drain Dive:
                                 duration-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                Value Lore-pc: 
+                Value Lore-uc: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -910,7 +961,7 @@ Drain Dive:
                     multiplier-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Value Lore-qc: 
+                Value Lore-vc: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
