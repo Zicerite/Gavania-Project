@@ -29,7 +29,8 @@ Crash Landing:
   - '&7dealing damage, spiking enemies,'
   - '&7and causes extended hitstun.'
   - '&7Enemies who are already on the ground'
-  - '&7get stunned.'
+  - '&7get stunned. Caster is invincible at the start'
+  - '&7of when the Caster starts falling.'
   - ''
   - '&bDamage: {attr:dmg.value} Melee Damage &e䛸'
   - '&bRadius: {attr:area.radius} Blocks'
@@ -75,7 +76,7 @@ Crash Landing:
                   indicator: '3D'
                   data: 
                     icon-key: 'area'
-                    radius-base: '5'
+                    radius-base: '5.5'
                     radius-scale: '0'
                     group: 'Enemy'
                     wall: 'True'
@@ -195,9 +196,9 @@ Crash Landing:
                         counts: 'True'
                         particle: 'Cloud'
                         arrangement: 'Circle'
-                        radius-base: '5'
+                        radius-base: '5.5'
                         radius-scale: '0'
-                        particles-base: '30'
+                        particles-base: '25'
                         particles-scale: '0'
                         direction: 'XZ'
                         visible-radius: '40'
@@ -221,9 +222,9 @@ Crash Landing:
                         material: 'Dirt'
                         type: '0'
                         arrangement: 'Circle'
-                        radius-base: '5'
+                        radius-base: '5.5'
                         radius-scale: '0'
-                        particles-base: '30'
+                        particles-base: '20'
                         particles-scale: '0'
                         direction: 'XZ'
                         forward: '0'
@@ -231,7 +232,27 @@ Crash Landing:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Value Set-o: 
+                    Particle-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Gold Block'
+                        type: '0'
+                        arrangement: 'Circle'
+                        radius-base: '5.5'
+                        radius-scale: '0'
+                        particles-base: '15'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        forward: '0'
+                        upward: '0.2'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                Value Set-p: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -242,7 +263,7 @@ Crash Landing:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Explosion-p: 
+                Explosion-q: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -254,7 +275,7 @@ Crash Landing:
                     fire: 'False'
                     indicator: '2D'
                   children:  {}
-                Command-q: 
+                Command-r: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -264,7 +285,7 @@ Crash Landing:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Command-r: 
+                Command-s: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -281,7 +302,7 @@ Crash Landing:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-t: 
+        Self-u: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -291,7 +312,7 @@ Crash Landing:
             wall: 'false'
             caster: 'false'
           children: 
-            Value Set-u: 
+            Value Set-v: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -302,7 +323,7 @@ Crash Landing:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Command-v: 
+            Command-w: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -312,7 +333,7 @@ Crash Landing:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Launch-w: 
+            Launch-x: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -327,17 +348,17 @@ Crash Landing:
                 right-scale: '0'
                 indicator: '2D'
               children:  {}
-            Delay-x: 
+            Delay-y: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                delay-base: '0.3'
+                delay-base: '0.25'
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Launch-y: 
+                Launch-z: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -352,7 +373,18 @@ Crash Landing:
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Skill Level-z: 
+                Status-ab: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Invincible'
+                    duration-base: '0.2'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-bb: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -362,7 +394,7 @@ Crash Landing:
                 max-level: '3'
                 indicator: '2D'
               children: 
-                Value Add-ab: 
+                Value Add-cb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -373,7 +405,7 @@ Crash Landing:
                     amount-scale: '0'
                     indicator: '2D'
                   children:  {}
-        Area-bb: 
+        Area-db: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -388,7 +420,7 @@ Crash Landing:
             random: 'False'
             indicator: '2D'
           children: 
-            Repeat-cb: 
+            Repeat-eb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -401,7 +433,7 @@ Crash Landing:
                 stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Launch-db: 
+                Launch-fb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -416,7 +448,7 @@ Crash Landing:
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Status-eb: 
+            Status-gb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -427,7 +459,7 @@ Crash Landing:
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
-            Status-fb: 
+            Status-hb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -445,7 +477,7 @@ Crash Landing:
         icon-key: ''
         indicator: '2D'
       children: 
-        Value Set-hb: 
+        Value Set-jb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -456,17 +488,17 @@ Crash Landing:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Passive-ib: 
+        Passive-kb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.15'
+            seconds-base: '0.2'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value-jb: 
+            Value-lb: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -478,7 +510,7 @@ Crash Landing:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Particle-kb: 
+                Particle-mb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -501,17 +533,17 @@ Crash Landing:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-        Passive-lb: 
+        Passive-nb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.01'
+            seconds-base: '0.1'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-mb: 
+            Value Lore-ob: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -520,7 +552,7 @@ Crash Landing:
                 key: 'dmgCL'
                 hand: 'Main'
                 regex: 'Melee Damage - {value}'
-                multiplier-base: '1.2'
+                multiplier-base: '1.25'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

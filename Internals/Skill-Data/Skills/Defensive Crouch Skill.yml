@@ -1,16 +1,27 @@
-Defensive Crouch Skill:
+Defensive Crouch Skill: 
   name: 'Defensive Crouch Skill'
   type: 'Dodge'
   max-level: 6
-  skill-req: ''
   skill-req-lvl: 1
-  needs-permission: 'False'
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
   msg: '&6{player} &2has cast &6{skill}'
-  combo: ''
-  indicator: '2D'
-  icon: 'Feather'
+  icon: 'FEATHER'
+  icon-durability: 0
   icon-data: 0
-  icon-lore:
+  icon-lore: 
   - '&d{name}'
   - ''
   - '&eSetting for your Defensive Crouch Option.'
@@ -32,827 +43,1035 @@ Defensive Crouch Skill:
   - '&7Tap sneak to dodge Forward that dodges attacks.'
   - '&dMode 6: &cReverse Air-Dash &b[Mid-Air Only] &aStamina: &625'
   - '&7Tap sneak to dodge Backwards that dodges attacks.'
-  attributes:
-    level-base: 1
-    level-scale: 0
-    cost-base: 1
-    cost-scale: 0
-    cooldown-base: 0
-    cooldown-scale: 0
-    mana-base: 0
-    mana-scale: 0
-    points-spent-req-base: 0
-    points-spent-req-scale: 0
-    incompatible:
-    - ''
-  components:
-    Crouch-a:
+  desc:  []
+  components: 
+    Crouch-a: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
         mana: 'False'
         cooldown: 'False'
         type: 'Start Crouching'
-      children:
-        Water-b:
+        indicator: '2D'
+      children: 
+        Water-b: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             state: 'Out Of Water'
-          children:
-            Skill Level-c:
+            indicator: '2D'
+          children: 
+            Skill Level-c: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 skill: 'Defensive Crouch Skill'
-                min-level: 1
-                max-level: 1
-              children:
-                Ground-d:
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Ground-d: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'On Ground'
-                  children:
-                    Block-e:
+                    indicator: '2D'
+                  children: 
+                    Block-e: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         standing: 'Not In Block'
                         material: 'Ladder'
-                      children:
-                        Block-f:
+                        indicator: '2D'
+                      children: 
+                        Block-f: 
                           type: 'condition'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             standing: 'Not In Block'
                             material: 'Fence'
-                          children:
-                            Value-g:
+                            indicator: '2D'
+                          children: 
+                            Value-g: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
                                 key: 'stamina'
-                                min-value-base: 0
-                                min-value-scale: 0
-                                max-value-base: 999
-                                max-value-scale: 0
-                              children:
-                                Repeat-h:
+                                min-value-base: '0'
+                                min-value-scale: '0'
+                                max-value-base: '999'
+                                max-value-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Repeat-h: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    repetitions-base: 7
-                                    repetitions-scale: 0
-                                    period: 0.05
-                                    delay: 0
+                                    repetitions-base: '7'
+                                    repetitions-scale: '0'
+                                    period: '0.05'
+                                    delay: '0'
                                     stop-on-fail: 'False'
-                                  children:
-                                    Crouch-i:
+                                    indicator: '2D'
+                                  children: 
+                                    Crouch-i: 
                                       type: 'condition'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         crouch: 'True'
-                                      children:
-                                        Launch-j:
+                                        indicator: '2D'
+                                      children: 
+                                        Launch-j: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             relative: 'Target'
-                                            forward-base: -0.75
-                                            forward-scale: 0
-                                            upward-base: -0.1
-                                            upward-scale: 0
-                                            right-base: 0
-                                            right-scale: 0
-                                        Particle-k:
+                                            forward-base: '-0.75'
+                                            forward-scale: '0'
+                                            upward-base: '-0.1'
+                                            upward-scale: '0'
+                                            right-base: '0'
+                                            right-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Particle-k: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             particle: 'Enchantment Table'
                                             arrangement: 'Sphere'
-                                            radius-base: 2
-                                            radius-scale: 0
-                                            particles-base: 2
-                                            particles-scale: 0
-                                            visible-radius: 30
-                                            dx: 0
-                                            dy: 0
-                                            dz: 0
-                                            speed: 0
-                                            amount: 1
-                                            forward: 0
-                                            upward: 1
-                                            right: 0
-                                        Value Add-l:
+                                            radius-base: '2'
+                                            radius-scale: '0'
+                                            particles-base: '2'
+                                            particles-scale: '0'
+                                            visible-radius: '30'
+                                            dx: '0'
+                                            dy: '0'
+                                            dz: '0'
+                                            speed: '0'
+                                            amount: '1'
+                                            forward: '0'
+                                            upward: '1'
+                                            right: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Value Add-l: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             key: 'stamina'
-                                            amount-base: -5
-                                            amount-scale: 0
-                                        Status-m:
+                                            amount-base: '-5'
+                                            amount-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Status-m: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             status: 'Invincible'
-                                            duration-base: 0.1
-                                            duration-scale: 0
-                                        Class-n:
+                                            duration-base: '0.1'
+                                            duration-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Class-n: 
                                           type: 'condition'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             class: 'Gunman'
                                             exact: 'True'
-                                        Else-o:
+                                            indicator: '2D'
+                                          children:  {}
+                                        Else-o: 
                                           type: 'condition'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
-                                          children:
-                                            Status-p:
+                                            indicator: '2D'
+                                          children: 
+                                            Status-p: 
                                               type: 'mechanic'
-                                              data:
+                                              indicator: '3D'
+                                              data: 
                                                 icon-key: ''
                                                 counts: 'True'
                                                 status: 'Silence'
-                                                duration-base: 0.1
-                                                duration-scale: 0
-            Skill Level-q:
+                                                duration-base: '0.1'
+                                                duration-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+            Skill Level-q: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 skill: 'Defensive Crouch Skill'
-                min-level: 2
-                max-level: 2
-              children:
-                Ground-r:
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Ground-r: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'On Ground'
-                  children:
-                    Block-s:
+                    indicator: '2D'
+                  children: 
+                    Block-s: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         standing: 'Not In Block'
                         material: 'Ladder'
-                      children:
-                        Block-t:
+                        indicator: '2D'
+                      children: 
+                        Block-t: 
                           type: 'condition'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             standing: 'Not In Block'
                             material: 'Fence'
-                          children:
-                            Value-u:
+                            indicator: '2D'
+                          children: 
+                            Value-u: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
                                 key: 'stamina'
-                                min-value-base: 0
-                                min-value-scale: 0
-                                max-value-base: 999
-                                max-value-scale: 0
-                              children:
-                                Repeat-v:
+                                min-value-base: '0'
+                                min-value-scale: '0'
+                                max-value-base: '999'
+                                max-value-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Repeat-v: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    repetitions-base: 7
-                                    repetitions-scale: 0
-                                    period: 0.05
-                                    delay: 0
+                                    repetitions-base: '7'
+                                    repetitions-scale: '0'
+                                    period: '0.05'
+                                    delay: '0'
                                     stop-on-fail: 'False'
-                                  children:
-                                    Crouch-w:
+                                    indicator: '2D'
+                                  children: 
+                                    Crouch-w: 
                                       type: 'condition'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         crouch: 'True'
-                                      children:
-                                        Launch-x:
+                                        indicator: '2D'
+                                      children: 
+                                        Launch-x: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             relative: 'Target'
-                                            forward-base: 0.75
-                                            forward-scale: 0
-                                            upward-base: -0.1
-                                            upward-scale: 0
-                                            right-base: 0
-                                            right-scale: 0
-                                        Particle-y:
+                                            forward-base: '0.75'
+                                            forward-scale: '0'
+                                            upward-base: '-0.1'
+                                            upward-scale: '0'
+                                            right-base: '0'
+                                            right-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Particle-y: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             particle: 'Enchantment Table'
                                             arrangement: 'Sphere'
-                                            radius-base: 2
-                                            radius-scale: 0
-                                            particles-base: 2
-                                            particles-scale: 0
-                                            visible-radius: 30
-                                            dx: 0
-                                            dy: 0
-                                            dz: 0
-                                            speed: 0
-                                            amount: 1
-                                            forward: 0
-                                            upward: 1
-                                            right: 0
-                                        Value Add-z:
+                                            radius-base: '2'
+                                            radius-scale: '0'
+                                            particles-base: '2'
+                                            particles-scale: '0'
+                                            visible-radius: '30'
+                                            dx: '0'
+                                            dy: '0'
+                                            dz: '0'
+                                            speed: '0'
+                                            amount: '1'
+                                            forward: '0'
+                                            upward: '1'
+                                            right: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Value Add-z: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             key: 'stamina'
-                                            amount-base: -5
-                                            amount-scale: 0
-                                        Status-ab:
+                                            amount-base: '-5'
+                                            amount-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Status-ab: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             status: 'Invincible'
-                                            duration-base: 0.1
-                                            duration-scale: 0
-                                        Class-bb:
+                                            duration-base: '0.1'
+                                            duration-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Class-bb: 
                                           type: 'condition'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             class: 'Gunman'
                                             exact: 'True'
-                                        Else-cb:
+                                            indicator: '2D'
+                                          children:  {}
+                                        Else-cb: 
                                           type: 'condition'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
-                                          children:
-                                            Status-db:
+                                            indicator: '2D'
+                                          children: 
+                                            Status-db: 
                                               type: 'mechanic'
-                                              data:
+                                              indicator: '3D'
+                                              data: 
                                                 icon-key: ''
                                                 counts: 'True'
                                                 status: 'Silence'
-                                                duration-base: 0.1
-                                                duration-scale: 0
-            Skill Level-eb:
+                                                duration-base: '0.1'
+                                                duration-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+            Skill Level-eb: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 skill: 'Defensive Crouch Skill'
-                min-level: 3
-                max-level: 3
-              children:
-                Ground-fb:
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Ground-fb: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'On Ground'
-                  children:
-                    Block-gb:
+                    indicator: '2D'
+                  children: 
+                    Block-gb: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         standing: 'Not In Block'
                         material: 'Ladder'
-                      children:
-                        Block-hb:
+                        indicator: '2D'
+                      children: 
+                        Block-hb: 
                           type: 'condition'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             standing: 'Not In Block'
                             material: 'Fence'
-                          children:
-                            Value-ib:
+                            indicator: '2D'
+                          children: 
+                            Value-ib: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
                                 key: 'stamina'
-                                min-value-base: 0
-                                min-value-scale: 0
-                                max-value-base: 999
-                                max-value-scale: 0
-                              children:
-                                Repeat-jb:
+                                min-value-base: '0'
+                                min-value-scale: '0'
+                                max-value-base: '999'
+                                max-value-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Repeat-jb: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    repetitions-base: 7
-                                    repetitions-scale: 0
-                                    period: 0.05
-                                    delay: 0
+                                    repetitions-base: '7'
+                                    repetitions-scale: '0'
+                                    period: '0.05'
+                                    delay: '0'
                                     stop-on-fail: 'False'
-                                  children:
-                                    Crouch-kb:
+                                    indicator: '2D'
+                                  children: 
+                                    Crouch-kb: 
                                       type: 'condition'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         crouch: 'True'
-                                      children:
-                                        Launch-lb:
+                                        indicator: '2D'
+                                      children: 
+                                        Launch-lb: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             relative: 'Target'
-                                            forward-base: 0
-                                            forward-scale: 0
-                                            upward-base: -0.1
-                                            upward-scale: 0
-                                            right-base: -0.75
-                                            right-scale: 0
-                                        Particle-mb:
+                                            forward-base: '0'
+                                            forward-scale: '0'
+                                            upward-base: '-0.1'
+                                            upward-scale: '0'
+                                            right-base: '-0.75'
+                                            right-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Particle-mb: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             particle: 'Enchantment Table'
                                             arrangement: 'Sphere'
-                                            radius-base: 2
-                                            radius-scale: 0
-                                            particles-base: 2
-                                            particles-scale: 0
-                                            visible-radius: 30
-                                            dx: 0
-                                            dy: 0
-                                            dz: 0
-                                            speed: 0
-                                            amount: 1
-                                            forward: 0
-                                            upward: 1
-                                            right: 0
-                                        Value Add-nb:
+                                            radius-base: '2'
+                                            radius-scale: '0'
+                                            particles-base: '2'
+                                            particles-scale: '0'
+                                            visible-radius: '30'
+                                            dx: '0'
+                                            dy: '0'
+                                            dz: '0'
+                                            speed: '0'
+                                            amount: '1'
+                                            forward: '0'
+                                            upward: '1'
+                                            right: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Value Add-nb: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             key: 'stamina'
-                                            amount-base: -5
-                                            amount-scale: 0
-                                        Status-ob:
+                                            amount-base: '-5'
+                                            amount-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Status-ob: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             status: 'Invincible'
-                                            duration-base: 0.1
-                                            duration-scale: 0
-                                        Class-pb:
+                                            duration-base: '0.1'
+                                            duration-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Class-pb: 
                                           type: 'condition'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             class: 'Gunman'
                                             exact: 'True'
-                                        Else-qb:
+                                            indicator: '2D'
+                                          children:  {}
+                                        Else-qb: 
                                           type: 'condition'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
-                                          children:
-                                            Status-rb:
+                                            indicator: '2D'
+                                          children: 
+                                            Status-rb: 
                                               type: 'mechanic'
-                                              data:
+                                              indicator: '3D'
+                                              data: 
                                                 icon-key: ''
                                                 counts: 'True'
                                                 status: 'Silence'
-                                                duration-base: 0.1
-                                                duration-scale: 0
-            Skill Level-sb:
+                                                duration-base: '0.1'
+                                                duration-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+            Skill Level-sb: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 skill: 'Defensive Crouch Skill'
-                min-level: 4
-                max-level: 4
-              children:
-                Ground-tb:
+                min-level: '4'
+                max-level: '4'
+                indicator: '2D'
+              children: 
+                Ground-tb: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'On Ground'
-                  children:
-                    Block-ub:
+                    indicator: '2D'
+                  children: 
+                    Block-ub: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         standing: 'Not In Block'
                         material: 'Ladder'
-                      children:
-                        Block-vb:
+                        indicator: '2D'
+                      children: 
+                        Block-vb: 
                           type: 'condition'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             standing: 'Not In Block'
                             material: 'Fence'
-                          children:
-                            Value-wb:
+                            indicator: '2D'
+                          children: 
+                            Value-wb: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
                                 key: 'stamina'
-                                min-value-base: 0
-                                min-value-scale: 0
-                                max-value-base: 999
-                                max-value-scale: 0
-                              children:
-                                Repeat-xb:
+                                min-value-base: '0'
+                                min-value-scale: '0'
+                                max-value-base: '999'
+                                max-value-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Repeat-xb: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    repetitions-base: 7
-                                    repetitions-scale: 0
-                                    period: 0.05
-                                    delay: 0
+                                    repetitions-base: '7'
+                                    repetitions-scale: '0'
+                                    period: '0.05'
+                                    delay: '0'
                                     stop-on-fail: 'False'
-                                  children:
-                                    Crouch-yb:
+                                    indicator: '2D'
+                                  children: 
+                                    Crouch-yb: 
                                       type: 'condition'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         crouch: 'True'
-                                      children:
-                                        Launch-zb:
+                                        indicator: '2D'
+                                      children: 
+                                        Launch-zb: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             relative: 'Target'
-                                            forward-base: 0
-                                            forward-scale: 0
-                                            upward-base: -0.1
-                                            upward-scale: 0
-                                            right-base: 0.75
-                                            right-scale: 0
-                                        Particle-ac:
+                                            forward-base: '0'
+                                            forward-scale: '0'
+                                            upward-base: '-0.1'
+                                            upward-scale: '0'
+                                            right-base: '0.75'
+                                            right-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Particle-ac: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             particle: 'Enchantment Table'
                                             arrangement: 'Sphere'
-                                            radius-base: 2
-                                            radius-scale: 0
-                                            particles-base: 2
-                                            particles-scale: 0
-                                            visible-radius: 30
-                                            dx: 0
-                                            dy: 0
-                                            dz: 0
-                                            speed: 0
-                                            amount: 1
-                                            forward: 0
-                                            upward: 1
-                                            right: 0
-                                        Value Add-bc:
+                                            radius-base: '2'
+                                            radius-scale: '0'
+                                            particles-base: '2'
+                                            particles-scale: '0'
+                                            visible-radius: '30'
+                                            dx: '0'
+                                            dy: '0'
+                                            dz: '0'
+                                            speed: '0'
+                                            amount: '1'
+                                            forward: '0'
+                                            upward: '1'
+                                            right: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Value Add-bc: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             key: 'stamina'
-                                            amount-base: -5
-                                            amount-scale: 0
-                                        Status-cc:
+                                            amount-base: '-5'
+                                            amount-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Status-cc: 
                                           type: 'mechanic'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             counts: 'True'
                                             status: 'Invincible'
-                                            duration-base: 0.1
-                                            duration-scale: 0
-                                        Class-dc:
+                                            duration-base: '0.1'
+                                            duration-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Class-dc: 
                                           type: 'condition'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
                                             class: 'Gunman'
                                             exact: 'True'
-                                        Else-ec:
+                                            indicator: '2D'
+                                          children:  {}
+                                        Else-ec: 
                                           type: 'condition'
-                                          data:
+                                          indicator: '3D'
+                                          data: 
                                             icon-key: ''
-                                          children:
-                                            Status-fc:
+                                            indicator: '2D'
+                                          children: 
+                                            Status-fc: 
                                               type: 'mechanic'
-                                              data:
+                                              indicator: '3D'
+                                              data: 
                                                 icon-key: ''
                                                 counts: 'True'
                                                 status: 'Silence'
-                                                duration-base: 0.1
-                                                duration-scale: 0
-            Skill Level-gc:
+                                                duration-base: '0.1'
+                                                duration-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+            Skill Level-gc: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 skill: 'Defensive Crouch Skill'
-                min-level: 5
-                max-level: 5
-              children:
-                Ground-hc:
+                min-level: '5'
+                max-level: '5'
+                indicator: '2D'
+              children: 
+                Ground-hc: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'Not On Ground'
-                  children:
-                    Block-ic:
+                    indicator: '2D'
+                  children: 
+                    Block-ic: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         standing: 'Not In Block'
                         material: 'Ladder'
-                      children:
-                        Block-jc:
+                        indicator: '2D'
+                      children: 
+                        Block-jc: 
                           type: 'condition'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             standing: 'Not In Block'
                             material: 'Fence'
-                          children:
-                            Value-kc:
+                            indicator: '2D'
+                          children: 
+                            Value-kc: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
                                 key: 'stamina'
-                                min-value-base: 0
-                                min-value-scale: 0
-                                max-value-base: 999
-                                max-value-scale: 0
-                              children:
-                                Status-lc:
+                                min-value-base: '0'
+                                min-value-scale: '0'
+                                max-value-base: '999'
+                                max-value-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Status-lc: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     status: 'Invincible'
-                                    duration-base: 0.25
-                                    duration-scale: 0
-                                Particle-mc:
+                                    duration-base: '0.25'
+                                    duration-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Particle-mc: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     particle: 'Enchantment Table'
                                     arrangement: 'Sphere'
-                                    radius-base: 2
-                                    radius-scale: 0
-                                    particles-base: 2
-                                    particles-scale: 0
-                                    visible-radius: 30
-                                    dx: 0
-                                    dy: 0
-                                    dz: 0
-                                    speed: 0
-                                    amount: 1
-                                    forward: 0
-                                    upward: 1
-                                    right: 0
-                                Repeat-nc:
+                                    radius-base: '2'
+                                    radius-scale: '0'
+                                    particles-base: '2'
+                                    particles-scale: '0'
+                                    visible-radius: '30'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Repeat-nc: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    repetitions-base: 3
-                                    repetitions-scale: 0
-                                    period: 0.1
-                                    delay: 0
+                                    repetitions-base: '3'
+                                    repetitions-scale: '0'
+                                    period: '0.1'
+                                    delay: '0'
                                     stop-on-fail: 'False'
-                                  children:
-                                    Particle-oc:
+                                    indicator: '2D'
+                                  children: 
+                                    Particle-oc: 
                                       type: 'mechanic'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         counts: 'True'
                                         particle: 'Cloud'
                                         arrangement: 'Sphere'
-                                        radius-base: 1
-                                        radius-scale: 0
-                                        particles-base: 1
-                                        particles-scale: 0
-                                        visible-radius: 50
-                                        dx: 0
-                                        dy: 0
-                                        dz: 0
-                                        speed: 0.05
-                                        amount: 1
-                                        forward: 0
-                                        upward: 1
-                                        right: 0
-                                Command-pc:
+                                        radius-base: '1'
+                                        radius-scale: '0'
+                                        particles-base: '1'
+                                        particles-scale: '0'
+                                        visible-radius: '50'
+                                        dx: '0'
+                                        dy: '0'
+                                        dz: '0'
+                                        speed: '0.05'
+                                        amount: '1'
+                                        forward: '0'
+                                        upward: '1'
+                                        right: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                Command-pc: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.15 1.8'
                                     type: 'OP'
-                                Repeat-qc:
+                                    indicator: '2D'
+                                  children:  {}
+                                Repeat-qc: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    repetitions-base: 3
-                                    repetitions-scale: 0
-                                    period: 0.075
-                                    delay: 0
+                                    repetitions-base: '3'
+                                    repetitions-scale: '0'
+                                    period: '0.075'
+                                    delay: '0'
                                     stop-on-fail: 'False'
-                                  children:
-                                    Launch-rc:
+                                    indicator: '2D'
+                                  children: 
+                                    Launch-rc: 
                                       type: 'mechanic'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         counts: 'True'
                                         relative: 'Caster'
-                                        forward-base: 0.6
-                                        forward-scale: 0
-                                        upward-base: 0.1
-                                        upward-scale: 0
-                                        right-base: 0
-                                        right-scale: 0
-                                Value Add-sc:
+                                        forward-base: '0.6'
+                                        forward-scale: '0'
+                                        upward-base: '0.1'
+                                        upward-scale: '0'
+                                        right-base: '0'
+                                        right-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                Value Add-sc: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     key: 'stamina'
-                                    amount-base: -25
-                                    amount-scale: 0
-                                Class-tc:
+                                    amount-base: '-25'
+                                    amount-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Class-tc: 
                                   type: 'condition'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     class: 'Gunman'
                                     exact: 'True'
-                                Else-uc:
+                                    indicator: '2D'
+                                  children:  {}
+                                Else-uc: 
                                   type: 'condition'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
-                                  children:
-                                    Status-vc:
+                                    indicator: '2D'
+                                  children: 
+                                    Status-vc: 
                                       type: 'mechanic'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         counts: 'True'
                                         status: 'Silence'
-                                        duration-base: 0.1
-                                        duration-scale: 0
-            Skill Level-wc:
+                                        duration-base: '0.1'
+                                        duration-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+            Skill Level-wc: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 skill: 'Defensive Crouch Skill'
-                min-level: 6
-                max-level: 6
-              children:
-                Ground-xc:
+                min-level: '6'
+                max-level: '6'
+                indicator: '2D'
+              children: 
+                Ground-xc: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'Not On Ground'
-                  children:
-                    Block-yc:
+                    indicator: '2D'
+                  children: 
+                    Block-yc: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         standing: 'Not In Block'
                         material: 'Ladder'
-                      children:
-                        Block-zc:
+                        indicator: '2D'
+                      children: 
+                        Block-zc: 
                           type: 'condition'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             standing: 'Not In Block'
                             material: 'Fence'
-                          children:
-                            Value-ad:
+                            indicator: '2D'
+                          children: 
+                            Value-ad: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
                                 key: 'stamina'
-                                min-value-base: 0
-                                min-value-scale: 0
-                                max-value-base: 999
-                                max-value-scale: 0
-                              children:
-                                Status-bd:
+                                min-value-base: '0'
+                                min-value-scale: '0'
+                                max-value-base: '999'
+                                max-value-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Status-bd: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     status: 'Invincible'
-                                    duration-base: 0.25
-                                    duration-scale: 0
-                                Particle-cd:
+                                    duration-base: '0.25'
+                                    duration-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Particle-cd: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     particle: 'Enchantment Table'
                                     arrangement: 'Sphere'
-                                    radius-base: 2
-                                    radius-scale: 0
-                                    particles-base: 2
-                                    particles-scale: 0
-                                    visible-radius: 30
-                                    dx: 0
-                                    dy: 0
-                                    dz: 0
-                                    speed: 0
-                                    amount: 1
-                                    forward: 0
-                                    upward: 1
-                                    right: 0
-                                Repeat-dd:
+                                    radius-base: '2'
+                                    radius-scale: '0'
+                                    particles-base: '2'
+                                    particles-scale: '0'
+                                    visible-radius: '30'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Repeat-dd: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    repetitions-base: 3
-                                    repetitions-scale: 0
-                                    period: 0.1
-                                    delay: 0
+                                    repetitions-base: '3'
+                                    repetitions-scale: '0'
+                                    period: '0.1'
+                                    delay: '0'
                                     stop-on-fail: 'False'
-                                  children:
-                                    Particle-ed:
+                                    indicator: '2D'
+                                  children: 
+                                    Particle-ed: 
                                       type: 'mechanic'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         counts: 'True'
                                         particle: 'Cloud'
                                         arrangement: 'Sphere'
-                                        radius-base: 1
-                                        radius-scale: 0
-                                        particles-base: 1
-                                        particles-scale: 0
-                                        visible-radius: 50
-                                        dx: 0
-                                        dy: 0
-                                        dz: 0
-                                        speed: 0.05
-                                        amount: 1
-                                        forward: 0
-                                        upward: 1
-                                        right: 0
-                                Command-fd:
+                                        radius-base: '1'
+                                        radius-scale: '0'
+                                        particles-base: '1'
+                                        particles-scale: '0'
+                                        visible-radius: '50'
+                                        dx: '0'
+                                        dy: '0'
+                                        dz: '0'
+                                        speed: '0.05'
+                                        amount: '1'
+                                        forward: '0'
+                                        upward: '1'
+                                        right: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                Command-fd: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     command: 'playsound spells.swing ambient @a[r=16] ~ ~ ~ 0.15 1.8'
                                     type: 'OP'
-                                Repeat-gd:
+                                    indicator: '2D'
+                                  children:  {}
+                                Repeat-gd: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    repetitions-base: 3
-                                    repetitions-scale: 0
-                                    period: 0.075
-                                    delay: 0
+                                    repetitions-base: '3'
+                                    repetitions-scale: '0'
+                                    period: '0.075'
+                                    delay: '0'
                                     stop-on-fail: 'False'
-                                  children:
-                                    Launch-hd:
+                                    indicator: '2D'
+                                  children: 
+                                    Launch-hd: 
                                       type: 'mechanic'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         counts: 'True'
                                         relative: 'Caster'
-                                        forward-base: -0.6
-                                        forward-scale: 0
-                                        upward-base: 0.1
-                                        upward-scale: 0
-                                        right-base: 0
-                                        right-scale: 0
-                                Value Add-id:
+                                        forward-base: '-0.6'
+                                        forward-scale: '0'
+                                        upward-base: '0.1'
+                                        upward-scale: '0'
+                                        right-base: '0'
+                                        right-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                Value Add-id: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     key: 'stamina'
-                                    amount-base: -25
-                                    amount-scale: 0
-                                Class-jd:
+                                    amount-base: '-25'
+                                    amount-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Class-jd: 
                                   type: 'condition'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     class: 'Gunman'
                                     exact: 'True'
-                                Else-kd:
+                                    indicator: '2D'
+                                  children:  {}
+                                Else-kd: 
                                   type: 'condition'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
-                                  children:
-                                    Status-ld:
+                                    indicator: '2D'
+                                  children: 
+                                    Status-ld: 
                                       type: 'mechanic'
-                                      data:
+                                      indicator: '3D'
+                                      data: 
                                         icon-key: ''
                                         counts: 'True'
                                         status: 'Silence'
-                                        duration-base: 0.1
-                                        duration-scale: 0
+                                        duration-base: '0.1'
+                                        duration-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}

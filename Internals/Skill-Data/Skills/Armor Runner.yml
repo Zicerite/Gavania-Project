@@ -1,392 +1,503 @@
-Armor Runner:
+Armor Runner: 
   name: 'Armor Runner'
   type: 'Dynamic'
   max-level: 1
   skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
   msg: '&6{player} &2has cast &6{skill}'
-  combo: ''
-  indicator: '2D'
   icon: 'LEATHER'
+  icon-durability: 0
   icon-data: 0
-  icon-lore:
+  icon-lore: 
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
   - '&7Ignore this, this just runs the armor'
   - '&7code, so just leave it alone :P'
-  attributes:
-    level-base: 1
-    level-scale: 0
-    cost-base: 0
-    cost-scale: 0
-    cooldown-base: 0
-    cooldown-scale: 0
-    mana-base: 0
-    mana-scale: 0
-    points-spent-req-base: 0
-    points-spent-req-scale: 0
-    incompatible:
-    - ''
-  components:
-    Environment Damage-a:
+  desc:  []
+  components: 
+    Environment Damage-a: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
         mana: 'False'
         cooldown: 'False'
         type: 'Contact'
-      children:
-        Status-b:
+        indicator: '2D'
+      children: 
+        Status-b: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             type: 'Active'
             status: 'Invincible'
-          children:
-            Cancel-c:
+            indicator: '2D'
+          children: 
+            Cancel-c: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
-        Else-d:
+                indicator: '2D'
+              children:  {}
+        Else-d: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
-          children:
-            Delay-e:
+            indicator: '2D'
+          children: 
+            Delay-e: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
-                delay-base: 0.05
-                delay-scale: 0
-              children:
-                Damage-f:
+                delay-base: '0.05'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage-f: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     type: 'Multiplier'
-                    value-base: 3
-                    value-scale: 0
+                    value-base: '3'
+                    value-scale: '0'
                     true: 'True'
                     classifier: 'default'
-                Damage-g:
+                    indicator: '2D'
+                  children:  {}
+                Damage-g: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     type: 'Damage'
-                    value-base: 10
-                    value-scale: 0
+                    value-base: '10'
+                    value-scale: '0'
                     true: 'True'
                     classifier: 'default'
-    Environment Damage-h:
+                    indicator: '2D'
+                  children:  {}
+    Environment Damage-h: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
         mana: 'False'
         cooldown: 'False'
         type: 'Magic'
-      children:
-        Status-i:
+        indicator: '2D'
+      children: 
+        Status-i: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             type: 'Active'
             status: 'Invincible'
-          children:
-            Cancel-j:
+            indicator: '2D'
+          children: 
+            Cancel-j: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
-        Else-k:
+                indicator: '2D'
+              children:  {}
+        Else-k: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
-          children:
-            Delay-l:
+            indicator: '2D'
+          children: 
+            Delay-l: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
-                delay-base: 0.05
-                delay-scale: 0
-              children:
-                Damage-m:
+                delay-base: '0.05'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage-m: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     type: 'Multiplier'
-                    value-base: 8
-                    value-scale: 0
+                    value-base: '8'
+                    value-scale: '0'
                     true: 'True'
                     classifier: 'default'
-                Damage-n:
+                    indicator: '2D'
+                  children:  {}
+                Damage-n: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     type: 'Damage'
-                    value-base: 5
-                    value-scale: 0
+                    value-base: '5'
+                    value-scale: '0'
                     true: 'True'
                     classifier: 'default'
-    Environment Damage-o:
+                    indicator: '2D'
+                  children:  {}
+    Environment Damage-o: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
         mana: 'False'
         cooldown: 'False'
         type: 'Fire Tick'
-      children:
-        Class-p:
+        indicator: '2D'
+      children: 
+        Class-p: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             class: 'Phoenix'
             exact: 'True'
-          children:
-            Potion-q:
+            indicator: '2D'
+          children: 
+            Potion-q: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'Not Active'
                 potion: 'Fire Resistance'
-                min-rank-base: 0
-                min-rank-scale: 0
-                max-rank-base: 999
-                max-rank-scale: 0
-              children:
-                Status-r:
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Status-r: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'Active'
                     status: 'Invincible'
-                  children:
-                    Cancel-s:
+                    indicator: '2D'
+                  children: 
+                    Cancel-s: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
-                Else-t:
+                        indicator: '2D'
+                      children:  {}
+                Else-t: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                  children:
-                    Delay-u:
+                    indicator: '2D'
+                  children: 
+                    Delay-u: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
-                        delay-base: 0.05
-                        delay-scale: 0
-                      children:
-                        Damage-v:
+                        delay-base: '0.05'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Damage-v: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             type: 'Multiplier'
-                            value-base: 1.875
-                            value-scale: 0
+                            value-base: '1.875'
+                            value-scale: '0'
                             true: 'True'
                             classifier: 'default'
-                        Damage-w:
+                            indicator: '2D'
+                          children:  {}
+                        Damage-w: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             type: 'Damage'
-                            value-base: 2
-                            value-scale: 0
+                            value-base: '2'
+                            value-scale: '0'
                             true: 'True'
                             classifier: 'default'
-        Else-x:
+                            indicator: '2D'
+                          children:  {}
+        Else-x: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
-          children:
-            Potion-y:
+            indicator: '2D'
+          children: 
+            Potion-y: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'Not Active'
                 potion: 'Fire Resistance'
-                min-rank-base: 0
-                min-rank-scale: 0
-                max-rank-base: 999
-                max-rank-scale: 0
-              children:
-                Status-z:
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Status-z: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'Not Active'
                     status: 'Invincible'
-                  children:
-                    Delay-ab:
+                    indicator: '2D'
+                  children: 
+                    Delay-ab: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
-                        delay-base: 0.05
-                        delay-scale: 0
-                      children:
-                        Damage-bb:
+                        delay-base: '0.05'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Damage-bb: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             type: 'Multiplier'
-                            value-base: 3.75
-                            value-scale: 0
+                            value-base: '3.75'
+                            value-scale: '0'
                             true: 'True'
                             classifier: 'default'
-                        Damage-cb:
+                            indicator: '2D'
+                          children:  {}
+                        Damage-cb: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             type: 'Damage'
-                            value-base: 4
-                            value-scale: 0
+                            value-base: '4'
+                            value-scale: '0'
                             true: 'True'
                             classifier: 'default'
-    Environment Damage-db:
+                            indicator: '2D'
+                          children:  {}
+    Environment Damage-db: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
         mana: 'False'
         cooldown: 'False'
         type: 'Lava'
-      children:
-        Potion-eb:
+        indicator: '2D'
+      children: 
+        Potion-eb: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             type: 'Not Active'
             potion: 'Fire Resistance'
-            min-rank-base: 0
-            min-rank-scale: 0
-            max-rank-base: 999
-            max-rank-scale: 0
-          children:
-            Status-fb:
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Status-fb: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'Active'
                 status: 'Invincible'
-              children:
-                Cancel-gb:
+                indicator: '2D'
+              children: 
+                Cancel-gb: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
-            Else-hb:
+                    indicator: '2D'
+                  children:  {}
+            Else-hb: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-              children:
-                Delay-ib:
+                indicator: '2D'
+              children: 
+                Delay-ib: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
-                    delay-base: 0.05
-                    delay-scale: 0
-                  children:
-                    Damage-jb:
+                    delay-base: '0.05'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Damage-jb: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
                         type: 'Multiplier'
-                        value-base: 7
-                        value-scale: 0
+                        value-base: '7'
+                        value-scale: '0'
                         true: 'True'
                         classifier: 'default'
-                    Damage-kb:
+                        indicator: '2D'
+                      children:  {}
+                    Damage-kb: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
                         type: 'Damage'
-                        value-base: 12
-                        value-scale: 0
+                        value-base: '12'
+                        value-scale: '0'
                         true: 'True'
                         classifier: 'default'
-    Skill Damage-lb:
+                        indicator: '2D'
+                      children:  {}
+    Skill Damage-lb: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
         mana: 'False'
         cooldown: 'False'
         target: 'False'
-        dmg-min: 0
-        dmg-max: 999999
-        category:
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
         - ''
-      children:
-        Value-mb:
+        indicator: '2D'
+      children: 
+        Value-mb: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             key: 'IsBarrier'
-            min-value-base: 1
-            min-value-scale: 0
-            max-value-base: 999
-            max-value-scale: 0
-          children:
-            Self-nb:
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-nb: 
               type: 'target'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-              children:
-                Launch-ob:
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Launch-ob: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     relative: 'Target'
-                    forward-base: -1
-                    forward-scale: 0
-                    upward-base: -0.1
-                    upward-scale: 0
-                    right-base: 0
-                    right-scale: 0
-        Remember Targets-pb:
+                    forward-base: '-1'
+                    forward-scale: '0'
+                    upward-base: '-0.1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Remember Targets-pb: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
             key: 'target'
-        Self-qb:
+            indicator: '2D'
+          children:  {}
+        Self-qb: 
           type: 'target'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
-          children:
-            Health-rb:
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Health-rb: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'Percent'
-                min-value-base: 0
-                min-value-scale: 0
-                max-value-base: 20.009
-                max-value-scale: 0
-              children:
-                Slot-sb:
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '20.009'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-sb: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -401,36 +512,49 @@ Armor Runner:
                     lore: '+Crisis Flames'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-tb:
+                    indicator: '2D'
+                  children: 
+                    Remember-tb: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Damage Lore-ub:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-ub: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-                        Fire-vb:
+                            indicator: '2D'
+                          children:  {}
+                        Fire-vb: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
-                            seconds-base: 3
-                            seconds-scale: 0
-                Slot-wb:
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-wb: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -445,40 +569,53 @@ Armor Runner:
                     lore: '+Crisis Toxins'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-xb:
+                    indicator: '2D'
+                  children: 
+                    Remember-xb: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Damage Lore-yb:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-yb: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-                        Potion-zb:
+                            indicator: '2D'
+                          children:  {}
+                        Potion-zb: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Poison'
                             ambient: 'True'
-                            tier-base: 2
-                            tier-scale: 0
-                            seconds-base: 3
-                            seconds-scale: 0
-                Slot-ac:
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-ac: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -493,40 +630,53 @@ Armor Runner:
                     lore: '+Crisis Decay'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-bc:
+                    indicator: '2D'
+                  children: 
+                    Remember-bc: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Damage Lore-cc:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-cc: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-                        Potion-dc:
+                            indicator: '2D'
+                          children:  {}
+                        Potion-dc: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Wither'
                             ambient: 'True'
-                            tier-base: 2
-                            tier-scale: 0
-                            seconds-base: 3
-                            seconds-scale: 0
-                Slot-ec:
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-ec: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -541,50 +691,65 @@ Armor Runner:
                     lore: '+Crisis Slowing'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-fc:
+                    indicator: '2D'
+                  children: 
+                    Remember-fc: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Damage Lore-gc:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-gc: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-                        Potion-hc:
+                            indicator: '2D'
+                          children:  {}
+                        Potion-hc: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Slow'
                             ambient: 'True'
-                            tier-base: 2
-                            tier-scale: 0
-                            seconds-base: 3
-                            seconds-scale: 0
-            Health-ic:
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Health-ic: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'Percent'
-                min-value-base: 80
-                min-value-scale: 0
-                max-value-base: 100
-                max-value-scale: 0
-              children:
-                Slot-jc:
+                min-value-base: '80'
+                min-value-scale: '0'
+                max-value-base: '100'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-jc: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -599,111 +764,151 @@ Armor Runner:
                     lore: '+Healthy Flames'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-kc:
+                    indicator: '2D'
+                  children: 
+                    Remember-kc: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Fire-lc:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Fire-lc: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
-                            seconds-base: 2
-                            seconds-scale: 0
-                        Damage Lore-mc:
+                            seconds-base: '2'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage Lore-mc: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-        Value-nc:
+                            indicator: '2D'
+                          children:  {}
+        Value-nc: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             key: 'IsBarrier'
-            min-value-base: 1
-            min-value-scale: 0
-            max-value-base: 999
-            max-value-scale: 0
-          children:
-            Self-oc:
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-oc: 
               type: 'target'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-              children:
-                Launch-pc:
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Launch-pc: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     relative: 'Target'
-                    forward-base: -1
-                    forward-scale: 0
-                    upward-base: -0.1
-                    upward-scale: 0
-                    right-base: 0
-                    right-scale: 0
-    Death-qc:
+                    forward-base: '-1'
+                    forward-scale: '0'
+                    upward-base: '-0.1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Death-qc: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
         mana: 'False'
         cooldown: 'False'
-      children:
-        Cooldown-rc:
+        indicator: '2D'
+      children: 
+        Cooldown-rc: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
             skill: 'all'
             type: 'Seconds'
-            value-base: 7
-            value-scale: 0
-    Physical Damage-sc:
+            value-base: '7'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Physical Damage-sc: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
         mana: 'False'
         cooldown: 'False'
         target: 'False'
         type: 'Both'
-        dmg-min: 0
-        dmg-max: 9999999
-      children:
-        Remember Targets-tc:
+        dmg-min: '0'
+        dmg-max: '9999999'
+        indicator: '2D'
+      children: 
+        Remember Targets-tc: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
             key: 'target'
-        Self-uc:
+            indicator: '2D'
+          children:  {}
+        Self-uc: 
           type: 'target'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
-          children:
-            Health-vc:
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Health-vc: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'Percent'
-                min-value-base: 0
-                min-value-scale: 0
-                max-value-base: 20.009
-                max-value-scale: 0
-              children:
-                Slot-wc:
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '20.009'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-wc: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -718,36 +923,49 @@ Armor Runner:
                     lore: '+Crisis Flames'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-xc:
+                    indicator: '2D'
+                  children: 
+                    Remember-xc: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Damage Lore-yc:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-yc: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-                        Fire-zc:
+                            indicator: '2D'
+                          children:  {}
+                        Fire-zc: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
-                            seconds-base: 3
-                            seconds-scale: 0
-                Slot-ad:
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-ad: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -762,40 +980,53 @@ Armor Runner:
                     lore: '+Crisis Toxins'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-bd:
+                    indicator: '2D'
+                  children: 
+                    Remember-bd: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Damage Lore-cd:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-cd: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-                        Potion-dd:
+                            indicator: '2D'
+                          children:  {}
+                        Potion-dd: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Poison'
                             ambient: 'True'
-                            tier-base: 2
-                            tier-scale: 0
-                            seconds-base: 3
-                            seconds-scale: 0
-                Slot-ed:
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-ed: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -810,40 +1041,53 @@ Armor Runner:
                     lore: '+Crisis Decay'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-fd:
+                    indicator: '2D'
+                  children: 
+                    Remember-fd: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Damage Lore-gd:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-gd: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-                        Potion-hd:
+                            indicator: '2D'
+                          children:  {}
+                        Potion-hd: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Wither'
                             ambient: 'True'
-                            tier-base: 2
-                            tier-scale: 0
-                            seconds-base: 3
-                            seconds-scale: 0
-                Slot-id:
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-id: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -858,50 +1102,65 @@ Armor Runner:
                     lore: '+Crisis Slowing'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-jd:
+                    indicator: '2D'
+                  children: 
+                    Remember-jd: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Damage Lore-kd:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-kd: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-                        Potion-ld:
+                            indicator: '2D'
+                          children:  {}
+                        Potion-ld: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Slow'
                             ambient: 'True'
-                            tier-base: 2
-                            tier-scale: 0
-                            seconds-base: 3
-                            seconds-scale: 0
-            Health-md:
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Health-md: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'Percent'
-                min-value-base: 80
-                min-value-scale: 0
-                max-value-base: 100
-                max-value-scale: 0
-              children:
-                Slot-nd:
+                min-value-base: '80'
+                min-value-scale: '0'
+                max-value-base: '100'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-nd: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -916,151 +1175,208 @@ Armor Runner:
                     lore: '+Healthy Flames'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Remember-od:
+                    indicator: '2D'
+                  children: 
+                    Remember-od: 
                       type: 'target'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         key: 'target'
-                      children:
-                        Fire-pd:
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Fire-pd: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
-                            seconds-base: 2
-                            seconds-scale: 0
-                        Damage Lore-qd:
+                            seconds-base: '2'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage Lore-qd: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             hand: 'Main'
                             regex: 'Melee Damage - {value}'
-                            multiplier-base: 0.1
-                            multiplier-scale: 0
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
                             true: 'False'
                             classifier: 'default'
-        Value-rd:
+                            indicator: '2D'
+                          children:  {}
+        Value-rd: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             key: 'IsBarrier'
-            min-value-base: 1
-            min-value-scale: 0
-            max-value-base: 999
-            max-value-scale: 0
-          children:
-            Self-sd:
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-sd: 
               type: 'target'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-              children:
-                Launch-td:
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Launch-td: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     relative: 'Target'
-                    forward-base: -1
-                    forward-scale: 0
-                    upward-base: -0.1
-                    upward-scale: 0
-                    right-base: 0
-                    right-scale: 0
-    Initialize-ud:
+                    forward-base: '-1'
+                    forward-scale: '0'
+                    upward-base: '-0.1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
-      children:
-        Passive-vd:
+        indicator: '2D'
+      children: 
+        Passive-vd: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: 2
-            seconds-scale: 0
-          children:
-            Value Attribute-wd:
+            seconds-base: '2'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Attribute-wd: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 key: 'LevelX1'
                 attribute: 'A_level'
-            Value Attribute-xd:
+                indicator: '2D'
+              children:  {}
+            Value Attribute-xd: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 key: 'LevelX2'
                 attribute: 'A_level'
-            Value Attribute-yd:
+                indicator: '2D'
+              children:  {}
+            Value Attribute-yd: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 key: 'LevelXHalf'
                 attribute: 'A_level'
-            Value Attribute-zd:
+                indicator: '2D'
+              children:  {}
+            Value Attribute-zd: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 key: 'LevelXThird'
                 attribute: 'A_level'
-            Value Multiply-ae:
+                indicator: '2D'
+              children:  {}
+            Value Multiply-ae: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 key: 'LevelX2'
-                multiplier-base: 2
-                multiplier-scale: 0
-            Value Multiply-be:
+                multiplier-base: '2'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-be: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 key: 'LevelXHalf'
-                multiplier-base: 0.5
-                multiplier-scale: 0
-            Value Multiply-ce:
+                multiplier-base: '0.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-ce: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 key: 'LevelXThird'
-                multiplier-base: 0.33
-                multiplier-scale: 0
-        Passive-de:
+                multiplier-base: '0.33'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Passive-de: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: 0.4
-            seconds-scale: 0
-          children:
-            Self-ee:
+            seconds-base: '0.4'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-ee: 
               type: 'target'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-              children:
-                Health-fe:
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Health-fe: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'Percent'
-                    min-value-base: 0
-                    min-value-scale: 0
-                    max-value-base: 20.009
-                    max-value-scale: 0
-                  children:
-                    Slot-ge:
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '20.009'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Slot-ge: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1075,95 +1391,119 @@ Armor Runner:
                         lore: '+Crisis Regeneration'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Potion-he:
+                        indicator: '2D'
+                      children: 
+                        Potion-he: 
                           type: 'condition'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             type: 'Not Active'
                             potion: 'Regeneration'
-                            min-rank-base: 1
-                            min-rank-scale: 0
-                            max-rank-base: 1
-                            max-rank-scale: 0
-                          children:
-                            Class Level-ie:
+                            min-rank-base: '1'
+                            min-rank-scale: '0'
+                            max-rank-base: '1'
+                            max-rank-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Class Level-ie: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
-                                min-level: 1
-                                max-level: 25
-                              children:
-                                Potion-je:
+                                min-level: '1'
+                                max-level: '25'
+                                indicator: '2D'
+                              children: 
+                                Potion-je: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     potion: 'Regeneration'
                                     ambient: 'True'
-                                    tier-base: 1
-                                    tier-scale: 0
-                                    seconds-base: 1
-                                    seconds-scale: 0
-                            Class Level-ke:
+                                    tier-base: '1'
+                                    tier-scale: '0'
+                                    seconds-base: '1'
+                                    seconds-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Class Level-ke: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
-                                min-level: 25
-                                max-level: 50
-                              children:
-                                Potion-le:
+                                min-level: '25'
+                                max-level: '50'
+                                indicator: '2D'
+                              children: 
+                                Potion-le: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     potion: 'Regeneration'
                                     ambient: 'True'
-                                    tier-base: 2
-                                    tier-scale: 0
-                                    seconds-base: 1
-                                    seconds-scale: 0
-                            Class Level-me:
+                                    tier-base: '2'
+                                    tier-scale: '0'
+                                    seconds-base: '1'
+                                    seconds-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Class Level-me: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
-                                min-level: 50
-                                max-level: 75
-                              children:
-                                Potion-ne:
+                                min-level: '50'
+                                max-level: '75'
+                                indicator: '2D'
+                              children: 
+                                Potion-ne: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     potion: 'Regeneration'
                                     ambient: 'True'
-                                    tier-base: 3
-                                    tier-scale: 0
-                                    seconds-base: 1
-                                    seconds-scale: 0
-                            Class Level-oe:
+                                    tier-base: '3'
+                                    tier-scale: '0'
+                                    seconds-base: '1'
+                                    seconds-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Class Level-oe: 
                               type: 'condition'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
-                                min-level: 75
-                                max-level: 999
-                              children:
-                                Potion-pe:
+                                min-level: '75'
+                                max-level: '999'
+                                indicator: '2D'
+                              children: 
+                                Potion-pe: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     potion: 'Regeneration'
                                     ambient: 'True'
-                                    tier-base: 4
-                                    tier-scale: 0
-                                    seconds-base: 1
-                                    seconds-scale: 0
-                    Slot-qe:
+                                    tier-base: '4'
+                                    tier-scale: '0'
+                                    seconds-base: '1'
+                                    seconds-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                    Slot-qe: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1178,23 +1518,28 @@ Armor Runner:
                         lore: '+Crisis Strength'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-re:
+                        indicator: '2D'
+                      children: 
+                        Attribute-re: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Strength'
-                            amount-base: LevelX2
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelX2'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-se:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-se: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1209,23 +1554,28 @@ Armor Runner:
                         lore: '+Crisis Intelligence'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-te:
+                        indicator: '2D'
+                      children: 
+                        Attribute-te: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Intelligence'
-                            amount-base: LevelX2
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelX2'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-ue:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-ue: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1240,34 +1590,42 @@ Armor Runner:
                         lore: '+Crisis Power'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-ve:
+                        indicator: '2D'
+                      children: 
+                        Attribute-ve: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Strength'
-                            amount-base: LevelX1
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelX1'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                        Attribute-we:
+                            indicator: '2D'
+                          children:  {}
+                        Attribute-we: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Intelligence'
-                            amount-base: LevelX1
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelX1'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-xe:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-xe: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1282,23 +1640,28 @@ Armor Runner:
                         lore: '+Crisis Endurance'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-ye:
+                        indicator: '2D'
+                      children: 
+                        Attribute-ye: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Endurance'
-                            amount-base: LevelX1
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelX1'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-ze:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-ze: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1313,23 +1676,28 @@ Armor Runner:
                         lore: '+Crisis Willpower'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-af:
+                        indicator: '2D'
+                      children: 
+                        Attribute-af: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Willpower'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-bf:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-bf: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1344,34 +1712,42 @@ Armor Runner:
                         lore: '+Crisis Armour'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-cf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-cf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Endurance'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                        Attribute-df:
+                            indicator: '2D'
+                          children:  {}
+                        Attribute-df: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Willpower'
-                            amount-base: LevelXThird
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXThird'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-ef:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-ef: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1386,23 +1762,28 @@ Armor Runner:
                         lore: '+Crisis Agility'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-ff:
+                        indicator: '2D'
+                      children: 
+                        Attribute-ff: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Agility'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-gf:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-gf: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1417,23 +1798,28 @@ Armor Runner:
                         lore: '+Crisis Dice'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-hf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-hf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Dice'
-                            amount-base: LevelX1
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelX1'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-if:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-if: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1448,23 +1834,28 @@ Armor Runner:
                         lore: '+Crisis FireDMG'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-jf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-jf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'FireDMG'
-                            amount-base: 100
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: '100'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-kf:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-kf: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1479,23 +1870,28 @@ Armor Runner:
                         lore: '+Crisis LightDMG'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-lf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-lf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'LightDMG'
-                            amount-base: 100
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: '100'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-mf:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-mf: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1510,23 +1906,28 @@ Armor Runner:
                         lore: '+Crisis WaterDMG'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-nf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-nf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'WaterDMG'
-                            amount-base: 100
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: '100'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-of:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-of: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1541,23 +1942,28 @@ Armor Runner:
                         lore: '+Crisis PhysicalDMG'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-pf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-pf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'PhysicalDMG'
-                            amount-base: 100
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: '100'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-qf:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-qf: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1572,23 +1978,28 @@ Armor Runner:
                         lore: '+Crisis NeutralDMG'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-rf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-rf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'NeutralDMG'
-                            amount-base: 100
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: '100'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-sf:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-sf: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1603,23 +2014,28 @@ Armor Runner:
                         lore: '+Crisis EarthDMG'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-tf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-tf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'EarthDMG'
-                            amount-base: 100
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: '100'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-uf:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-uf: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1634,23 +2050,28 @@ Armor Runner:
                         lore: '+Crisis ThunderDMG'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-vf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-vf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'ThunderDMG'
-                            amount-base: 100
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: '100'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-wf:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-wf: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1665,23 +2086,28 @@ Armor Runner:
                         lore: '+Crisis WindDMG'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-xf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-xf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'WindDMG'
-                            amount-base: 100
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: '100'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-yf:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-yf: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1696,23 +2122,28 @@ Armor Runner:
                         lore: '+Crisis DarkDMG'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-zf:
+                        indicator: '2D'
+                      children: 
+                        Attribute-zf: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'DarkDMG'
-                            amount-base: 100
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: '100'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-ag:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-ag: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1727,78 +2158,98 @@ Armor Runner:
                         lore: '+Crisis Super Power'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-bg:
+                        indicator: '2D'
+                      children: 
+                        Attribute-bg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Spirit'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                        Attribute-cg:
+                            indicator: '2D'
+                          children:  {}
+                        Attribute-cg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Aquatia'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                        Attribute-dg:
+                            indicator: '2D'
+                          children:  {}
+                        Attribute-dg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Strength'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                        Attribute-eg:
+                            indicator: '2D'
+                          children:  {}
+                        Attribute-eg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Intelligence'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                        Attribute-fg:
+                            indicator: '2D'
+                          children:  {}
+                        Attribute-fg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Agility'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                        Attribute-gg:
+                            indicator: '2D'
+                          children:  {}
+                        Attribute-gg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Dice'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-hg:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-hg: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1813,33 +2264,40 @@ Armor Runner:
                         lore: '+Crisis Aquatia'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-ig:
+                        indicator: '2D'
+                      children: 
+                        Attribute-ig: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Aquatia'
-                            amount-base: LevelX1
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelX1'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                Health-jg:
+                            indicator: '2D'
+                          children:  {}
+                Health-jg: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'Percent'
-                    min-value-base: 80
-                    min-value-scale: 0
-                    max-value-base: 100
-                    max-value-scale: 0
-                  children:
-                    Slot-kg:
+                    min-value-base: '80'
+                    min-value-scale: '0'
+                    max-value-base: '100'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Slot-kg: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1854,23 +2312,28 @@ Armor Runner:
                         lore: '+Healthy Strength'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-lg:
+                        indicator: '2D'
+                      children: 
+                        Attribute-lg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Strength'
-                            amount-base: LevelX1
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelX1'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-mg:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-mg: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1885,23 +2348,28 @@ Armor Runner:
                         lore: '+Healthy Intelligence'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-ng:
+                        indicator: '2D'
+                      children: 
+                        Attribute-ng: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Intelligence'
-                            amount-base: LevelX1
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelX1'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                    Slot-og:
+                            indicator: '2D'
+                          children:  {}
+                    Slot-og: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        slot:
+                        slot: 
                         - '36'
                         - '37'
                         - '38'
@@ -1916,52 +2384,64 @@ Armor Runner:
                         lore: '+Healthy Power'
                         check-name: 'False'
                         regex: 'False'
-                      children:
-                        Attribute-pg:
+                        indicator: '2D'
+                      children: 
+                        Attribute-pg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Strength'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-                        Attribute-qg:
+                            indicator: '2D'
+                          children:  {}
+                        Attribute-qg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             key: 'Intelligence'
-                            amount-base: LevelXHalf
-                            amount-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
+                            amount-base: 'LevelXHalf'
+                            amount-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
                             stackable: 'False'
-        Passive-rg:
+                            indicator: '2D'
+                          children:  {}
+        Passive-rg: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: 0.15
-            seconds-scale: 0
-          children:
-            Health-sg:
+            seconds-base: '0.15'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Health-sg: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'Percent'
-                min-value-base: 0
-                min-value-scale: 0
-                max-value-base: 20.01
-                max-value-scale: 0
-              children:
-                Slot-tg:
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '20.01'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-tg: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -1972,84 +2452,106 @@ Armor Runner:
                     lore: '+Crisis Mana Regeneration'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Class Level-ug:
+                    indicator: '2D'
+                  children: 
+                    Class Level-ug: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        min-level: 1
-                        max-level: 25
-                      children:
-                        Potion-vg:
+                        min-level: '1'
+                        max-level: '25'
+                        indicator: '2D'
+                      children: 
+                        Potion-vg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Saturation'
                             ambient: 'True'
-                            tier-base: 1
-                            tier-scale: 0
-                            seconds-base: 0.9
-                            seconds-scale: 0
-                    Class Level-wg:
+                            tier-base: '1'
+                            tier-scale: '0'
+                            seconds-base: '0.9'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Class Level-wg: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        min-level: 25
-                        max-level: 50
-                      children:
-                        Potion-xg:
+                        min-level: '25'
+                        max-level: '50'
+                        indicator: '2D'
+                      children: 
+                        Potion-xg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Saturation'
                             ambient: 'True'
-                            tier-base: 2
-                            tier-scale: 0
-                            seconds-base: 0.9
-                            seconds-scale: 0
-                    Class Level-yg:
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '0.9'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Class Level-yg: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        min-level: 50
-                        max-level: 75
-                      children:
-                        Potion-zg:
+                        min-level: '50'
+                        max-level: '75'
+                        indicator: '2D'
+                      children: 
+                        Potion-zg: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Saturation'
                             ambient: 'True'
-                            tier-base: 3
-                            tier-scale: 0
-                            seconds-base: 0.9
-                            seconds-scale: 0
-                    Class Level-ah:
+                            tier-base: '3'
+                            tier-scale: '0'
+                            seconds-base: '0.9'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Class Level-ah: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        min-level: 75
-                        max-level: 999
-                      children:
-                        Potion-bh:
+                        min-level: '75'
+                        max-level: '999'
+                        indicator: '2D'
+                      children: 
+                        Potion-bh: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Saturation'
                             ambient: 'True'
-                            tier-base: 4
-                            tier-scale: 0
-                            seconds-base: 0.9
-                            seconds-scale: 0
-                Slot-ch:
+                            tier-base: '4'
+                            tier-scale: '0'
+                            seconds-base: '0.9'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-ch: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -2064,33 +2566,40 @@ Armor Runner:
                     lore: '+Crisis Haste'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Potion-dh:
+                    indicator: '2D'
+                  children: 
+                    Potion-dh: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
                         potion: 'Fast Digging'
                         ambient: 'True'
-                        tier-base: 1
-                        tier-scale: 0
-                        seconds-base: 0.9
-                        seconds-scale: 0
-            Health-eh:
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '0.9'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Health-eh: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'Percent'
-                min-value-base: 80
-                min-value-scale: 0
-                max-value-base: 100
-                max-value-scale: 0
-              children:
-                Slot-fh:
+                min-value-base: '80'
+                min-value-scale: '0'
+                max-value-base: '100'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-fh: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -2105,84 +2614,106 @@ Armor Runner:
                     lore: '+Healthy Mana Regeneration'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Class Level-gh:
+                    indicator: '2D'
+                  children: 
+                    Class Level-gh: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        min-level: 1
-                        max-level: 25
-                      children:
-                        Potion-hh:
+                        min-level: '1'
+                        max-level: '25'
+                        indicator: '2D'
+                      children: 
+                        Potion-hh: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Saturation'
                             ambient: 'True'
-                            tier-base: 1
-                            tier-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
-                    Class Level-ih:
+                            tier-base: '1'
+                            tier-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Class Level-ih: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        min-level: 26
-                        max-level: 50
-                      children:
-                        Potion-jh:
+                        min-level: '26'
+                        max-level: '50'
+                        indicator: '2D'
+                      children: 
+                        Potion-jh: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Saturation'
                             ambient: 'True'
-                            tier-base: 2
-                            tier-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
-                    Class Level-kh:
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Class Level-kh: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        min-level: 51
-                        max-level: 75
-                      children:
-                        Potion-lh:
+                        min-level: '51'
+                        max-level: '75'
+                        indicator: '2D'
+                      children: 
+                        Potion-lh: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Saturation'
                             ambient: 'True'
-                            tier-base: 3
-                            tier-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
-                    Class Level-mh:
+                            tier-base: '3'
+                            tier-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Class Level-mh: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        min-level: 76
-                        max-level: 999
-                      children:
-                        Potion-nh:
+                        min-level: '76'
+                        max-level: '999'
+                        indicator: '2D'
+                      children: 
+                        Potion-nh: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Saturation'
                             ambient: 'True'
-                            tier-base: 4
-                            tier-scale: 0
-                            seconds-base: 1
-                            seconds-scale: 0
-                Slot-oh:
+                            tier-base: '4'
+                            tier-scale: '0'
+                            seconds-base: '1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-oh: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
-                    slot:
+                    slot: 
                     - '36'
                     - '37'
                     - '38'
@@ -2197,42 +2728,51 @@ Armor Runner:
                     lore: '+Healthy Haste'
                     check-name: 'False'
                     regex: 'False'
-                  children:
-                    Potion-ph:
+                    indicator: '2D'
+                  children: 
+                    Potion-ph: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         type: 'Active'
                         potion: 'Fast Digging'
-                        min-rank-base: 0
-                        min-rank-scale: 0
-                        max-rank-base: 999
-                        max-rank-scale: 0
-                      children:
-                        Potion-qh:
+                        min-rank-base: '0'
+                        min-rank-scale: '0'
+                        max-rank-base: '999'
+                        max-rank-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Potion-qh: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Fast Digging'
                             ambient: 'True'
-                            tier-base: 1
-                            tier-scale: 0
-                            seconds-base: 0.9
-                            seconds-scale: 0
-        Passive-rh:
+                            tier-base: '1'
+                            tier-scale: '0'
+                            seconds-base: '0.9'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+        Passive-rh: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: 0.2
-            seconds-scale: 0
-          children:
-            Slot-sh:
+            seconds-base: '0.2'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Slot-sh: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-                slot:
+                slot: 
                 - '9'
                 - '18'
                 - '27'
@@ -2242,34 +2782,42 @@ Armor Runner:
                 check-lore: 'False'
                 check-name: 'False'
                 regex: 'False'
-              children:
-                Potion-th:
+                indicator: '2D'
+              children: 
+                Potion-th: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     potion: 'Blindness'
                     ambient: 'True'
-                    tier-base: 5
-                    tier-scale: 0
-                    seconds-base: 3
-                    seconds-scale: 0
-                Potion-uh:
+                    tier-base: '5'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-uh: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     potion: 'Slow'
                     ambient: 'True'
-                    tier-base: 15
-                    tier-scale: 0
-                    seconds-base: 0.4
-                    seconds-scale: 0
-            Slot-vh:
+                    tier-base: '15'
+                    tier-scale: '0'
+                    seconds-base: '0.4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Slot-vh: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-                slot:
+                slot: 
                 - '9'
                 - '18'
                 - '27'
@@ -2279,34 +2827,42 @@ Armor Runner:
                 check-lore: 'False'
                 check-name: 'False'
                 regex: 'False'
-              children:
-                Potion-wh:
+                indicator: '2D'
+              children: 
+                Potion-wh: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     potion: 'Blindness'
                     ambient: 'True'
-                    tier-base: 5
-                    tier-scale: 0
-                    seconds-base: 3
-                    seconds-scale: 0
-                Potion-xh:
+                    tier-base: '5'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-xh: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     potion: 'Slow'
                     ambient: 'True'
-                    tier-base: 15
-                    tier-scale: 0
-                    seconds-base: 0.4
-                    seconds-scale: 0
-            Slot-yh:
+                    tier-base: '15'
+                    tier-scale: '0'
+                    seconds-base: '0.4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Slot-yh: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-                slot:
+                slot: 
                 - '9'
                 - '18'
                 - '27'
@@ -2316,34 +2872,42 @@ Armor Runner:
                 check-lore: 'False'
                 check-name: 'False'
                 regex: 'False'
-              children:
-                Potion-zh:
+                indicator: '2D'
+              children: 
+                Potion-zh: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     potion: 'Blindness'
                     ambient: 'True'
-                    tier-base: 5
-                    tier-scale: 0
-                    seconds-base: 3
-                    seconds-scale: 0
-                Potion-ai:
+                    tier-base: '5'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-ai: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     potion: 'Slow'
                     ambient: 'True'
-                    tier-base: 15
-                    tier-scale: 0
-                    seconds-base: 0.4
-                    seconds-scale: 0
-            Slot-bi:
+                    tier-base: '15'
+                    tier-scale: '0'
+                    seconds-base: '0.4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Slot-bi: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-                slot:
+                slot: 
                 - '9'
                 - '18'
                 - '27'
@@ -2353,88 +2917,108 @@ Armor Runner:
                 check-lore: 'False'
                 check-name: 'False'
                 regex: 'False'
-              children:
-                Potion-ci:
+                indicator: '2D'
+              children: 
+                Potion-ci: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     potion: 'Blindness'
                     ambient: 'True'
-                    tier-base: 5
-                    tier-scale: 0
-                    seconds-base: 3
-                    seconds-scale: 0
-                Potion-di:
+                    tier-base: '5'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-di: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     potion: 'Slow'
                     ambient: 'True'
-                    tier-base: 15
-                    tier-scale: 0
-                    seconds-base: 0.4
-                    seconds-scale: 0
-        Passive-ei:
+                    tier-base: '15'
+                    tier-scale: '0'
+                    seconds-base: '0.4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Passive-ei: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: 0.5
-            seconds-scale: 0
-          children:
-            Biome-fi:
+            seconds-base: '0.5'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Biome-fi: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 type: 'In Biome'
-                biome:
+                biome: 
                 - '3'
                 - '3'
                 - '0'
                 - '4'
                 - '2'
-              children:
-                Water-gi:
+                indicator: '2D'
+              children: 
+                Water-gi: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     state: 'Out Of Water'
-                  children:
-                    Light-hi:
+                    indicator: '2D'
+                  children: 
+                    Light-hi: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
-                        min-light-base: 14
-                        min-light-scale: 0
-                        max-light-base: 16
-                        max-light-scale: 0
-                      children:
-                        Time-ii:
+                        min-light-base: '14'
+                        min-light-scale: '0'
+                        max-light-base: '16'
+                        max-light-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Time-ii: 
                           type: 'condition'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             time: 'Day'
-                          children:
-                            Particle-ji:
+                            indicator: '2D'
+                          children: 
+                            Particle-ji: 
                               type: 'mechanic'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
                                 counts: 'True'
                                 particle: 'Water Drop'
                                 arrangement: 'Circle'
-                                radius-base: 0.33
-                                radius-scale: 0
-                                particles-base: 1
-                                particles-scale: 0
+                                radius-base: '0.33'
+                                radius-scale: '0'
+                                particles-base: '1'
+                                particles-scale: '0'
                                 direction: 'XZ'
-                                visible-radius: 32
-                                dx: 0
-                                dy: 0
-                                dz: 0
-                                speed: 0.2
-                                amount: 1
-                                forward: -0.44
-                                upward: 1.75
-                                right: 0
+                                visible-radius: '32'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0.2'
+                                amount: '1'
+                                forward: '-0.44'
+                                upward: '1.75'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}

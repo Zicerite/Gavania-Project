@@ -1,16 +1,27 @@
-Aquatic Veil:
+Aquatic Veil: 
   name: 'Aquatic Veil'
   type: 'Healing/Support'
   max-level: 100
-  skill-req: ''
   skill-req-lvl: 1
-  needs-permission: 'False'
+  needs-permission: 'false'
+  attributes: 
+    level-base: '28'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '25'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
   msg: '&6{player} &2has cast &6{skill}'
-  combo: ''
-  indicator: '2D'
-  icon: 'Potion'
+  icon: 'POTION'
+  icon-durability: 0
   icon-data: 0
-  icon-lore:
+  icon-lore: 
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
@@ -28,188 +39,225 @@ Aquatic Veil:
   - '&bCooldown Reduction: &615&f%'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
-  attributes:
-    level-base: 28
-    level-scale: 2
-    cost-base: 0
-    cost-scale: 0
-    cooldown-base: 25
-    cooldown-scale: 0
-    mana-base: 0
-    mana-scale: 0
-    points-spent-req-base: 0
-    points-spent-req-scale: 0
-    incompatible:
-    - ''
-  components:
-    Cast-a:
+  desc:  []
+  components: 
+    Cast: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
-      children:
-        Self-b:
+        indicator: '2D'
+      children: 
+        Self-b: 
           type: 'target'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
-          children:
-            Command-c:
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Command-c: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 command: 'playsound spells.water5 ambient @a[r=16] ~ ~ ~ 0.4 1'
                 type: 'OP'
-        Area-d:
+                indicator: '2D'
+              children:  {}
+        Area-d: 
           type: 'target'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: 'area'
-            radius-base: 6
-            radius-scale: 0
+            radius-base: '6'
+            radius-scale: '0'
             group: 'Ally'
             wall: 'True'
             caster: 'True'
-            max-base: 999
-            max-scale: 0
+            max-base: '999'
+            max-scale: '0'
             random: 'False'
-          children:
-            Potion-e:
+            indicator: '2D'
+          children: 
+            Potion-e: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: 'po2'
                 counts: 'True'
                 potion: 'Saturation'
                 ambient: 'True'
-                tier-base: 3
-                tier-scale: 0
-                seconds-base: 5
-                seconds-scale: 0
-            Potion-f:
+                tier-base: '3'
+                tier-scale: '0'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-f: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: 'po'
                 counts: 'True'
                 potion: 'Regeneration'
                 ambient: 'True'
-                tier-base: 1
-                tier-scale: 0
-                seconds-base: 5
-                seconds-scale: 0
-            Damage Buff-g:
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Damage Buff-g: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 type: 'Multiplier'
                 skill: 'False'
-                value-base: 1.101
-                value-scale: 0.001
-                seconds-base: 5
-                seconds-scale: 0
-            Damage Buff-h:
+                value-base: '1.101'
+                value-scale: '0.001'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Damage Buff-h: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 type: 'Multiplier'
                 skill: 'True'
-                value-base: 1.101
-                value-scale: 0.001
-                seconds-base: 5
-                seconds-scale: 0
-            Defense Buff-i:
+                value-base: '1.101'
+                value-scale: '0.001'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-i: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 type: 'Multiplier'
                 skill: 'False'
-                value-base: 0.899
-                value-scale: -0.001
-                seconds-base: 5
-                seconds-scale: 0
-            Defense Buff-j:
+                value-base: '0.899'
+                value-scale: '-0.001'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-j: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 type: 'Multiplier'
                 skill: 'True'
-                value-base: 0.899
-                value-scale: -0.001
-                seconds-base: 5
-                seconds-scale: 0
-            Repeat-k:
+                value-base: '0.899'
+                value-scale: '-0.001'
+                seconds-base: '5'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-k: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
-                repetitions-base: 25
-                repetitions-scale: 0
-                period: 0.2
-                delay: 0
+                repetitions-base: '25'
+                repetitions-scale: '0'
+                period: '0.2'
+                delay: '0'
                 stop-on-fail: 'False'
-              children:
-                Particle-l:
+                indicator: '2D'
+              children: 
+                Particle-l: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     particle: 'Red Dust'
                     arrangement: 'Sphere'
-                    radius-base: 1
-                    radius-scale: 0
-                    particles-base: 2
-                    particles-scale: 0
-                    visible-radius: 50
-                    dx: 0.01
-                    dy: 0
-                    dz: 0.75
-                    speed: 1
-                    amount: 0
-                    forward: 0
-                    upward: 1
-                    right: 0
-        Water-m:
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '2'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0.01'
+                    dy: '0'
+                    dz: '0.75'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+        Water-m: 
           type: 'condition'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             state: 'In Water'
-          children:
-            Delay-n:
+            indicator: '2D'
+          children: 
+            Delay-n: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
-                delay-base: 0.01
-                delay-scale: 0
-              children:
-                Cooldown-o:
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-o: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     skill: 'Aquatic Veil'
                     type: 'Percent'
-                    value-base: 15
-                    value-scale: 0
-    Initialize-p:
+                    value-base: '15'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
-      children:
-        Passive-q:
+        indicator: '2D'
+      children: 
+        Passive-q: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: 0.1
-            seconds-scale: 0
-          children:
-            Value Set-r:
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-r: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: 'AVbuff'
                 counts: 'True'
                 key: 'x_AVdef'
-                value-base: 10.1
-                value-scale: 0.1
+                value-base: '10.1'
+                value-scale: '0.1'
+                indicator: '2D'
+              children:  {}
