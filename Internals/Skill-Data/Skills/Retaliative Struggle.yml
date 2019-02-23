@@ -25,11 +25,82 @@ Retaliative Struggle:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Gain &63 &eTech &7every &63 &7seconds when below &620&f% &7HP.'
   - '&7Gain Mana Regen {attr:po.tier} &7when below &620&f% &7HP'
   - '&7Deal &633&f% &7more damage when below &620&f% &7HP'
+  - ''
+  - '&7Gain &61 &eTech &7every &62 &7seconds when'
+  - '&7below &640&f% &7HP.'
+  - ''
+  - '&7Gain &61 &aStamina &7every &61 &7second when'
+  - '&7below &660&f% &7HP.'
+  - ''
+  - '&7Taking Poison, Wither, or Fire Tick damage'
+  - '&7heals &61 &eTech&7.'
   desc:  []
   components: 
+    Environment Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Wither'
+        indicator: '2D'
+      children: 
+        Value Add-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'tech'
+            amount-base: '1'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Environment Damage-c: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Poison'
+        indicator: '2D'
+      children: 
+        Value Add-d: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'tech'
+            amount-base: '1'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Environment Damage-e: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Fire Tick'
+        indicator: '2D'
+      children: 
+        Value Add-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'tech'
+            amount-base: '1'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -37,7 +108,7 @@ Retaliative Struggle:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-b: 
+        Passive-h: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -47,7 +118,7 @@ Retaliative Struggle:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Health-c: 
+            Health-i: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -59,7 +130,7 @@ Retaliative Struggle:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Damage Buff-d: 
+                Damage Buff-j: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -73,7 +144,7 @@ Retaliative Struggle:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Damage Buff-e: 
+                Damage Buff-k: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -87,7 +158,7 @@ Retaliative Struggle:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Potion-f: 
+                Potion-l: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -100,7 +171,7 @@ Retaliative Struggle:
                     max-rank-scale: '0'
                     indicator: '2D'
                   children: 
-                    Potion-g: 
+                    Potion-m: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -114,36 +185,69 @@ Retaliative Struggle:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-        Passive-h: 
+        Passive-n: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '3'
+            seconds-base: '2'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Health-i: 
+            Health-o: 
               type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                type: 'Health'
+                type: 'Percent'
                 min-value-base: '0'
                 min-value-scale: '0'
-                max-value-base: '20'
+                max-value-base: '40'
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Value Add-j: 
+                Value Add-p: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
                     key: 'tech'
-                    amount-base: '3'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Passive-q: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Health-r: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '60'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '1'
                     amount-scale: '0'
                     indicator: '2D'
                   children:  {}

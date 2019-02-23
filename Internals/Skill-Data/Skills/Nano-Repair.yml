@@ -25,14 +25,16 @@ Nano-Repair:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Heals HP, and is granted HP'
-  - '&7and Mana Regen for a short time.'
+  - '&7Heals HP, Mana, and Tech. Grants'
+  - '&7HP and Mana Regen for a short time.'
   - '&7However, regeneration cancels'
   - '&7when you are hit with any attack.'
   - '&7The caster slowly gains tech over'
   - '&7time while in this regenerative state.'
   - ''
-  - '&bHeals: {attr:heal.value}'
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bMana Healed: {attr:mana.value}'
+  - '&bTech Healed: {attr:techgained.amount}'
   - '&bHP Regen: {attr:po.tier} for {attr:po.seconds} Seconds'
   - '&bMana Regen: {attr:po2.tier} for {attr:po2.seconds} Seconds'
   - '&bTech gained: {attr:gained.amount} per second'
@@ -246,18 +248,7 @@ Nano-Repair:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Heal-t: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'heal'
-                counts: 'True'
-                type: 'Health'
-                value-base: '12'
-                value-scale: '1'
-                indicator: '2D'
-              children:  {}
-            Value Set-u: 
+            Value Set-t: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -268,7 +259,7 @@ Nano-Repair:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Potion-v: 
+            Potion-u: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -282,7 +273,7 @@ Nano-Repair:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Potion-w: 
+            Potion-v: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -296,7 +287,7 @@ Nano-Repair:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Delay-x: 
+            Delay-w: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -306,7 +297,7 @@ Nano-Repair:
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Value Set-y: 
+                Value Set-x: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -317,7 +308,40 @@ Nano-Repair:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-        Skill Level-z: 
+            Heal-y: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Health'
+                value-base: '12'
+                value-scale: '1'
+                indicator: '2D'
+              children:  {}
+            Mana-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mana'
+                counts: 'True'
+                type: 'Mana'
+                value-base: '12'
+                value-scale: '1'
+                indicator: '2D'
+              children:  {}
+            Value Add-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'techgained'
+                counts: 'True'
+                key: 'tech'
+                amount-base: '15'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Skill Level-bb: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -327,7 +351,7 @@ Nano-Repair:
             max-level: '3'
             indicator: '2D'
           children: 
-            Value Add-ab: 
+            Value Add-cb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -345,7 +369,7 @@ Nano-Repair:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-cb: 
+        Self-eb: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -355,7 +379,7 @@ Nano-Repair:
             wall: 'false'
             caster: 'false'
           children: 
-            Passive-db: 
+            Passive-fb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -365,7 +389,7 @@ Nano-Repair:
                 seconds-scale: '0'
                 indicator: '2D'
               children: 
-                Value-eb: 
+                Value-gb: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -377,7 +401,7 @@ Nano-Repair:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Particle-fb: 
+                    Particle-hb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -387,7 +411,7 @@ Nano-Repair:
                         arrangement: 'Sphere'
                         radius-base: '1.5'
                         radius-scale: '0'
-                        particles-base: '8'
+                        particles-base: '6'
                         particles-scale: '0'
                         visible-radius: '40'
                         dx: '0'
@@ -400,7 +424,7 @@ Nano-Repair:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-            Value Set-gb: 
+            Value Set-ib: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -411,7 +435,7 @@ Nano-Repair:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Passive-hb: 
+            Passive-jb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -421,7 +445,7 @@ Nano-Repair:
                 seconds-scale: '0'
                 indicator: '2D'
               children: 
-                Value-ib: 
+                Value-kb: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -433,7 +457,7 @@ Nano-Repair:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Value Add-jb: 
+                    Value Add-lb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 

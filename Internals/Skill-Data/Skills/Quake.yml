@@ -2,6 +2,7 @@ Quake:
   name: 'Quake'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -37,6 +38,201 @@ Quake:
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
+    Land-pc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: '0'
+        indicator: '2D'
+      children: 
+        Value-qc: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'quakelanding'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '1'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Area-rc: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                radius-base: '10'
+                radius-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
+                indicator: '2D'
+              children: 
+                Ground-sc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'On Ground'
+                    indicator: '2D'
+                  children: 
+                    Damage-tc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 'dmgQuakeCrash'
+                        value-scale: '0.3'
+                        true: 'False'
+                        classifier: 'earth'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-uc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Stone'
+                        type: '1'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '20'
+                        particles-scale: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Chance-vc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        chance-base: '20'
+                        chance-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Status-wc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Stun'
+                            duration-base: '2'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Repeat-xc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '20'
+                            repetitions-scale: '0'
+                            period: '0.1'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Particle-yc: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Angry Villager'
+                                arrangement: 'Circle'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '2'
+                                particles-scale: '0'
+                                direction: 'XZ'
+                                visible-radius: '40'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '1'
+                                amount: '1'
+                                forward: '0'
+                                upward: '1.6'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+            Command-zc: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.earth1 ambient @a[r=22] ~ ~ ~ 0.65 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Particle-ad: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Block Crack'
+                material: 'Dirt'
+                type: '0'
+                arrangement: 'Circle'
+                radius-base: '10'
+                radius-scale: '0'
+                particles-base: '30'
+                particles-scale: '0'
+                direction: 'XZ'
+                forward: '0'
+                upward: '0.1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-bd: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Block Crack'
+                material: 'Stone'
+                type: '0'
+                arrangement: 'Circle'
+                radius-base: '10'
+                radius-scale: '0'
+                particles-base: '30'
+                particles-scale: '0'
+                direction: 'XZ'
+                forward: '0'
+                upward: '0.1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-cd: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'quakelanding'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -51,7 +247,7 @@ Quake:
             icon-key: ''
             skill: 'Rune_Mage_Quake'
             min-level: '0'
-            max-level: '2'
+            max-level: '1'
             indicator: '2D'
           children: 
             Self-c: 
@@ -311,8 +507,8 @@ Quake:
           data: 
             icon-key: ''
             skill: 'Rune_Mage_Quake'
-            min-level: '3'
-            max-level: '3'
+            min-level: '2'
+            max-level: '2'
             indicator: '2D'
           children: 
             Self-w: 
@@ -325,7 +521,289 @@ Quake:
                 wall: 'false'
                 caster: 'false'
               children: 
-                Command-x: 
+                Value Set-x: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'quakelanding'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Ground-y: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'On Ground'
+                    indicator: '2D'
+                  children: 
+                    Launch-z: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: '0'
+                        forward-scale: '0'
+                        upward-base: '0.8'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-ab: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 0.5 1.2'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Delay-bb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: '0.25'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Launch-cb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Target'
+                            forward-base: '0'
+                            forward-scale: '0'
+                            upward-base: '-1'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Command-db: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            command: 'playsound spells.earth4 ambient @a[r=16] ~ ~ ~ 0.25 1.2'
+                            type: 'OP'
+                            indicator: '2D'
+                          children:  {}
+                        Status-eb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Invincible'
+                            duration-base: '0.25'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Area-fb: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            radius-base: '3'
+                            radius-scale: '0'
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: '999'
+                            max-scale: '0'
+                            random: 'False'
+                            indicator: '2D'
+                          children: 
+                            Status-gb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                status: 'Disarm'
+                                duration-base: '0.5'
+                                duration-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Status-hb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                status: 'Silence'
+                                duration-base: '0.5'
+                                duration-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Launch-ib: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Caster'
+                                forward-base: '0.01'
+                                forward-scale: '0'
+                                upward-base: '-1'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Particle-jb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Cloud'
+                        arrangement: 'Circle'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '4'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '40'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        forward: '0'
+                        upward: '0'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                Ground-kb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Not On Ground'
+                    indicator: '2D'
+                  children: 
+                    Launch-lb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: '0'
+                        forward-scale: '0'
+                        upward-base: '-1'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-mb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound spells.earth4 ambient @a[r=16] ~ ~ ~ 0.25 1.2'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Status-nb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Invincible'
+                        duration-base: '0.25'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Area-ob: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        radius-base: '3'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Status-pb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Disarm'
+                            duration-base: '0.5'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Status-qb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Silence'
+                            duration-base: '0.5'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Launch-rb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: '0.01'
+                            forward-scale: '0'
+                            upward-base: '-1'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+        Skill Level-sb: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Rune_Mage_Quake'
+            min-level: '3'
+            max-level: '3'
+            indicator: '2D'
+          children: 
+            Self-tb: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Command-ub: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -335,7 +813,7 @@ Quake:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Particle-y: 
+                Particle-vb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -355,7 +833,7 @@ Quake:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-z: 
+                Particle-wb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -375,7 +853,7 @@ Quake:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Area-ab: 
+                Area-xb: 
                   type: 'target'
                   indicator: '3D'
                   data: 
@@ -390,7 +868,7 @@ Quake:
                     random: 'False'
                     indicator: '2D'
                   children: 
-                    Ground-bb: 
+                    Ground-yb: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -398,7 +876,7 @@ Quake:
                         type: 'On Ground'
                         indicator: '2D'
                       children: 
-                        Damage-cb: 
+                        Damage-zb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -411,7 +889,7 @@ Quake:
                             classifier: 'earth'
                             indicator: '2D'
                           children:  {}
-                        Particle-db: 
+                        Particle-ac: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -430,7 +908,7 @@ Quake:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Chance-eb: 
+                        Chance-bc: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -439,7 +917,7 @@ Quake:
                             chance-scale: '0'
                             indicator: '2D'
                           children: 
-                            Status-fb: 
+                            Status-cc: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -450,7 +928,7 @@ Quake:
                                 duration-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Repeat-gb: 
+                            Repeat-dc: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -463,7 +941,7 @@ Quake:
                                 stop-on-fail: 'False'
                                 indicator: '2D'
                               children: 
-                                Particle-hb: 
+                                Particle-ec: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -494,17 +972,17 @@ Quake:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-jb: 
+        Passive-gc: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.05'
+            seconds-base: '0.1'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-kb: 
+            Value Lore-hc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -517,7 +995,7 @@ Quake:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Lore-lb: 
+            Value Lore-ic: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -530,3 +1008,86 @@ Quake:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
+            Value Lore-jc: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgQuakeCrash'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '1.98'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Repeat-kc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: '3'
+            repetitions-scale: '0'
+            period: '0.1'
+            delay: '0'
+            stop-on-fail: 'False'
+            indicator: '2D'
+          children: 
+            Value Set-lc: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'quakelanding'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Passive-mc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.25'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-nc: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'quakelanding'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '1'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Particle-oc: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Cloud'
+                    arrangement: 'Circle'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '1'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0.1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}

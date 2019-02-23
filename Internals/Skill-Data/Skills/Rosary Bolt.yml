@@ -38,6 +38,9 @@ Rosary Bolt:
   - '&bFire Duration: {attr:fire3.seconds} Seconds'
   - '&bHealing Debuff: &6-20&f% for &63 &fSeconds.'
   - ''
+  - '&bRune 3 Damage: {attr:dmg_weak.value} Skill Damage &5䛾'
+  - '&bRune 3 Piercing Damage: {attr:dmg_weak_p.value} Skill Damage &f䛳'
+  - ''
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
@@ -439,7 +442,7 @@ Rosary Bolt:
                                     ambient: 'True'
                                     tier-base: '1'
                                     tier-scale: '0'
-                                    seconds-base: '3'
+                                    seconds-base: '2'
                                     seconds-scale: '0'
                                     indicator: '2D'
                                   children:  {}
@@ -676,10 +679,10 @@ Rosary Bolt:
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
-                                icon-key: ''
+                                icon-key: 'dmg_weak'
                                 counts: 'True'
                                 type: 'Damage'
-                                value-base: 'dmgRosaryMain'
+                                value-base: 'dmgRosaryMain_Single'
                                 value-scale: '0.3'
                                 true: 'False'
                                 classifier: 'dark'
@@ -689,10 +692,10 @@ Rosary Bolt:
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
-                                icon-key: ''
+                                icon-key: 'dmg_weak_p'
                                 counts: 'True'
                                 type: 'Damage'
-                                value-base: 'dmgRosaryPierce'
+                                value-base: 'dmgRosaryPierce_Single'
                                 value-scale: '0'
                                 true: 'True'
                                 classifier: 'wind'
@@ -901,7 +904,7 @@ Rosary Bolt:
                                 ambient: 'True'
                                 tier-base: '1'
                                 tier-scale: '0'
-                                seconds-base: '3'
+                                seconds-base: '2'
                                 seconds-scale: '0'
                                 indicator: '2D'
                               children:  {}
@@ -1000,6 +1003,32 @@ Rosary Bolt:
                 hand: 'Main'
                 regex: 'Skill Damage - {value}'
                 multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-tc: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgRosaryMain_Single'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.3'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-uc: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgRosaryPierce_Single'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '0.05'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
