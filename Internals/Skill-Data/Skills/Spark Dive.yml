@@ -2,7 +2,6 @@ Spark Dive:
   name: 'Spark Dive'
   type: 'Damage'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -10,7 +9,7 @@ Spark Dive:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '7'
+    cooldown-base: '8'
     cooldown-scale: '0'
     mana-base: '31'
     mana-scale: '1'
@@ -257,53 +256,105 @@ Spark Dive:
             wall: 'false'
             caster: 'false'
           children: 
-            Launch-r: 
-              type: 'mechanic'
+            Ground-r: 
+              type: 'condition'
               indicator: '3D'
               data: 
                 icon-key: ''
-                counts: 'True'
-                relative: 'Target'
-                forward-base: '1'
-                forward-scale: '0'
-                upward-base: '1'
-                upward-scale: '0'
-                right-base: '0'
-                right-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Set-s: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'didjump03'
-                value-base: '1'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Command-t: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1'
-                type: 'OP'
-                indicator: '2D'
-              children:  {}
-            Delay-u: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                delay-base: '0.25'
-                delay-scale: '0'
+                type: 'On Ground'
                 indicator: '2D'
               children: 
-                Launch-v: 
+                Launch-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '1'
+                    forward-scale: '0'
+                    upward-base: '1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'didjump03'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Command-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Delay-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.25'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Launch-w: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: '0.75'
+                        forward-scale: '0'
+                        upward-base: '-1.5'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-x: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 1 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+            Ground-y: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Set-z: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'didjump03'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Launch-ab: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -318,7 +369,7 @@ Spark Dive:
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Command-w: 
+                Command-bb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -328,7 +379,7 @@ Spark Dive:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-        Value Set-x: 
+        Value Set-cb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -339,7 +390,7 @@ Spark Dive:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Skill Level-y: 
+        Skill Level-db: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -349,7 +400,7 @@ Spark Dive:
             max-level: '1'
             indicator: '2D'
           children: 
-            Status-z: 
+            Status-eb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -367,7 +418,7 @@ Spark Dive:
         icon-key: ''
         indicator: '2D'
       children: 
-        Value Set-bb: 
+        Value Set-gb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -378,7 +429,7 @@ Spark Dive:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Passive-cb: 
+        Passive-hb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -388,7 +439,7 @@ Spark Dive:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value-db: 
+            Value-ib: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -400,7 +451,7 @@ Spark Dive:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Particle-eb: 
+                Particle-jb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -423,7 +474,7 @@ Spark Dive:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Area-fb: 
+                Area-kb: 
                   type: 'target'
                   indicator: '3D'
                   data: 
@@ -438,7 +489,7 @@ Spark Dive:
                     random: 'False'
                     indicator: '2D'
                   children: 
-                    Repeat-gb: 
+                    Repeat-lb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -451,7 +502,7 @@ Spark Dive:
                         stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Launch-hb: 
+                        Launch-mb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -466,7 +517,7 @@ Spark Dive:
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Status-ib: 
+                        Status-nb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -477,7 +528,7 @@ Spark Dive:
                             duration-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Status-jb: 
+                        Status-ob: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -488,7 +539,7 @@ Spark Dive:
                             duration-scale: '0'
                             indicator: '2D'
                           children:  {}
-            Value Lore-kb: 
+            Value Lore-pb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -501,7 +552,7 @@ Spark Dive:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Lore-lb: 
+            Value Lore-qb: 
               type: 'mechanic'
               indicator: '3D'
               data: 

@@ -1,16 +1,27 @@
-Sea Animal:
+Sea Animal: 
   name: 'Sea Animal'
   type: 'Passive'
   max-level: 1
-  skill-req: ''
   skill-req-lvl: 1
-  needs-permission: 'False'
+  needs-permission: 'false'
+  attributes: 
+    level-base: '80'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
   msg: '&6{player} &2has cast &6{skill}'
-  combo: ''
-  indicator: '2D'
-  icon: 'Prismarine'
+  icon: 'PRISMARINE'
+  icon-durability: 0
   icon-data: 0
-  icon-lore:
+  icon-lore: 
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
@@ -24,112 +35,130 @@ Sea Animal:
   - '&7Does not stack with being grounded.'
   - ''
   - '{req:level}Level: {attr:level}'
-  attributes:
-    level-base: 80
-    level-scale: 0
-    cost-base: 0
-    cost-scale: 0
-    cooldown-base: 0
-    cooldown-scale: 0
-    mana-base: 0
-    mana-scale: 0
-    points-spent-req-base: 0
-    points-spent-req-scale: 0
-    incompatible:
-    - ''
-  components:
-    Initialize-a:
+  desc:  []
+  components: 
+    Initialize: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
-      children:
-        Self-b:
+        indicator: '2D'
+      children: 
+        Self-b: 
           type: 'target'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
-          children:
-            Passive-c:
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Passive-c: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
-                seconds-base: 0.05
-                seconds-scale: 0
-              children:
-                Water-d:
+                seconds-base: '0.05'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Water-d: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     state: 'In Water'
-                  children:
-                    Potion-e:
+                    indicator: '2D'
+                  children: 
+                    Potion-e: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
                         potion: 'Water Breathing'
                         ambient: 'True'
-                        tier-base: 1
-                        tier-scale: 0
-                        seconds-base: 0.9
-                        seconds-scale: 0
-                    Potion-f:
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '0.9'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Potion-f: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         type: 'Active'
                         potion: 'Saturation'
-                        min-rank-base: 0
-                        min-rank-scale: 0
-                        max-rank-base: 0
-                        max-rank-scale: 0
-                      children:
-                        Potion-g:
+                        min-rank-base: '0'
+                        min-rank-scale: '0'
+                        max-rank-base: '0'
+                        max-rank-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Potion-g: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             potion: 'Saturation'
                             ambient: 'True'
-                            tier-base: 1
-                            tier-scale: 0
-                            seconds-base: 0.25
-                            seconds-scale: 0
-            Passive-h:
+                            tier-base: '1'
+                            tier-scale: '0'
+                            seconds-base: '0.25'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Passive-h: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
-                seconds-base: 0.3
-                seconds-scale: 0
-              children:
-                Water-i:
+                seconds-base: '0.3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Water-i: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     state: 'In Water'
-                  children:
-                    Ground-j:
+                    indicator: '2D'
+                  children: 
+                    Ground-j: 
                       type: 'condition'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         type: 'Not On Ground'
-                      children:
-                        Value-k:
+                        indicator: '2D'
+                      children: 
+                        Value-k: 
                           type: 'condition'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             key: 'stamina'
-                            min-value-base: -999
-                            min-value-scale: 0
-                            max-value-base: 99
-                            max-value-scale: 0
-                          children:
-                            Value Add-l:
+                            min-value-base: '-999'
+                            min-value-scale: '0'
+                            max-value-base: '99'
+                            max-value-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Add-l: 
                               type: 'mechanic'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
                                 counts: 'True'
                                 key: 'stamina'
-                                amount-base: 3
-                                amount-scale: 0
+                                amount-base: '3'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
