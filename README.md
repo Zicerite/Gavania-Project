@@ -8,4 +8,4 @@ You can take what you want! :D
 
 **Current Version: 0.4.8** (December 2018)
 
-**Last time skill files were updated:** January 20th, 2019
+**Last time skill files were updated:** Febuary 22nd, 2019
