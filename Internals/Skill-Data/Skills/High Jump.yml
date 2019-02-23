@@ -9,7 +9,7 @@ High Jump:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '30'
+    cooldown-base: '15'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -27,20 +27,172 @@ High Jump:
   - ''
   - '&7Leap into the air vertically.'
   - "&7The 'Dive' skills get their"
-  - "&7cooldown's negated."
-  - '&7If this skill is casted during'
-  - '&7a Dive skill, the Dive skill'
-  - '&7gets canceled.'
-  - '&7Grants Speed to the Caster'
-  - '&7and nearby allies.'
+  - "&7cooldown's negated. If this"
+  - '&7skill is casted during a Dive'
+  - '&7skill, the Dive skill gets'
+  - '&7canceled. Cuts the cooldown'
+  - '&7of Polevault by &650&f%&7.'
+  - '&7Causes knockback and hitstun'
+  - '&7to nearby enemies.'
   - ''
-  - '&bRadius: {attr:area.radius} blocks'
-  - '&bSpeed: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bRadius: {attr:area.radius} Blocks'
   - ''
   - '{req:level}Level: {attr:level}'
   - '&2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
+    Crouch-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Start Crouching'
+        indicator: '2D'
+      children: 
+        Value-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'HighJumped'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '1'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Value Set-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'HighJumped'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Launch-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '1.5'
+                    forward-scale: '0'
+                    upward-base: '0.1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Command-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=18] ~ ~ ~ 1 1.2'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '4'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Area-h: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        radius-base: '3'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Push-i: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Fixed'
+                            speed-base: '1'
+                            speed-scale: '0'
+                            source: 'none'
+                            indicator: '2D'
+                          children:  {}
+                    Particle-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Sweep Attack'
+                        arrangement: 'Sphere'
+                        radius-base: '3'
+                        radius-scale: '0'
+                        particles-base: '10'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+    Land-k: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: '0'
+        indicator: '2D'
+      children: 
+        Value Set-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'HighJumped'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -48,39 +200,79 @@ High Jump:
         icon-key: ''
         indicator: '2D'
       children: 
-        Self-b: 
+        Self-n: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Area-c: 
+            Area-o: 
               type: 'target'
               indicator: '3D'
               data: 
-                icon-key: ''
-                radius-base: '3'
-                radius-scale: '0'
+                icon-key: 'area'
+                radius-base: '3.05'
+                radius-scale: '0.05'
                 group: 'Enemy'
                 wall: 'True'
                 caster: 'False'
                 max-base: '999'
                 max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
-                Push-d: 
+                Repeat-p: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    type: 'Fixed'
-                    speed-base: '1.3'
-                    speed-scale: '0'
+                    repetitions-base: '2'
+                    repetitions-scale: '0'
+                    period: '0.075'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Push-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Fixed'
+                        speed-base: '1'
+                        speed-scale: '0'
+                        source: 'none'
+                        indicator: '2D'
+                      children:  {}
+                Status-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Disarm'
+                    duration-base: '0.5'
+                    duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Launch-e: 
+                Status-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Silence'
+                    duration-base: '0.5'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Launch-t: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -95,21 +287,20 @@ High Jump:
                 right-scale: '0'
                 indicator: '2D'
               children:  {}
-            Sound-f: 
+            Sound-u: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Enderdragon Flap'
+                sound: 'Entity Enderdragon Flap'
                 volume-base: '70'
                 volume-scale: '0'
                 pitch-base: '1.5'
                 pitch-scale: '0'
                 indicator: '2D'
               children:  {}
-            Command-g: 
+            Command-v: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -119,7 +310,7 @@ High Jump:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Repeat-h: 
+            Repeat-w: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -129,9 +320,10 @@ High Jump:
                 repetitions-scale: '0'
                 period: '0.1'
                 delay: '0'
+                stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Particle-i: 
+                Particle-x: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -141,8 +333,8 @@ High Jump:
                     arrangement: 'Circle'
                     radius-base: '1'
                     radius-scale: '0'
-                    particles-base: '5'
-                    particles-scale: '0'
+                    particles-base: '3.05'
+                    particles-scale: '0.05'
                     direction: 'XZ'
                     visible-radius: '50'
                     dx: '0'
@@ -155,7 +347,7 @@ High Jump:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Delay-j: 
+            Delay-y: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -165,7 +357,7 @@ High Jump:
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Cooldown-k: 
+                Cooldown-z: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -177,7 +369,7 @@ High Jump:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Cooldown-l: 
+                Cooldown-ab: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -189,7 +381,7 @@ High Jump:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Cooldown-m: 
+                Cooldown-bb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -201,7 +393,7 @@ High Jump:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Status-n: 
+            Status-cb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -212,7 +404,7 @@ High Jump:
                 duration-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Set-o: 
+            Value Set-db: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -223,7 +415,7 @@ High Jump:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Set-p: 
+            Value Set-eb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -234,7 +426,7 @@ High Jump:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Set-q: 
+            Value Set-fb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -245,7 +437,7 @@ High Jump:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Set-r: 
+            Value Set-gb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -256,11 +448,22 @@ High Jump:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-        Area-s: 
+            Value Set-hb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'HighJumped'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Area-ib: 
           type: 'target'
           indicator: '3D'
           data: 
-            icon-key: 'area'
+            icon-key: ''
             radius-base: '5'
             radius-scale: '0'
             group: 'Ally'
@@ -268,19 +471,70 @@ High Jump:
             caster: 'True'
             max-base: '999'
             max-scale: '0'
+            random: 'False'
             indicator: '2D'
           children: 
-            Potion-t: 
+            Skill Level-jb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Nope'
+                min-level: '2'
+                max-level: '99'
+                indicator: '2D'
+              children: 
+                Potion-kb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po'
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'True'
+                    tier-base: '2.02'
+                    tier-scale: '0.02'
+                    seconds-base: '5.05'
+                    seconds-scale: '0.05'
+                    indicator: '2D'
+                  children:  {}
+        Delay-lb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            delay-base: '0.01'
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Cooldown-mb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: 'po'
+                icon-key: ''
                 counts: 'True'
-                potion: 'Speed'
-                ambient: 'True'
-                tier-base: '2.02'
-                tier-scale: '0.02'
-                seconds-base: '5.05'
-                seconds-scale: '0.05'
+                skill: 'Polevault'
+                type: 'Percent'
+                value-base: '50'
+                value-scale: '0'
                 indicator: '2D'
               children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-ob: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'HighJumped'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}

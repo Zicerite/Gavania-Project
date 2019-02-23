@@ -29,9 +29,10 @@ Leaf Shield:
   - '&7A shield is casted on the Caster'
   - '&7that reduces damage taken, and'
   - '&7grants HP and Mana Regen and'
-  - '&7for a short time.'
+  - '&7for a short time. Heals Tech.'
   - ''
   - '&bDamage Reduction: {attr:xdefthevalue.value}'
+  - '&bTech Healed: {attr:techgained.amount}'
   - '&bHP Regen Tier: {attr:po1.tier}'
   - '&bMana Regen Tier: {attr:po2.tier}'
   - '&bEffect Duration: {attr:po1.seconds}'
@@ -94,8 +95,8 @@ Leaf Shield:
                 counts: 'True'
                 type: 'Flat'
                 skill: 'False'
-                value-base: '-3.3'
-                value-scale: '-0.3'
+                value-base: '-5.5'
+                value-scale: '-0.5'
                 seconds-base: '8'
                 seconds-scale: '0'
                 indicator: '2D'
@@ -106,10 +107,10 @@ Leaf Shield:
               data: 
                 icon-key: ''
                 counts: 'True'
-                type: 'Multiplier'
+                type: 'Flat'
                 skill: 'False'
-                value-base: '-3.3'
-                value-scale: '-0.3'
+                value-base: '-5.5'
+                value-scale: '-0.5'
                 seconds-base: '8'
                 seconds-scale: '0'
                 indicator: '2D'
@@ -146,7 +147,18 @@ Leaf Shield:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-        Skill Level-i: 
+            Value Add-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'techgained'
+                counts: 'True'
+                key: 'tech'
+                amount-base: '10'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Skill Level-j: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -156,7 +168,7 @@ Leaf Shield:
             max-level: '1'
             indicator: '2D'
           children: 
-            Heal-j: 
+            Heal-k: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -167,7 +179,7 @@ Leaf Shield:
                 value-scale: '0.5'
                 indicator: '2D'
               children:  {}
-        Skill Level-k: 
+        Skill Level-l: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -177,7 +189,7 @@ Leaf Shield:
             max-level: '1'
             indicator: '2D'
           children: 
-            Damage Buff-l: 
+            Damage Buff-m: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -191,7 +203,7 @@ Leaf Shield:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-            Damage Buff-m: 
+            Damage Buff-n: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -205,7 +217,7 @@ Leaf Shield:
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
-        Command-n: 
+        Command-o: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -215,7 +227,7 @@ Leaf Shield:
             type: 'OP'
             indicator: '2D'
           children:  {}
-        Command-o: 
+        Command-p: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -232,24 +244,24 @@ Leaf Shield:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-q: 
+        Passive-r: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '2'
+            seconds-base: '1'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Set-r: 
+            Value Set-s: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: 'xdefthevalue'
                 counts: 'True'
                 key: 'defthevalue'
-                value-base: '3.3'
-                value-scale: '0.3'
+                value-base: '5.5'
+                value-scale: '0.5'
                 indicator: '2D'
               children:  {}

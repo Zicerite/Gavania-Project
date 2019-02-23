@@ -1,16 +1,27 @@
-Hurricane:
+Hurricane: 
   name: 'Hurricane'
   type: 'Damage'
   max-level: 100
-  skill-req: ''
   skill-req-lvl: 1
-  needs-permission: 'False'
+  needs-permission: 'false'
+  attributes: 
+    level-base: '18'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '30'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
   msg: '&6{player} &2has cast &6{skill}'
-  combo: ''
-  indicator: '2D'
-  icon: 'Wool'
+  icon: 'WOOL'
+  icon-durability: 0
   icon-data: 0
-  icon-lore:
+  icon-lore: 
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
@@ -22,402 +33,464 @@ Hurricane:
   - '&bRadius: {attr:area.radius} Blocks'
   - ''
   - '{req:level}Level: {attr:level} &eTech: &625 &2Cooldown: {attr:cooldown}'
-  attributes:
-    level-base: 18
-    level-scale: 2
-    cost-base: 0
-    cost-scale: 0
-    cooldown-base: 30
-    cooldown-scale: 0
-    mana-base: 0
-    mana-scale: 0
-    points-spent-req-base: 0
-    points-spent-req-scale: 0
-    incompatible:
-    - ''
-  components:
-    Cast-a:
+  desc:  []
+  components: 
+    Cast: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
-      children:
-        Self-b:
+        indicator: '2D'
+      children: 
+        Self-b: 
           type: 'target'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
-          children:
-            Self-c:
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Self-c: 
               type: 'target'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-              children:
-                Location-d:
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Location-d: 
                   type: 'target'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: 'range'
-                    range-base: 6
-                    range-scale: 0
+                    range-base: '6'
+                    range-scale: '0'
                     ground: 'False'
-                  children:
-                    Remember Targets-e:
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Remember Targets-e: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
                         key: 'centervortex'
-                    Repeat-f:
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-f: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
-                        repetitions-base: 20
-                        repetitions-scale: 0
-                        period: 0.5
-                        delay: 0
+                        repetitions-base: '20'
+                        repetitions-scale: '0'
+                        period: '0.5'
+                        delay: '0'
                         stop-on-fail: 'False'
-                      children:
-                        Area-g:
+                        indicator: '2D'
+                      children: 
+                        Area-g: 
                           type: 'target'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: 'area'
-                            radius-base: 5
-                            radius-scale: 0
+                            radius-base: '5'
+                            radius-scale: '0'
                             group: 'Enemy'
                             wall: 'True'
                             caster: 'False'
-                            max-base: 999
-                            max-scale: 0
+                            max-base: '999'
+                            max-scale: '0'
                             random: 'False'
-                          children:
-                            Repeat-h:
+                            indicator: '2D'
+                          children: 
+                            Repeat-h: 
                               type: 'mechanic'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: ''
                                 counts: 'True'
-                                repetitions-base: 5
-                                repetitions-scale: 0
-                                period: 0.1
-                                delay: 0
+                                repetitions-base: '5'
+                                repetitions-scale: '0'
+                                period: '0.1'
+                                delay: '0'
                                 stop-on-fail: 'False'
-                              children:
-                                Launch-i:
+                                indicator: '2D'
+                              children: 
+                                Launch-i: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     relative: 'Target'
-                                    forward-base: 0
-                                    forward-scale: 0
-                                    upward-base: -0.125
-                                    upward-scale: 0
-                                    right-base: 0
-                                    right-scale: 0
-                                Push-j:
+                                    forward-base: '0'
+                                    forward-scale: '0'
+                                    upward-base: '-0.125'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Push-j: 
                                   type: 'mechanic'
-                                  data:
+                                  indicator: '3D'
+                                  data: 
                                     icon-key: ''
                                     counts: 'True'
                                     type: 'Inverse'
-                                    speed-base: -0.4
-                                    speed-scale: 0
+                                    speed-base: '-0.4'
+                                    speed-scale: '0'
                                     source: 'centervortex'
-                            Damage-k:
+                                    indicator: '2D'
+                                  children:  {}
+                            Damage-k: 
                               type: 'mechanic'
-                              data:
+                              indicator: '3D'
+                              data: 
                                 icon-key: 'dmg'
                                 counts: 'True'
                                 type: 'Damage'
-                                value-base: dmgHURRICANE
-                                value-scale: 0.3
+                                value-base: 'dmgHURRICANE'
+                                value-scale: '0.3'
                                 true: 'False'
                                 classifier: 'wind'
-                        Particle Projectile-l:
+                                indicator: '2D'
+                              children:  {}
+                        Particle Projectile-l: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             group: 'Enemy'
                             spread: 'Cone'
-                            amount-base: 1
-                            amount-scale: 0
-                            velocity-base: 0
-                            velocity-scale: 0
-                            angle-base: 30
-                            angle-scale: 0
-                            position: 0
-                            forward-base: 0
-                            forward-scale: 0
-                            upward-base: 3
-                            upward-scale: 0
-                            right-base: 0
-                            right-scale: 0
-                            gravity: 0
+                            amount-base: '1'
+                            amount-scale: '0'
+                            velocity-base: '0'
+                            velocity-scale: '0'
+                            angle-base: '30'
+                            angle-scale: '0'
+                            position: '0'
+                            forward-base: '0'
+                            forward-scale: '0'
+                            upward-base: '3'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            gravity: '0'
                             pierce: 'True'
                             particle: 'Cloud'
                             arrangement: 'Circle'
-                            radius-base: 6
-                            radius-scale: 0
-                            particles-base: 18
-                            particles-scale: 0
+                            radius-base: '6'
+                            radius-scale: '0'
+                            particles-base: '18'
+                            particles-scale: '0'
                             direction: 'XZ'
-                            visible-radius: 70
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 0.01
-                            amount: 1
-                            frequency: 0.05
-                            lifespan: 0.5
+                            visible-radius: '70'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.01'
+                            amount: '1'
+                            frequency: '0.05'
+                            lifespan: '0.5'
                             use-effect: 'False'
-                        Particle Projectile-m:
+                            indicator: '2D'
+                          children:  {}
+                        Particle Projectile-m: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             group: 'Enemy'
                             spread: 'Cone'
-                            amount-base: 1
-                            amount-scale: 0
-                            velocity-base: 0
-                            velocity-scale: 0
-                            angle-base: 30
-                            angle-scale: 0
-                            position: 0
-                            forward-base: 0
-                            forward-scale: 0
-                            upward-base: 2
-                            upward-scale: 0
-                            right-base: 0
-                            right-scale: 0
-                            gravity: 0
+                            amount-base: '1'
+                            amount-scale: '0'
+                            velocity-base: '0'
+                            velocity-scale: '0'
+                            angle-base: '30'
+                            angle-scale: '0'
+                            position: '0'
+                            forward-base: '0'
+                            forward-scale: '0'
+                            upward-base: '2'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            gravity: '0'
                             pierce: 'True'
                             particle: 'Cloud'
                             arrangement: 'Circle'
-                            radius-base: 5
-                            radius-scale: 0
-                            particles-base: 16
-                            particles-scale: 0
+                            radius-base: '5'
+                            radius-scale: '0'
+                            particles-base: '16'
+                            particles-scale: '0'
                             direction: 'XZ'
-                            visible-radius: 70
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 0.01
-                            amount: 1
-                            frequency: 0.05
-                            lifespan: 0.5
+                            visible-radius: '70'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.01'
+                            amount: '1'
+                            frequency: '0.05'
+                            lifespan: '0.5'
                             use-effect: 'False'
-                        Particle Projectile-n:
+                            indicator: '2D'
+                          children:  {}
+                        Particle Projectile-n: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             group: 'Enemy'
                             spread: 'Cone'
-                            amount-base: 1
-                            amount-scale: 0
-                            velocity-base: 0
-                            velocity-scale: 0
-                            angle-base: 30
-                            angle-scale: 0
-                            position: 0
-                            forward-base: 0
-                            forward-scale: 0
-                            upward-base: 1
-                            upward-scale: 0
-                            right-base: 0
-                            right-scale: 0
-                            gravity: 0
+                            amount-base: '1'
+                            amount-scale: '0'
+                            velocity-base: '0'
+                            velocity-scale: '0'
+                            angle-base: '30'
+                            angle-scale: '0'
+                            position: '0'
+                            forward-base: '0'
+                            forward-scale: '0'
+                            upward-base: '1'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            gravity: '0'
                             pierce: 'True'
                             particle: 'Cloud'
                             arrangement: 'Circle'
-                            radius-base: 4
-                            radius-scale: 0
-                            particles-base: 12
-                            particles-scale: 0
+                            radius-base: '4'
+                            radius-scale: '0'
+                            particles-base: '12'
+                            particles-scale: '0'
                             direction: 'XZ'
-                            visible-radius: 70
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 0.01
-                            amount: 1
-                            frequency: 0.05
-                            lifespan: 0.5
+                            visible-radius: '70'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.01'
+                            amount: '1'
+                            frequency: '0.05'
+                            lifespan: '0.5'
                             use-effect: 'False'
-                        Particle Projectile-o:
+                            indicator: '2D'
+                          children:  {}
+                        Particle Projectile-o: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             group: 'Enemy'
                             spread: 'Cone'
-                            amount-base: 1
-                            amount-scale: 0
-                            velocity-base: 0
-                            velocity-scale: 0
-                            angle-base: 30
-                            angle-scale: 0
-                            position: 0
-                            forward-base: 0
-                            forward-scale: 0
-                            upward-base: 0
-                            upward-scale: 0
-                            right-base: 0
-                            right-scale: 0
-                            gravity: 0
+                            amount-base: '1'
+                            amount-scale: '0'
+                            velocity-base: '0'
+                            velocity-scale: '0'
+                            angle-base: '30'
+                            angle-scale: '0'
+                            position: '0'
+                            forward-base: '0'
+                            forward-scale: '0'
+                            upward-base: '0'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            gravity: '0'
                             pierce: 'True'
                             particle: 'Cloud'
                             arrangement: 'Circle'
-                            radius-base: 3
-                            radius-scale: 0
-                            particles-base: 7
-                            particles-scale: 0
+                            radius-base: '3'
+                            radius-scale: '0'
+                            particles-base: '7'
+                            particles-scale: '0'
                             direction: 'XZ'
-                            visible-radius: 70
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 0.01
-                            amount: 1
-                            frequency: 0.05
-                            lifespan: 0.5
+                            visible-radius: '70'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.01'
+                            amount: '1'
+                            frequency: '0.05'
+                            lifespan: '0.5'
                             use-effect: 'False'
-                        Particle Projectile-p:
+                            indicator: '2D'
+                          children:  {}
+                        Particle Projectile-p: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             group: 'Enemy'
                             spread: 'Cone'
-                            amount-base: 1
-                            amount-scale: 0
-                            velocity-base: 0
-                            velocity-scale: 0
-                            angle-base: 30
-                            angle-scale: 0
-                            position: 0
-                            forward-base: 0
-                            forward-scale: 0
-                            upward-base: -1
-                            upward-scale: 0
-                            right-base: 0
-                            right-scale: 0
-                            gravity: 0
+                            amount-base: '1'
+                            amount-scale: '0'
+                            velocity-base: '0'
+                            velocity-scale: '0'
+                            angle-base: '30'
+                            angle-scale: '0'
+                            position: '0'
+                            forward-base: '0'
+                            forward-scale: '0'
+                            upward-base: '-1'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            gravity: '0'
                             pierce: 'True'
                             particle: 'Cloud'
                             arrangement: 'Circle'
-                            radius-base: 2
-                            radius-scale: 0
-                            particles-base: 4
-                            particles-scale: 0
+                            radius-base: '2'
+                            radius-scale: '0'
+                            particles-base: '4'
+                            particles-scale: '0'
                             direction: 'XZ'
-                            visible-radius: 70
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 0.01
-                            amount: 1
-                            frequency: 0.05
-                            lifespan: 0.5
+                            visible-radius: '70'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.01'
+                            amount: '1'
+                            frequency: '0.05'
+                            lifespan: '0.5'
                             use-effect: 'False'
-                        Particle Projectile-q:
+                            indicator: '2D'
+                          children:  {}
+                        Particle Projectile-q: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             group: 'Enemy'
                             spread: 'Cone'
-                            amount-base: 1
-                            amount-scale: 0
-                            velocity-base: 0
-                            velocity-scale: 0
-                            angle-base: 30
-                            angle-scale: 0
-                            position: 0
-                            forward-base: 0
-                            forward-scale: 0
-                            upward-base: -2
-                            upward-scale: 0
-                            right-base: 0
-                            right-scale: 0
-                            gravity: 0
+                            amount-base: '1'
+                            amount-scale: '0'
+                            velocity-base: '0'
+                            velocity-scale: '0'
+                            angle-base: '30'
+                            angle-scale: '0'
+                            position: '0'
+                            forward-base: '0'
+                            forward-scale: '0'
+                            upward-base: '-2'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            gravity: '0'
                             pierce: 'True'
                             particle: 'Cloud'
                             arrangement: 'Circle'
-                            radius-base: 1
-                            radius-scale: 0
-                            particles-base: 1
-                            particles-scale: 0
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
                             direction: 'XZ'
-                            visible-radius: 70
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 0.01
-                            amount: 1
-                            frequency: 0.05
-                            lifespan: 0.5
+                            visible-radius: '70'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.01'
+                            amount: '1'
+                            frequency: '0.05'
+                            lifespan: '0.5'
                             use-effect: 'False'
-                        Particle-r:
+                            indicator: '2D'
+                          children:  {}
+                        Particle-r: 
                           type: 'mechanic'
-                          data:
+                          indicator: '3D'
+                          data: 
                             icon-key: ''
                             counts: 'True'
                             particle: 'Water Drop'
                             arrangement: 'Sphere'
-                            radius-base: 4.5
-                            radius-scale: 0
-                            particles-base: 10
-                            particles-scale: 0
-                            visible-radius: 70
-                            dx: 0
-                            dy: 0
-                            dz: 0
-                            speed: 1
-                            amount: 1
-                            forward: 0
-                            upward: 0
-                            right: 0
-            Self-s:
+                            radius-base: '4.5'
+                            radius-scale: '0'
+                            particles-base: '10'
+                            particles-scale: '0'
+                            visible-radius: '70'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '0'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+            Self-s: 
               type: 'target'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
-              children:
-                Command-t:
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Command-t: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     command: 'playsound spells.flame ambient @a[r=22] ~ ~ ~ 0.8 1'
                     type: 'OP'
-                Command-u:
+                    indicator: '2D'
+                  children:  {}
+                Command-u: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     command: 'playsound spells.flamebomb ambient @a[r=22] ~ ~ ~ 0.5 1.3'
                     type: 'OP'
-    Initialize-v:
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
-      children:
-        Passive-w:
+        indicator: '2D'
+      children: 
+        Passive-w: 
           type: 'mechanic'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: 0.1
-            seconds-scale: 0
-          children:
-            Value Lore-x:
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-x: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: 'wepdmg'
                 counts: 'True'
                 key: 'dmgHURRICANE'
                 hand: 'Main'
                 regex: 'Skill Damage - {value}'
-                multiplier-base: 0.1
-                multiplier-scale: 0
+                multiplier-base: '0.1'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

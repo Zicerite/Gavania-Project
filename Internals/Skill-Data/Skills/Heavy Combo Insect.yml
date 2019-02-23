@@ -36,6 +36,397 @@ Heavy Combo Insect:
   - '&for a short while.'
   desc:  []
   components: 
+    Took Physical Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Potion-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Active'
+            potion: 'Levitation'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Repeat-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '3'
+                repetitions-scale: '0'
+                period: '0.05'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Launch-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '0.00001'
+                    forward-scale: '0'
+                    upward-base: '0.00001'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Took Skill Damage-e: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Potion-f: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Active'
+            potion: 'Levitation'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Repeat-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '3'
+                repetitions-scale: '0'
+                period: '0.05'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Launch-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '0.00001'
+                    forward-scale: '0'
+                    upward-base: '0.00001'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Potion-j: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Slow Digging'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Item-k: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                check-mat: 'True'
+                material: 'Diamond Hoe'
+                check-data: 'False'
+                check-lore: 'False'
+                check-name: 'False'
+                regex: 'False'
+                indicator: '2D'
+              children: 
+                Value-l: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'b'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '0'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-m: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'Mode_Changed'
+                        min-value-base: '0'
+                        min-value-scale: '0'
+                        max-value-base: '0'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value-n: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'stamina'
+                            min-value-base: '0'
+                            min-value-scale: '0'
+                            max-value-base: '999'
+                            max-value-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Add-o: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '-10'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Block-p: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                standing: 'Not On Block'
+                                material: 'Air'
+                                indicator: '2D'
+                              children: 
+                                Launch-q: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: '1'
+                                    forward-scale: '0'
+                                    upward-base: '1'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Delay-r: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    delay-base: '0.5'
+                                    delay-scale: '0'
+                                    indicator: '2D'
+                                  children: 
+                                    Value Set-s: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'b'
+                                        value-base: '1'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Value Set-t: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'Mode_Changed'
+                                        value-base: '0'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Value Set-u: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'Flying'
+                                        value-base: '1'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                            Block-v: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                standing: 'On Block'
+                                material: 'Air'
+                                indicator: '2D'
+                              children: 
+                                Launch-w: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: '0.3'
+                                    forward-scale: '0'
+                                    upward-base: '0.3'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Value Set-x: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'b'
+                                    value-base: '1'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Value Set-y: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'Mode_Changed'
+                                    value-base: '1'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Value Set-z: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'Flying'
+                                    value-base: '1'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                Value-ab: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'b'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '1'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value-bb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'Mode_Changed'
+                        min-value-base: '0'
+                        min-value-scale: '0'
+                        max-value-base: '0'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value Set-cb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'b'
+                            value-base: '0'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Set-db: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'Mode_Changed'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Set-eb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'Flying'
+                            value-base: '0'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Cleanse-fb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Levitation'
+                            status: ''
+                            indicator: '2D'
+                          children:  {}
+                Value Set-gb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Mode_Changed'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -43,7 +434,7 @@ Heavy Combo Insect:
         icon-key: ''
         indicator: '2D'
       children: 
-        Value Set-z: 
+        Value Set-ib: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -54,7 +445,7 @@ Heavy Combo Insect:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Value Set-ab: 
+        Value Set-jb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -65,7 +456,7 @@ Heavy Combo Insect:
             value-scale: '0'
             indicator: '2D'
           children:  {}
-        Passive-bb: 
+        Passive-kb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -75,7 +466,7 @@ Heavy Combo Insect:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value-cb: 
+            Value-lb: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -87,7 +478,7 @@ Heavy Combo Insect:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Potion-db: 
+                Potion-mb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -101,7 +492,7 @@ Heavy Combo Insect:
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-eb: 
+                Particle-nb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -125,7 +516,7 @@ Heavy Combo Insect:
                     right: '0.8'
                     indicator: '2D'
                   children:  {}
-                Particle-fb: 
+                Particle-ob: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -149,7 +540,7 @@ Heavy Combo Insect:
                     right: '-0.8'
                     indicator: '2D'
                   children:  {}
-            Block-gb: 
+            Block-pb: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -158,7 +549,7 @@ Heavy Combo Insect:
                 material: 'Air'
                 indicator: '2D'
               children: 
-                Value Set-hb: 
+                Value Set-qb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -169,7 +560,7 @@ Heavy Combo Insect:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Cleanse-ib: 
+                Cleanse-rb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -179,7 +570,7 @@ Heavy Combo Insect:
                     status: ''
                     indicator: '2D'
                   children:  {}
-                Value Set-jb: 
+                Value Set-sb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -190,7 +581,7 @@ Heavy Combo Insect:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-        Passive-kb: 
+        Passive-tb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -200,7 +591,7 @@ Heavy Combo Insect:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value-lb: 
+            Value-ub: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -212,7 +603,7 @@ Heavy Combo Insect:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Value-mb: 
+                Value-vb: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -224,7 +615,7 @@ Heavy Combo Insect:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Value Add-nb: 
+                    Value Add-wb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -235,7 +626,7 @@ Heavy Combo Insect:
                         amount-scale: '0'
                         indicator: '2D'
                       children:  {}
-                Value-ob: 
+                Value-xb: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -247,7 +638,7 @@ Heavy Combo Insect:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Value Set-pb: 
+                    Value Set-yb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -258,7 +649,7 @@ Heavy Combo Insect:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Cleanse-qb: 
+                    Cleanse-zb: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -268,7 +659,7 @@ Heavy Combo Insect:
                         status: ''
                         indicator: '2D'
                       children:  {}
-                    Value Set-rb: 
+                    Value Set-ac: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -279,7 +670,7 @@ Heavy Combo Insect:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Value Set-sb: 
+                    Value Set-bc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -290,7 +681,7 @@ Heavy Combo Insect:
                         value-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Particle-tb: 
+                    Particle-cc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -313,354 +704,3 @@ Heavy Combo Insect:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-    Took Skill Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'True'
-        dmg-min: '0'
-        dmg-max: '999999'
-        category: ''
-        indicator: '2D'
-      children: 
-        Potion-yb: 
-          type: 'condition'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            type: 'Active'
-            potion: 'Levitation'
-            min-rank-base: '0'
-            min-rank-scale: '0'
-            max-rank-base: '999'
-            max-rank-scale: '0'
-            indicator: '2D'
-          children: 
-            Launch-zb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                relative: 'Target'
-                forward-base: '0.00001'
-                forward-scale: '0'
-                upward-base: '0.00001'
-                upward-scale: '0'
-                right-base: '0'
-                right-scale: '0'
-                indicator: '2D'
-              children:  {}
-    Took Physical Damage: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'True'
-        type: 'Both'
-        dmg-min: '0'
-        dmg-max: '999999'
-        indicator: '2D'
-      children: 
-        Potion-vb: 
-          type: 'condition'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            type: 'Active'
-            potion: 'Levitation'
-            min-rank-base: '0'
-            min-rank-scale: '0'
-            max-rank-base: '999'
-            max-rank-scale: '0'
-            indicator: '2D'
-          children: 
-            Launch-wb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                relative: 'Target'
-                forward-base: '0.00001'
-                forward-scale: '0'
-                upward-base: '0.00001'
-                upward-scale: '0'
-                right-base: '0'
-                right-scale: '0'
-                indicator: '2D'
-              children:  {}
-    Cast: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Item-b: 
-          type: 'condition'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            check-mat: 'True'
-            material: 'Diamond Hoe'
-            check-data: 'False'
-            check-lore: 'False'
-            check-name: 'False'
-            regex: 'False'
-            indicator: '2D'
-          children: 
-            Value-c: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'b'
-                min-value-base: '0'
-                min-value-scale: '0'
-                max-value-base: '0'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Value-d: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'Mode_Changed'
-                    min-value-base: '0'
-                    min-value-scale: '0'
-                    max-value-base: '0'
-                    max-value-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Value-e: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        key: 'stamina'
-                        min-value-base: '0'
-                        min-value-scale: '0'
-                        max-value-base: '999'
-                        max-value-scale: '0'
-                        indicator: '2D'
-                      children: 
-                        Value Add-f: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'stamina'
-                            amount-base: '-12'
-                            amount-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Block-g: 
-                          type: 'condition'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            standing: 'Not On Block'
-                            material: 'Air'
-                            indicator: '2D'
-                          children: 
-                            Launch-h: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                relative: 'Target'
-                                forward-base: '1'
-                                forward-scale: '0'
-                                upward-base: '1'
-                                upward-scale: '0'
-                                right-base: '0'
-                                right-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Delay-i: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                delay-base: '0.5'
-                                delay-scale: '0'
-                                indicator: '2D'
-                              children: 
-                                Value Set-j: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    key: 'b'
-                                    value-base: '1'
-                                    value-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                                Value Set-k: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    key: 'Mode_Changed'
-                                    value-base: '0'
-                                    value-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                                Value Set-l: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    key: 'Flying'
-                                    value-base: '1'
-                                    value-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                        Block-m: 
-                          type: 'condition'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            standing: 'On Block'
-                            material: 'Air'
-                            indicator: '2D'
-                          children: 
-                            Launch-n: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                relative: 'Target'
-                                forward-base: '0.3'
-                                forward-scale: '0'
-                                upward-base: '0.3'
-                                upward-scale: '0'
-                                right-base: '0'
-                                right-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Value Set-o: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                key: 'b'
-                                value-base: '1'
-                                value-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Value Set-p: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                key: 'Mode_Changed'
-                                value-base: '1'
-                                value-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Value Set-q: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                key: 'Flying'
-                                value-base: '1'
-                                value-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-            Value-r: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                key: 'b'
-                min-value-base: '1'
-                min-value-scale: '0'
-                max-value-base: '1'
-                max-value-scale: '0'
-                indicator: '2D'
-              children: 
-                Value-s: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    key: 'Mode_Changed'
-                    min-value-base: '0'
-                    min-value-scale: '0'
-                    max-value-base: '0'
-                    max-value-scale: '0'
-                    indicator: '2D'
-                  children: 
-                    Value Set-t: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'b'
-                        value-base: '0'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Value Set-u: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'Mode_Changed'
-                        value-base: '1'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Value Set-v: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        key: 'Flying'
-                        value-base: '0'
-                        value-scale: '0'
-                        indicator: '2D'
-                      children:  {}
-                    Cleanse-w: 
-                      type: 'mechanic'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        counts: 'True'
-                        potion: 'Levitation'
-                        status: ''
-                        indicator: '2D'
-                      children:  {}
-            Value Set-x: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'Mode_Changed'
-                value-base: '0'
-                value-scale: '0'
-                indicator: '2D'
-              children:  {}

@@ -29,57 +29,15 @@ Horn Rush:
   - '&7and knockback to enemies hit.'
   - '&7The caster is invincible while charging. '
   - ''
-  - '&bDamage: {attr:dmg.value} x5 Melee Damage &9퇇'
+  - '&bDamage: {attr:dmg.value} x5 Melee Damage &9䛇'
+  - '&bLast hit Damage: {attr:dmg2.value} Melee Damage &9䛇'
   - '&bRadius: {attr:area.radius} Blocks'
   - ''
-  - '&bDamage (Alby 2): {attr:dmg2.value} x5 Melee Damage &r퇶'
+  - '&bDamage (Alby 2): {attr:dmg2.value} x5 Melee Damage &r䛶'
   - ''
-  - '{req:level}Level: {attr:level} &aStamina: &633 &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &aStamina: &625 &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-v: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-w: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgHR'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '0.25'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-x: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'dmgAlbyHR'
-                hand: 'Main'
-                regex: 'Melee Damage - {value}'
-                multiplier-base: '0.05'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -105,6 +63,9 @@ Horn Rush:
               data: 
                 icon-key: ''
                 indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
               children: 
                 Command-d: 
                   type: 'mechanic'
@@ -161,7 +122,83 @@ Horn Rush:
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-            Repeat-i: 
+                    Area-i: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        radius-base: '4'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Damage-j: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg2'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 'dmgHR_Last'
+                            value-scale: '0.3'
+                            true: 'False'
+                            classifier: 'physical'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-k: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Magic Crit'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '3'
+                            particles-scale: '0'
+                            visible-radius: '25'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Delay-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.02'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Launch-m: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Caster'
+                                forward-base: '1'
+                                forward-scale: '0'
+                                upward-base: '0.3'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+            Repeat-n: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -171,16 +208,20 @@ Horn Rush:
                 repetitions-scale: '0'
                 period: '0.1'
                 delay: '0'
+                stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Self-j: 
+                Self-o: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
                   children: 
-                    Launch-k: 
+                    Launch-p: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -195,7 +236,7 @@ Horn Rush:
                         right-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Particle-l: 
+                    Particle-q: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -218,7 +259,7 @@ Horn Rush:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                Area-m: 
+                Area-r: 
                   type: 'target'
                   indicator: '3D'
                   data: 
@@ -230,9 +271,10 @@ Horn Rush:
                     caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Damage-n: 
+                    Damage-s: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -240,12 +282,12 @@ Horn Rush:
                         counts: 'True'
                         type: 'Damage'
                         value-base: 'dmgHR'
-                        value-scale: '0.1'
+                        value-scale: '0.3'
                         true: 'False'
                         classifier: 'physical'
                         indicator: '2D'
                       children:  {}
-                    Particle-o: 
+                    Particle-t: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -268,7 +310,7 @@ Horn Rush:
                         right: '0'
                         indicator: '2D'
                       children:  {}
-                    Delay-p: 
+                    Delay-u: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -278,7 +320,7 @@ Horn Rush:
                         delay-scale: '0'
                         indicator: '2D'
                       children: 
-                        Push-q: 
+                        Push-v: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -287,9 +329,10 @@ Horn Rush:
                             type: 'Fixed'
                             speed-base: '1'
                             speed-scale: '0'
+                            source: 'none'
                             indicator: '2D'
                           children:  {}
-                    Skill Level-r: 
+                    Skill Level-w: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -299,11 +342,11 @@ Horn Rush:
                         max-level: '2'
                         indicator: '2D'
                       children: 
-                        Damage-s: 
+                        Damage-x: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
-                            icon-key: 'dmg2'
+                            icon-key: 'dmg3'
                             counts: 'True'
                             type: 'Damage'
                             value-base: 'dmgAlbyHR'
@@ -312,14 +355,70 @@ Horn Rush:
                             classifier: 'neutral'
                             indicator: '2D'
                           children:  {}
-            Value Add-t: 
+            Value Add-y: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
                 key: 'stamina'
-                amount-base: '-33'
+                amount-base: '-25'
                 amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-ab: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgHR'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.25'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-cb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmgAlbyHR'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.05'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-db: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgHR_Last'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.4'
+                multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

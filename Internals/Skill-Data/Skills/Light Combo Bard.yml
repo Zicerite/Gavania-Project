@@ -2,7 +2,6 @@ Light Combo Bard:
   name: 'Light Combo Bard'
   type: 'Combo'
   max-level: 1
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   combo: 'L'
@@ -35,6 +34,8 @@ Light Combo Bard:
   - '&bDamage: {attr:dmg.value} Melee Damage &9䛇'
   - '&bPiercing Damage: {attr:dmg2.value} Melee Damage &9䛇'
   - '&bRadius: {attr:area.radius} Blocks'
+  - ''
+  - '&7Use the Record volume slider to decrease volume.'
   desc:  []
   components: 
     Cast: 
@@ -115,34 +116,7 @@ Light Combo Bard:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                        Value Random-g: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            key: 'pitchL'
-                            type: 'Normal'
-                            min-base: '0.8'
-                            min-scale: '0'
-                            max-base: '1.2'
-                            max-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Sound-h: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            sound: 'Block Note Harp'
-                            volume-base: '100'
-                            volume-scale: '0'
-                            pitch-base: 'pitchL'
-                            pitch-scale: '0'
-                            indicator: '2D'
-                          children:  {}
-                        Value Set-i: 
+                        Value Set-g: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -153,7 +127,7 @@ Light Combo Bard:
                             value-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Area-j: 
+                        Area-h: 
                           type: 'target'
                           indicator: '3D'
                           data: 
@@ -168,7 +142,7 @@ Light Combo Bard:
                             random: 'False'
                             indicator: '2D'
                           children: 
-                            Damage-k: 
+                            Damage-i: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -181,7 +155,7 @@ Light Combo Bard:
                                 classifier: 'physical'
                                 indicator: '2D'
                               children:  {}
-                            Damage-l: 
+                            Damage-j: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -194,7 +168,7 @@ Light Combo Bard:
                                 classifier: 'physical'
                                 indicator: '2D'
                               children:  {}
-                        Delay-m: 
+                        Delay-k: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -204,7 +178,7 @@ Light Combo Bard:
                             delay-scale: '0'
                             indicator: '2D'
                           children: 
-                            Value Set-n: 
+                            Value Set-l: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -215,6 +189,30 @@ Light Combo Bard:
                                 value-scale: '0'
                                 indicator: '2D'
                               children:  {}
+                        Value Random-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'pitchL'
+                            type: 'Normal'
+                            min-base: '0.8'
+                            min-scale: '0'
+                            max-base: '1.2'
+                            max-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Command-n: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            command: 'playsound minecraft:block.note.harp record @a[r=16] ~ ~ ~ 1 {pitchL}'
+                            type: 'OP'
+                            indicator: '2D'
+                          children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -252,7 +250,7 @@ Light Combo Bard:
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.05'
+            seconds-base: '0.1'
             seconds-scale: '0'
             indicator: '2D'
           children: 

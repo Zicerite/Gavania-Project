@@ -9,7 +9,7 @@ Inferno Breath:
     level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '70'
+    cooldown-base: '30'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -30,59 +30,16 @@ Inferno Breath:
   - '&7damage when it hits a target, then'
   - '&7explodes, igniting all nearby enemies.'
   - ''
-  - '&bDamage: {attr:dmg.value} Skill Damage &4퇵'
+  - '&bDamage: {attr:dmg.value} Skill Damage &4䛵'
   - '&bRange: &6Varies'
   - '&bExplosion Radius: {attr:area.radius} Blocks'
   - '&bFire Duration: {attr:fire.seconds} Seconds'
   - ''
-  - '&bDamage (Alby 3): {attr:dmg2.value} Skill Damage &4퇵'
+  - '&bDamage (Alby 3): {attr:dmg2.value} Skill Damage &4䛵'
   - ''
-  - '{req:level}Level: {attr:level} &eTech: &6100 &2Cooldown: {attr:cooldown}'
+  - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
   components: 
-    Initialize: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        indicator: '2D'
-      children: 
-        Passive-cb: 
-          type: 'mechanic'
-          indicator: '3D'
-          data: 
-            icon-key: ''
-            counts: 'True'
-            seconds-base: '0.01'
-            seconds-scale: '0'
-            indicator: '2D'
-          children: 
-            Value Lore-db: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgIB'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '2.25'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Value Lore-eb: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: 'wepdmg'
-                counts: 'True'
-                key: 'dmgIBAlby3'
-                hand: 'Main'
-                regex: 'Skill Damage - {value}'
-                multiplier-base: '2.5'
-                multiplier-scale: '0'
-                indicator: '2D'
-              children:  {}
     Cast: 
       type: 'trigger'
       indicator: '3D'
@@ -90,17 +47,15 @@ Inferno Breath:
         icon-key: ''
         indicator: '2D'
       children: 
-        Value-b: 
-          type: 'condition'
+        Self-b: 
+          type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
-            key: 'tech'
-            min-value-base: '100'
-            min-value-scale: '0'
-            max-value-base: '999'
-            max-value-scale: '0'
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
             Command-c: 
               type: 'mechanic'
@@ -132,35 +87,7 @@ Inferno Breath:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Sound-f: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Enderdragon Growl'
-                volume-base: '50'
-                volume-scale: '0'
-                pitch-base: '1'
-                pitch-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Sound-g: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Enderdragon Ambient'
-                volume-base: '30'
-                volume-scale: '0'
-                pitch-base: '1'
-                pitch-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Particle Projectile-h: 
+            Particle Projectile-f: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -187,7 +114,7 @@ Inferno Breath:
                 arrangement: 'Sphere'
                 radius-base: '2.5'
                 radius-scale: '0'
-                particles-base: '150'
+                particles-base: '130'
                 particles-scale: '0'
                 visible-radius: '100'
                 dx: '0'
@@ -200,7 +127,7 @@ Inferno Breath:
                 use-effect: 'False'
                 indicator: '2D'
               children: 
-                Area-i: 
+                Area-g: 
                   type: 'target'
                   indicator: '3D'
                   data: 
@@ -212,9 +139,10 @@ Inferno Breath:
                     caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Fire-j: 
+                    Fire-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -224,7 +152,7 @@ Inferno Breath:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Damage-k: 
+                    Damage-i: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -237,7 +165,7 @@ Inferno Breath:
                         classifier: 'fire'
                         indicator: '2D'
                       children:  {}
-                    Push-l: 
+                    Push-j: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -246,9 +174,10 @@ Inferno Breath:
                         type: 'Inverse'
                         speed-base: '0.7'
                         speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
-                Explosion-m: 
+                Explosion-k: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -260,7 +189,7 @@ Inferno Breath:
                     fire: 'False'
                     indicator: '2D'
                   children:  {}
-                Explosion-n: 
+                Explosion-l: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -272,7 +201,7 @@ Inferno Breath:
                     fire: 'False'
                     indicator: '2D'
                   children:  {}
-                Particle-o: 
+                Particle-m: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -295,7 +224,7 @@ Inferno Breath:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-p: 
+                Particle-n: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -318,18 +247,7 @@ Inferno Breath:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Value Add-q: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'tech'
-                amount-base: '-100'
-                amount-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Skill Level-r: 
+            Skill Level-o: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -339,7 +257,7 @@ Inferno Breath:
                 max-level: '3'
                 indicator: '2D'
               children: 
-                Particle Projectile-s: 
+                Particle Projectile-p: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -366,7 +284,7 @@ Inferno Breath:
                     arrangement: 'Sphere'
                     radius-base: '2.5'
                     radius-scale: '0'
-                    particles-base: '200'
+                    particles-base: '170'
                     particles-scale: '0'
                     visible-radius: '100'
                     dx: '0'
@@ -379,7 +297,7 @@ Inferno Breath:
                     use-effect: 'False'
                     indicator: '2D'
                   children:  {}
-                Area-t: 
+                Area-q: 
                   type: 'target'
                   indicator: '3D'
                   data: 
@@ -391,9 +309,10 @@ Inferno Breath:
                     caster: 'False'
                     max-base: '999'
                     max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Fire-u: 
+                    Fire-r: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -403,7 +322,7 @@ Inferno Breath:
                         seconds-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Damage-v: 
+                    Damage-s: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -416,7 +335,7 @@ Inferno Breath:
                         classifier: 'fire'
                         indicator: '2D'
                       children:  {}
-                    Push-w: 
+                    Push-t: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -425,9 +344,10 @@ Inferno Breath:
                         type: 'Inverse'
                         speed-base: '0.7'
                         speed-scale: '0'
+                        source: 'none'
                         indicator: '2D'
                       children:  {}
-                Explosion-x: 
+                Explosion-u: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -439,7 +359,7 @@ Inferno Breath:
                     fire: 'False'
                     indicator: '2D'
                   children:  {}
-                Explosion-y: 
+                Explosion-v: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -451,7 +371,7 @@ Inferno Breath:
                     fire: 'False'
                     indicator: '2D'
                   children:  {}
-                Particle-z: 
+                Particle-w: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -474,7 +394,7 @@ Inferno Breath:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-ab: 
+                Particle-x: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -497,3 +417,72 @@ Inferno Breath:
                     right: '0'
                     indicator: '2D'
                   children:  {}
+            Sound-y: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                sound: 'Entity Enderdragon Growl'
+                volume-base: '50'
+                volume-scale: '0'
+                pitch-base: '1'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Sound-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                sound: 'Entity Enderdragon Growl'
+                volume-base: '30'
+                volume-scale: '0'
+                pitch-base: '1.1'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-bb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.11'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Lore-cb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgIB'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '2.6'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Lore-db: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'wepdmg'
+                counts: 'True'
+                key: 'dmgIBAlby3'
+                hand: 'Main'
+                regex: 'Skill Damage - {value}'
+                multiplier-base: '2.5'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}

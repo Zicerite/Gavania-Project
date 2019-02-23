@@ -1,16 +1,27 @@
-Hydrotherapy:
+Hydrotherapy: 
   name: 'Hydrotherapy'
   type: 'Healing/Support'
   max-level: 100
-  skill-req: ''
   skill-req-lvl: 1
-  needs-permission: 'False'
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '15'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
   msg: '&6{player} &2has cast &6{skill}'
-  combo: ''
-  indicator: '2D'
-  icon: 'Melon Block'
+  icon: 'MELON_BLOCK'
+  icon-durability: 0
   icon-data: 0
-  icon-lore:
+  icon-lore: 
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
@@ -29,152 +40,185 @@ Hydrotherapy:
   - '&bCooldown Reduction: &615&f%'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
-  attributes:
-    level-base: 1
-    level-scale: 2
-    cost-base: 0
-    cost-scale: 0
-    cooldown-base: 15
-    cooldown-scale: 0
-    mana-base: 0
-    mana-scale: 0
-    points-spent-req-base: 0
-    points-spent-req-scale: 0
-    incompatible:
-    - ''
-  components:
-    Cast-a:
+  desc:  []
+  components: 
+    Cast: 
       type: 'trigger'
-      data:
+      indicator: '3D'
+      data: 
         icon-key: ''
-      children:
-        Self-b:
+        indicator: '2D'
+      children: 
+        Self-b: 
           type: 'target'
-          data:
+          indicator: '3D'
+          data: 
             icon-key: ''
-          children:
-            Command-c:
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Command-c: 
               type: 'mechanic'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 counts: 'True'
                 command: 'playsound spells.water1 ambient @a[r=16] ~ ~ ~ 0.5 1'
                 type: 'OP'
-            Area-d:
+                indicator: '2D'
+              children:  {}
+            Area-d: 
               type: 'target'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: 'area'
-                radius-base: 6
-                radius-scale: 0
+                radius-base: '6'
+                radius-scale: '0'
                 group: 'Ally'
                 wall: 'True'
                 caster: 'True'
-                max-base: 999
-                max-scale: 0
+                max-base: '999'
+                max-scale: '0'
                 random: 'False'
-              children:
-                Heal-e:
+                indicator: '2D'
+              children: 
+                Heal-e: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: 'heal'
                     counts: 'True'
                     type: 'Health'
-                    value-base: 11
-                    value-scale: 1
-                Mana-f:
+                    value-base: '11'
+                    value-scale: '1'
+                    indicator: '2D'
+                  children:  {}
+                Mana-f: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: 'mana'
                     counts: 'True'
                     type: 'Mana'
-                    value-base: 11
-                    value-scale: 1
-                Value Add-g:
+                    value-base: '11'
+                    value-scale: '1'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-g: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     key: 'stamina'
-                    amount-base: 15
-                    amount-scale: 0
-                Potion-h:
+                    amount-base: '15'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-h: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: 'po1'
                     counts: 'True'
                     potion: 'Regeneration'
                     ambient: 'True'
-                    tier-base: 3
-                    tier-scale: 0
-                    seconds-base: 5
-                    seconds-scale: 0
-                Potion-i:
+                    tier-base: '3'
+                    tier-scale: '0'
+                    seconds-base: '5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-i: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: 'po2'
                     counts: 'True'
                     potion: 'Saturation'
                     ambient: 'True'
-                    tier-base: 1
-                    tier-scale: 0
-                    seconds-base: 5
-                    seconds-scale: 0
-                Cleanse-j:
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Cleanse-j: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     potion: 'All'
                     status: 'All'
-                Fire-k:
+                    indicator: '2D'
+                  children:  {}
+                Fire-k: 
                   type: 'condition'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     type: 'On Fire'
-                  children:
-                    Command-l:
+                    indicator: '2D'
+                  children: 
+                    Command-l: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
                         command: 'ext'
                         type: 'OP'
-                Particle-m:
+                        indicator: '2D'
+                      children:  {}
+                Particle-m: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
                     particle: 'Block Crack'
                     material: 'Water'
-                    type: 0
+                    type: '0'
                     arrangement: 'Sphere'
-                    radius-base: 1
-                    radius-scale: 0
-                    particles-base: 10
-                    particles-scale: 0
-                    forward: 0
-                    upward: 1
-                    right: 0
-            Water-n:
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '10'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Water-n: 
               type: 'condition'
-              data:
+              indicator: '3D'
+              data: 
                 icon-key: ''
                 state: 'In Water'
-              children:
-                Delay-o:
+                indicator: '2D'
+              children: 
+                Delay-o: 
                   type: 'mechanic'
-                  data:
+                  indicator: '3D'
+                  data: 
                     icon-key: ''
                     counts: 'True'
-                    delay-base: 0.01
-                    delay-scale: 0
-                  children:
-                    Cooldown-p:
+                    delay-base: '0.01'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Cooldown-p: 
                       type: 'mechanic'
-                      data:
+                      indicator: '3D'
+                      data: 
                         icon-key: ''
                         counts: 'True'
                         skill: 'Hydrotherapy'
                         type: 'Percent'
-                        value-base: 15
-                        value-scale: 0
+                        value-base: '15'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}

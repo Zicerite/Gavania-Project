@@ -1,15 +1,15 @@
 Hydro Gel Patch: 
   name: 'Hydro Gel Patch'
-  type: 'Support'
-  max-level: 1
+  type: 'Healing/Support'
+  max-level: 100
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
-    level-base: '40'
-    level-scale: '0'
+    level-base: '20'
+    level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
-    cooldown-base: '30'
+    cooldown-base: '15'
     cooldown-scale: '0'
     mana-base: '0'
     mana-scale: '0'
@@ -25,8 +25,19 @@ Hydro Gel Patch:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Cleanses Poison, Wither, and'
-  - '&7extinguishes Fire to the Caster.'
+  - '&7Heals HP and Mana to the Caster and'
+  - '&7nearby allies, as well as cleansing'
+  - '&7Poison, Wither, and extinguishes'
+  - '&7Fire. Additionally grants'
+  - '&7Fire Resistance, HP Regen,'
+  - '&7and Mana Regen.'
+  - ''
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bHP Healed: {attr:healzz.value}%'
+  - '&bMana Healed: {attr:manazz.value}%'
+  - '&bHP Regen: {attr:po1.tier} for {attr:po1.seconds} Seconds'
+  - '&bMana Regen: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - '&bFire Resistance Duraton: {attr:po3.seconds} Seconds'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
@@ -44,80 +55,158 @@ Hydro Gel Patch:
           data: 
             icon-key: ''
             indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
           children: 
-            Cleanse-c: 
+            Command-c: 
               type: 'mechanic'
               indicator: '3D'
               data: 
                 icon-key: ''
                 counts: 'True'
-                potion: 'Poison'
-                status: ''
+                command: 'playsound spells.water1 ambient @a[r=16] ~ ~ ~  0.5 1'
+                type: 'OP'
                 indicator: '2D'
               children:  {}
-            Cleanse-d: 
-              type: 'mechanic'
+            Area-d: 
+              type: 'target'
               indicator: '3D'
               data: 
-                icon-key: ''
-                counts: 'True'
-                potion: 'Wither'
-                status: ''
-                indicator: '2D'
-              children:  {}
-            Fire-e: 
-              type: 'condition'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                type: 'On Fire'
+                icon-key: 'area'
+                radius-base: '3'
+                radius-scale: '0'
+                group: 'Ally'
+                wall: 'True'
+                caster: 'True'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
                 indicator: '2D'
               children: 
-                Command-f: 
+                Cleanse-e: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    command: 'ext'
-                    type: 'OP'
+                    potion: 'Poison'
+                    status: ''
                     indicator: '2D'
                   children:  {}
-            Sound-g: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                version: '1.9+'
-                newsound: 'Entity Generic Splash'
-                volume-base: '70'
-                volume-scale: '0'
-                pitch-base: '1.2'
-                pitch-scale: '0'
-                indicator: '2D'
-              children:  {}
-            Particle-h: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                particle: 'Bubble'
-                arrangement: 'Circle'
-                radius-base: '2'
-                radius-scale: '0'
-                particles-base: '20'
-                particles-scale: '0'
-                direction: 'XZ'
-                visible-radius: '40'
-                dx: '0'
-                dy: '0'
-                dz: '0'
-                speed: '1'
-                amount: '1'
-                forward: '0'
-                upward: '1'
-                right: '0'
-                indicator: '2D'
-              children:  {}
+                Cleanse-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Wither'
+                    status: ''
+                    indicator: '2D'
+                  children:  {}
+                Fire-g: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'On Fire'
+                    indicator: '2D'
+                  children: 
+                    Command-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'ext'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                Particle-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Bubble'
+                    arrangement: 'Circle'
+                    radius-base: '2'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Heal-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'healzz'
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '5.03'
+                    value-scale: '0.03'
+                    indicator: '2D'
+                  children:  {}
+                Mana-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'manazz'
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: '9.03'
+                    value-scale: '0.03'
+                    indicator: '2D'
+                  children:  {}
+                Potion-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po1'
+                    counts: 'True'
+                    potion: 'Regeneration'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po2'
+                    counts: 'True'
+                    potion: 'Saturation'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po3'
+                    counts: 'True'
+                    potion: 'Fire Resistance'
+                    ambient: 'True'
+                    tier-base: '1'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
