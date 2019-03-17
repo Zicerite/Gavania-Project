@@ -25,13 +25,16 @@ Prism Absorbent:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Dealing Neutral Damage heals a flat {attr:heal.value} &7and {attr:zheal2.value}% &cHP&7'
-  - '&7Dealing Light Damage heals {attr:mana.value}% &bMana&7'
-  - '&7Dealing Dark Damage heals {attr:techgained1.amount} &eTech&7'
+  - '&7Dealing Neutral Damage heals {attr:zheal2.value}% &cHP&7.'
+  - '&7Dealing Light Damage heals {attr:mana.value}% &bMana&7.'
+  - '&7Dealing Dark Damage heals {attr:techgained1.amount} &eTech&7.'
   - ''
-  - '&7Taking Neutral Damage heals {attr:stradd.amount} &aStamina&7'
-  - '&7Taking Light Damage heals {attr:mana2.value}% &bMana&7'
-  - '&7Taking Dark Damage heals {attr:techgained2.amount} &eTech&7'
+  - '&7Taking Neutral Damage heals {attr:stradd.amount} &aStamina&7.'
+  - '&7Taking Light Damage heals {attr:mana2.value}% &bMana&7.'
+  - '&7Taking Dark Damage heals {attr:techgained2.amount} &eTech&7.'
+  - ''
+  - '&7Heal &65&f% &7of the dealt damage from'
+  - '&7Light, Dark, and Neutral damage attacks, as &cHP&7.'
   - ''
   - '&7Increases LightDEF by {attr:Ldef.amount}%'
   - '&7Increases DarkDEF by {attr:Ddef.amount}%'
@@ -257,7 +260,50 @@ Prism Absorbent:
                 right: '0'
                 indicator: '2D'
               children:  {}
-    Skill Damage-r: 
+            Value Set-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmg_Light_DamageDealt'
+                value-base: 'api-dealt'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmg_Light_DamageDealt'
+                multiplier-base: '0.05'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.05'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Heal-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: 'dmg_Light_DamageDealt'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-v: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -271,7 +317,7 @@ Prism Absorbent:
         - 'dark'
         indicator: '2D'
       children: 
-        Self-s: 
+        Self-w: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -281,7 +327,7 @@ Prism Absorbent:
             wall: 'false'
             caster: 'false'
           children: 
-            Value Add-t: 
+            Value Add-x: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -292,7 +338,7 @@ Prism Absorbent:
                 amount-scale: '0'
                 indicator: '2D'
               children:  {}
-            Particle-u: 
+            Particle-y: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -311,7 +357,50 @@ Prism Absorbent:
                 right: '0'
                 indicator: '2D'
               children:  {}
-    Skill Damage-v: 
+            Value Set-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmg_Dark_DamageDealt'
+                value-base: 'api-dealt'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-ab: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmg_Dark_DamageDealt'
+                multiplier-base: '0.05'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.05'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Heal-cb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: 'dmg_Dark_DamageDealt'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-db: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -325,7 +414,7 @@ Prism Absorbent:
         - 'neutral'
         indicator: '2D'
       children: 
-        Self-w: 
+        Self-eb: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -335,7 +424,7 @@ Prism Absorbent:
             wall: 'false'
             caster: 'false'
           children: 
-            Heal-x: 
+            Heal-fb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -346,17 +435,49 @@ Prism Absorbent:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Heal-y: 
+            Value Set-gb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: 'heal'
+                icon-key: ''
                 counts: 'True'
-                type: 'Health'
-                value-base: '10'
+                key: 'dmg_Neutral_DamageDealt'
+                value-base: 'api-dealt'
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
+            Value Multiply-hb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmg_Neutral_DamageDealt'
+                multiplier-base: '0.05'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-ib: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.05'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Heal-jb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: 'dmg_Neutral_DamageDealt'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -364,7 +485,7 @@ Prism Absorbent:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-ab: 
+        Passive-lb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -374,7 +495,7 @@ Prism Absorbent:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Attribute-bb: 
+            Attribute-mb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -388,7 +509,7 @@ Prism Absorbent:
                 stackable: 'False'
                 indicator: '2D'
               children:  {}
-            Attribute-cb: 
+            Attribute-nb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -402,7 +523,7 @@ Prism Absorbent:
                 stackable: 'False'
                 indicator: '2D'
               children:  {}
-            Attribute-db: 
+            Attribute-ob: 
               type: 'mechanic'
               indicator: '3D'
               data: 
