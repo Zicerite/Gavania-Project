@@ -1,0 +1,707 @@
+Heavy Combo Insect:
+  name: 'Heavy Combo Insect'
+  type: 'Support Toggle'
+  max-level: 1
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: 'R'
+  indicator: '2D'
+  icon: 'STONE_AXE'
+  icon-data: 1
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&bR: &fToggles Flight Mode.'
+  - '&fFlight Mode uses 5 Stamina per'
+  - '&fsecond. Launches caster upwards'
+  - '&ffurther if grounded.'
+  - '&fTry not to run out of stamina while flying,'
+  - '&for else you will have to stay grounded'
+  - '&for a short while.'
+  attributes:
+    level-base: 1
+    level-scale: 0
+    cost-base: 0
+    cost-scale: 0
+    cooldown-base: 0
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Took Physical Damage-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: 0
+        dmg-max: 999999
+      children:
+        Potion-b:
+          type: 'condition'
+          data:
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Levitation'
+            min-rank-base: 0
+            min-rank-scale: 0
+            max-rank-base: 999
+            max-rank-scale: 0
+        Else-c:
+          type: 'condition'
+          data:
+            icon-key: ''
+          children:
+            Repeat-d:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: 3
+                repetitions-scale: 0
+                period: 0.05
+                delay: 0
+                stop-on-fail: 'False'
+              children:
+                Launch-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: 0.00001
+                    forward-scale: 0
+                    upward-base: 0.00001
+                    upward-scale: 0
+                    right-base: 0
+                    right-scale: 0
+    Took Skill Damage-f:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: 0
+        dmg-max: 999999
+        category:
+        - ''
+      children:
+        Potion-g:
+          type: 'condition'
+          data:
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Levitation'
+            min-rank-base: 0
+            min-rank-scale: 0
+            max-rank-base: 999
+            max-rank-scale: 0
+        Else-h:
+          type: 'condition'
+          data:
+            icon-key: ''
+          children:
+            Repeat-i:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: 3
+                repetitions-scale: 0
+                period: 0.05
+                delay: 0
+                stop-on-fail: 'False'
+              children:
+                Launch-j:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: -0.00001
+                    forward-scale: 0
+                    upward-base: -0.00001
+                    upward-scale: 0
+                    right-base: 0
+                    right-scale: 0
+    Cast-k:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Potion-l:
+          type: 'condition'
+          data:
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Slow Digging'
+            min-rank-base: 0
+            min-rank-scale: 0
+            max-rank-base: 999
+            max-rank-scale: 0
+          children:
+            Item-m:
+              type: 'condition'
+              data:
+                icon-key: ''
+                check-mat: 'True'
+                material: 'Diamond Hoe'
+                check-data: 'False'
+                check-lore: 'False'
+                check-name: 'False'
+                regex: 'False'
+              children:
+                Value-n:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    key: 'b'
+                    min-value-base: 0
+                    min-value-scale: 0
+                    max-value-base: 0
+                    max-value-scale: 0
+                  children:
+                    Value-o:
+                      type: 'condition'
+                      data:
+                        icon-key: ''
+                        key: 'Mode_Changed'
+                        min-value-base: 0
+                        min-value-scale: 0
+                        max-value-base: 0
+                        max-value-scale: 0
+                      children:
+                        Value-p:
+                          type: 'condition'
+                          data:
+                            icon-key: ''
+                            key: 'stamina'
+                            min-value-base: 0
+                            min-value-scale: 0
+                            max-value-base: 999
+                            max-value-scale: 0
+                          children:
+                            Value Add-q:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: -10
+                                amount-scale: 0
+                            Ground-r:
+                              type: 'condition'
+                              data:
+                                icon-key: ''
+                                type: 'On Ground'
+                              children:
+                                Launch-s:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: 0.75
+                                    forward-scale: 0
+                                    upward-base: 1.25
+                                    upward-scale: 0
+                                    right-base: 0
+                                    right-scale: 0
+                                Delay-t:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    delay-base: 0.5
+                                    delay-scale: 0
+                                  children:
+                                    Value Set-u:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'b'
+                                        value-base: 1
+                                        value-scale: 0
+                                    Value Set-v:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'Mode_Changed'
+                                        value-base: 0
+                                        value-scale: 0
+                                    Value Set-w:
+                                      type: 'mechanic'
+                                      data:
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'Flying'
+                                        value-base: 1
+                                        value-scale: 0
+                                Message-x:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    message: '---Was Grounded'
+                            Ground-y:
+                              type: 'condition'
+                              data:
+                                icon-key: ''
+                                type: 'Not On Ground'
+                              children:
+                                Launch-z:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: 0.3
+                                    forward-scale: 0
+                                    upward-base: 0.65
+                                    upward-scale: 0
+                                    right-base: 0
+                                    right-scale: 0
+                                Value Set-ab:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'b'
+                                    value-base: 1
+                                    value-scale: 0
+                                Value Set-bb:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'Mode_Changed'
+                                    value-base: 1
+                                    value-scale: 0
+                                Value Set-cb:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'Flying'
+                                    value-base: 1
+                                    value-scale: 0
+                                Message-db:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    message: '---Was Mid-air'
+                Value-eb:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    key: 'b'
+                    min-value-base: 1
+                    min-value-scale: 0
+                    max-value-base: 1
+                    max-value-scale: 0
+                  children:
+                    Value-fb:
+                      type: 'condition'
+                      data:
+                        icon-key: ''
+                        key: 'Mode_Changed'
+                        min-value-base: 0
+                        min-value-scale: 0
+                        max-value-base: 0
+                        max-value-scale: 0
+                      children:
+                        Value Set-gb:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'b'
+                            value-base: 0
+                            value-scale: 0
+                        Value Set-hb:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'Mode_Changed'
+                            value-base: 1
+                            value-scale: 0
+                        Value Set-ib:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'Flying'
+                            value-base: 0
+                            value-scale: 0
+                        Cleanse-jb:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Levitation'
+                            status: ''
+                Value Set-kb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Mode_Changed'
+                    value-base: 0
+                    value-scale: 0
+        Message-lb:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            message: 'B: {b}'
+        Message-mb:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            message: 'Flying: {Flying}'
+        Message-nb:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            message: 'ModeChanged: {Mode_Changed}'
+        Delay-ob:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            delay-base: 0.51
+            delay-scale: 0
+          children:
+            Message-pb:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                message: 'B2: {b}'
+            Message-qb:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                message: 'Flying2: {Flying}'
+            Message-rb:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                message: 'ModeChanged: {Mode_Changed}'
+    Initialize-sb:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Value Set-tb:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            key: 'b'
+            value-base: 0
+            value-scale: 0
+        Value Set-ub:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            key: 'Mode_Changed'
+            value-base: 0
+            value-scale: 0
+        Passive-vb:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.05
+            seconds-scale: 0
+          children:
+            Value-wb:
+              type: 'condition'
+              data:
+                icon-key: ''
+                key: 'b'
+                min-value-base: 1
+                min-value-scale: 0
+                max-value-base: 1
+                max-value-scale: 0
+              children:
+                Potion-xb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Levitation'
+                    ambient: 'True'
+                    tier-base: 255
+                    tier-scale: 0
+                    seconds-base: 0.9
+                    seconds-scale: 0
+                Particle-yb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Circle'
+                    radius-base: 0.5
+                    radius-scale: 0
+                    particles-base: 1
+                    particles-scale: 0
+                    direction: 'XZ'
+                    visible-radius: 60
+                    dx: 1
+                    dy: 1
+                    dz: 1
+                    speed: 1
+                    amount: 0
+                    forward: -0.2
+                    upward: 1
+                    right: 0.8
+                Particle-zb:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Circle'
+                    radius-base: 0.5
+                    radius-scale: 0
+                    particles-base: 1
+                    particles-scale: 0
+                    direction: 'XZ'
+                    visible-radius: 60
+                    dx: 1
+                    dy: 1
+                    dz: 1
+                    speed: 1
+                    amount: 0
+                    forward: -0.2
+                    upward: 1
+                    right: -0.8
+            Block-ac:
+              type: 'condition'
+              data:
+                icon-key: ''
+                standing: 'Not On Block'
+                material: 'Air'
+              children:
+                Value Set-bc:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'b'
+                    value-base: 0
+                    value-scale: 0
+                Cleanse-cc:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Levitation'
+                    status: ''
+                Value Set-dc:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Flying'
+                    value-base: 0
+                    value-scale: 0
+            Ground-ec:
+              type: 'condition'
+              data:
+                icon-key: ''
+                type: 'On Ground'
+              children:
+                Value Set-fc:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'b'
+                    value-base: 0
+                    value-scale: 0
+                Value Set-gc:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Flying'
+                    value-base: 0
+                    value-scale: 0
+                Cleanse-hc:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Levitation'
+                    status: ''
+                Value Set-ic:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Mode_Changed'
+                    value-base: 0
+                    value-scale: 0
+        Passive-jc:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 0.2
+            seconds-scale: 0
+          children:
+            Value-kc:
+              type: 'condition'
+              data:
+                icon-key: ''
+                key: 'b'
+                min-value-base: 1
+                min-value-scale: 0
+                max-value-base: 1
+                max-value-scale: 0
+              children:
+                Value-lc:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    key: 'stamina'
+                    min-value-base: 0
+                    min-value-scale: 0
+                    max-value-base: 999
+                    max-value-scale: 0
+                  children:
+                    Value Add-mc:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'stamina'
+                        amount-base: -1
+                        amount-scale: 0
+                Value-nc:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    key: 'stamina'
+                    min-value-base: -9999
+                    min-value-scale: 0
+                    max-value-base: -1
+                    max-value-scale: 0
+                  children:
+                    Value Set-oc:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'b'
+                        value-base: 0
+                        value-scale: 0
+                    Cleanse-pc:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Levitation'
+                        status: ''
+                    Value Set-qc:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Flying'
+                        value-base: 0
+                        value-scale: 0
+                    Value Set-rc:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'stamina'
+                        value-base: -25
+                        value-scale: 0
+                    Particle-sc:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Cloud'
+                        arrangement: 'Sphere'
+                        radius-base: 1.5
+                        radius-scale: 0
+                        particles-base: 10
+                        particles-scale: 0
+                        visible-radius: 50
+                        dx: 0
+                        dy: 0
+                        dz: 0
+                        speed: 0.1
+                        amount: 1
+                        forward: 0
+                        upward: 1
+                        right: 0
+    Land-tc:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: 0
+      children:
+        Repeat-uc:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: 2
+            repetitions-scale: 0
+            period: 0.05
+            delay: 0
+            stop-on-fail: 'False'
+          children:
+            Value Set-vc:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'b'
+                value-base: 0
+                value-scale: 0
+            Value Set-wc:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'Flying'
+                value-base: 0
+                value-scale: 0
+            Value Set-xc:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'Mode_Changed'
+                value-base: 0
+                value-scale: 0
