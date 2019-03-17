@@ -27,13 +27,16 @@ Counter:
   - ''
   - '&7The Caster becomes invincible,'
   - '&7then strikes. Hits all enemies'
-  - '&7around the Caster.'
+  - '&7around the Caster, and causes hitstun.'
   - '&7Causes a Defense Debuff for a'
   - '&7short time.'
+  - '&7Decreases cooldown if the attack lands'
+  - '&7a hit on an enemy.'
   - ''
   - '&bDamage: {attr:dmg.value} Melee Damage &9䛇'
   - '&bRadius: {attr:area.radius} Blocks'
   - '&bDefense Debuff: &6-15&f% for &63 &fSeconds'
+  - '&bCooldown Reduction: &620&f%'
   - ''
   - '&bPiercing Damage (Alby 2): {attr:dmg2.value} Melee Damage &9䛇'
   - ''
@@ -105,7 +108,7 @@ Counter:
                   indicator: '3D'
                   data: 
                     icon-key: 'area'
-                    radius-base: '3'
+                    radius-base: '5'
                     radius-scale: '0'
                     group: 'Enemy'
                     wall: 'True'
@@ -250,7 +253,29 @@ Counter:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                Command-q: 
+                    Status-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Disarm'
+                        duration-base: '0.5'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Status-r: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Silence'
+                        duration-base: '0.5'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Command-s: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -260,7 +285,7 @@ Counter:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Command-r: 
+                Command-t: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -270,7 +295,7 @@ Counter:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Command-s: 
+                Command-u: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -280,7 +305,7 @@ Counter:
                     type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Particle-t: 
+                Particle-v: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -288,7 +313,7 @@ Counter:
                     counts: 'True'
                     particle: 'Magic Crit'
                     arrangement: 'Sphere'
-                    radius-base: '3'
+                    radius-base: '5'
                     radius-scale: '0'
                     particles-base: '40'
                     particles-scale: '0'
@@ -303,7 +328,54 @@ Counter:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-        Command-u: 
+                Area-w: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '5'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '1'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Self-x: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Delay-y: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.01'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Cooldown-z: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                skill: 'Counter'
+                                type: 'Percent'
+                                value-base: '20'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+        Command-ab: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -313,7 +385,7 @@ Counter:
             type: 'OP'
             indicator: '2D'
           children:  {}
-        Repeat-v: 
+        Repeat-bb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -326,7 +398,7 @@ Counter:
             stop-on-fail: 'False'
             indicator: '2D'
           children: 
-            Particle-w: 
+            Particle-cb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -352,7 +424,7 @@ Counter:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-y: 
+        Passive-eb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -362,7 +434,7 @@ Counter:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-z: 
+            Value Lore-fb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -375,7 +447,7 @@ Counter:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Lore-ab: 
+            Value Lore-gb: 
               type: 'mechanic'
               indicator: '3D'
               data: 

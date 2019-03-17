@@ -33,7 +33,7 @@ Buzz Off:
   - '&7caster is in mid-air.'
   - '&7Causes Hitstun.'
   - ''
-  - '&bDamage: {attr:dmg.value} x5 Skill Damage &f䛳'
+  - '&bDamage: {attr:dmg.value} x4 Skill Damage &f䛳'
   - '&bLast hit Damage: {attr:dmg2.value} Skill Damage &f䛳'
   - '&bRadius: {attr:area.radius} Blocks'
   - ''
@@ -53,7 +53,7 @@ Buzz Off:
           data: 
             icon-key: ''
             counts: 'True'
-            repetitions-base: '5'
+            repetitions-base: '4'
             repetitions-scale: '0'
             period: '0.2'
             delay: '0'
@@ -80,7 +80,7 @@ Buzz Off:
                     arrangement: 'Sphere'
                     radius-base: '4'
                     radius-scale: '0'
-                    particles-base: '40'
+                    particles-base: '25'
                     particles-scale: '0'
                     visible-radius: '40'
                     dx: '0'
@@ -114,7 +114,17 @@ Buzz Off:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-            Area-g: 
+                Command-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:entity.silverfish.ambient ambient @a[r=16] ~ ~ ~ 0.5 1.25'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+            Area-h: 
               type: 'target'
               indicator: '3D'
               data: 
@@ -129,7 +139,7 @@ Buzz Off:
                 random: 'False'
                 indicator: '2D'
               children: 
-                Damage-h: 
+                Damage-i: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -142,29 +152,29 @@ Buzz Off:
                     classifier: 'wind'
                     indicator: '2D'
                   children:  {}
-                Status-i: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    counts: 'True'
-                    status: 'Disarm'
-                    duration-base: '0.35'
-                    duration-scale: '0'
-                    indicator: '2D'
-                  children:  {}
                 Status-j: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    status: 'Silence'
-                    duration-base: '0.35'
+                    status: 'Disarm'
+                    duration-base: '0.3'
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-k: 
+                Status-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Silence'
+                    duration-base: '0.3'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-l: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -187,7 +197,19 @@ Buzz Off:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-        Self-l: 
+                Push-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Fixed'
+                    speed-base: '-0.2'
+                    speed-scale: '0'
+                    source: 'none'
+                    indicator: '2D'
+                  children:  {}
+        Self-n: 
           type: 'target'
           indicator: '3D'
           data: 
@@ -197,7 +219,7 @@ Buzz Off:
             wall: 'false'
             caster: 'false'
           children: 
-            Ground-m: 
+            Ground-o: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -205,7 +227,7 @@ Buzz Off:
                 type: 'Not On Ground'
                 indicator: '2D'
               children: 
-                Launch-n: 
+                Launch-p: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -220,7 +242,7 @@ Buzz Off:
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
-        Delay-o: 
+        Delay-q: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -230,7 +252,7 @@ Buzz Off:
             delay-scale: '0'
             indicator: '2D'
           children: 
-            Area-p: 
+            Area-r: 
               type: 'target'
               indicator: '3D'
               data: 
@@ -245,7 +267,7 @@ Buzz Off:
                 random: 'False'
                 indicator: '2D'
               children: 
-                Damage-q: 
+                Damage-s: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -258,29 +280,29 @@ Buzz Off:
                     classifier: 'wind'
                     indicator: '2D'
                   children:  {}
-                Status-r: 
+                Status-t: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
                     status: 'Disarm'
-                    duration-base: '0.35'
+                    duration-base: '0.5'
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Status-s: 
+                Status-u: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
                     status: 'Silence'
-                    duration-base: '0.35'
+                    duration-base: '0.5'
                     duration-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Particle-t: 
+                Particle-v: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -303,7 +325,7 @@ Buzz Off:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-                Launch-u: 
+                Launch-w: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -312,12 +334,68 @@ Buzz Off:
                     relative: 'Caster'
                     forward-base: '1'
                     forward-scale: '0'
-                    upward-base: '0.4'
+                    upward-base: '0.2'
                     upward-scale: '0'
                     right-base: '0'
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
+            Command-x: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:entity.silverfish.ambient ambient @a[r=16] ~ ~ ~ 0.7 1.4'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Particle-y: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Magic Crit'
+                arrangement: 'Sphere'
+                radius-base: '4'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-z: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Crit'
+                arrangement: 'Sphere'
+                radius-base: '4'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -325,7 +403,7 @@ Buzz Off:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-w: 
+        Passive-bb: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -335,7 +413,7 @@ Buzz Off:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-x: 
+            Value Lore-cb: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -344,11 +422,11 @@ Buzz Off:
                 key: 'dmgBuzz'
                 hand: 'Main'
                 regex: 'Skill Damage - {value}'
-                multiplier-base: '0.4'
+                multiplier-base: '0.3'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Lore-y: 
+            Value Lore-db: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -357,7 +435,7 @@ Buzz Off:
                 key: 'dmgBuzz_Last'
                 hand: 'Main'
                 regex: 'Skill Damage - {value}'
-                multiplier-base: '0.55'
+                multiplier-base: '1'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}

@@ -2,7 +2,6 @@ Critical Tempo:
   name: 'Critical Tempo'
   type: 'Passive'
   max-level: 1
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -33,6 +32,9 @@ Critical Tempo:
   - '&7Reduces all active cooldowns by &60.2'
   - '&7seconds when dealing or taking damage below'
   - '&7&625&f% &7HP.'
+  - ''
+  - '&7Reduces all active cooldowns by &60.1'
+  - '&7seconds when dealing or taking damage.'
   desc:  []
   components: 
     Physical Damage-a: 
@@ -82,7 +84,29 @@ Critical Tempo:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-    Skill Damage-e: 
+        Delay-e: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            delay-base: '0.01'
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Cooldown-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                skill: 'all'
+                type: 'Seconds'
+                value-base: '0.1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Skill Damage-g: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -96,7 +120,7 @@ Critical Tempo:
         - ''
         indicator: '2D'
       children: 
-        Health-f: 
+        Health-h: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -108,7 +132,7 @@ Critical Tempo:
             max-value-scale: '0'
             indicator: '2D'
           children: 
-            Delay-g: 
+            Delay-i: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -118,7 +142,7 @@ Critical Tempo:
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Cooldown-h: 
+                Cooldown-j: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -130,6 +154,28 @@ Critical Tempo:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
+        Delay-k: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            delay-base: '0.01'
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Cooldown-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                skill: 'all'
+                type: 'Seconds'
+                value-base: '0.1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -137,7 +183,7 @@ Critical Tempo:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-j: 
+        Passive-n: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -147,7 +193,7 @@ Critical Tempo:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Self-k: 
+            Self-o: 
               type: 'target'
               indicator: '3D'
               data: 
@@ -157,7 +203,7 @@ Critical Tempo:
                 wall: 'false'
                 caster: 'false'
               children: 
-                Health-l: 
+                Health-p: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -169,7 +215,7 @@ Critical Tempo:
                     max-value-scale: '0'
                     indicator: '2D'
                   children: 
-                    Potion-m: 
+                    Potion-q: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -182,7 +228,7 @@ Critical Tempo:
                         max-rank-scale: '0'
                         indicator: '2D'
                       children: 
-                        Potion-n: 
+                        Potion-r: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 

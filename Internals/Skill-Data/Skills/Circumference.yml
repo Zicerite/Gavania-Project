@@ -1,8 +1,7 @@
 Circumference: 
   name: 'Circumference'
-  type: 'Healing'
+  type: 'Healing/Defense'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -31,11 +30,13 @@ Circumference:
   - '&7their missing HP, then heals'
   - '&7them some additional HP, and'
   - '&7grants HP Regen.'
+  - '&7Grants a Defense Buff.'
   - '&7Cleanses Poison and Wither.'
   - ''
-  - '&bHeals: {attr:heal.value}'
-  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bHP Healed: {attr:heal.value}'
   - '&bHP Regen: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bDefense Buff: &625&f% for &64 &fSeconds'
+  - '&bRadius: {attr:area.radius} Blocks'
   - ''
   - '&bInvincibility Duration (Xync 1):'
   - '  &f{attr:inv.duration} Seconds'
@@ -109,7 +110,7 @@ Circumference:
                     ambient: 'True'
                     tier-base: '2'
                     tier-scale: '0'
-                    seconds-base: '5'
+                    seconds-base: '4'
                     seconds-scale: '0'
                     indicator: '2D'
                   children:  {}
@@ -285,7 +286,71 @@ Circumference:
                     value-scale: '1'
                     indicator: '2D'
                   children:  {}
-            Particle-u: 
+                Defense Buff-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '1.25'
+                    value-scale: '0'
+                    seconds-base: '4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '1.25'
+                    value-scale: '0'
+                    seconds-base: '4'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-w: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '20'
+                    repetitions-scale: '0'
+                    period: '0.2'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-x: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Happy Villager'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        visible-radius: '40'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+            Particle-y: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -308,7 +373,7 @@ Circumference:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Command-v: 
+            Command-z: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -318,7 +383,7 @@ Circumference:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-            Command-w: 
+            Command-ab: 
               type: 'mechanic'
               indicator: '3D'
               data: 
