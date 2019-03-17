@@ -2,7 +2,6 @@ Surging Shield:
   name: 'Surging Shield'
   type: 'Defense/Support'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -31,6 +30,8 @@ Surging Shield:
   - '&7with it get a shield that reduces damage'
   - '&7taken. Speed and Haste is also granted.'
   - '&7Hurts the caster a bit.'
+  - '&7Causes knockback and minor hitstun'
+  - '&7to enemies who get hit by the blast.'
   - ''
   - '&bDamage Reduction: &630&f%'
   - '&bDuration: {attr:defbuff.seconds} Seconds'
@@ -252,7 +253,92 @@ Surging Shield:
                 type: 'OP'
                 indicator: '2D'
               children:  {}
-        Damage-q: 
+            Area-q: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                radius-base: '10'
+                radius-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
+                indicator: '2D'
+              children: 
+                Repeat-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '3'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Push-s: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Fixed'
+                        speed-base: '1'
+                        speed-scale: '0'
+                        source: 'none'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-t: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Cloud'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '2'
+                        particles-scale: '0'
+                        visible-radius: '40'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0.2'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                Status-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Disarm'
+                    duration-base: '0.3'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Status-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    status: 'Silence'
+                    duration-base: '0.3'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Damage-w: 
           type: 'mechanic'
           indicator: '3D'
           data: 

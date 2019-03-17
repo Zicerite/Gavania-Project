@@ -25,8 +25,10 @@ Scatter:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Gain 30 BaseSpeed when'
-  - '&7below 30% HP'
+  - '&7Caster is Immune to Slowness.'
+  - ''
+  - '&7Gain &630 &7BaseSpeed when'
+  - '&7below &630&f% &7HP.'
   desc:  []
   components: 
     Initialize: 
@@ -42,7 +44,7 @@ Scatter:
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.02'
+            seconds-base: '0.05'
             seconds-scale: '0'
             indicator: '2D'
           children: 
@@ -67,8 +69,38 @@ Scatter:
                     key: 'BaseSpeed'
                     amount-base: '30'
                     amount-scale: '0'
-                    seconds-base: '0.5'
+                    seconds-base: '0.3'
                     seconds-scale: '0'
                     stackable: 'False'
+                    indicator: '2D'
+                  children:  {}
+            Potion-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not Active'
+                potion: 'Slow'
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Else-f: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+              children: 
+                Cleanse-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Slow'
+                    status: ''
                     indicator: '2D'
                   children:  {}

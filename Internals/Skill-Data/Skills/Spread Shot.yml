@@ -2,6 +2,7 @@ Spread Shot:
   name: 'Spread Shot'
   type: 'Damage'
   max-level: 100
+  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -78,19 +79,44 @@ Spread Shot:
                 use-effect: 'False'
                 indicator: '2D'
               children: 
-                Damage-d: 
-                  type: 'mechanic'
+                Area-d: 
+                  type: 'target'
                   indicator: '3D'
                   data: 
-                    icon-key: 'dmg'
-                    counts: 'True'
-                    type: 'Damage'
-                    value-base: 'dmgSPS'
-                    value-scale: '0.25'
-                    true: 'False'
-                    classifier: 'physical'
+                    icon-key: ''
+                    radius-base: '1.5'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
-                  children:  {}
+                  children: 
+                    Damage-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 'dmgSPS'
+                        value-scale: '0.25'
+                        true: 'False'
+                        classifier: 'physical'
+                        indicator: '2D'
+                      children:  {}
+            Command-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:entity.skeleton.shoot ambient @a[r=16] ~ ~ ~ 0.45 0.85'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -98,7 +124,7 @@ Spread Shot:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-f: 
+        Passive-h: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -108,7 +134,7 @@ Spread Shot:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-g: 
+            Value Lore-i: 
               type: 'mechanic'
               indicator: '3D'
               data: 

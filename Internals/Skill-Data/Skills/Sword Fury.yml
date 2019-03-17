@@ -2,7 +2,6 @@ Sword Fury:
   name: 'Sword Fury'
   type: 'Damage'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
@@ -19,7 +18,7 @@ Sword Fury:
     incompatible: 
     - ''
   msg: '&6{player} &2has cast &6{skill}'
-  icon: 'GOLD_SWORD'
+  icon: 'GOLD_SPADE'
   icon-durability: 0
   icon-data: 0
   icon-lore: 
@@ -31,14 +30,13 @@ Sword Fury:
   - '&7The Caster stalls in mid-air if the skill'
   - '&7is casted in the air. The final strike'
   - '&7spikes enemies if they are in mid-air.'
-  - '&7Also deals piercing damage based on'
-  - '&7a small multiplier of your Melee Damage.'
+  - '&7Also deals piercing damage.'
   - ''
   - '&bDamage: {attr:dmg.value} x3 Melee Damage &r䛶'
   - '&bPiercing Damage: {attr:dmg2.value} x3 Melee Damage &r䛶'
   - '&bRange: {attr:range.range} Blocks'
   - ''
-  - '&bDamage (Rune 1): {attr:dmg3.value} Melee Damage &1䛴'
+  - '&bDamage (Rune 1): {attr:dmg3.value} Melee Damage &9䛇'
   - ''
   - '{req:level}Level: {attr:level} &2Cooldown: {attr:cooldown}'
   desc:  []
@@ -93,13 +91,12 @@ Sword Fury:
                         type: 'OP'
                         indicator: '2D'
                       children:  {}
-                    Block-f: 
+                    Ground-f: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        standing: 'On Block'
-                        material: 'Air'
+                        type: 'Not On Ground'
                         indicator: '2D'
                       children: 
                         Launch-g: 
@@ -152,14 +149,14 @@ Sword Fury:
                             pierce: 'False'
                             particle: 'Red Dust'
                             arrangement: 'Sphere'
-                            radius-base: '0.8'
+                            radius-base: '1'
                             radius-scale: '0'
                             particles-base: '3'
                             particles-scale: '0'
                             visible-radius: '60'
-                            dx: '0.01'
-                            dy: '0'
-                            dz: '0.75'
+                            dx: '0.5'
+                            dy: '0.5'
+                            dz: '0.5'
                             speed: '1'
                             amount: '0'
                             frequency: '0.05'
@@ -167,27 +164,42 @@ Sword Fury:
                             use-effect: 'False'
                             indicator: '2D'
                           children: 
-                            Damage-j: 
-                              type: 'mechanic'
+                            Area-j: 
+                              type: 'target'
                               indicator: '3D'
                               data: 
-                                icon-key: 'dmg3'
-                                counts: 'True'
-                                type: 'Damage'
-                                value-base: 'dmgSF_Rune1'
-                                value-scale: '0'
-                                true: 'False'
-                                classifier: 'water'
+                                icon-key: ''
+                                radius-base: '1'
+                                radius-scale: '0'
+                                group: 'Enemy'
+                                wall: 'False'
+                                caster: 'False'
+                                max-base: '999'
+                                max-scale: '0'
+                                random: 'False'
                                 indicator: '2D'
-                              children:  {}
-                Linear-k: 
+                              children: 
+                                Damage-k: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: 'dmg3'
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: 'dmgSF_Rune1'
+                                    value-scale: '0'
+                                    true: 'False'
+                                    classifier: 'physical'
+                                    indicator: '2D'
+                                  children:  {}
+                Linear-l: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: 'range'
                     range-base: '5.5'
                     range-scale: '0'
-                    tolerance-base: '25'
+                    tolerance-base: '20'
                     tolerance-scale: '0'
                     group: 'Enemy'
                     wall: 'True'
@@ -196,7 +208,7 @@ Sword Fury:
                     max-scale: '0'
                     indicator: '2D'
                   children: 
-                    Status-l: 
+                    Status-m: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -207,7 +219,7 @@ Sword Fury:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Status-m: 
+                    Status-n: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -218,7 +230,7 @@ Sword Fury:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Damage-n: 
+                    Damage-o: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -231,7 +243,7 @@ Sword Fury:
                         classifier: 'neutral'
                         indicator: '2D'
                       children:  {}
-                    Damage-o: 
+                    Damage-p: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -244,7 +256,7 @@ Sword Fury:
                         classifier: 'neutral'
                         indicator: '2D'
                       children:  {}
-                    Repeat-p: 
+                    Repeat-q: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -257,7 +269,7 @@ Sword Fury:
                         stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Launch-q: 
+                        Launch-r: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -272,7 +284,7 @@ Sword Fury:
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-                Self-r: 
+                Self-s: 
                   type: 'target'
                   indicator: '3D'
                   data: 
@@ -282,7 +294,7 @@ Sword Fury:
                     wall: 'false'
                     caster: 'false'
                   children: 
-                    Location-s: 
+                    Location-t: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -295,7 +307,7 @@ Sword Fury:
                         wall: 'false'
                         caster: 'false'
                       children: 
-                        Particle-t: 
+                        Particle-u: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -305,7 +317,7 @@ Sword Fury:
                             arrangement: 'Sphere'
                             radius-base: '0.5'
                             radius-scale: '0'
-                            particles-base: '10'
+                            particles-base: '5'
                             particles-scale: '0'
                             visible-radius: '40'
                             dx: '0'
@@ -318,7 +330,7 @@ Sword Fury:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Location-u: 
+                    Location-v: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -331,7 +343,7 @@ Sword Fury:
                         wall: 'false'
                         caster: 'false'
                       children: 
-                        Particle-v: 
+                        Particle-w: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -341,7 +353,7 @@ Sword Fury:
                             arrangement: 'Sphere'
                             radius-base: '0.5'
                             radius-scale: '0'
-                            particles-base: '10'
+                            particles-base: '5'
                             particles-scale: '0'
                             visible-radius: '40'
                             dx: '0'
@@ -354,7 +366,7 @@ Sword Fury:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Location-w: 
+                    Location-x: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -367,7 +379,7 @@ Sword Fury:
                         wall: 'false'
                         caster: 'false'
                       children: 
-                        Particle-x: 
+                        Particle-y: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -377,7 +389,7 @@ Sword Fury:
                             arrangement: 'Sphere'
                             radius-base: '0.5'
                             radius-scale: '0'
-                            particles-base: '10'
+                            particles-base: '5'
                             particles-scale: '0'
                             visible-radius: '40'
                             dx: '0'
@@ -390,7 +402,7 @@ Sword Fury:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Location-y: 
+                    Location-z: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -403,7 +415,7 @@ Sword Fury:
                         wall: 'false'
                         caster: 'false'
                       children: 
-                        Particle-z: 
+                        Particle-ab: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -413,7 +425,7 @@ Sword Fury:
                             arrangement: 'Sphere'
                             radius-base: '0.5'
                             radius-scale: '0'
-                            particles-base: '10'
+                            particles-base: '5'
                             particles-scale: '0'
                             visible-radius: '40'
                             dx: '0'
@@ -426,7 +438,7 @@ Sword Fury:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Location-ab: 
+                    Location-bb: 
                       type: 'target'
                       indicator: '3D'
                       data: 
@@ -439,7 +451,7 @@ Sword Fury:
                         wall: 'false'
                         caster: 'false'
                       children: 
-                        Particle-bb: 
+                        Particle-cb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -449,7 +461,7 @@ Sword Fury:
                             arrangement: 'Sphere'
                             radius-base: '0.5'
                             radius-scale: '0'
-                            particles-base: '10'
+                            particles-base: '5'
                             particles-scale: '0'
                             visible-radius: '40'
                             dx: '0'
@@ -462,7 +474,7 @@ Sword Fury:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-            Delay-cb: 
+            Delay-db: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -472,14 +484,14 @@ Sword Fury:
                 delay-scale: '0'
                 indicator: '2D'
               children: 
-                Linear-db: 
+                Linear-eb: 
                   type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     range-base: '5.5'
                     range-scale: '0'
-                    tolerance-base: '45'
+                    tolerance-base: '30'
                     tolerance-scale: '0'
                     group: 'Enemy'
                     wall: 'True'
@@ -488,15 +500,267 @@ Sword Fury:
                     max-scale: '0'
                     indicator: '2D'
                   children: 
-                    Ground-eb: 
+                    Skill Level-fb: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        type: 'On Ground'
+                        skill: 'Rune_Swordsman_SwordFury'
+                        min-level: '0'
+                        max-level: '1'
                         indicator: '2D'
                       children: 
-                        Repeat-fb: 
+                        Ground-gb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'On Ground'
+                            indicator: '2D'
+                          children: 
+                            Repeat-hb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '3'
+                                repetitions-scale: '0'
+                                period: '0.075'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Particle-ib: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Cloud'
+                                    arrangement: 'Sphere'
+                                    radius-base: '1'
+                                    radius-scale: '0'
+                                    particles-base: '1'
+                                    particles-scale: '0'
+                                    visible-radius: '50'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0.01'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Push-jb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Fixed'
+                                    speed-base: '0.8'
+                                    speed-scale: '0'
+                                    source: 'none'
+                                    indicator: '2D'
+                                  children:  {}
+                        Ground-kb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'Not On Ground'
+                            indicator: '2D'
+                          children: 
+                            Repeat-lb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '3'
+                                repetitions-scale: '0'
+                                period: '0.075'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Particle-mb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Cloud'
+                                    arrangement: 'Sphere'
+                                    radius-base: '1'
+                                    radius-scale: '0'
+                                    particles-base: '3'
+                                    particles-scale: '0'
+                                    visible-radius: '50'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0.01'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Launch-nb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: '0'
+                                    forward-scale: '0'
+                                    upward-base: '-3'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                    Skill Level-ob: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Rune_Swordsman_SwordFury'
+                        min-level: '3'
+                        max-level: '3'
+                        indicator: '2D'
+                      children: 
+                        Ground-pb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'On Ground'
+                            indicator: '2D'
+                          children: 
+                            Repeat-qb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '3'
+                                repetitions-scale: '0'
+                                period: '0.075'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Particle-rb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Cloud'
+                                    arrangement: 'Sphere'
+                                    radius-base: '1'
+                                    radius-scale: '0'
+                                    particles-base: '1'
+                                    particles-scale: '0'
+                                    visible-radius: '50'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0.01'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Push-sb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Fixed'
+                                    speed-base: '0.8'
+                                    speed-scale: '0'
+                                    source: 'none'
+                                    indicator: '2D'
+                                  children:  {}
+                        Ground-tb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'Not On Ground'
+                            indicator: '2D'
+                          children: 
+                            Repeat-ub: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '3'
+                                repetitions-scale: '0'
+                                period: '0.075'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Particle-vb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Cloud'
+                                    arrangement: 'Sphere'
+                                    radius-base: '1'
+                                    radius-scale: '0'
+                                    particles-base: '3'
+                                    particles-scale: '0'
+                                    visible-radius: '50'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0.01'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Launch-wb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Target'
+                                    forward-base: '0'
+                                    forward-scale: '0'
+                                    upward-base: '-3'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                    Skill Level-xb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Rune_Swordsman_SwordFury'
+                        min-level: '2'
+                        max-level: '2'
+                        indicator: '2D'
+                      children: 
+                        Repeat-yb: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -504,68 +768,12 @@ Sword Fury:
                             counts: 'True'
                             repetitions-base: '3'
                             repetitions-scale: '0'
-                            period: '0.075'
+                            period: '0.1'
                             delay: '0'
                             stop-on-fail: 'False'
                             indicator: '2D'
                           children: 
-                            Particle-gb: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                particle: 'Cloud'
-                                arrangement: 'Sphere'
-                                radius-base: '1'
-                                radius-scale: '0'
-                                particles-base: '1'
-                                particles-scale: '0'
-                                visible-radius: '50'
-                                dx: '0'
-                                dy: '0'
-                                dz: '0'
-                                speed: '0.01'
-                                amount: '1'
-                                forward: '0'
-                                upward: '1'
-                                right: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Push-hb: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                type: 'Fixed'
-                                speed-base: '0.8'
-                                speed-scale: '0'
-                                source: 'none'
-                                indicator: '2D'
-                              children:  {}
-                    Ground-ib: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        type: 'Not On Ground'
-                        indicator: '2D'
-                      children: 
-                        Repeat-jb: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            repetitions-base: '3'
-                            repetitions-scale: '0'
-                            period: '0.075'
-                            delay: '0'
-                            stop-on-fail: 'False'
-                            indicator: '2D'
-                          children: 
-                            Particle-kb: 
+                            Particle-zb: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -577,33 +785,55 @@ Sword Fury:
                                 radius-scale: '0'
                                 particles-base: '3'
                                 particles-scale: '0'
-                                visible-radius: '50'
+                                visible-radius: '40'
                                 dx: '0'
                                 dy: '0'
                                 dz: '0'
-                                speed: '0.01'
+                                speed: '0.1'
                                 amount: '1'
                                 forward: '0'
                                 upward: '1'
                                 right: '0'
                                 indicator: '2D'
                               children:  {}
-                            Launch-lb: 
+                            Launch-ac: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
                                 icon-key: ''
                                 counts: 'True'
-                                relative: 'Target'
-                                forward-base: '0'
+                                relative: 'Caster'
+                                forward-base: '-0.1'
                                 forward-scale: '0'
-                                upward-base: '-3'
+                                upward-base: '0.5'
                                 upward-scale: '0'
                                 right-base: '0'
                                 right-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                Self-mb: 
+                        Status-bc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Disarm'
+                            duration-base: '0.6'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Status-cc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Silence'
+                            duration-base: '0.6'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Self-dc: 
                   type: 'target'
                   indicator: '3D'
                   data: 
@@ -613,7 +843,7 @@ Sword Fury:
                     wall: 'false'
                     caster: 'false'
                   children: 
-                    Block-nb: 
+                    Block-ec: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -622,7 +852,7 @@ Sword Fury:
                         material: 'Air'
                         indicator: '2D'
                       children: 
-                        Launch-ob: 
+                        Launch-fc: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -637,7 +867,7 @@ Sword Fury:
                             right-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Particle-pb: 
+                        Particle-gc: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -661,7 +891,7 @@ Sword Fury:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-                    Sound-qb: 
+                    Sound-hc: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -674,67 +904,7 @@ Sword Fury:
                         pitch-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Skill Level-rb: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        skill: 'Rune_Swordsman_SwordFury'
-                        min-level: '2'
-                        max-level: '2'
-                        indicator: '2D'
-                      children: 
-                        Area-sb: 
-                          type: 'target'
-                          indicator: '3D'
-                          data: 
-                            icon-key: 'area3'
-                            radius-base: '5'
-                            radius-scale: '0'
-                            group: 'Enemy'
-                            wall: 'True'
-                            caster: 'False'
-                            max-base: '999'
-                            max-scale: '0'
-                            random: 'False'
-                            indicator: '2D'
-                          children: 
-                            Push-tb: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                type: 'Fixed'
-                                speed-base: '1.1'
-                                speed-scale: '0'
-                                source: 'none'
-                                indicator: '2D'
-                              children:  {}
-                        Particle-ub: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            particle: 'Sweep Attack'
-                            arrangement: 'Sphere'
-                            radius-base: '5'
-                            radius-scale: '0'
-                            particles-base: '25'
-                            particles-scale: '0'
-                            visible-radius: '40'
-                            dx: '0'
-                            dy: '0'
-                            dz: '0'
-                            speed: '1'
-                            amount: '1'
-                            forward: '0'
-                            upward: '1'
-                            right: '0'
-                            indicator: '2D'
-                          children:  {}
-        Skill Level-vb: 
+        Skill Level-ic: 
           type: 'condition'
           indicator: '3D'
           data: 
@@ -744,7 +914,7 @@ Sword Fury:
             max-level: '1'
             indicator: '2D'
           children: 
-            Status-wb: 
+            Status-jc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -762,7 +932,7 @@ Sword Fury:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-yb: 
+        Passive-lc: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -772,7 +942,7 @@ Sword Fury:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-zb: 
+            Value Lore-mc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -785,20 +955,20 @@ Sword Fury:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Lore-ac: 
+            Value Lore-nc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: ''
+                icon-key: 'wepdmg'
                 counts: 'True'
                 key: 'dmgSFP'
                 hand: 'Main'
                 regex: 'Melee Damage - {value}'
-                multiplier-base: '0.1'
+                multiplier-base: '0.075'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Lore-bc: 
+            Value Lore-oc: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -811,7 +981,7 @@ Sword Fury:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Skill Level-cc: 
+            Skill Level-pc: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -821,7 +991,7 @@ Sword Fury:
                 max-level: '2'
                 indicator: '2D'
               children: 
-                Value Set-dc: 
+                Value Set-qc: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -832,7 +1002,7 @@ Sword Fury:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Value Set-ec: 
+                Value Set-rc: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -843,7 +1013,7 @@ Sword Fury:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Skill Level-fc: 
+            Skill Level-sc: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -853,7 +1023,7 @@ Sword Fury:
                 max-level: '3'
                 indicator: '2D'
               children: 
-                Value Set-gc: 
+                Value Set-tc: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -864,7 +1034,7 @@ Sword Fury:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-                Value Set-hc: 
+                Value Set-uc: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 

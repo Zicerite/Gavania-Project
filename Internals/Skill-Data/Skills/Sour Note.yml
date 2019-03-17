@@ -27,6 +27,7 @@ Sour Note:
   - ''
   - '&7Plays a sour note, damaging nearby'
   - '&7enemies. May stun enemies.'
+  - '&7Draws in aggro from mobs.'
   - ''
   - '&bDamage: {attr:dmg.value} Melee Damage &9䛇'
   - '&bRadius: {attr:area.radius} Blocks'
@@ -103,7 +104,17 @@ Sour Note:
                     classifier: 'physical'
                     indicator: '2D'
                   children:  {}
-                Chance-f: 
+                Taunt-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    amount-base: '20'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Chance-g: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -112,7 +123,7 @@ Sour Note:
                     chance-scale: '0'
                     indicator: '2D'
                   children: 
-                    Status-g: 
+                    Status-h: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -123,7 +134,7 @@ Sour Note:
                         duration-scale: '0'
                         indicator: '2D'
                       children:  {}
-                    Repeat-h: 
+                    Repeat-i: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -136,7 +147,7 @@ Sour Note:
                         stop-on-fail: 'False'
                         indicator: '2D'
                       children: 
-                        Particle-i: 
+                        Particle-j: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -160,7 +171,7 @@ Sour Note:
                             right: '0'
                             indicator: '2D'
                           children:  {}
-            Self-j: 
+            Self-k: 
               type: 'target'
               indicator: '3D'
               data: 
@@ -170,69 +181,54 @@ Sour Note:
                 wall: 'false'
                 caster: 'false'
               children: 
-                Sound-k: 
+                Command-l: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    sound: 'Block Note Harp'
-                    volume-base: '30'
-                    volume-scale: '0'
-                    pitch-base: '1.4'
-                    pitch-scale: '0'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 1.4'
+                    type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Sound-l: 
+                Command-m: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    sound: 'Block Note Harp'
-                    volume-base: '30'
-                    volume-scale: '0'
-                    pitch-base: '1'
-                    pitch-scale: '0'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 1.2'
+                    type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Sound-m: 
+                Command-n: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    sound: 'Block Note Harp'
-                    volume-base: '30'
-                    volume-scale: '0'
-                    pitch-base: '0.7'
-                    pitch-scale: '0'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 1'
+                    type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Sound-n: 
+                Command-o: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    sound: 'Block Note Harp'
-                    volume-base: '30'
-                    volume-scale: '0'
-                    pitch-base: '0.5'
-                    pitch-scale: '0'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 0.8'
+                    type: 'OP'
                     indicator: '2D'
                   children:  {}
-                Sound-o: 
+                Command-p: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
                     icon-key: ''
                     counts: 'True'
-                    sound: 'Block Note Harp'
-                    volume-base: '30'
-                    volume-scale: '0'
-                    pitch-base: '2'
-                    pitch-scale: '0'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 0.6'
+                    type: 'OP'
                     indicator: '2D'
                   children:  {}
     Initialize: 
@@ -242,17 +238,17 @@ Sour Note:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-q: 
+        Passive-r: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.03'
+            seconds-base: '0.1'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-r: 
+            Value Lore-s: 
               type: 'mechanic'
               indicator: '3D'
               data: 
