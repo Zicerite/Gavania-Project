@@ -1,12 +1,12 @@
 Toxin Advantage: 
   name: 'Toxin Advantage'
   type: 'Passive'
-  max-level: 1
+  max-level: 100
   skill-req-lvl: 1
   needs-permission: 'false'
   attributes: 
     level-base: '1'
-    level-scale: '0'
+    level-scale: '2'
     cost-base: '0'
     cost-scale: '0'
     cooldown-base: '0'
@@ -18,7 +18,7 @@ Toxin Advantage:
     incompatible: 
     - ''
   msg: '&6{player} &2has cast &6{skill}'
-  icon: 'BREWING_STAND_ITEM'
+  icon: 'SPIDER_EYE'
   icon-durability: 0
   icon-data: 0
   icon-lore: 
@@ -28,7 +28,12 @@ Toxin Advantage:
   - '&7Deal Earth Piercing Damage to'
   - '&7Poisoned enemies.'
   - ''
+  - '&7Heal HP and Drain Mana from'
+  - '&7Poisoned enemies.'
+  - ''
   - '&bPiercing Damage: {attr:dmg.value} &2䛷'
+  - '&bHP Healed: {attr:heal.value}'
+  - '&BMana Drained: {attr:mana.value}'
   desc:  []
   components: 
     Skill Damage-a: 
@@ -39,9 +44,10 @@ Toxin Advantage:
         mana: 'False'
         cooldown: 'False'
         target: 'False'
-        dmg-min: '99999'
-        dmg-max: '999999'
-        category: ' {}'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        category: 
+        - ''
         indicator: '2D'
       children: 
         Potion-b: 
@@ -49,77 +55,22 @@ Toxin Advantage:
           indicator: '3D'
           data: 
             icon-key: ''
-            type: 'Active'
+            type: 'Not Active'
             potion: 'Poison'
             min-rank-base: '0'
             min-rank-scale: '0'
             max-rank-base: '999'
             max-rank-scale: '0'
             indicator: '2D'
-          children: 
-            Damage-c: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                type: 'Damage'
-                value-base: 'dmgTA'
-                value-scale: '0'
-                true: 'False'
-                classifier: 'earth'
-                indicator: '2D'
-              children:  {}
-            Particle-d: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                particle: 'Red Dust'
-                arrangement: 'Sphere'
-                radius-base: '1'
-                radius-scale: '0'
-                particles-base: '3'
-                particles-scale: '0'
-                visible-radius: '40'
-                dx: '-1'
-                dy: '0.5'
-                dz: '0'
-                speed: '1'
-                amount: '0'
-                forward: '0'
-                upward: '1'
-                right: '0'
-                indicator: '2D'
-              children:  {}
-    Physical Damage-e: 
-      type: 'trigger'
-      indicator: '3D'
-      data: 
-        icon-key: ''
-        mana: 'False'
-        cooldown: 'False'
-        target: 'False'
-        type: 'Both'
-        dmg-min: '0'
-        dmg-max: '999999'
-        indicator: '2D'
-      children: 
-        Potion-f: 
+          children:  {}
+        Else-c: 
           type: 'condition'
           indicator: '3D'
           data: 
             icon-key: ''
-            type: 'Active'
-            potion: 'Poison'
-            min-rank-base: '0'
-            min-rank-scale: '0'
-            max-rank-base: '999'
-            max-rank-scale: '0'
             indicator: '2D'
           children: 
-            Damage-g: 
+            Damage-d: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -132,7 +83,7 @@ Toxin Advantage:
                 classifier: 'earth'
                 indicator: '2D'
               children:  {}
-            Particle-h: 
+            Particle-e: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -155,6 +106,161 @@ Toxin Advantage:
                 right: '0'
                 indicator: '2D'
               children:  {}
+            Mana-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mana'
+                counts: 'True'
+                type: 'Mana'
+                value-base: '-5.5'
+                value-scale: '-0.5'
+                indicator: '2D'
+              children:  {}
+            Self-g: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Heal-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'heal'
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: '5.5'
+                    value-scale: '0.5'
+                    indicator: '2D'
+                  children:  {}
+                Mana-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Mana'
+                    value-base: '5'
+                    value-scale: '1'
+                    indicator: '2D'
+                  children:  {}
+    Physical Damage-j: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Potion-k: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Poison'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Else-l: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Damage-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Damage'
+                value-base: 'dmgTA'
+                value-scale: '0'
+                true: 'False'
+                classifier: 'earth'
+                indicator: '2D'
+              children:  {}
+            Particle-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Red Dust'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '3'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '-1'
+                dy: '0.5'
+                dz: '0'
+                speed: '1'
+                amount: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Mana-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Mana'
+                value-base: '-5.5'
+                value-scale: '-0.5'
+                indicator: '2D'
+              children:  {}
+            Self-p: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Heal-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: '5.5'
+                    value-scale: '0.5'
+                    indicator: '2D'
+                  children:  {}
+                Mana-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Mana'
+                    value-base: '5'
+                    value-scale: '1'
+                    indicator: '2D'
+                  children:  {}
     Initialize: 
       type: 'trigger'
       indicator: '3D'
@@ -162,17 +268,17 @@ Toxin Advantage:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-j: 
+        Passive-t: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.01'
+            seconds-base: '0.1'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-k: 
+            Value Lore-u: 
               type: 'mechanic'
               indicator: '3D'
               data: 
