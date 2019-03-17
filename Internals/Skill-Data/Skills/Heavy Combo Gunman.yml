@@ -2,7 +2,6 @@ Heavy Combo Gunman:
   name: 'Heavy Combo Gunman'
   type: 'Combo'
   max-level: 100
-  skill-req: 'None'
   skill-req-lvl: 1
   needs-permission: 'false'
   combo: 'R'
@@ -30,16 +29,19 @@ Heavy Combo Gunman:
   - '&bR: &fShoots out a bullet that travels'
   - '&ffairly far. Gun type shot is able to'
   - '&fchange depending on the'
-  - '&fAraw rune mode. &8(Coming Later)'
-  - ''
+  - '&fAraw rune mode.'
   - '&fAutomatically reloads when you'
   - "&freach 0 Ammo. Can't cast any weapon"
   - '&fskills while reloading.'
   - ''
-  - '&3Damage &f= &68&f% &3Strength Attribute'
+  - '&bPistol Damage: {attr:dmg00.value} Skill Damage &r䛶'
+  - '&bPistol Range: {attr:range00.range} Blocks'
   - ''
-  - '&bDamage: {attr:dmg00.value} Skill Damage &r䛶'
-  - '&bRange: {attr:range00.range} Blocks'
+  - '&bShotgun Damage: {attr:dmg01.value} Skill Damage &r䛶'
+  - '&bShotgun Range: {attr:range01.range} Blocks'
+  - ''
+  - '&bBurst Fire Damage: {attr:dmg02.value} x3 Skill Damage &r䛶'
+  - '&bBurst Fire Range: {attr:range02.range} Blocks'
   desc:  []
   components: 
     Cast: 
@@ -72,26 +74,30 @@ Heavy Combo Gunman:
                 wall: 'false'
                 caster: 'false'
               children: 
-                Value-d: 
+                Item-d: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
                     icon-key: ''
-                    key: 'b'
-                    min-value-base: '1'
-                    min-value-scale: '0'
-                    max-value-base: '999'
-                    max-value-scale: '0'
+                    check-mat: 'True'
+                    material: 'Iron Spade'
+                    check-data: 'False'
+                    check-lore: 'False'
+                    check-name: 'False'
+                    regex: 'False'
                     indicator: '2D'
                   children: 
-                    Skill Level-e: 
+                    Offhand-e: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        skill: 'Araw-Gunman'
-                        min-level: '0'
-                        max-level: '0'
+                        check-mat: 'True'
+                        material: 'Iron Spade'
+                        check-data: 'False'
+                        check-lore: 'False'
+                        check-name: 'False'
+                        regex: 'False'
                         indicator: '2D'
                       children: 
                         Value-f: 
@@ -99,383 +105,379 @@ Heavy Combo Gunman:
                           indicator: '3D'
                           data: 
                             icon-key: ''
-                            key: 'didshoot'
-                            min-value-base: '0'
+                            key: 'b'
+                            min-value-base: '1'
                             min-value-scale: '0'
-                            max-value-base: '0'
+                            max-value-base: '999'
                             max-value-scale: '0'
                             indicator: '2D'
                           children: 
-                            Self-g: 
-                              type: 'target'
+                            Skill Level-g: 
+                              type: 'condition'
                               indicator: '3D'
                               data: 
                                 icon-key: ''
+                                skill: 'Araw-Gunman'
+                                min-level: '0'
+                                max-level: '0'
                                 indicator: '2D'
-                                group: 'enemy'
-                                wall: 'false'
-                                caster: 'false'
                               children: 
-                                Linear-h: 
-                                  type: 'target'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: 'range00'
-                                    range-base: '16'
-                                    range-scale: '0'
-                                    tolerance-base: '3'
-                                    tolerance-scale: '0'
-                                    group: 'Enemy'
-                                    wall: 'True'
-                                    caster: 'False'
-                                    max-base: '2'
-                                    max-scale: '0'
-                                    indicator: '2D'
-                                  children: 
-                                    Damage-i: 
-                                      type: 'mechanic'
-                                      indicator: '3D'
-                                      data: 
-                                        icon-key: 'dmg00'
-                                        counts: 'True'
-                                        type: 'Damage'
-                                        value-base: 'strR'
-                                        value-scale: '0'
-                                        true: 'False'
-                                        classifier: 'neutral'
-                                        indicator: '2D'
-                                      children:  {}
-                                    Self-j: 
-                                      type: 'target'
-                                      indicator: '3D'
-                                      data: 
-                                        icon-key: ''
-                                        indicator: '2D'
-                                        group: 'enemy'
-                                        wall: 'false'
-                                        caster: 'false'
-                                      children: 
-                                        Value Add-k: 
-                                          type: 'mechanic'
-                                          indicator: '3D'
-                                          data: 
-                                            icon-key: ''
-                                            counts: 'True'
-                                            key: 'tech'
-                                            amount-base: '1'
-                                            amount-scale: '0'
-                                            indicator: '2D'
-                                          children:  {}
-                                Value Random-l: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    key: 'pitchGun'
-                                    type: 'Normal'
-                                    min-base: '0.95'
-                                    min-scale: '0'
-                                    max-base: '1.05'
-                                    max-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                                Command-m: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    command: 'playsound guns.pistol1 ambient @a[r=16] ~ ~ ~ 0.25 {pitchGun}'
-                                    type: 'OP'
-                                    indicator: '2D'
-                                  children:  {}
-                                Self-n: 
-                                  type: 'target'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    indicator: '2D'
-                                    group: 'enemy'
-                                    wall: 'false'
-                                    caster: 'false'
-                                  children: 
-                                    Location-o: 
-                                      type: 'target'
-                                      indicator: '3D'
-                                      data: 
-                                        icon-key: ''
-                                        range-base: '4'
-                                        range-scale: '0'
-                                        ground: 'False'
-                                        indicator: '2D'
-                                        group: 'enemy'
-                                        wall: 'false'
-                                        caster: 'false'
-                                      children: 
-                                        Particle-p: 
-                                          type: 'mechanic'
-                                          indicator: '3D'
-                                          data: 
-                                            icon-key: ''
-                                            counts: 'True'
-                                            particle: 'Crit'
-                                            arrangement: 'Circle'
-                                            radius-base: '0'
-                                            radius-scale: '0'
-                                            particles-base: '2'
-                                            particles-scale: '0'
-                                            direction: 'XZ'
-                                            visible-radius: '50'
-                                            dx: '0'
-                                            dy: '0'
-                                            dz: '0'
-                                            speed: '0'
-                                            amount: '1'
-                                            forward: '0'
-                                            upward: '0'
-                                            right: '0'
-                                            indicator: '2D'
-                                          children:  {}
-                                    Location-q: 
-                                      type: 'target'
-                                      indicator: '3D'
-                                      data: 
-                                        icon-key: ''
-                                        range-base: '8'
-                                        range-scale: '0'
-                                        ground: 'False'
-                                        indicator: '2D'
-                                        group: 'enemy'
-                                        wall: 'false'
-                                        caster: 'false'
-                                      children: 
-                                        Particle-r: 
-                                          type: 'mechanic'
-                                          indicator: '3D'
-                                          data: 
-                                            icon-key: ''
-                                            counts: 'True'
-                                            particle: 'Crit'
-                                            arrangement: 'Circle'
-                                            radius-base: '0'
-                                            radius-scale: '0'
-                                            particles-base: '2'
-                                            particles-scale: '0'
-                                            direction: 'XZ'
-                                            visible-radius: '50'
-                                            dx: '0'
-                                            dy: '0'
-                                            dz: '0'
-                                            speed: '0'
-                                            amount: '1'
-                                            forward: '0'
-                                            upward: '0'
-                                            right: '0'
-                                            indicator: '2D'
-                                          children:  {}
-                                    Location-s: 
-                                      type: 'target'
-                                      indicator: '3D'
-                                      data: 
-                                        icon-key: ''
-                                        range-base: '12'
-                                        range-scale: '0'
-                                        ground: 'False'
-                                        indicator: '2D'
-                                        group: 'enemy'
-                                        wall: 'false'
-                                        caster: 'false'
-                                      children: 
-                                        Particle-t: 
-                                          type: 'mechanic'
-                                          indicator: '3D'
-                                          data: 
-                                            icon-key: ''
-                                            counts: 'True'
-                                            particle: 'Crit'
-                                            arrangement: 'Circle'
-                                            radius-base: '0'
-                                            radius-scale: '0'
-                                            particles-base: '2'
-                                            particles-scale: '0'
-                                            direction: 'XZ'
-                                            visible-radius: '50'
-                                            dx: '0'
-                                            dy: '0'
-                                            dz: '0'
-                                            speed: '0'
-                                            amount: '1'
-                                            forward: '0'
-                                            upward: '0'
-                                            right: '0'
-                                            indicator: '2D'
-                                          children:  {}
-                                    Location-u: 
-                                      type: 'target'
-                                      indicator: '3D'
-                                      data: 
-                                        icon-key: ''
-                                        range-base: '16'
-                                        range-scale: '0'
-                                        ground: 'False'
-                                        indicator: '2D'
-                                        group: 'enemy'
-                                        wall: 'false'
-                                        caster: 'false'
-                                      children: 
-                                        Particle-v: 
-                                          type: 'mechanic'
-                                          indicator: '3D'
-                                          data: 
-                                            icon-key: ''
-                                            counts: 'True'
-                                            particle: 'Crit'
-                                            arrangement: 'Circle'
-                                            radius-base: '0'
-                                            radius-scale: '0'
-                                            particles-base: '2'
-                                            particles-scale: '0'
-                                            direction: 'XZ'
-                                            visible-radius: '50'
-                                            dx: '0'
-                                            dy: '0'
-                                            dz: '0'
-                                            speed: '0'
-                                            amount: '1'
-                                            forward: '0'
-                                            upward: '0'
-                                            right: '0'
-                                            indicator: '2D'
-                                          children:  {}
-                                Block-w: 
+                                Value-h: 
                                   type: 'condition'
                                   indicator: '3D'
                                   data: 
                                     icon-key: ''
-                                    standing: 'On Block'
-                                    material: 'Air'
+                                    key: 'didshoot'
+                                    min-value-base: '0'
+                                    min-value-scale: '0'
+                                    max-value-base: '0'
+                                    max-value-scale: '0'
                                     indicator: '2D'
                                   children: 
-                                    Launch-x: 
+                                    Repeat-i: 
                                       type: 'mechanic'
                                       indicator: '3D'
                                       data: 
                                         icon-key: ''
                                         counts: 'True'
-                                        relative: 'Target'
-                                        forward-base: '-0.11'
-                                        forward-scale: '0'
-                                        upward-base: '0.11'
-                                        upward-scale: '0'
-                                        right-base: '0'
-                                        right-scale: '0'
+                                        repetitions-base: '2'
+                                        repetitions-scale: '0'
+                                        period: '0.1'
+                                        delay: '0'
+                                        stop-on-fail: 'False'
                                         indicator: '2D'
-                                      children:  {}
-                            Value Add-y: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                key: 'b'
-                                amount-base: '-1'
-                                amount-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Value Set-z: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                key: 'didshoot'
-                                value-base: '1'
-                                value-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Delay-ab: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                delay-base: 'reloadspeed00'
-                                delay-scale: '0'
-                                indicator: '2D'
-                              children: 
-                                Value Set-bb: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    key: 'didshoot'
-                                    value-base: '0'
-                                    value-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                    Skill Level-cb: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        skill: 'Araw-Gunman'
-                        min-level: '1'
-                        max-level: '1'
-                        indicator: '2D'
-                      children: 
-                        Value-db: 
-                          type: 'condition'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            key: 'didshoot'
-                            min-value-base: '0'
-                            min-value-scale: '0'
-                            max-value-base: '0'
-                            max-value-scale: '0'
-                            indicator: '2D'
-                          children: 
-                            Self-eb: 
-                              type: 'target'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                indicator: '2D'
-                                group: 'enemy'
-                                wall: 'false'
-                                caster: 'false'
-                              children: 
-                                Linear-fb: 
-                                  type: 'target'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: 'range01'
-                                    range-base: '8'
-                                    range-scale: '0'
-                                    tolerance-base: '25'
-                                    tolerance-scale: '0'
-                                    group: 'Enemy'
-                                    wall: 'True'
-                                    caster: 'False'
-                                    max-base: '99'
-                                    max-scale: '0'
-                                    indicator: '2D'
-                                  children: 
-                                    Damage-gb: 
+                                      children: 
+                                        Self-j: 
+                                          type: 'target'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            indicator: '2D'
+                                            group: 'enemy'
+                                            wall: 'false'
+                                            caster: 'false'
+                                          children: 
+                                            Linear-k: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                range-base: '16'
+                                                range-scale: '0'
+                                                tolerance-base: '2'
+                                                tolerance-scale: '0'
+                                                group: 'Enemy'
+                                                wall: 'True'
+                                                caster: 'False'
+                                                max-base: '2'
+                                                max-scale: '0'
+                                                indicator: '2D'
+                                              children: 
+                                                Damage-l: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: 'dmg_00'
+                                                    counts: 'True'
+                                                    type: 'Damage'
+                                                    value-base: 'dmg_GUN_00'
+                                                    value-scale: '0'
+                                                    true: 'False'
+                                                    classifier: 'neutral'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                                Self-m: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Value Add-n: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        key: 'tech'
+                                                        amount-base: '1'
+                                                        amount-scale: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                            Value Random-o: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                key: 'pitchGun'
+                                                type: 'Normal'
+                                                min-base: '0.95'
+                                                min-scale: '0'
+                                                max-base: '1.05'
+                                                max-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+                                            Command-p: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                command: 'playsound guns.pistol1 ambient @a[r=16] ~ ~ ~ 0.25 {pitchGun}'
+                                                type: 'OP'
+                                                indicator: '2D'
+                                              children:  {}
+                                            Self-q: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Location-r: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '4'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-s: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-t: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '8'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-u: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-v: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '12'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-w: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-x: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '16'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-y: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                            Block-z: 
+                                              type: 'condition'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                standing: 'On Block'
+                                                material: 'Air'
+                                                indicator: '2D'
+                                              children: 
+                                                Launch-ab: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    relative: 'Target'
+                                                    forward-base: '-0.11'
+                                                    forward-scale: '0'
+                                                    upward-base: '0.11'
+                                                    upward-scale: '0'
+                                                    right-base: '0'
+                                                    right-scale: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                        Value Add-bb: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            key: 'b'
+                                            amount-base: '-1'
+                                            amount-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Value Set-cb: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            key: 'didshoot'
+                                            value-base: '1'
+                                            value-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                    Delay-db: 
                                       type: 'mechanic'
                                       indicator: '3D'
                                       data: 
-                                        icon-key: 'dmg01'
+                                        icon-key: ''
                                         counts: 'True'
-                                        type: 'Damage'
-                                        value-base: 'strR1'
-                                        value-scale: '0'
-                                        true: 'False'
-                                        classifier: 'neutral'
+                                        delay-base: 'D_reloadspeed00'
+                                        delay-scale: '0'
                                         indicator: '2D'
-                                      children:  {}
+                                      children: 
+                                        Value Set-eb: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            key: 'didshoot'
+                                            value-base: '0'
+                                            value-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                            Skill Level-fb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                skill: 'Araw-Gunman'
+                                min-level: '1'
+                                max-level: '1'
+                                indicator: '2D'
+                              children: 
+                                Value-gb: 
+                                  type: 'condition'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    key: 'didshoot'
+                                    min-value-base: '0'
+                                    min-value-scale: '0'
+                                    max-value-base: '0'
+                                    max-value-scale: '0'
+                                    indicator: '2D'
+                                  children: 
                                     Self-hb: 
                                       type: 'target'
                                       indicator: '3D'
@@ -486,191 +488,191 @@ Heavy Combo Gunman:
                                         wall: 'false'
                                         caster: 'false'
                                       children: 
-                                        Value Add-ib: 
+                                        Linear-ib: 
+                                          type: 'target'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            range-base: '8'
+                                            range-scale: '0'
+                                            tolerance-base: '25'
+                                            tolerance-scale: '0'
+                                            group: 'Enemy'
+                                            wall: 'True'
+                                            caster: 'False'
+                                            max-base: '999'
+                                            max-scale: '0'
+                                            indicator: '2D'
+                                          children: 
+                                            Damage-jb: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: 'dmg01'
+                                                counts: 'True'
+                                                type: 'Damage'
+                                                value-base: 'dmg_GUN_01'
+                                                value-scale: '0'
+                                                true: 'False'
+                                                classifier: 'neutral'
+                                                indicator: '2D'
+                                              children:  {}
+                                            Self-kb: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Value Add-lb: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    key: 'tech'
+                                                    amount-base: '1'
+                                                    amount-scale: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                        Command-mb: 
                                           type: 'mechanic'
                                           indicator: '3D'
                                           data: 
                                             icon-key: ''
                                             counts: 'True'
-                                            key: 'tech'
-                                            amount-base: '1'
-                                            amount-scale: '0'
+                                            command: 'playsound guns.shotgun ambient @a[r=22] ~ ~ ~ 0.6 1'
+                                            type: 'OP'
                                             indicator: '2D'
                                           children:  {}
-                                Command-jb: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    command: 'playsound guns.shotgun ambient @a[r=22] ~ ~ ~ 0.6 1'
-                                    type: 'OP'
-                                    indicator: '2D'
-                                  children:  {}
-                                Block-kb: 
-                                  type: 'condition'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    standing: 'On Block'
-                                    material: 'Air'
-                                    indicator: '2D'
-                                  children: 
-                                    Launch-lb: 
+                                        Block-nb: 
+                                          type: 'condition'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            standing: 'On Block'
+                                            material: 'Air'
+                                            indicator: '2D'
+                                          children: 
+                                            Launch-ob: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                relative: 'Target'
+                                                forward-base: '-0.22'
+                                                forward-scale: '0'
+                                                upward-base: '0.11'
+                                                upward-scale: '0'
+                                                right-base: '0'
+                                                right-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+                                        Particle-pb: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            particle: 'Cloud'
+                                            arrangement: 'Sphere'
+                                            radius-base: '1'
+                                            radius-scale: '0'
+                                            particles-base: '2'
+                                            particles-scale: '0'
+                                            visible-radius: '40'
+                                            dx: '0'
+                                            dy: '0'
+                                            dz: '0'
+                                            speed: '0.01'
+                                            amount: '1'
+                                            forward: '0.1'
+                                            upward: '1'
+                                            right: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                    Value Add-qb: 
                                       type: 'mechanic'
                                       indicator: '3D'
                                       data: 
                                         icon-key: ''
                                         counts: 'True'
-                                        relative: 'Target'
-                                        forward-base: '-0.22'
-                                        forward-scale: '0'
-                                        upward-base: '0.11'
-                                        upward-scale: '0'
-                                        right-base: '0'
-                                        right-scale: '0'
+                                        key: 'b'
+                                        amount-base: '-1'
+                                        amount-scale: '0'
                                         indicator: '2D'
                                       children:  {}
-                                Particle-mb: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    particle: 'Cloud'
-                                    arrangement: 'Sphere'
-                                    radius-base: '1'
-                                    radius-scale: '0'
-                                    particles-base: '2'
-                                    particles-scale: '0'
-                                    visible-radius: '40'
-                                    dx: '0'
-                                    dy: '0'
-                                    dz: '0'
-                                    speed: '0.01'
-                                    amount: '1'
-                                    forward: '0.1'
-                                    upward: '1'
-                                    right: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                            Value Add-nb: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                key: 'b'
-                                amount-base: '-1'
-                                amount-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Value Set-ob: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                key: 'didshoot'
-                                value-base: '1'
-                                value-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Delay-pb: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                delay-base: 'reloadspeed01'
-                                delay-scale: '0'
-                                indicator: '2D'
-                              children: 
-                                Value Set-qb: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    key: 'didshoot'
-                                    value-base: '0'
-                                    value-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                    Skill Level-rb: 
-                      type: 'condition'
-                      indicator: '3D'
-                      data: 
-                        icon-key: ''
-                        skill: 'Araw-Gunman'
-                        min-level: '2'
-                        max-level: '2'
-                        indicator: '2D'
-                      children: 
-                        Value-sb: 
-                          type: 'condition'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            key: 'didshoot'
-                            min-value-base: '0'
-                            min-value-scale: '0'
-                            max-value-base: '0'
-                            max-value-scale: '0'
-                            indicator: '2D'
-                          children: 
-                            Repeat-tb: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                repetitions-base: '3'
-                                repetitions-scale: '0'
-                                period: '0.1'
-                                delay: '0'
-                                stop-on-fail: 'False'
-                                indicator: '2D'
-                              children: 
-                                Self-ub: 
-                                  type: 'target'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    indicator: '2D'
-                                    group: 'enemy'
-                                    wall: 'false'
-                                    caster: 'false'
-                                  children: 
-                                    Linear-vb: 
-                                      type: 'target'
+                                    Value Set-rb: 
+                                      type: 'mechanic'
                                       indicator: '3D'
                                       data: 
-                                        icon-key: 'range02'
-                                        range-base: '18'
-                                        range-scale: '0'
-                                        tolerance-base: '3'
-                                        tolerance-scale: '0'
-                                        group: 'Enemy'
-                                        wall: 'True'
-                                        caster: 'False'
-                                        max-base: '99'
-                                        max-scale: '0'
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'didshoot'
+                                        value-base: '1'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Delay-sb: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        delay-base: 'reloadspeed01'
+                                        delay-scale: '0'
                                         indicator: '2D'
                                       children: 
-                                        Damage-wb: 
+                                        Value Set-tb: 
                                           type: 'mechanic'
                                           indicator: '3D'
                                           data: 
                                             icon-key: ''
                                             counts: 'True'
-                                            type: 'Damage'
-                                            value-base: 'strR2'
+                                            key: 'didshoot'
+                                            value-base: '0'
                                             value-scale: '0'
-                                            true: 'False'
-                                            classifier: 'neutral'
                                             indicator: '2D'
                                           children:  {}
+                            Skill Level-ub: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                skill: 'Araw-Gunman'
+                                min-level: '2'
+                                max-level: '2'
+                                indicator: '2D'
+                              children: 
+                                Value-vb: 
+                                  type: 'condition'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    key: 'didshoot'
+                                    min-value-base: '0'
+                                    min-value-scale: '0'
+                                    max-value-base: '0'
+                                    max-value-scale: '0'
+                                    indicator: '2D'
+                                  children: 
+                                    Repeat-wb: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        repetitions-base: '3'
+                                        repetitions-scale: '0'
+                                        period: '0.1'
+                                        delay: '0'
+                                        stop-on-fail: 'False'
+                                        indicator: '2D'
+                                      children: 
                                         Self-xb: 
                                           type: 'target'
                                           indicator: '3D'
@@ -681,52 +683,407 @@ Heavy Combo Gunman:
                                             wall: 'false'
                                             caster: 'false'
                                           children: 
-                                            Value Add-yb: 
+                                            Linear-yb: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                range-base: '18'
+                                                range-scale: '0'
+                                                tolerance-base: '2'
+                                                tolerance-scale: '0'
+                                                group: 'Enemy'
+                                                wall: 'True'
+                                                caster: 'False'
+                                                max-base: '999'
+                                                max-scale: '0'
+                                                indicator: '2D'
+                                              children: 
+                                                Damage-zb: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: 'dmg02'
+                                                    counts: 'True'
+                                                    type: 'Damage'
+                                                    value-base: 'dmg_GUN_02'
+                                                    value-scale: '0'
+                                                    true: 'False'
+                                                    classifier: 'neutral'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                                Self-ac: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Value Add-bc: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        key: 'tech'
+                                                        amount-base: '1'
+                                                        amount-scale: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                            Command-cc: 
                                               type: 'mechanic'
                                               indicator: '3D'
                                               data: 
                                                 icon-key: ''
                                                 counts: 'True'
-                                                key: 'tech'
-                                                amount-base: '1'
-                                                amount-scale: '0'
+                                                command: 'playsound guns.smg1 ambient @a[r=22] ~ ~ ~ 0.5 1'
+                                                type: 'OP'
                                                 indicator: '2D'
                                               children:  {}
-                                    Command-zb: 
-                                      type: 'mechanic'
-                                      indicator: '3D'
-                                      data: 
-                                        icon-key: ''
-                                        counts: 'True'
-                                        command: 'playsound guns.smg1 ambient @a[r=22] ~ ~ ~ 0.5 1'
-                                        type: 'OP'
-                                        indicator: '2D'
-                                      children:  {}
-                                    Block-ac: 
-                                      type: 'condition'
-                                      indicator: '3D'
-                                      data: 
-                                        icon-key: ''
-                                        standing: 'On Block'
-                                        material: 'Air'
-                                        indicator: '2D'
-                                      children: 
-                                        Launch-bc: 
+                                            Block-dc: 
+                                              type: 'condition'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                standing: 'On Block'
+                                                material: 'Air'
+                                                indicator: '2D'
+                                              children: 
+                                                Launch-ec: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    relative: 'Target'
+                                                    forward-base: '-0.15'
+                                                    forward-scale: '0'
+                                                    upward-base: '0.11'
+                                                    upward-scale: '0'
+                                                    right-base: '0'
+                                                    right-scale: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                            Self-fc: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Location-gc: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '3'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-hc: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-ic: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '6'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-jc: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-kc: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '9'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-lc: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-mc: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '12'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-nc: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-oc: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '15'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-pc: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-qc: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '18'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-rc: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                        Value Add-sc: 
                                           type: 'mechanic'
                                           indicator: '3D'
                                           data: 
                                             icon-key: ''
                                             counts: 'True'
-                                            relative: 'Target'
-                                            forward-base: '-0.15'
-                                            forward-scale: '0'
-                                            upward-base: '0.11'
-                                            upward-scale: '0'
-                                            right-base: '0'
-                                            right-scale: '0'
+                                            key: 'b'
+                                            amount-base: '-1'
+                                            amount-scale: '0'
                                             indicator: '2D'
                                           children:  {}
-                                    Self-cc: 
+                                    Value Set-tc: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'didshoot'
+                                        value-base: '1'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Delay-uc: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        delay-base: 'reloadspeed01'
+                                        delay-scale: '0'
+                                        indicator: '2D'
+                                      children: 
+                                        Value Set-vc: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            key: 'didshoot'
+                                            value-base: '0'
+                                            value-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                    Else-wc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                      children: 
+                        Value-xc: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'b'
+                            min-value-base: '1'
+                            min-value-scale: '0'
+                            max-value-base: '999'
+                            max-value-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Skill Level-yc: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                skill: 'Araw-Gunman'
+                                min-level: '0'
+                                max-level: '0'
+                                indicator: '2D'
+                              children: 
+                                Value-zc: 
+                                  type: 'condition'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    key: 'didshoot'
+                                    min-value-base: '0'
+                                    min-value-scale: '0'
+                                    max-value-base: '0'
+                                    max-value-scale: '0'
+                                    indicator: '2D'
+                                  children: 
+                                    Self-ad: 
                                       type: 'target'
                                       indicator: '3D'
                                       data: 
@@ -736,272 +1093,892 @@ Heavy Combo Gunman:
                                         wall: 'false'
                                         caster: 'false'
                                       children: 
-                                        Location-dc: 
+                                        Linear-bd: 
+                                          type: 'target'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: 'range00'
+                                            range-base: '16'
+                                            range-scale: '0'
+                                            tolerance-base: '2'
+                                            tolerance-scale: '0'
+                                            group: 'Enemy'
+                                            wall: 'True'
+                                            caster: 'False'
+                                            max-base: '2'
+                                            max-scale: '0'
+                                            indicator: '2D'
+                                          children: 
+                                            Damage-cd: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: 'dmg00'
+                                                counts: 'True'
+                                                type: 'Damage'
+                                                value-base: 'dmg_GUN_00'
+                                                value-scale: '0'
+                                                true: 'False'
+                                                classifier: 'neutral'
+                                                indicator: '2D'
+                                              children:  {}
+                                            Self-dd: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Value Add-ed: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    key: 'tech'
+                                                    amount-base: '1'
+                                                    amount-scale: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                        Value Random-fd: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            key: 'pitchGun'
+                                            type: 'Normal'
+                                            min-base: '0.95'
+                                            min-scale: '0'
+                                            max-base: '1.05'
+                                            max-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Command-gd: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            command: 'playsound guns.pistol1 ambient @a[r=16] ~ ~ ~ 0.25 {pitchGun}'
+                                            type: 'OP'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Self-hd: 
                                           type: 'target'
                                           indicator: '3D'
                                           data: 
                                             icon-key: ''
-                                            range-base: '3'
-                                            range-scale: '0'
-                                            ground: 'False'
                                             indicator: '2D'
                                             group: 'enemy'
                                             wall: 'false'
                                             caster: 'false'
                                           children: 
-                                            Particle-ec: 
-                                              type: 'mechanic'
+                                            Location-id: 
+                                              type: 'target'
                                               indicator: '3D'
                                               data: 
                                                 icon-key: ''
-                                                counts: 'True'
-                                                particle: 'Crit'
-                                                arrangement: 'Circle'
-                                                radius-base: '0'
-                                                radius-scale: '0'
-                                                particles-base: '2'
-                                                particles-scale: '0'
-                                                direction: 'XZ'
-                                                visible-radius: '50'
-                                                dx: '0'
-                                                dy: '0'
-                                                dz: '0'
-                                                speed: '0'
-                                                amount: '1'
-                                                forward: '0'
-                                                upward: '0'
-                                                right: '0'
+                                                range-base: '4'
+                                                range-scale: '0'
+                                                ground: 'False'
                                                 indicator: '2D'
-                                              children:  {}
-                                        Location-fc: 
-                                          type: 'target'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Particle-jd: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    particle: 'Crit'
+                                                    arrangement: 'Circle'
+                                                    radius-base: '0'
+                                                    radius-scale: '0'
+                                                    particles-base: '2'
+                                                    particles-scale: '0'
+                                                    direction: 'XZ'
+                                                    visible-radius: '50'
+                                                    dx: '0'
+                                                    dy: '0'
+                                                    dz: '0'
+                                                    speed: '0'
+                                                    amount: '1'
+                                                    forward: '0'
+                                                    upward: '0'
+                                                    right: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                            Location-kd: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                range-base: '8'
+                                                range-scale: '0'
+                                                ground: 'False'
+                                                indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Particle-ld: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    particle: 'Crit'
+                                                    arrangement: 'Circle'
+                                                    radius-base: '0'
+                                                    radius-scale: '0'
+                                                    particles-base: '2'
+                                                    particles-scale: '0'
+                                                    direction: 'XZ'
+                                                    visible-radius: '50'
+                                                    dx: '0'
+                                                    dy: '0'
+                                                    dz: '0'
+                                                    speed: '0'
+                                                    amount: '1'
+                                                    forward: '0'
+                                                    upward: '0'
+                                                    right: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                            Location-md: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                range-base: '12'
+                                                range-scale: '0'
+                                                ground: 'False'
+                                                indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Particle-nd: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    particle: 'Crit'
+                                                    arrangement: 'Circle'
+                                                    radius-base: '0'
+                                                    radius-scale: '0'
+                                                    particles-base: '2'
+                                                    particles-scale: '0'
+                                                    direction: 'XZ'
+                                                    visible-radius: '50'
+                                                    dx: '0'
+                                                    dy: '0'
+                                                    dz: '0'
+                                                    speed: '0'
+                                                    amount: '1'
+                                                    forward: '0'
+                                                    upward: '0'
+                                                    right: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                            Location-od: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                range-base: '16'
+                                                range-scale: '0'
+                                                ground: 'False'
+                                                indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Particle-pd: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    particle: 'Crit'
+                                                    arrangement: 'Circle'
+                                                    radius-base: '0'
+                                                    radius-scale: '0'
+                                                    particles-base: '2'
+                                                    particles-scale: '0'
+                                                    direction: 'XZ'
+                                                    visible-radius: '50'
+                                                    dx: '0'
+                                                    dy: '0'
+                                                    dz: '0'
+                                                    speed: '0'
+                                                    amount: '1'
+                                                    forward: '0'
+                                                    upward: '0'
+                                                    right: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                        Block-qd: 
+                                          type: 'condition'
                                           indicator: '3D'
                                           data: 
                                             icon-key: ''
-                                            range-base: '6'
-                                            range-scale: '0'
-                                            ground: 'False'
+                                            standing: 'On Block'
+                                            material: 'Air'
                                             indicator: '2D'
-                                            group: 'enemy'
-                                            wall: 'false'
-                                            caster: 'false'
                                           children: 
-                                            Particle-gc: 
+                                            Launch-rd: 
                                               type: 'mechanic'
                                               indicator: '3D'
                                               data: 
                                                 icon-key: ''
                                                 counts: 'True'
-                                                particle: 'Crit'
-                                                arrangement: 'Circle'
-                                                radius-base: '0'
-                                                radius-scale: '0'
-                                                particles-base: '2'
-                                                particles-scale: '0'
-                                                direction: 'XZ'
-                                                visible-radius: '50'
-                                                dx: '0'
-                                                dy: '0'
-                                                dz: '0'
-                                                speed: '0'
-                                                amount: '1'
-                                                forward: '0'
-                                                upward: '0'
-                                                right: '0'
+                                                relative: 'Target'
+                                                forward-base: '-0.11'
+                                                forward-scale: '0'
+                                                upward-base: '0.11'
+                                                upward-scale: '0'
+                                                right-base: '0'
+                                                right-scale: '0'
                                                 indicator: '2D'
                                               children:  {}
-                                        Location-hc: 
-                                          type: 'target'
+                                    Value Add-sd: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'b'
+                                        amount-base: '-1'
+                                        amount-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Value Set-td: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'didshoot'
+                                        value-base: '1'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Delay-ud: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        delay-base: 'reloadspeed00'
+                                        delay-scale: '0'
+                                        indicator: '2D'
+                                      children: 
+                                        Value Set-vd: 
+                                          type: 'mechanic'
                                           indicator: '3D'
                                           data: 
                                             icon-key: ''
-                                            range-base: '9'
-                                            range-scale: '0'
-                                            ground: 'False'
+                                            counts: 'True'
+                                            key: 'didshoot'
+                                            value-base: '0'
+                                            value-scale: '0'
                                             indicator: '2D'
-                                            group: 'enemy'
-                                            wall: 'false'
-                                            caster: 'false'
-                                          children: 
-                                            Particle-ic: 
-                                              type: 'mechanic'
-                                              indicator: '3D'
-                                              data: 
-                                                icon-key: ''
-                                                counts: 'True'
-                                                particle: 'Crit'
-                                                arrangement: 'Circle'
-                                                radius-base: '0'
-                                                radius-scale: '0'
-                                                particles-base: '2'
-                                                particles-scale: '0'
-                                                direction: 'XZ'
-                                                visible-radius: '50'
-                                                dx: '0'
-                                                dy: '0'
-                                                dz: '0'
-                                                speed: '0'
-                                                amount: '1'
-                                                forward: '0'
-                                                upward: '0'
-                                                right: '0'
-                                                indicator: '2D'
-                                              children:  {}
-                                        Location-jc: 
-                                          type: 'target'
-                                          indicator: '3D'
-                                          data: 
-                                            icon-key: ''
-                                            range-base: '12'
-                                            range-scale: '0'
-                                            ground: 'False'
-                                            indicator: '2D'
-                                            group: 'enemy'
-                                            wall: 'false'
-                                            caster: 'false'
-                                          children: 
-                                            Particle-kc: 
-                                              type: 'mechanic'
-                                              indicator: '3D'
-                                              data: 
-                                                icon-key: ''
-                                                counts: 'True'
-                                                particle: 'Crit'
-                                                arrangement: 'Circle'
-                                                radius-base: '0'
-                                                radius-scale: '0'
-                                                particles-base: '2'
-                                                particles-scale: '0'
-                                                direction: 'XZ'
-                                                visible-radius: '50'
-                                                dx: '0'
-                                                dy: '0'
-                                                dz: '0'
-                                                speed: '0'
-                                                amount: '1'
-                                                forward: '0'
-                                                upward: '0'
-                                                right: '0'
-                                                indicator: '2D'
-                                              children:  {}
-                                        Location-lc: 
-                                          type: 'target'
-                                          indicator: '3D'
-                                          data: 
-                                            icon-key: ''
-                                            range-base: '15'
-                                            range-scale: '0'
-                                            ground: 'False'
-                                            indicator: '2D'
-                                            group: 'enemy'
-                                            wall: 'false'
-                                            caster: 'false'
-                                          children: 
-                                            Particle-mc: 
-                                              type: 'mechanic'
-                                              indicator: '3D'
-                                              data: 
-                                                icon-key: ''
-                                                counts: 'True'
-                                                particle: 'Crit'
-                                                arrangement: 'Circle'
-                                                radius-base: '0'
-                                                radius-scale: '0'
-                                                particles-base: '2'
-                                                particles-scale: '0'
-                                                direction: 'XZ'
-                                                visible-radius: '50'
-                                                dx: '0'
-                                                dy: '0'
-                                                dz: '0'
-                                                speed: '0'
-                                                amount: '1'
-                                                forward: '0'
-                                                upward: '0'
-                                                right: '0'
-                                                indicator: '2D'
-                                              children:  {}
-                                        Location-nc: 
-                                          type: 'target'
-                                          indicator: '3D'
-                                          data: 
-                                            icon-key: ''
-                                            range-base: '18'
-                                            range-scale: '0'
-                                            ground: 'False'
-                                            indicator: '2D'
-                                            group: 'enemy'
-                                            wall: 'false'
-                                            caster: 'false'
-                                          children: 
-                                            Particle-oc: 
-                                              type: 'mechanic'
-                                              indicator: '3D'
-                                              data: 
-                                                icon-key: ''
-                                                counts: 'True'
-                                                particle: 'Crit'
-                                                arrangement: 'Circle'
-                                                radius-base: '0'
-                                                radius-scale: '0'
-                                                particles-base: '2'
-                                                particles-scale: '0'
-                                                direction: 'XZ'
-                                                visible-radius: '50'
-                                                dx: '0'
-                                                dy: '0'
-                                                dz: '0'
-                                                speed: '0'
-                                                amount: '1'
-                                                forward: '0'
-                                                upward: '0'
-                                                right: '0'
-                                                indicator: '2D'
-                                              children:  {}
-                                Value Add-pc: 
-                                  type: 'mechanic'
-                                  indicator: '3D'
-                                  data: 
-                                    icon-key: ''
-                                    counts: 'True'
-                                    key: 'b'
-                                    amount-base: '-1'
-                                    amount-scale: '0'
-                                    indicator: '2D'
-                                  children:  {}
-                            Value Set-qc: 
-                              type: 'mechanic'
+                                          children:  {}
+                            Skill Level-wd: 
+                              type: 'condition'
                               indicator: '3D'
                               data: 
                                 icon-key: ''
-                                counts: 'True'
-                                key: 'didshoot'
-                                value-base: '1'
-                                value-scale: '0'
-                                indicator: '2D'
-                              children:  {}
-                            Delay-rc: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                delay-base: 'reloadspeed01'
-                                delay-scale: '0'
+                                skill: 'Araw-Gunman'
+                                min-level: '1'
+                                max-level: '1'
                                 indicator: '2D'
                               children: 
-                                Value Set-sc: 
-                                  type: 'mechanic'
+                                Value-xd: 
+                                  type: 'condition'
                                   indicator: '3D'
                                   data: 
                                     icon-key: ''
-                                    counts: 'True'
                                     key: 'didshoot'
-                                    value-base: '0'
-                                    value-scale: '0'
+                                    min-value-base: '0'
+                                    min-value-scale: '0'
+                                    max-value-base: '0'
+                                    max-value-scale: '0'
                                     indicator: '2D'
-                                  children:  {}
-                Skill Level-tc: 
+                                  children: 
+                                    Self-yd: 
+                                      type: 'target'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        indicator: '2D'
+                                        group: 'enemy'
+                                        wall: 'false'
+                                        caster: 'false'
+                                      children: 
+                                        Linear-zd: 
+                                          type: 'target'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: 'range01'
+                                            range-base: '8'
+                                            range-scale: '0'
+                                            tolerance-base: '25'
+                                            tolerance-scale: '0'
+                                            group: 'Enemy'
+                                            wall: 'True'
+                                            caster: 'False'
+                                            max-base: '999'
+                                            max-scale: '0'
+                                            indicator: '2D'
+                                          children: 
+                                            Damage-ae: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: 'dmg01'
+                                                counts: 'True'
+                                                type: 'Damage'
+                                                value-base: 'dmg_GUN_01'
+                                                value-scale: '0'
+                                                true: 'False'
+                                                classifier: 'neutral'
+                                                indicator: '2D'
+                                              children:  {}
+                                            Self-be: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Value Add-ce: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    key: 'tech'
+                                                    amount-base: '1'
+                                                    amount-scale: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                        Command-de: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            command: 'playsound guns.shotgun ambient @a[r=22] ~ ~ ~ 0.6 1'
+                                            type: 'OP'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Block-ee: 
+                                          type: 'condition'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            standing: 'On Block'
+                                            material: 'Air'
+                                            indicator: '2D'
+                                          children: 
+                                            Launch-fe: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                relative: 'Target'
+                                                forward-base: '-0.22'
+                                                forward-scale: '0'
+                                                upward-base: '0.11'
+                                                upward-scale: '0'
+                                                right-base: '0'
+                                                right-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+                                        Particle-ge: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            particle: 'Cloud'
+                                            arrangement: 'Sphere'
+                                            radius-base: '1'
+                                            radius-scale: '0'
+                                            particles-base: '2'
+                                            particles-scale: '0'
+                                            visible-radius: '40'
+                                            dx: '0'
+                                            dy: '0'
+                                            dz: '0'
+                                            speed: '0.01'
+                                            amount: '1'
+                                            forward: '0.1'
+                                            upward: '1'
+                                            right: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                    Value Add-he: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'b'
+                                        amount-base: '-1'
+                                        amount-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Value Set-ie: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'didshoot'
+                                        value-base: '1'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Delay-je: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        delay-base: 'reloadspeed01'
+                                        delay-scale: '0'
+                                        indicator: '2D'
+                                      children: 
+                                        Value Set-ke: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            key: 'didshoot'
+                                            value-base: '0'
+                                            value-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                            Skill Level-le: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                skill: 'Araw-Gunman'
+                                min-level: '2'
+                                max-level: '2'
+                                indicator: '2D'
+                              children: 
+                                Value-me: 
+                                  type: 'condition'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    key: 'didshoot'
+                                    min-value-base: '0'
+                                    min-value-scale: '0'
+                                    max-value-base: '0'
+                                    max-value-scale: '0'
+                                    indicator: '2D'
+                                  children: 
+                                    Repeat-ne: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        repetitions-base: '3'
+                                        repetitions-scale: '0'
+                                        period: '0.1'
+                                        delay: '0'
+                                        stop-on-fail: 'False'
+                                        indicator: '2D'
+                                      children: 
+                                        Self-oe: 
+                                          type: 'target'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            indicator: '2D'
+                                            group: 'enemy'
+                                            wall: 'false'
+                                            caster: 'false'
+                                          children: 
+                                            Linear-pe: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: 'range02'
+                                                range-base: '18'
+                                                range-scale: '0'
+                                                tolerance-base: '2'
+                                                tolerance-scale: '0'
+                                                group: 'Enemy'
+                                                wall: 'True'
+                                                caster: 'False'
+                                                max-base: '999'
+                                                max-scale: '0'
+                                                indicator: '2D'
+                                              children: 
+                                                Damage-qe: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: 'dmg02'
+                                                    counts: 'True'
+                                                    type: 'Damage'
+                                                    value-base: 'dmg_GUN_02'
+                                                    value-scale: '0'
+                                                    true: 'False'
+                                                    classifier: 'neutral'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                                Self-re: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Value Add-se: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        key: 'tech'
+                                                        amount-base: '1'
+                                                        amount-scale: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                            Command-te: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                command: 'playsound guns.smg1 ambient @a[r=22] ~ ~ ~ 0.5 1'
+                                                type: 'OP'
+                                                indicator: '2D'
+                                              children:  {}
+                                            Block-ue: 
+                                              type: 'condition'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                standing: 'On Block'
+                                                material: 'Air'
+                                                indicator: '2D'
+                                              children: 
+                                                Launch-ve: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    relative: 'Target'
+                                                    forward-base: '-0.15'
+                                                    forward-scale: '0'
+                                                    upward-base: '0.11'
+                                                    upward-scale: '0'
+                                                    right-base: '0'
+                                                    right-scale: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                                            Self-we: 
+                                              type: 'target'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                indicator: '2D'
+                                                group: 'enemy'
+                                                wall: 'false'
+                                                caster: 'false'
+                                              children: 
+                                                Location-xe: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '3'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-ye: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-ze: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '6'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-af: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-bf: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '9'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-cf: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-df: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '12'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-ef: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-ff: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '15'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-gf: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                                Location-hf: 
+                                                  type: 'target'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    range-base: '18'
+                                                    range-scale: '0'
+                                                    ground: 'False'
+                                                    indicator: '2D'
+                                                    group: 'enemy'
+                                                    wall: 'false'
+                                                    caster: 'false'
+                                                  children: 
+                                                    Particle-if: 
+                                                      type: 'mechanic'
+                                                      indicator: '3D'
+                                                      data: 
+                                                        icon-key: ''
+                                                        counts: 'True'
+                                                        particle: 'Crit'
+                                                        arrangement: 'Circle'
+                                                        radius-base: '0'
+                                                        radius-scale: '0'
+                                                        particles-base: '2'
+                                                        particles-scale: '0'
+                                                        direction: 'XZ'
+                                                        visible-radius: '50'
+                                                        dx: '0'
+                                                        dy: '0'
+                                                        dz: '0'
+                                                        speed: '0'
+                                                        amount: '1'
+                                                        forward: '0'
+                                                        upward: '0'
+                                                        right: '0'
+                                                        indicator: '2D'
+                                                      children:  {}
+                                        Value Add-jf: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            key: 'b'
+                                            amount-base: '-1'
+                                            amount-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                    Value Set-kf: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'didshoot'
+                                        value-base: '1'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                                    Delay-lf: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        delay-base: 'reloadspeed01'
+                                        delay-scale: '0'
+                                        indicator: '2D'
+                                      children: 
+                                        Value Set-mf: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            key: 'didshoot'
+                                            value-base: '0'
+                                            value-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                Skill Level-nf: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -1011,7 +1988,7 @@ Heavy Combo Gunman:
                     max-level: '1'
                     indicator: '2D'
                   children: 
-                    Value-uc: 
+                    Value-of: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -1023,7 +2000,7 @@ Heavy Combo Gunman:
                         max-value-scale: '0'
                         indicator: '2D'
                       children: 
-                        Value Set-vc: 
+                        Value Set-pf: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -1034,17 +2011,7 @@ Heavy Combo Gunman:
                             value-scale: '0'
                             indicator: '2D'
                           children:  {}
-                        Command-wc: 
-                          type: 'mechanic'
-                          indicator: '3D'
-                          data: 
-                            icon-key: ''
-                            counts: 'True'
-                            command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
-                            type: 'OP'
-                            indicator: '2D'
-                          children:  {}
-                        Skill Level-xc: 
+                        Skill Level-qf: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -1054,48 +2021,129 @@ Heavy Combo Gunman:
                             max-level: '0'
                             indicator: '2D'
                           children: 
-                            Delay-yc: 
-                              type: 'mechanic'
+                            Offhand-rf: 
+                              type: 'condition'
                               indicator: '3D'
                               data: 
                                 icon-key: ''
-                                counts: 'True'
-                                delay-base: '1.5'
-                                delay-scale: '0'
+                                check-mat: 'True'
+                                material: 'Iron Spade'
+                                check-data: 'False'
+                                check-lore: 'False'
+                                check-name: 'False'
+                                regex: 'False'
                                 indicator: '2D'
                               children: 
-                                Value Set-zc: 
+                                Delay-sf: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    key: 'b'
-                                    value-base: '12'
-                                    value-scale: '0'
+                                    delay-base: '2'
+                                    delay-scale: '0'
                                     indicator: '2D'
-                                  children:  {}
-                            Delay-ad: 
-                              type: 'mechanic'
-                              indicator: '3D'
-                              data: 
-                                icon-key: ''
-                                counts: 'True'
-                                delay-base: '0.8'
-                                delay-scale: '0'
-                                indicator: '2D'
-                              children: 
-                                Command-bd: 
+                                  children: 
+                                    Command-tf: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
+                                        type: 'OP'
+                                        indicator: '2D'
+                                      children:  {}
+                                Delay-uf: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
                                     icon-key: ''
                                     counts: 'True'
-                                    command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
-                                    type: 'OP'
+                                    delay-base: '2.8'
+                                    delay-scale: '0'
                                     indicator: '2D'
-                                  children:  {}
-                        Skill Level-cd: 
+                                  children: 
+                                    Command-vf: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
+                                        type: 'OP'
+                                        indicator: '2D'
+                                      children:  {}
+                                Delay-wf: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    delay-base: '3.6'
+                                    delay-scale: '0'
+                                    indicator: '2D'
+                                  children: 
+                                    Value Set-xf: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'b'
+                                        value-base: '24'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                            Else-yf: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                indicator: '2D'
+                              children: 
+                                Delay-zf: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    delay-base: '0.8'
+                                    delay-scale: '0'
+                                    indicator: '2D'
+                                  children: 
+                                    Command-ag: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        command: 'playsound guns.pistol.magin ambient @a[r=16] ~ ~ ~ 0.5 1'
+                                        type: 'OP'
+                                        indicator: '2D'
+                                      children:  {}
+                                Delay-bg: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    delay-base: '1.5'
+                                    delay-scale: '0'
+                                    indicator: '2D'
+                                  children: 
+                                    Value Set-cg: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'b'
+                                        value-base: '12'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                        Skill Level-dg: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -1105,7 +2153,7 @@ Heavy Combo Gunman:
                             max-level: '1'
                             indicator: '2D'
                           children: 
-                            Delay-dd: 
+                            Delay-eg: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -1115,7 +2163,7 @@ Heavy Combo Gunman:
                                 delay-scale: '0'
                                 indicator: '2D'
                               children: 
-                                Value Set-ed: 
+                                Value Set-fg: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -1126,7 +2174,7 @@ Heavy Combo Gunman:
                                     value-scale: '0'
                                     indicator: '2D'
                                   children:  {}
-                            Delay-fd: 
+                            Delay-gg: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -1136,7 +2184,7 @@ Heavy Combo Gunman:
                                 delay-scale: '0'
                                 indicator: '2D'
                               children: 
-                                Command-gd: 
+                                Command-hg: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -1146,7 +2194,7 @@ Heavy Combo Gunman:
                                     type: 'OP'
                                     indicator: '2D'
                                   children:  {}
-                            Repeat-hd: 
+                            Repeat-ig: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -1159,7 +2207,7 @@ Heavy Combo Gunman:
                                 stop-on-fail: 'False'
                                 indicator: '2D'
                               children: 
-                                Command-id: 
+                                Command-jg: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -1169,7 +2217,7 @@ Heavy Combo Gunman:
                                     type: 'OP'
                                     indicator: '2D'
                                   children:  {}
-                        Skill Level-jd: 
+                        Skill Level-kg: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -1179,7 +2227,7 @@ Heavy Combo Gunman:
                             max-level: '2'
                             indicator: '2D'
                           children: 
-                            Delay-kd: 
+                            Delay-lg: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -1189,7 +2237,7 @@ Heavy Combo Gunman:
                                 delay-scale: '0'
                                 indicator: '2D'
                               children: 
-                                Value Set-ld: 
+                                Value Set-mg: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -1200,7 +2248,7 @@ Heavy Combo Gunman:
                                     value-scale: '0'
                                     indicator: '2D'
                                   children:  {}
-                            Delay-md: 
+                            Delay-ng: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -1210,7 +2258,7 @@ Heavy Combo Gunman:
                                 delay-scale: '0'
                                 indicator: '2D'
                               children: 
-                                Command-nd: 
+                                Command-og: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -1220,7 +2268,67 @@ Heavy Combo Gunman:
                                     type: 'OP'
                                     indicator: '2D'
                                   children:  {}
-                Skill Level-od: 
+                        Offhand-pg: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            check-mat: 'True'
+                            material: 'Iron Spade'
+                            check-data: 'False'
+                            check-lore: 'False'
+                            check-name: 'False'
+                            regex: 'False'
+                            indicator: '2D'
+                          children: 
+                            Command-qg: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
+                                type: 'OP'
+                                indicator: '2D'
+                              children:  {}
+                            Delay-rg: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: '0.4'
+                                delay-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Command-sg: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
+                                    type: 'OP'
+                                    indicator: '2D'
+                                  children:  {}
+                        Else-tg: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            indicator: '2D'
+                          children: 
+                            Command-ug: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                command: 'playsound guns.pistol.magout ambient @a[r=16] ~ ~ ~ 0.5 1'
+                                type: 'OP'
+                                indicator: '2D'
+                              children:  {}
+                Skill Level-vg: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -1230,7 +2338,7 @@ Heavy Combo Gunman:
                     max-level: '2'
                     indicator: '2D'
                   children: 
-                    Delay-pd: 
+                    Delay-wg: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
@@ -1240,7 +2348,7 @@ Heavy Combo Gunman:
                         delay-scale: '0'
                         indicator: '2D'
                       children: 
-                        Value-qd: 
+                        Value-xg: 
                           type: 'condition'
                           indicator: '3D'
                           data: 
@@ -1252,7 +2360,7 @@ Heavy Combo Gunman:
                             max-value-scale: '0'
                             indicator: '2D'
                           children: 
-                            Value Set-rd: 
+                            Value Set-yg: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -1263,7 +2371,7 @@ Heavy Combo Gunman:
                                 value-scale: '0'
                                 indicator: '2D'
                               children:  {}
-                            Command-sd: 
+                            Command-zg: 
                               type: 'mechanic'
                               indicator: '3D'
                               data: 
@@ -1273,7 +2381,7 @@ Heavy Combo Gunman:
                                 type: 'OP'
                                 indicator: '2D'
                               children:  {}
-                            Skill Level-td: 
+                            Skill Level-ah: 
                               type: 'condition'
                               indicator: '3D'
                               data: 
@@ -1283,7 +2391,7 @@ Heavy Combo Gunman:
                                 max-level: '2'
                                 indicator: '2D'
                               children: 
-                                Delay-ud: 
+                                Delay-bh: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -1293,7 +2401,7 @@ Heavy Combo Gunman:
                                     delay-scale: '0'
                                     indicator: '2D'
                                   children: 
-                                    Value Set-vd: 
+                                    Value Set-ch: 
                                       type: 'mechanic'
                                       indicator: '3D'
                                       data: 
@@ -1304,7 +2412,7 @@ Heavy Combo Gunman:
                                         value-scale: '0'
                                         indicator: '2D'
                                       children:  {}
-                                Delay-wd: 
+                                Delay-dh: 
                                   type: 'mechanic'
                                   indicator: '3D'
                                   data: 
@@ -1314,7 +2422,7 @@ Heavy Combo Gunman:
                                     delay-scale: '0'
                                     indicator: '2D'
                                   children: 
-                                    Command-xd: 
+                                    Command-eh: 
                                       type: 'mechanic'
                                       indicator: '3D'
                                       data: 
@@ -1331,80 +2439,56 @@ Heavy Combo Gunman:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-zd: 
+        Passive-gh: 
           type: 'mechanic'
           indicator: '3D'
           data: 
             icon-key: ''
             counts: 'True'
-            seconds-base: '0.01'
+            seconds-base: '0.1'
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Attribute-ae: 
+            Value Lore-hh: 
               type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: ''
+                icon-key: 'meleedmg'
                 counts: 'True'
-                key: 'strR'
-                attribute: 'Strength'
-                indicator: '2D'
-              children:  {}
-            Value Multiply-be: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'strR'
-                multiplier-base: '0.08'
+                key: 'dmg_GUN_00'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.1'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Attribute-ce: 
+            Value Lore-ih: 
               type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: ''
+                icon-key: 'meleedmg'
                 counts: 'True'
-                key: 'strR1'
-                attribute: 'Strength'
-                indicator: '2D'
-              children:  {}
-            Value Multiply-de: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'strR1'
-                multiplier-base: '0.15'
+                key: 'dmg_GUN_01'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.2'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Attribute-ee: 
+            Value Lore-jh: 
               type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: ''
+                icon-key: 'meleedmg'
                 counts: 'True'
-                key: 'strR2'
-                attribute: 'Strength'
-                indicator: '2D'
-              children:  {}
-            Value Multiply-fe: 
-              type: 'mechanic'
-              indicator: '3D'
-              data: 
-                icon-key: ''
-                counts: 'True'
-                key: 'strR2'
-                multiplier-base: '0.05'
+                key: 'dmg_GUN_02'
+                hand: 'Main'
+                regex: 'Melee Damage - {value}'
+                multiplier-base: '0.03'
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-        Passive-ge: 
+        Passive-kh: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -1414,7 +2498,7 @@ Heavy Combo Gunman:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value-he: 
+            Value-lh: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -1426,7 +2510,7 @@ Heavy Combo Gunman:
                 max-value-scale: '0'
                 indicator: '2D'
               children: 
-                Particle-ie: 
+                Particle-mh: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -1445,7 +2529,7 @@ Heavy Combo Gunman:
                     right: '0'
                     indicator: '2D'
                   children:  {}
-            Value Set-je: 
+            Value Set-nh: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -1456,7 +2540,7 @@ Heavy Combo Gunman:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Set-ke: 
+            Value Set-oh: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -1467,7 +2551,7 @@ Heavy Combo Gunman:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Set-le: 
+            Value Set-ph: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -1478,7 +2562,40 @@ Heavy Combo Gunman:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-        Repeat-me: 
+            Value Set-qh: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'D_reloadspeed00'
+                value-base: '0.2'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-rh: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'D_reloadspeed01'
+                value-base: '0.3'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-sh: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'D_reloadspeed02'
+                value-base: '0.3'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Repeat-th: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -1491,7 +2608,7 @@ Heavy Combo Gunman:
             stop-on-fail: 'False'
             indicator: '2D'
           children: 
-            Value Set-ne: 
+            Value Set-uh: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -1502,7 +2619,7 @@ Heavy Combo Gunman:
                 value-scale: '0'
                 indicator: '2D'
               children:  {}
-            Skill Level-oe: 
+            Skill Level-vh: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -1512,7 +2629,7 @@ Heavy Combo Gunman:
                 max-level: '0'
                 indicator: '2D'
               children: 
-                Value Set-pe: 
+                Value Set-wh: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -1523,7 +2640,7 @@ Heavy Combo Gunman:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Skill Level-qe: 
+            Skill Level-xh: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -1533,7 +2650,7 @@ Heavy Combo Gunman:
                 max-level: '1'
                 indicator: '2D'
               children: 
-                Value Set-re: 
+                Value Set-yh: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -1544,7 +2661,7 @@ Heavy Combo Gunman:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Skill Level-se: 
+            Skill Level-zh: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -1554,7 +2671,7 @@ Heavy Combo Gunman:
                 max-level: '2'
                 indicator: '2D'
               children: 
-                Value Set-te: 
+                Value Set-ai: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -1565,7 +2682,7 @@ Heavy Combo Gunman:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-        Passive-ue: 
+        Passive-bi: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -1575,7 +2692,7 @@ Heavy Combo Gunman:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Skill Level-ve: 
+            Skill Level-ci: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -1585,7 +2702,7 @@ Heavy Combo Gunman:
                 max-level: '0'
                 indicator: '2D'
               children: 
-                Skill Level-we: 
+                Skill Level-di: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -1595,7 +2712,7 @@ Heavy Combo Gunman:
                     max-level: '0'
                     indicator: '2D'
                   children: 
-                    Value-xe: 
+                    Value-ei: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -1607,7 +2724,7 @@ Heavy Combo Gunman:
                         max-value-scale: '0'
                         indicator: '2D'
                       children: 
-                        Value Set-ye: 
+                        Value Set-fi: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -1618,7 +2735,7 @@ Heavy Combo Gunman:
                             value-scale: '0'
                             indicator: '2D'
                           children:  {}
-                Skill Level-ze: 
+                Skill Level-gi: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -1628,7 +2745,7 @@ Heavy Combo Gunman:
                     max-level: '1'
                     indicator: '2D'
                   children: 
-                    Value-af: 
+                    Value-hi: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -1640,7 +2757,7 @@ Heavy Combo Gunman:
                         max-value-scale: '0'
                         indicator: '2D'
                       children: 
-                        Value Set-bf: 
+                        Value Set-ii: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -1651,7 +2768,7 @@ Heavy Combo Gunman:
                             value-scale: '0'
                             indicator: '2D'
                           children:  {}
-            Skill Level-cf: 
+            Skill Level-ji: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -1661,7 +2778,7 @@ Heavy Combo Gunman:
                 max-level: '3'
                 indicator: '2D'
               children: 
-                Skill Level-df: 
+                Skill Level-ki: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -1671,7 +2788,7 @@ Heavy Combo Gunman:
                     max-level: '0'
                     indicator: '2D'
                   children: 
-                    Value-ef: 
+                    Value-li: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -1683,7 +2800,7 @@ Heavy Combo Gunman:
                         max-value-scale: '0'
                         indicator: '2D'
                       children: 
-                        Value Set-ff: 
+                        Value Set-mi: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
@@ -1694,7 +2811,7 @@ Heavy Combo Gunman:
                             value-scale: '0'
                             indicator: '2D'
                           children:  {}
-                Skill Level-gf: 
+                Skill Level-ni: 
                   type: 'condition'
                   indicator: '3D'
                   data: 
@@ -1704,7 +2821,7 @@ Heavy Combo Gunman:
                     max-level: '1'
                     indicator: '2D'
                   children: 
-                    Value-hf: 
+                    Value-oi: 
                       type: 'condition'
                       indicator: '3D'
                       data: 
@@ -1716,7 +2833,7 @@ Heavy Combo Gunman:
                         max-value-scale: '0'
                         indicator: '2D'
                       children: 
-                        Value Set-if: 
+                        Value Set-pi: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 

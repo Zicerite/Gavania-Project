@@ -25,16 +25,19 @@ Feed:
   - '&d{name} &7({level}/{max})'
   - '&2Type: &6{type}'
   - ''
-  - '&7Adds 10 Stamina when you'
-  - '&7get a kill.'
-  - '&7Heal a fixed amount of HP'
-  - '&7and Mana when you get a kill.'
+  - '&7Heal Stamina, and'
+  - '&7heal a fixed amount of HP'
+  - '&7and Mana, and get a cooldown'
+  - '&7reduction on all skills when'
+  - '&7you get a kill.'
   - ''
   - '&bHP Healed: {attr:zheal.value}%'
   - '&bMana Healed: {attr:zmana.value}%'
+  - '&bStamina Healed: {attr:stradd.amount}'
+  - '&bCooldown Reduction: &61.5 &fSeconds'
   desc:  []
   components: 
-    Kill: 
+    Kill-a: 
       type: 'trigger'
       indicator: '3D'
       data: 
@@ -50,7 +53,7 @@ Feed:
             icon-key: 'zheal'
             counts: 'True'
             type: 'Percent'
-            value-base: '0.25'
+            value-base: '1'
             value-scale: '0'
             indicator: '2D'
           children:  {}
@@ -61,7 +64,7 @@ Feed:
             icon-key: 'zmana'
             counts: 'True'
             type: 'Percent'
-            value-base: '0.5'
+            value-base: '1'
             value-scale: '0'
             indicator: '2D'
           children:  {}
@@ -81,7 +84,7 @@ Feed:
               type: 'mechanic'
               indicator: '3D'
               data: 
-                icon-key: ''
+                icon-key: 'stradd'
                 counts: 'True'
                 key: 'stamina'
                 amount-base: '10'
@@ -123,10 +126,32 @@ Feed:
             arrangement: 'Sphere'
             radius-base: '1'
             radius-scale: '0'
-            particles-base: '2'
+            particles-base: '4'
             particles-scale: '0'
             forward: '0'
             upward: '1'
             right: '0'
             indicator: '2D'
           children:  {}
+        Delay-i: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            delay-base: '0.01'
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Cooldown-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                skill: 'all'
+                type: 'Seconds'
+                value-base: '1.5'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

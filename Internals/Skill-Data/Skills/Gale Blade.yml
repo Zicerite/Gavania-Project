@@ -38,7 +38,7 @@ Gale Blade:
   - '&bDamage (Close): {attr:dmg1.value} Melee Damage &f䛳'
   - '&bDamage (Projectile): {attr:dmg2.value} Skill Damage &f䛳'
   - '&bRange: {attr:range.range} Blocks'
-  - '&bProjectile Range: &6Long'
+  - '&bProjectile Range: &6Short-Medium'
   - '&bSpeed: {attr:po.tier} for {attr:po.seconds} Seconds'
   - ''
   - '{req:level}Level: {attr:level} &2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
@@ -71,7 +71,7 @@ Gale Blade:
                 ambient: 'True'
                 tier-base: '1'
                 tier-scale: '0'
-                seconds-base: '8'
+                seconds-base: '6'
                 seconds-scale: '0'
                 indicator: '2D'
               children:  {}
@@ -122,82 +122,97 @@ Gale Blade:
                 speed: '1'
                 amount: '1'
                 frequency: '0.05'
-                lifespan: '6'
+                lifespan: '0.5'
                 use-effect: 'False'
                 indicator: '2D'
               children: 
-                Damage-f: 
-                  type: 'mechanic'
-                  indicator: '3D'
-                  data: 
-                    icon-key: 'dmg2'
-                    counts: 'True'
-                    type: 'Damage'
-                    value-base: 'galebProj'
-                    value-scale: '0'
-                    true: 'False'
-                    classifier: 'wind'
-                    indicator: '2D'
-                  children:  {}
-                Skill Level-g: 
-                  type: 'condition'
+                Area-f: 
+                  type: 'target'
                   indicator: '3D'
                   data: 
                     icon-key: ''
-                    skill: 'Rune_Swordsman_GaleBlade'
-                    min-level: '1'
-                    max-level: '1'
+                    radius-base: '2'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
                     indicator: '2D'
                   children: 
-                    Repeat-h: 
+                    Damage-g: 
                       type: 'mechanic'
                       indicator: '3D'
                       data: 
-                        icon-key: ''
+                        icon-key: 'dmg2'
                         counts: 'True'
-                        repetitions-base: '3'
-                        repetitions-scale: '0'
-                        period: '0.075'
-                        delay: '0'
-                        stop-on-fail: 'False'
+                        type: 'Damage'
+                        value-base: 'galebProj'
+                        value-scale: '0'
+                        true: 'False'
+                        classifier: 'wind'
+                        indicator: '2D'
+                      children:  {}
+                    Skill Level-h: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Rune_Swordsman_GaleBlade'
+                        min-level: '1'
+                        max-level: '1'
                         indicator: '2D'
                       children: 
-                        Launch-i: 
+                        Repeat-i: 
                           type: 'mechanic'
                           indicator: '3D'
                           data: 
                             icon-key: ''
                             counts: 'True'
-                            relative: 'Target'
-                            forward-base: '0'
-                            forward-scale: '0'
-                            upward-base: '-1'
-                            upward-scale: '0'
-                            right-base: '0'
-                            right-scale: '0'
+                            repetitions-base: '3'
+                            repetitions-scale: '0'
+                            period: '0.075'
+                            delay: '0'
+                            stop-on-fail: 'False'
                             indicator: '2D'
-                          children:  {}
-                Skill Level-j: 
-                  type: 'condition'
-                  indicator: '3D'
-                  data: 
-                    icon-key: ''
-                    skill: 'Rune_Swordsman_GaleBlade'
-                    min-level: '2'
-                    max-level: '2'
-                    indicator: '2D'
-                  children: 
-                    Fire-k: 
-                      type: 'mechanic'
+                          children: 
+                            Launch-j: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Target'
+                                forward-base: '0'
+                                forward-scale: '0'
+                                upward-base: '-1'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Skill Level-k: 
+                      type: 'condition'
                       indicator: '3D'
                       data: 
                         icon-key: ''
-                        counts: 'True'
-                        seconds-base: '3'
-                        seconds-scale: '0'
+                        skill: 'Rune_Swordsman_GaleBlade'
+                        min-level: '2'
+                        max-level: '2'
                         indicator: '2D'
-                      children:  {}
-            Block-l: 
+                      children: 
+                        Fire-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Block-m: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -206,7 +221,7 @@ Gale Blade:
                 material: 'Air'
                 indicator: '2D'
               children: 
-                Launch-m: 
+                Launch-n: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -221,14 +236,14 @@ Gale Blade:
                     right-scale: '0'
                     indicator: '2D'
                   children:  {}
-        Linear-n: 
+        Linear-o: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: 'range'
-            range-base: '7.5'
+            range-base: '6'
             range-scale: '0'
-            tolerance-base: '100'
+            tolerance-base: '30'
             tolerance-scale: '0'
             group: 'Enemy'
             wall: 'True'
@@ -237,7 +252,7 @@ Gale Blade:
             max-scale: '0'
             indicator: '2D'
           children: 
-            Damage-o: 
+            Damage-p: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -250,7 +265,7 @@ Gale Blade:
                 classifier: 'wind'
                 indicator: '2D'
               children:  {}
-            Particle-p: 
+            Particle-q: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -273,7 +288,7 @@ Gale Blade:
                 right: '0'
                 indicator: '2D'
               children:  {}
-            Repeat-q: 
+            Repeat-r: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -286,7 +301,7 @@ Gale Blade:
                 stop-on-fail: 'False'
                 indicator: '2D'
               children: 
-                Push-r: 
+                Push-s: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -298,14 +313,14 @@ Gale Blade:
                     source: 'none'
                     indicator: '2D'
                   children:  {}
-        Linear-s: 
+        Linear-t: 
           type: 'target'
           indicator: '3D'
           data: 
             icon-key: ''
-            range-base: '7.5'
+            range-base: '6'
             range-scale: '0'
-            tolerance-base: '100'
+            tolerance-base: '30'
             tolerance-scale: '0'
             group: 'Ally'
             wall: 'True'
@@ -314,7 +329,7 @@ Gale Blade:
             max-scale: '0'
             indicator: '2D'
           children: 
-            Fire-t: 
+            Fire-u: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -322,7 +337,7 @@ Gale Blade:
                 type: 'On Fire'
                 indicator: '2D'
               children: 
-                Command-u: 
+                Command-v: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -339,7 +354,7 @@ Gale Blade:
         icon-key: ''
         indicator: '2D'
       children: 
-        Passive-w: 
+        Passive-x: 
           type: 'mechanic'
           indicator: '3D'
           data: 
@@ -349,7 +364,7 @@ Gale Blade:
             seconds-scale: '0'
             indicator: '2D'
           children: 
-            Value Lore-x: 
+            Value Lore-y: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -362,7 +377,7 @@ Gale Blade:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Lore-y: 
+            Value Lore-z: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -375,7 +390,7 @@ Gale Blade:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Value Lore-z: 
+            Value Lore-ab: 
               type: 'mechanic'
               indicator: '3D'
               data: 
@@ -388,7 +403,7 @@ Gale Blade:
                 multiplier-scale: '0'
                 indicator: '2D'
               children:  {}
-            Skill Level-ab: 
+            Skill Level-bb: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -398,7 +413,7 @@ Gale Blade:
                 max-level: '2'
                 indicator: '2D'
               children: 
-                Value Set-bb: 
+                Value Set-cb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
@@ -409,7 +424,7 @@ Gale Blade:
                     value-scale: '0'
                     indicator: '2D'
                   children:  {}
-            Skill Level-cb: 
+            Skill Level-db: 
               type: 'condition'
               indicator: '3D'
               data: 
@@ -419,7 +434,7 @@ Gale Blade:
                 max-level: '3'
                 indicator: '2D'
               children: 
-                Value Set-db: 
+                Value Set-eb: 
                   type: 'mechanic'
                   indicator: '3D'
                   data: 
