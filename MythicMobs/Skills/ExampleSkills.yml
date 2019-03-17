@@ -1,0 +1,123 @@
+# 
+# These example files show you some VERY basic meta skills.
+# You can copy and expand them however you'd like.
+SmashAttack:
+  Cooldown: 8
+  Conditions:
+  - targetwithin 25
+  Skills:
+  - message{cooldown=30;m="<mob.name><&co> Hahahah! I will crush you, fool!"} @PlayersInRadius{r=40}
+  - teleport @target
+  - effect:sound{s=mob.endermen.portal;volume=1.0;pitch=0.5}
+  - delay 10
+  - damage{amount=5;ignorearmor=true} @PlayersInRadius{r=5}
+  - throw{velocity=10;velocityY=5} @PlayersInRadius{r=5}
+  - effect:explosion @Self
+CrushingLeap_Giant:
+  Cooldown: 3
+  Skills:
+  - jump{velocity=2}
+  - delay 2
+  - leap{velocity=120} @target
+  - delay 15
+  - effect:explosion @self
+  - damage{amount=3} @EntitiesInRadius{r=10}
+CrushingLeap_Crypt:
+  Cooldown: 7
+  Skills:
+  - leap{velocity=200} @target
+  - delay 20
+  - jump{velocity=-100}
+ForceGrip:
+  Skills:
+  - forcepull{spread=5} @EntitiesInRadius{r=40}
+Volley:
+  Cooldown: 5
+  Skills:
+  - arrowvolley{a=20;s=25;v=10;f=50;rd=200} @Target
+Volley1:
+  Cooldown: 3
+  Skills:
+  - arrowvolley{a=15;s=120;v=10;f=50;rd=1} @PlayersInRadius{r=24}
+GroundSlam:
+  Cooldown: 2
+  Skills:
+  - message{m="<mob.name><&co> &7Wah-BAM!"} @PlayersInRadius{r=64}
+  - effect:explosion @Self
+  - damage{amount=420} @PlayersInRadius{r=8}
+  - throw{velocity=15;velocityY=5} @PlayersInRadius{r=8}
+LightningStrike:
+  Cooldown: 5
+  Skills:
+  - message{m="<mob.name><&co> &7I Smite You!"} @PlayersInRadius{r=64}
+  - lightning @PlayersInRadius{r=12}
+  - damage{amount=120}
+Warp:
+  Cooldown: 5
+  Skills:
+  - teleport{spreadh=5;spreadv=0} @target
+SummonSkeletons:
+  Cooldown: 10
+  Skills:
+  - message{m="<mob.name><&co> &7Arise, my minions!"} @PlayersInRadius{r=40}
+  - delay 10
+  - summon{mob=SkeletalMinion;amount=2;noise=8} @Self
+  - delay 10
+  - summon{mob=SkeletalMinion;amount=2;noise=8} @Self
+  - delay 10
+  - summon{mob=SkeletalMinion;amount=2;noise=8} @Self
+SummonDeadMinions:
+  Cooldown: 8
+  Skills:
+  - summon{mob=DeadMinion;amount=2;noise=12} @Self
+  - delay 10
+  - summon{mob=DeadMinion;amount=2;noise=12} @Self
+  - delay 10
+  - summon{mob=DeadMinion;amount=2;noise=12} @Self
+SummonSkeletonsLapis:
+  Cooldown: 15
+  Skills:
+  - summon{mob=LapisSkeleton;amount=1;noise=2} @Self
+  - delay 20
+  - summon{mob=LapisSkeleton;amount=1;noise=4} @Self
+SuperSummon:
+  Cooldown: 60
+  Skills:
+  - message{m="<mob.name><&co> &7Assist me fools!"} @PlayersInRadius{r=40}
+  - delay 10
+  - summon{mob=CreeperMinion;amount=2;noise=8} @Self
+  - delay 10
+  - summon{mob=SkeletonKingX;amount=1;noise=8} @Self
+SummonCreepers:
+  Cooldown: 15
+  Skills:
+  - message{m="<mob.name><&co> &7Minions! Attack!"} @PlayersInRadius{r=64}
+  - delay 20
+  - summon{mob=CreeperMinion;amount=2;noise=12} @Self
+  - delay 15
+  - summon{mob=CreeperMinion;amount=3;noise=12} @Self
+  - delay 10
+  - summon{mob=CreeperMinion;amount=4;noise=2} @Self
+Cripple:
+  Cooldown: 25
+  Skills:
+  - message{m="<mob.name><&co> &7Muhahaha!"} @PlayersInRadius{r=64}
+  - potion{type=SLOW;duration=180;level=3;force=true}
+  - damage{amount=50}
+Cripple_Crypt:
+  Cooldown: 25
+  Skills:
+  - message{m="<mob.name><&co> &7Muhahaha!"} @PlayersInRadius{r=64}
+  - potion{type=WITHER;duration=180;level=3;force=true}
+  - damage{amount=10}
+SummonSuperSkeleton:
+  Cooldown: 26
+  Skills:
+  - message{m="<mob.name><&co> &7Rise my Champions!"} @PlayersInRadius{r=40}
+  - delay 20
+  - summon{mob=SkeletalMinionX;amount=2;noise=8} @Self
+AngrySludgePoison:
+  Cooldown: 10
+  Skills:
+  - potion{type=POISON;lvl=2;duration=100} @PlayersInRadius{r=15}
+  - effect:particles{p=happyVillager;amount=1000;hSpread=15;ySpread=1;speed=0;yOFfset=0.5} @Self

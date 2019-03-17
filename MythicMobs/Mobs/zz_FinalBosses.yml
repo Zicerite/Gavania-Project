@@ -1,0 +1,59 @@
+# 
+# This example file shows you how to change default values for 
+# vanilla mobs. Most MythicMobs options will work here, including
+# skills and effects! **Despawn: FALSE does not work, though.**
+TheCreator:
+  Type: EVOKER
+  Display: '&6&l??? &e[Lvl &e<mob.level>&e]'
+  Health: 250000
+  Armor: 5
+  Damage: 7000
+  KnockbackResistance: 1
+  MovementSpeed: 0.41
+  Power: 900
+  AttackSpeed: 0
+  LevelModifiers:
+    Health: 0
+    Armor: 0
+    Damage: 0
+    KnockbackResistance: 0
+    MovementSpeed: 0
+    Power: 0
+    AttackSpeed: 0
+  Skills:
+  - setlevel{a=set;l=250} ~onSpawn
+  - message{m="<mob.name><&co> &7hahahahah! Die, <trigger.name>!"} @PlayersInRadius{r=40} ~onPlayerKill >0 1
+  - skill{s=CrushingLeap} @Target 0.1
+  - skill{s=GroundSlam} @Self 0.1
+  - skill{s=SummonCreepers} @Self 0.1
+  - skill{s=LightningStrike} @Target 0.1
+#  - skill{s=SuperSummon} @Target 0.1
+  BossBar:
+    Enabled: true
+    Title: '&6&l??? &e[Lvl &e<mob.level>&e]'
+    Range: 96
+    Color: WHITE
+    Style: SOLID
+  AIGoalSelectors:
+  - 0 clear
+  - 5 movetowardstarget
+  - 3 meleeattack
+  - 4 randomstroll
+  - 2 lookaround
+  - 1 swim
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Equipment:
+  - KingsCrownX:4
+  - SkeletonKingBowX:0
+  - KingsChestplateX:3
+  Drops:
+  - SkeletonKingDrops
+  Options:
+    AlwaysShowName: true
+    MaxCombatDistance: 128
+    PreventOtherDrops: true
+    Glowing: true
+    NoDamageTicks: 0
+    AttackSpeed: 5

@@ -1,0 +1,83 @@
+# 
+# These example files show you some of the basic attributes and
+# skills MythicMobs can use. Far more is possible!
+Bono_Guard_1:
+  Type: SKELETON
+  Display: '&2Guard &e[Lvl &e<mob.level>&e]'
+  #Disguise:
+    #Type: player
+    #Player: Steel
+    #Skin: Steel
+    #ShowName: true
+  Health: 300
+  Armor: 5
+  Damage: 10
+  KnockbackResistance: 1
+  Power: 2
+  AttackSpeed: 10
+  LevelModifiers:
+    Health: 0
+    Armor: 0
+    Damage: 0
+    KnockbackResistance: 0
+    MovementSpeed: 0
+    Power: 0
+    AttackSpeed: 0
+  Equipment:
+  - s_IronBlockHead:4
+  - s_IronChestplate:3
+  - s_IronLeggings:2
+  - s_IronBoots:1
+  - s_IronSword:0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  - 2 hurtbytarget
+  Skills:
+  - potion{type=BLINDNESS;duration=20;lvl=2} @PlayersInRadius{r=6} ~onAttack
+  - teleportto{location=136.5,76.1,-1481.5;yaw=-90;p=0} @PlayersInRadius{r=6} ~onAttack
+  - effect:particlering{particle=flame;radius=6;points=16;amount=1;hS=1;vS=0;y=0.12} @self ~onTimer:5
+  Drops:
+  - gold_nugget 1 1
+  - exp 1 1
+  DropsPerLevel:
+  - gold_nugget 1 1
+  Options:
+    AlwaysShowName: true
+    MaxCombatDistance: 128
+    PreventOtherDrops: true
+    NoDamageTicks: 5
+    Silent: true
+    Despawn: false
+    FollowRange: 7
+    MovementSpeed: 0.6
+guarded_keycard:
+  Type: CHICKEN
+  Disguise:
+    Type: ITEM
+    Item: PAPER
+    ItemData: 0
+  Display: '&fLow Level Keycard'
+  Health: 1
+  MovementSpeed: 0
+  Skills:
+  - potion{type=SLOW;duration=99990;lvl=10} @Self ~OnSpawn
+  LevelModifiers:
+    Health: 0
+    Armor: 0
+    Damage: 0
+    KnockbackResistance: 0
+    Power: 0
+    AttackSpeed: 0
+  Options:
+    NoDamageTicks: 1
+    AlwaysShowName: true
+    MaxCombatDistance: 64
+    PreventOtherDrops: true
+    MovementSpeed: 0.0
+  Drops:
+  - keycard_low 1 1

@@ -1,0 +1,125 @@
+JungleWolf:
+  Type: BABY_PIG_ZOMBIE
+  Display: '&6 Wolf  &2Lv:<mob.level>'
+  Health: 200
+  Damage: 5
+  Armor: 5
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  - 3 swim
+  - 4 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 attacker
+  - 2 OtherFactionMonsters
+  Faction: JungleCreature
+  LevelModifiers:
+    Health: 50
+    Armor: 0.8
+    MovementSpeed: 0.003
+    AttackSpeed: 0.3
+    KnockbackResistance: 0.6
+    Power: 0.1
+  Skills: 
+  - healpercent{m=0.01} @self ~onTimer:40
+  - setlevel{a=add;l=1} ~onKillPlayer
+  - skill{s=LU1-3} ~onTimer:1200
+  - skill{s=LU4-10} ~onTimer:3600
+  - skill{s=LU11-15} ~onTimer:8400
+  - skill{s=LU16-20} ~onTimer:12000
+  - skill{s=LU21-30} ~onTimer:18000
+  - skill{s=LU31-50} ~onTimer:24000
+  - skill{s=flash} ~onTimer:100 0.15
+  - skill{s=roar} ~onDamaged 0.2
+  - skill{s=naturepower} ~onTimer:100 0.1
+  - damage{a=15} @Target ~onAttack
+  - skill{s=bite} ~onAttack 0.15
+  - skill{s=cfbu} ~onDamaged <50% 0.2
+  - threat{a=-10000} @target ~onKillPlayer
+  - skill{s=speedup} ~onTimer:100 0.2
+  - skill{s=evolution} <10% 0.5
+  - skill{s=summonguardian} <30% 0.5
+  Drops:
+  - WolfFang 1-2 0.2
+  - WolfEssence 1-2 0.05
+  - WolfSkin 1 0.1  
+  - skillapi-exp 25-40 1
+  - goldcoin 2-3 1
+  DropsPerLevel:
+  - skillapi-exp 10 1
+  - goldcoin 1 0.01
+  Options:
+    PreventOtherDrops: true
+    MovementSpeed: 0.3
+    Despawn: false
+    KnockBackResistance: 0.1
+    Silent: true
+  KillMessages: 
+  - '<target.name> đã bị đánh baị'
+  - '<target.name> đã bỏ xác trong rừng'
+  - '<target.name> thật dell biết lượng sức'
+  - '<target.name> vừa feed mạng cho team địch'
+  - 'Đồng minh <target.name> vừa bị vô danh tiểu tốt hạ gục'
+  Disguise:
+    Type: WOLF
+    ShowName: false
+  Modules:
+    ImmunityTable: true
+    ThreatTable: true
+GuardWolf:
+  Type: BABY_PIG_ZOMBIE
+  Display: '&6 GuardWolf  &2Lv:<mob.level>'
+  Health: 200
+  Damage: 5
+  Armor: 5
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 attacker
+  - 2 OtherFactionMonsters
+  Faction: JungleCreature
+  LevelModifiers:
+    Health: 50
+    Armor: 0.8
+    MovementSpeed: 0.003
+    AttackSpeed: 0.3
+    KnockbackResistance: 0.6
+    Power: 0.1
+  Skills: 
+  - healpercent{m=0.01} @self ~onTimer:40
+  - setlevel{a=add;l=1} ~onKillPlayer
+  - skill{s=LU1-3} ~onTimer:1200
+  - skill{s=LU4-10} ~onTimer:3600
+  - skill{s=LU11-15} ~onTimer:8400
+  - skill{s=LU16-20} ~onTimer:12000
+  - skill{s=LU21-30} ~onTimer:18000
+  - skill{s=LU31-50} ~onTimer:24000
+  - skill{s=flash} ~onTimer:100 0.15
+  - skill{s=roar} ~onDamaged 0.2
+  - skill{s=naturepower} ~onTimer:100 0.1
+  - damage{a=15} @Target ~onAttack
+  - skill{s=bite} ~onAttack 0.15
+  - skill{s=cfbu} ~onDamaged <50% 0.2
+  - threat{a=-10000} @target ~onKillPlayer
+  - skill{s=speedup} ~onTimer:100 0.2
+  - setlevel{a=set;l=50} ~onSpawn
+  - suicide ~onTimer:2400
+  Options:
+    PreventOtherDrops: true
+    MovementSpeed: 0.3
+    Despawn: false
+    KnockBackResistance: 0.1
+  KillMessages: 
+  - '<target.name> đã bị đánh baị'
+  - '<target.name> đã bỏ xác trong rừng'
+  - '<target.name> thật dell biết lượng sức'
+  - '<target.name> vừa feed mạng cho team địch'
+  - 'Đồng minh <target.name> vừa bị vô danh tiểu tốt hạ gục'
+  Disguise:
+    Type: WOLF
+    ShowName: false
