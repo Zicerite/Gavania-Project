@@ -9,6 +9,6 @@ You can take, and freely use, what you want! :D
 If the skill was made by me, you can not claim they were made by you, nor can you sell them, that is not okay.
 Obviously you can drastically change it to your liking, and then claim it is yours, as that would be fair use.
 
-**Current Version: 0.4.8** (December 2018)
+**Current Version: 0.4.9** (March 17th 2018)
 
-**Last time skill files were updated:** Febuary 22nd, 2019
+**Last time skill files were updated:** March 17th, 2019
